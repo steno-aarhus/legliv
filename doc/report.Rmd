@@ -1,0 +1,43 @@
+---
+# Uses Quarto metadata: https://quarto.org/docs/journals/authors.html
+title: ""
+author:
+  - name: ""
+    orcid: ""
+    affiliations: 
+        - name: ""
+date: "`r Sys.Date()`"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Abstract
+
+Objective:
+
+Research Design and Methods:
+
+Results:
+
+Conclusions:
+
+# Introduction 
+
+# Research Design and Methods
+
+# Results
+
+# Conclusions
+
+# Acknowledgements
+
+# References
+
+# Tables
+
+# Figures
+
+# Supplemental Material
