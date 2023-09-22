@@ -1,34 +1,41 @@
-TODO: Add more to the title of your project here
-
-# legliv:
+# TODO: Write your project abbreviated title and full title here.
 
 TODO: Give a brief description of what your project is about
 
 This project...
 
-# Brief description of folder and file contents
+# Installing and setting up the project
 
-TODO: As project evolves, add brief description of what is inside the data, doc and R folders.
+If dependencies have been managed by using
+`usethis::use_package("packagename")` through the `DESCRIPTION` file,
+installing dependencies is as easy as opening the `.Rproj` file and
+running this command in the console:
+
+``` r
+pak::pak()
+```
+
+Once you've created your dataset using `data-raw/create-data.R`, you can
+uncomment the lines in the `_targets.R` file and afterwards run this
+code whenever you enter the RAP project.
+
+``` r
+targets::tar_make()
+```
+
+# Brief description of folder and file contents
 
 The following folders contain:
 
-- `data/`:
-- `doc/`:
-- `R/`:
+-   `data/`: Will contain the UK Biobank data (not saved to Git) as well
+    as the intermediate results output files.
 
-# Installing project R package dependencies
+-   `data-raw/`: Contains the R script to download the data, as well as
+    the CSV files that contain the project variables and the variable
+    list as named in the RAP.
 
-If dependencies have been managed by using `usethis::use_package("packagename")`
-through the `DESCRIPTION` file, installing dependencies is as easy as opening the
-`legliv.Rproj` file and running this command in the console:
+-   `doc/`: This file contains the R Markdown, Word, or other types of
+    documents with written content, like the manuscript and protocol.
 
-    # install.packages("remotes")
-    remotes::install_deps()
-
-You'll need to have remotes installed for this to work.
-
-# Resource
-
-For more information on this folder and file workflow and setup, check
-out the [prodigenr](https://rostools.github.io/prodigenr) online
-documentation.
+-   `R/`: Contains the R scripts and functions to create the figures,
+    tables, and results for the project.
