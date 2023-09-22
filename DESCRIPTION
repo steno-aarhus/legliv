@@ -2,6 +2,15 @@ Package: legliv
 Type: Project
 Version: 0.0.1
 Imports:
+    gert,
+    here,
     knitr,
-    rmarkdown
+    remotes,
+    rmarkdown,
+    targets,
+    tidyverse,
+    ukbAid,
+    usethis
 Encoding: UTF-8
+Remotes:  
+    steno-aarhus/ukbAid
