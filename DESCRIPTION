@@ -15,3 +15,5 @@ Encoding: UTF-8
 Remotes: 
     steno-aarhus/ukbAid
 Title: UK Biobank Project
+URL: https://github.com/steno-aarhus/legliv
+BugReports: https://github.com/steno-aarhus/legliv/issues
