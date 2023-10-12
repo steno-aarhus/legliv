@@ -2,7 +2,8 @@
 
 TODO: Give a brief description of what your project is about
 
-This project...
+With this project, We will statistically model replacement of red meat consumption with legumes in relation to 
+incident primary liver cancer and assess whether the association is mediated through non-alcoholic fatty liver disease (NAFLD).
 
 # Installing and setting up the project
 
