@@ -1,15 +1,17 @@
 ---
-title: "Protocol: TITLE"
-# Add all *direct* contributors to the protocol here
+title: "Protocol: LEGUME CONSUMPTION AND RISK OF PRIMARY LIVER CANCER"
 author: 
-  - name: NAME
+  - name: NIELS BOCK
     affiliation: 
-      - name: INSTITUTION
-date: last-modified
+      - name: DEPARTMENT OF PUBLIC OF PUBLIC HEALTH, AARHUS UNIVERSITY
+date: 04/10/23
 format: html
 # bibliography: "file/path"
 execute: 
   echo: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup}
@@ -35,6 +37,9 @@ describing the study. Find checklists
 
 ## Title
 
+Statistical replacement of red meat with legumes in relation to incident
+primary liver cancer, using data from the UK Biobank.
+
 ::: content-hidden
 *Put in the title of your study. Remember to include your study design
 in the title.*
@@ -42,9 +47,23 @@ in the title.*
 
 ## Description
 
-::: content-hidden
-Overall description of your project. Think of this as what you would
-reply if a colleague asked you what your project was about.
+Non-alcoholic fatty liver disease (NAFLD)-related primary liver cancer
+is on the rise worldwide. Preventive interventions are critical. NAFLD
+risk factors include sedentary lifestyles and "Western"-style diets high
+in fat and red meat. Legumes are now promoted in the Danish dietary
+guidelines as they have a low climate impact and are a good plant-based
+source of protein. They may additionally have anti-carcinogenic
+properties. Pre-clinical studies suggest that legumes are a promising
+intervention to lower risk of liver cancer. This project will use
+prospective data from the UK Biobank cohort as no Danish cohort consumes
+enough legumes to investigate. Based on a food substitution model,
+hazard ratios for liver cancer when substituting red meats with legumes
+will be estimated. It is critical that we reduce the climate impact of
+our diet. This study will add new knowledge that can qualify the health
+arguments behind the Danish dietary guideline to eat more legumes and
+less meat. ::: content-hidden Overall description of your project. Think
+of this as what you would reply if a colleague asked you what your
+project was about.
 
 Keep the inline R code below. This inserts the standard UKB statement.
 :::
@@ -52,6 +71,39 @@ Keep the inline R code below. This inserts the standard UKB statement.
 `r ukbAid::statements$protocol`
 
 ## Objectives and hypotheses
+
+### Introduction
+
+Food systems are estimated to cause 40% of man-made greenhouse gas
+emissions, and the foodstuff with the highest carbon footprint by far is
+red meat, particularly beef. The average adult Dane consumes \~900g/week
+red meat. Thus to reduce climate impacts of diet, the 2021 Danish
+dietary guidelines recommend eating less meat while increasing intake of
+legumes to \~100 g/day precooked legumes. Different species of legumes
+are traditional staple foods in many countries; in Denmark, however,
+consumption of legumes is very low. There may be great potential for
+downstream population health benefits of increasing legume consumption,
+particularly for diseases related to obesity, of which non-alcoholic
+fatty liver disease (NAFLD) and its sequalae primary liver cancer are of
+growing public health importance. Emerging evidence indicates that
+legumes may have anti-cancer effects. However, because studies on
+primary liver cancer to date have assessed consumption of legumes
+instead of any other food in relation to health outcomes, little is
+known of the associations at the expense of specifically red meat.
+
+### Objective
+
+To investigate the association between statistical replacement of red
+meat with legumes and incidence of primary liver cancer, as well as
+hepatocellular carcinoma (HCC) and intrahepatic cholangiocarcinoma
+(IH-CCA) separately, and whether the association is mediated by NAFLD.
+
+### Hypotheses
+
+1.  Substitution of red and processed meats with legumes is associated
+    with a lower risk of HCC and IH-CCA.
+2.  The association between substitution of red and processed meats with
+    legumes and risk of HCC and IH-CCA is mediated through NAFLD.
 
 ::: content-hidden
 -   Put in a very brief introduction to the topic. Explain the
@@ -81,6 +133,21 @@ Note: Leave the below text here.
 No blinding is involved in this study.
 
 ## Study design
+
+This will be an observational follow-up cohort study. Because no Danish
+study populations consume enough legumes to investigate associations
+with disease, we will use data from the UK Biobank, a prospective cohort
+with health information on approximately 500,000 participants, aged
+40-69 at baseline, living in the UK. Participants were recruited between
+2006 and 2010. Dietary data on legumes were collected by multiple 24hr
+recalls in 176,000 participants. The exposures in this study will be red
+meat intake (total, processed and unprocessed) and legume intake. Legume
+and red meat intake will be estimated on the reported number of servings
+consumed, measured in g/day. Incident primary liver cancer diagnoses
+during follow-up are determined through ICD-10 codes C22.0 (Liver cell
+carcinoma) and C22.1 (Intrahepatic bile duct carcinoma) in the National
+Health Services (NHS) registries. Baseline covariate data are by
+self-report or measured at the recruitment clinic visit.
 
 ::: content-hidden
 Describe your study design. Typical study designs for observation
@@ -147,6 +214,46 @@ this way, we feel pre-analysis bias is minimal.
     Biobank link on it)
 :::
 
+### Exposure
+
+Detailed dietary data were collected with a self-assessed, web-based
+24-hour recall dietary assessment tool, Oxford WebQ. A questionnaire was
+added at the assessment visit at the end of recruitment. After
+recruitment, four additional rounds of online questionnaires were
+conducted online at 3-4 monthly intervals. Participants were asked to
+recall what they ate the previous day \[50\]. More than 200,000 UK
+Biobank participants completed ≥1 Oxford WebQ \[51\]. More than 80,000
+participants completed ≥3 Oxford WebQ \[52\]. Dietary data on legumes
+were collected in 176,000 participants. The exposures in this study will
+be red meat intake (total, processed and unprocessed) and legume intake.
+Legume and red meat intake will be estimated on the reported number of
+servings consumed, measured in grams/day. Participants who reported
+consuming vegetables were asked to report the intake of beans (not
+greens) and lentils they had the day before. Participants who reported
+consuming meat or poultry were asked to report the intake of different
+meats they had the day before. This British cohort was chosen as legume
+consumption is higher in the UK than in Denmark. \[53\]
+
+### Outcome
+
+The primary outcomes will be HCC and IH-CCA. Cancer diagnoses will be
+assessed through linkage to NHS Digital and Public Health England, and
+the NHS Central Register. Incident primary liver cancer diagnoses during
+follow-up are determined through ICD-10 codes C22.0 (Liver cell
+carcinoma) and C22.1 (Intrahepatic bile duct carcinoma) in the National
+Health Services (NHS) registries.
+
+### Covariates
+
+Based on a literature review of studies regarding causes of liver
+cancer, important covariables will be selected a priori and visualized
+by a directed acyclic graph (DAG). Covariables will most likely include
+total caloric intake, age, sex, socioeconomic status, BMI, smoking
+status, physical activity, alcohol intake, history of chronic liver
+disease, liver cancer, viral hepatitis, cholelithiasis, and diabetes.
+Collection of data on socioeconomic status, lifestyle habits and
+biomedical and anthropometric measures was conducted as aforementioned.
+
 ## Sample size
 
 ::: content-hidden
@@ -184,6 +291,40 @@ baseline characteristics, adjustment for confounding, selection of
 potential confounders, examined subgroups, how missing data was handled,
 how loss to follow-up was addressed and sensitivity analyses.
 :::
+
+Multivariable-adjusted Cox proportional hazards regression model will be
+used to estimate the hazard ratio (HR) with corresponding 95% confidence
+intervals for liver cancer when substituting red meats with legumes.
+Substitution will be done in two ways:
+
+1.  Equal-mass substitution, i.e., substituting x grams of red meats
+    with x grams of legumes.
+
+2.  Equal-calorie substitution, i.e., substitution x calories from red
+    meats with x calories from legumes.
+
+Different adjustment levels will be added to the substitution models.
+Model 1 will be minimally adjusted for age, sex, total caloric intake,
+and other dietary components other than the substituted foods. When
+substituting grams of legumes, the unit for all dietary components will
+be grams/day. When substituting calories of legumes, the unit for all
+dietary components will be calories/day. Model 2 will be further
+adjusted for socioeconomic status, ethnic group, BMI, waist
+circumference, physical activity, smoking status, alcohol intake, and
+history of chronic liver disease, liver cancer, viral hepatitis,
+cholelithiasis, and diabetes, as determined by the DAG.
+
+A secondary analysis based on the pseudo-observational method will be
+used to estimate absolute risk differences (RD) \[55\]. The analysis
+will be modelled as in the main analyses. Causal mediation analysis will
+be used for hypothesis 2, so that potential mediator-outcome confounding
+can be taken into account \[56\]. All analyses will be conducted in R
+with a significance level of 5%.
+
+Estimated study power based on detecting a HR=0.72 between highest and
+lowest legume consumption as in ref. 32 and primary liver cancer (event
+probability 0.0024) in 176,000 UKB participants ranges 67-81%, depending
+on assumed SD and correlations.
 
 ## Transformations
 
