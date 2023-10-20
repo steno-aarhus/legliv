@@ -316,7 +316,6 @@ p22436,10P Liver PDFF (proton density fat fraction),9891,https://biobank.ndph.ox
 
 p22500,When occupational data entered,121248,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22500
 p22501,Year ended full time education,121248,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22501
-p22502,Cough on most days,121248,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22502
 
 p22506,Tobacco smoking,121248,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22506
 p22507,Age of stopping smoking,43998,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22507
@@ -327,16 +326,6 @@ p22601,Job coding,120271,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22601
 p22602,Year job started,120271,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22602
 p22603,Year job ended,120271,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22603
 p22617,Job code - historical,120271,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22617
-
-p22686,Home location at assessment - east co-ordinate (100m resolution),502154,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22686
-p22687,Home location at assessment - north co-ordinate (100m resolution),502154,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22687
-p22688,Home location at assessment - east co-ordinate (1km resolution),502154,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22688
-p22689,Home location at assessment - north co-ordinate (1km resolution),502154,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22689
-p22700,Date first recorded at location,502353,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22700
-p22701,Home location - east co-ordinate (100m resolution),502353,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22701
-p22702,Home location - east co-ordinate (1km resolution),502353,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22702
-p22703,Home location - north co-ordinate (100m resolution),502353,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22703
-p22704,Home location - north co-ordinate (1km resolution),502353,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22704
 
 p23016,HBc antigen for Hepatitis B Virus,9689,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=23016
 p23017,HBe antigen for Hepatitis B Virus,9689,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=23017
@@ -527,18 +516,6 @@ p26152,Red wine,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26152
 p26153,White wine,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26153
 p26154,Cream,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26154
 p26155,Trans fatty acids,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26155
-
-p26244,Standard PRS for hypertension (HT),486128,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26244
-p26245,Enhanced PRS for hypertension (HT),104592,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26245
-p26250,Standard PRS for low density lipoprotein cholesterol (LDL_SF),486128,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26250
-p26251,Enhanced PRS for low density lipoprotein cholesterol (LDL_SF),104592,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26251
-p26280,Enhanced PRS for total cholesterol (TCH),104592,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26280
-p26281,Enhanced PRS for total fatty acids (TFA),104592,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26281
-p26282,Enhanced PRS for total triglycerides (TTG),104592,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26282
-p26283,Standard PRS for type 1 diabetes (T1D),486128,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26283
-p26284,Enhanced PRS for type 1 diabetes (T1D),104592,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26284
-p26285,Standard PRS for type 2 diabetes (T2D),486128,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26285
-p26286,Enhanced PRS for type 2 diabetes (T2D),104592,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26286
 
 p26410,Index of Multiple Deprivation (England),432607,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26410
 p26411,Income score (England),432607,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=26411
