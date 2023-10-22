@@ -16,8 +16,6 @@ p94,"Diastolic blood pressure, manual reading",51604,https://biobank.ndph.ox.ac.
 
 p96,Time since interview start at which blood pressure screen(s) shown,501525,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=96
 
-p129,Place of birth in UK - north co-ordinate,452175,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=129
-p130,Place of birth in UK - east co-ordinate,452175,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=130
 p132,Job code at visit - entered,347110,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=132
 p134,Number of self-reported cancers,501525,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=134
 p135,Number of self-reported non-cancer illnesses,501525,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=135
