@@ -412,8 +412,9 @@ grams/day per 1000 kcal of legume protein with protein from red meat.
 Further sensitivity analyses will include imputations of missing
 information, inclusion of varying numbers of completed diet
 questionnaires, and removal of individuals highly predisposed to liver
-cancer, e.g. primary biliary cirrhosis and alcoholic liver disease. All
-sensitivity analyses will be modelled as in the main analysis.
+cancer, e.g. primary biliary cirrhosis, alcoholic liver disease, and
+viral hepatitis. All sensitivity analyses will be modelled as in the
+main analysis.
 
 # Other
 
