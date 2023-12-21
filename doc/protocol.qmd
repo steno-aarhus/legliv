@@ -94,16 +94,21 @@ known of the associations at the expense of specifically red meat.
 ### Objective
 
 To investigate the association between statistical replacement of red
-meat with legumes and incidence of primary liver cancer, as well as
-hepatocellular carcinoma (HCC) and intrahepatic cholangiocarcinoma
-(IH-CCA) separately, and whether the association is mediated by NAFLD.
+meat with legumes and incidence of primary liver cancer (hepatocellular
+carcinoma (HCC) and intrahepatic cholangiocarcinoma (IH-CCA)), and
+whether the association is mediated by NAFLD.
 
 ### Hypotheses
 
-1.  Substitution of red and processed meats with legumes is associated
-    with a lower risk of HCC and IH-CCA.
-2.  The association between substitution of red and processed meats with
-    legumes and risk of HCC and IH-CCA is mediated through NAFLD.
+1.  Substitution of red meat (processed and unprocessed) with legumes is
+    associated with a lower risk liver cancer.
+
+2.  The association between substitution of red meat (processed and
+    unprocessed) with legumes and risk of liver cancer is mediated
+    through NAFLD.
+
+3.  A higher intake of legumes is associated with a lower risk of liver
+    cancer.
 
 ::: content-hidden
 -   Put in a very brief introduction to the topic. Explain the
@@ -216,43 +221,59 @@ this way, we feel pre-analysis bias is minimal.
 
 ### Exposure
 
-Detailed dietary data were collected with a self-assessed, web-based
-24-hour recall dietary assessment tool, Oxford WebQ. A questionnaire was
-added at the assessment visit at the end of recruitment. After
-recruitment, four additional rounds of online questionnaires were
-conducted online at 3-4 monthly intervals. Participants were asked to
-recall what they ate the previous day \[50\]. More than 200,000 UK
-Biobank participants completed ≥1 Oxford WebQ \[51\]. More than 80,000
-participants completed ≥3 Oxford WebQ \[52\]. Dietary data on legumes
-were collected in 176,000 participants. The exposures in this study will
-be red meat intake (total, processed and unprocessed) and legume intake.
-Legume and red meat intake will be estimated on the reported number of
-servings consumed, measured in grams/day. Participants who reported
-consuming vegetables were asked to report the intake of beans (not
-greens) and lentils they had the day before. Participants who reported
-consuming meat or poultry were asked to report the intake of different
-meats they had the day before. This British cohort was chosen as legume
-consumption is higher in the UK than in Denmark. \[53\]
+This British cohort was chosen as legume consumption is higher in the UK
+than in Denmark. \[7\] Detailed dietary data were collected with a
+self-assessed, web-based 24-hour recall dietary assessment tool, Oxford
+WebQ. A questionnaire was added to the assessment visit at the end of
+recruitmen[\[NB1\]](#_msocom_1) t. After recruitment, four additional
+rounds of online questionnaires were conducted online at 3-4 monthly
+intervals. Participants were asked to recall what they ate the previous
+day \[8\]. More than 200,000 UK Biobank participants completed ≥1 Oxford
+WebQ \[9\]. More than 80,000 participants completed ≥3 Oxford WebQ
+\[10\].  Participants who completed ≥2 Oxford WebQ's are included in
+this study. Dietary data on legumes were collected in 176,000
+participants.
+
+The exposures in this study will be red meat intake (total, processed
+and unprocessed) and legume intake. Legume and red meat intake will be
+estimated on the reported number of servings consumed, measured in
+grams/day. Participants who reported consuming vegetables were asked to
+report the intake of beans (not greens) and lentils they had the day
+before. Participants who reported consuming meat or poultry were asked
+to report the intake of different meats they had the day before.
+
+Data from the UK Nutrient Databank Food Composition Tables were used to
+calculate total energy and nutrient intake by multiplying the number of
+portions consumed by the set quantity of each food portion size and its
+nutrient composition \[7\].
 
 ### Outcome
 
-The primary outcomes will be HCC and IH-CCA. Cancer diagnoses will be
-assessed through linkage to NHS Digital and Public Health England, and
-the NHS Central Register. Incident primary liver cancer diagnoses during
-follow-up are determined through ICD-10 codes C22.0 (Liver cell
-carcinoma) and C22.1 (Intrahepatic bile duct carcinoma) in the National
-Health Services (NHS) registries.
+The primary outcome is liver cancer defined as either HCC or IH-CCA.
+Cancer diagnoses will be assessed through linkage to NHS Digital and
+Public Health England, and the NHS Central Register. Incident primary
+liver cancer diagnoses during follow-up are determined through ICD-10
+codes C22.0 (Liver cell carcinoma) and C22.1 (Intrahepatic bile duct
+carcinoma) in the National Health Services (NHS) registries.
 
 ### Covariates
 
-Based on a literature review of studies regarding causes of liver
-cancer, important covariables will be selected a priori and visualized
-by a directed acyclic graph (DAG). Covariables will most likely include
-total caloric intake, age, sex, socioeconomic status, BMI, smoking
-status, physical activity, alcohol intake, history of chronic liver
-disease, liver cancer, viral hepatitis, cholelithiasis, and diabetes.
-Collection of data on socioeconomic status, lifestyle habits and
-biomedical and anthropometric measures was conducted as aforementioned.
+Covariables are detected a priori from studies assessing diet components
+as exposure and liver cancer as the outcome \[11\] and illustrated using
+directed acyclic graphs (fig. 1.). Information on covariables will
+include all other dietary components (\[g/day\] or \[kcal/day\]), age
+(years), sex (male, female), socioeconomic status (educational level,
+Townsend Deprivation Score \[quintiles\], living with a spouse (yes,
+no), and geographical location), ethnicity (white, Mixed, Asian, black,
+other, unknown), anthropometry (BMI \[kg/m2\], waist circumference
+\[cm\]), alcohol consumption, physical activity (low \[0-9.9
+METs/week\], moderate \[10-49.9 METs/week\], and high \[≥50 METs/week\],
+unknown), smoking status (never, former, current 1-15 cigarettes per
+day, current ≥15 cigarettes per day, current but number of cigarettes
+per day unknown, and smoking status unknown), and self-reported \[yes,
+no, unknown\] own or family members' diagnoses of diabetes, and history
+of other liver diseases (cholelithiasis, cholecystectomy). All
+covariables will be baseline measures except dietary components.
 
 ## Sample size
 
@@ -295,36 +316,43 @@ how loss to follow-up was addressed and sensitivity analyses.
 Multivariable-adjusted Cox proportional hazards regression model will be
 used to estimate the hazard ratio (HR) with corresponding 95% confidence
 intervals for liver cancer when substituting red meats with legumes.
-Substitution will be done in two ways:
+Substitution will be done in two ways \[12\]:
 
 1.  Equal-mass substitution, i.e., substituting x grams of red meats
     with x grams of legumes.
-
 2.  Equal-calorie substitution, i.e., substitution x calories from red
     meats with x calories from legumes.
 
+Estimates will be presented for total red meat as well as stratified
+estimates of processed and unprocessed red meat. Age will be used as the
+underlying timescale. Follow-up time will start at participants' last
+completed Oxford WebQ. Participants will be right censured due to one of
+the following events, whichever comes first: most recent registry date
+for the full follow-up for the outcomes, date of death, date of liver
+cancer diagnosis, or loss to follow-up.
+
 Different adjustment levels will be added to the substitution models.
-Model 1 will be minimally adjusted for age, sex, total caloric intake,
-and other dietary components other than the substituted foods. When
-substituting grams of legumes, the unit for all dietary components will
-be grams/day. When substituting calories of legumes, the unit for all
-dietary components will be calories/day. Model 2 will be further
-adjusted for socioeconomic status, ethnic group, BMI, waist
-circumference, physical activity, smoking status, alcohol intake, and
-history of chronic liver disease, liver cancer, viral hepatitis,
-cholelithiasis, and diabetes, as determined by the DAG.
+Model 1 will be minimally adjusted for age at recruitment, sex, total
+caloric intake, and other dietary components other than the substituted
+foods. When substituting grams of legumes, the unit for all dietary
+components will be grams/day. When substituting calories of legumes, the
+unit for all dietary components will be calories/day. Model 2 will be
+further adjusted for educational level, Townsend Deprivation Score,
+ethnicity, BMI, physical activity, smoking status, alcohol intake, waist
+circumference, type 2 diabetes and liver diseases (cholelithiasis,
+cholecystectomy and alcoholic liver disease).
 
-A secondary analysis based on the pseudo-observational method will be
-used to estimate absolute risk differences (RD) \[55\]. The analysis
-will be modelled as in the main analyses. Causal mediation analysis will
-be used for hypothesis 2, so that potential mediator-outcome confounding
-can be taken into account \[56\]. All analyses will be conducted in R
-with a significance level of 5%.
+**Secondary analyses**
 
-Estimated study power based on detecting a HR=0.72 between highest and
-lowest legume consumption as in ref. 32 and primary liver cancer (event
-probability 0.0024) in 176,000 UKB participants ranges 67-81%, depending
-on assumed SD and correlations.
+Causal mediation analysis will be used for hypothesis 2 and applied to
+all three levels of adjustment as in the main analyses, so that
+potential mediator-outcome confounding can be taken into account \[13\].
+To evaluate the pooling of the outcome data, a stratified analysis of
+the liver cancer subtypes, HCC and IH-CCA, will be conducted. The
+association of legume intake and liver cancer risk will be estimated
+using quintiles of legume intake (g/day) and modelled as in model 2.
+
+All analyses will be conducted in R with a significance level of 5%.
 
 ## Transformations
 
@@ -369,6 +397,23 @@ not made a hypothesis or prediction about, and instead are seeing what
 patterns or associations might exist. This could be to help you in your
 main analysis or it could be the main aim of your project.
 :::
+
+**Other analyses**
+
+To test for effect modification, stratified analyses will be conducted
+based on sex (male, female), waist circumference (above or below 94 cm
+for men, 80 cm for women), type 2 diabetes, and other liver diseases
+(yes, no).
+
+Sensitivity analyses will be conducted to test the robustness of main
+analyses. These will include changes in exposure in the substitution
+model, e.g. 50 grams of legumes for red meat and substitution of 10
+grams/day per 1000 kcal of legume protein with protein from red meat.
+Further sensitivity analyses will include imputations of missing
+information, inclusion of varying numbers of completed diet
+questionnaires, and removal of individuals highly predisposed to liver
+cancer, e.g. primary biliary cirrhosis and alcoholic liver disease. All
+sensitivity analyses will be modelled as in the main analysis.
 
 # Other
 
