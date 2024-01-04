@@ -38,7 +38,7 @@ describing the study. Find checklists
 ## Title
 
 Statistical replacement of red meat with legumes in relation to incident
-primary liver cancer, using data from the UK Biobank.
+primary liver cancer in the UK Biobank.
 
 ::: content-hidden
 *Put in the title of your study. Remember to include your study design
@@ -225,14 +225,13 @@ This British cohort was chosen as legume consumption is higher in the UK
 than in Denmark. \[7\] Detailed dietary data were collected with a
 self-assessed, web-based 24-hour recall dietary assessment tool, Oxford
 WebQ. A questionnaire was added to the assessment visit at the end of
-recruitmen[\[NB1\]](#_msocom_1) t. After recruitment, four additional
-rounds of online questionnaires were conducted online at 3-4 monthly
-intervals. Participants were asked to recall what they ate the previous
-day \[8\]. More than 200,000 UK Biobank participants completed ≥1 Oxford
-WebQ \[9\]. More than 80,000 participants completed ≥3 Oxford WebQ
-\[10\].  Participants who completed ≥2 Oxford WebQ's are included in
-this study. Dietary data on legumes were collected in 176,000
-participants.
+recruitment. After recruitment, four additional rounds of online
+questionnaires were conducted online at 3-4 monthly intervals.
+Participants were asked to recall what they ate the previous day \[8\].
+More than 200,000 UK Biobank participants completed ≥1 Oxford WebQ
+\[9\]. More than 80,000 participants completed ≥3 Oxford WebQ \[10\].
+ Participants who completed ≥2 Oxford WebQ's are included in this study.
+Dietary data on legumes were collected in 176,000 participants.
 
 The exposures in this study will be red meat intake (total, processed
 and unprocessed) and legume intake. Legume and red meat intake will be
