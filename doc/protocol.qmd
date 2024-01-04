@@ -420,3 +420,57 @@ main analysis.
 *add the references here*
 
 # References
+
+1.            Intergovernmental Panel on Climate Change, *Climate Change
+2022: Mitigation of Climate Change*. 2022.
+
+2.            Poore, J. and T. Nemecek, *Reducing food's environmental
+impacts through producers and consumers.* Science, 2018. **360**(6392):
+p. 987-992.
+
+3.            Pedersen, A.m.f.N., *Danskernes kostvaner 2011-2013 :
+hovedresultater*. 1. udgave ed. 2015, Søborg: DTU Fødevareinstituttet,
+Afdeling for Ernæring. 208 sider.
+
+4.            UN. *Food and Climate Change: Healthy diets for a
+healthier planet*. Available from:
+<https://www.un.org/en/climatechange/science/climate-issues/food>.
+
+5.            Zhang, S., et al., *Protein foods from animal sources and
+risk of nonalcoholic fatty liver disease in representative cohorts from
+North and South China.* J Intern Med, 2022.
+
+6.            Biobank, U. *Learn more about UK Biobank*. 2022 27/07-2022
+13/12-2022\]; Available from:
+<https://www.ukbiobank.ac.uk/learn-more-about-uk-biobank>.
+
+7.            Piernas, C., et al., *Describing a new food group
+classification system for UK biobank: analysis of food groups and
+sources of macro- and micronutrients in 208,200 participants.* Eur J
+Nutr, 2021. **60**(5): p. 2879-2890.
+
+8.            Liu, B., et al., *Development and evaluation of the Oxford
+WebQ, a low-cost, web-based method for assessment of previous 24 h
+dietary intakes in large-scale prospective studies.* Public Health Nutr,
+2011. **14**(11): p. 1998-2005.
+
+9.            Perez-Cornago, A., et al., *Description of the updated
+nutrition calculation of the Oxford WebQ questionnaire and comparison
+with the previous version among 207,144 participants in UK Biobank.* Eur
+J Nutr, 2021. **60**(7): p. 4019-4030.
+
+10.         Sudlow, C., et al., *UK biobank: an open access resource for
+identifying the causes of a wide range of complex diseases of middle and
+old age.* PLoS Med, 2015. **12**(3): p. e1001779.
+
+11.         Liu, K., et al., *Associations between food groups and liver
+cancer: a systematic review and meta-analysis of observational studies.*
+Nutr J, 2023. **22**(1): p. 30.
+
+12.         Ibsen, D.B., et al., *Food substitution models for
+nutritional epidemiology.* Am J Clin Nutr, 2021. **113**(2): p. 294-303.
+
+13.         Nguyen, T.Q., Schmid, I., & Stuart, E. A.,, *Clarifying
+causal mediation analysis for the applied researcher: Defining effects
+based on what we want to learn.* Psychological Methods, 26(2), 2021: p.
+255-271.
