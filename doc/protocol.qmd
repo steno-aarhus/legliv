@@ -61,11 +61,12 @@ hazard ratios for liver cancer when substituting red meats with legumes
 will be estimated. It is critical that we reduce the climate impact of
 our diet. This study will add new knowledge that can qualify the health
 arguments behind the Danish dietary guideline to eat more legumes and
-less meat. ::: content-hidden Overall description of your project. Think
-of this as what you would reply if a colleague asked you what your
-project was about.
+less meat.
 
-Keep the inline R code below. This inserts the standard UKB statement.
+::: content-hidden
+Overall description of your project. Think of this as what you would
+reply if a colleague asked you what your project was about. Keep the
+inline R code below. This inserts the standard UKB statement.
 :::
 
 `r ukbAid::statements$protocol`
@@ -139,20 +140,21 @@ No blinding is involved in this study.
 
 ## Study design
 
-This will be an observational follow-up cohort study. Because no Danish
-study populations consume enough legumes to investigate associations
-with disease, we will use data from the UK Biobank, a prospective cohort
-with health information on approximately 500,000 participants, aged
-40-69 at baseline, living in the UK. Participants were recruited between
-2006 and 2010. Dietary data on legumes were collected by multiple 24hr
-recalls in 176,000 participants. The exposures in this study will be red
-meat intake (total, processed and unprocessed) and legume intake. Legume
-and red meat intake will be estimated on the reported number of servings
-consumed, measured in g/day. Incident primary liver cancer diagnoses
-during follow-up are determined through ICD-10 codes C22.0 (Liver cell
-carcinoma) and C22.1 (Intrahepatic bile duct carcinoma) in the National
-Health Services (NHS) registries. Baseline covariate data are by
-self-report or measured at the recruitment clinic visit.
+Because no Danish study populations consume enough legumes to
+investigate associations with disease, this study will use data from the
+UK Biobank (UKB), a prospective cohort with health information on
+approximately 500,000 participants, aged 40-69 at baseline, living in
+the UK \[6\]. Participants were recruited between 2006 and 2010. At
+baseline, participants completed touchscreen questionnaires at a
+designated Assessment Centre \[6\]. Information obtained from the
+touchscreen questionnaires included socioeconomic, lifestyle, and health
+related data, such as education level, smoking habits, physical
+activity, history of illness, etc. Physical, anthropometric and
+biomedical measurements done at the Assessment Centre included BMI,
+waist circumference and blood samples \[6\]. Previous history of
+diseases was collected from participants’ self-reported disease status
+at baseline and through registration of ICD-10 codes in the National
+Health Services (NHS) registries.
 
 ::: content-hidden
 Describe your study design. Typical study designs for observation
@@ -221,30 +223,33 @@ this way, we feel pre-analysis bias is minimal.
 
 ### Exposure
 
-This British cohort was chosen as legume consumption is higher in the UK
-than in Denmark. \[7\] Detailed dietary data were collected with a
-self-assessed, web-based 24-hour recall dietary assessment tool, Oxford
-WebQ. A questionnaire was added to the assessment visit at the end of
-recruitment. After recruitment, four additional rounds of online
-questionnaires were conducted online at 3-4 monthly intervals.
-Participants were asked to recall what they ate the previous day \[8\].
-More than 200,000 UK Biobank participants completed ≥1 Oxford WebQ
-\[9\]. More than 80,000 participants completed ≥3 Oxford WebQ \[10\].
- Participants who completed ≥2 Oxford WebQ's are included in this study.
-Dietary data on legumes were collected in 176,000 participants.
+The UKB was chosen as legume consumption is higher in the UK than in
+Denmark \[7\], approximately 48 grams/day \[reference, Aurora\].
+Detailed dietary data were collected with a self-assessed, web-based
+24-hour dietary recall assessment tool, Oxford WebQ. A questionnaire was
+added to the assessment visit at the end of recruitment. After
+recruitment, four additional rounds of online questionnaires were
+conducted online at 3-4 monthly intervals. Participants were asked to
+recall what they ate the previous day \[8\]. More than 200,000 UK
+Biobank participants completed ≥2 Oxford WebQ \[9\]. More than 80,000
+participants completed ≥3 Oxford WebQ \[10\]. Participants who completed
+≥2 Oxford WebQ’s are included in this study. Dietary data on legumes
+were collected in 176,000 participants.
 
 The exposures in this study will be red meat intake (total, processed
 and unprocessed) and legume intake. Legume and red meat intake will be
-estimated on the reported number of servings consumed, measured in
-grams/day. Participants who reported consuming vegetables were asked to
-report the intake of beans (not greens) and lentils they had the day
-before. Participants who reported consuming meat or poultry were asked
-to report the intake of different meats they had the day before.
+based on total weight by food group intakes estimated from participants’
+responses in the Oxford WebQ. Participants who reported consuming
+vegetables were asked to report the intake of beans (not greens) and
+lentils they had the day before. Participants who reported consuming
+meat or poultry were asked to report the intake of different meats they
+had the day before.
 
 Data from the UK Nutrient Databank Food Composition Tables were used to
 calculate total energy and nutrient intake by multiplying the number of
 portions consumed by the set quantity of each food portion size and its
-nutrient composition \[7\].
+nutrient composition \[7\]. The average of the intake reported on WebQ 1
+and 2 were used in this study.
 
 ### Outcome
 
@@ -257,20 +262,20 @@ carcinoma) in the National Health Services (NHS) registries.
 
 ### Covariates
 
-Covariables are detected a priori from studies assessing diet components
+Covariables are defined a priori from studies assessing diet components
 as exposure and liver cancer as the outcome \[11\] and illustrated using
 directed acyclic graphs (fig. 1.). Information on covariables will
 include all other dietary components (\[g/day\] or \[kcal/day\]), age
 (years), sex (male, female), socioeconomic status (educational level,
 Townsend Deprivation Score \[quintiles\], living with a spouse (yes,
-no), and geographical location), ethnicity (white, Mixed, Asian, black,
+no), and geographical location), ethnicity (white, mixed, Asian, black,
 other, unknown), anthropometry (BMI \[kg/m2\], waist circumference
 \[cm\]), alcohol consumption, physical activity (low \[0-9.9
 METs/week\], moderate \[10-49.9 METs/week\], and high \[≥50 METs/week\],
 unknown), smoking status (never, former, current 1-15 cigarettes per
 day, current ≥15 cigarettes per day, current but number of cigarettes
-per day unknown, and smoking status unknown), and self-reported \[yes,
-no, unknown\] own or family members' diagnoses of diabetes, and history
+per day unknown, and smoking status unknown), self-reported own or
+family members’ diagnoses of diabetes \[yes, no, unknown\], and history
 of other liver diseases (cholelithiasis, cholecystectomy). All
 covariables will be baseline measures except dietary components.
 
@@ -298,6 +303,30 @@ available in the UK Biobank.
 List the exposure(s), outcome(s), and covariates
 :::
 
+Covariables are defined a priori from studies assessing diet components
+as exposure and liver cancer as the outcome \[11\] and illustrated using
+directed acyclic graphs (fig. 1.). Information on covariables will
+include all other dietary components (\[g/day\] or \[kcal/day\]), age
+(years), sex (male, female), socioeconomic status (educational level,
+Townsend Deprivation Score \[quintiles\], living with a spouse (yes,
+no), and geographical location), ethnicity (white, mixed, Asian, black,
+other, unknown), anthropometry (BMI \[kg/m2\], waist circumference
+\[cm\]), alcohol consumption, physical activity (low \[0-9.9
+METs/week\], moderate \[10-49.9 METs/week\], and high \[≥50 METs/week\],
+unknown), smoking status (never, former, current 1-15 cigarettes per
+day, current ≥15 cigarettes per day, current but number of cigarettes
+per day unknown, and smoking status unknown), self-reported own or
+family members’ diagnoses of diabetes \[yes, no, unknown\], and history
+of other liver diseases (cholelithiasis, cholecystectomy). All
+covariables will be baseline measures except dietary components.
+
+![Figure 1. Directed acyclic graph visualizing the relationship between
+the exposure, replacing meat with legumes, and the outcome, liver
+cancer. Red circles indicate ancestors of exposure and outcome with red
+arrows being biasing paths. The NAFLD circle is blue to indicate that it
+is an ancestor of the outcome. The green arrows are causal
+paths.](Images/DAG.png)
+
 # Analysis plan
 
 ## Statistical models
@@ -319,12 +348,13 @@ Substitution will be done in two ways \[12\]:
 
 1.  Equal-mass substitution, i.e., substituting x grams of red meats
     with x grams of legumes.
+
 2.  Equal-calorie substitution, i.e., substitution x calories from red
     meats with x calories from legumes.
 
 Estimates will be presented for total red meat as well as stratified
 estimates of processed and unprocessed red meat. Age will be used as the
-underlying timescale. Follow-up time will start at participants' last
+underlying timescale. Follow-up time will start at participants’ last
 completed Oxford WebQ. Participants will be right censured due to one of
 the following events, whichever comes first: most recent registry date
 for the full follow-up for the outcomes, date of death, date of liver
@@ -338,8 +368,8 @@ components will be grams/day. When substituting calories of legumes, the
 unit for all dietary components will be calories/day. Model 2 will be
 further adjusted for educational level, Townsend Deprivation Score,
 ethnicity, BMI, physical activity, smoking status, alcohol intake, waist
-circumference, type 2 diabetes and liver diseases (cholelithiasis,
-cholecystectomy and alcoholic liver disease).
+circumference, type 2 diabetes, and liver diseases (cholelithiasis and
+cholecystectomy).
 
 **Secondary analyses**
 
@@ -401,19 +431,20 @@ main analysis or it could be the main aim of your project.
 
 To test for effect modification, stratified analyses will be conducted
 based on sex (male, female), waist circumference (above or below 94 cm
-for men, 80 cm for women), type 2 diabetes, and other liver diseases
-(yes, no).
+for men, 80 cm for women), type 2 diabetes (yes, no), and other liver
+diseases (yes, no).
 
-Sensitivity analyses will be conducted to test the robustness of main
-analyses. These will include changes in exposure in the substitution
-model, e.g. 50 grams of legumes for red meat and substitution of 10
-grams/day per 1000 kcal of legume protein with protein from red meat.
-Further sensitivity analyses will include imputations of missing
-information, inclusion of varying numbers of completed diet
-questionnaires, and removal of individuals highly predisposed to liver
-cancer, e.g. primary biliary cirrhosis, alcoholic liver disease, and
-viral hepatitis. All sensitivity analyses will be modelled as in the
-main analysis.
+Sensitivity analyses will be conducted to test the robustness of the
+main analyses. These will include changes in exposure in the
+substitution model, e.g. 50 grams instead 30 grams of legumes for red
+meat, or substitution of 10 grams/day per 1000 kcal of legume protein
+with protein from red meat. Further sensitivity analyses will include
+imputations of missing information, inclusion of varying numbers of
+completed diet questionnaires, and removal of individuals highly
+predisposed to liver cancer, e.g. primary biliary cirrhosis, alcoholic
+liver disease, and viral hepatitis. All sensitivity analyses will be
+modelled as in the main analysis. All analyses will be conducted in R
+with a significance level of 5%.
 
 # Other
 
