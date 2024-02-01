@@ -1,6 +1,8 @@
 id,ukb_variable_description,number_participants,link
 p31,Sex,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=31
+p34,Year of birth,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=34
 p48,Waist circumference,500290,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=48
+p52,Month of birth,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=52
 p709,Number in household,500147,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=709
 p884,Number of days/week of moderate physical activity 10+ minutes,501512,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=884
 p894,Duration of moderate activity,420364,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=894
@@ -13,3 +15,10 @@ p21000,Ethnic background,501479,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=2
 p20002,"Non-cancer illness code, self-reported",391819,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20002
 p22189,Townsend deprivation index at recruitment,501740,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22189
 p40006,Type of cancer: ICD10,119346,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=40006
+p100001,Food weight,210960,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=100001
+p100002,Energy,210960,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=100002
+p104000,Baked bean intake,29663,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=104000
+p104010,Pulses intake,35352,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=104010
+p104900,Time spent doing vigorous physical activity,210945,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=104900
+p104910,Time spent doing moderate physical activity,210945,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=104910
+p104920,Time spent doing light physical activity,210945,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=104920

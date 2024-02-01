@@ -1,9 +1,11 @@
 field_id,rap_variable_name,id
 p31,Sex,p31
+p34,Year of birth,p34
 p48_i0,Waist circumference | Instance 0,p48
 p48_i1,Waist circumference | Instance 1,p48
 p48_i2,Waist circumference | Instance 2,p48
 p48_i3,Waist circumference | Instance 3,p48
+p52,Month of birth,p52
 p709_i0,Number in household | Instance 0,p709
 p709_i1,Number in household | Instance 1,p709
 p709_i2,Number in household | Instance 2,p709
@@ -64,3 +66,38 @@ p40006_i18,Type of cancer: ICD10 | Instance 18,p40006
 p40006_i19,Type of cancer: ICD10 | Instance 19,p40006
 p40006_i20,Type of cancer: ICD10 | Instance 20,p40006
 p40006_i21,Type of cancer: ICD10 | Instance 21,p40006
+p100001_i0,Food weight | Instance 0,p100001
+p100001_i1,Food weight | Instance 1,p100001
+p100001_i2,Food weight | Instance 2,p100001
+p100001_i3,Food weight | Instance 3,p100001
+p100001_i4,Food weight | Instance 4,p100001
+p100002_i0,Energy | Instance 0,p100002
+p100002_i1,Energy | Instance 1,p100002
+p100002_i2,Energy | Instance 2,p100002
+p100002_i3,Energy | Instance 3,p100002
+p100002_i4,Energy | Instance 4,p100002
+p104000_i0,Baked bean intake | Instance 0,p104000
+p104000_i1,Baked bean intake | Instance 1,p104000
+p104000_i2,Baked bean intake | Instance 2,p104000
+p104000_i3,Baked bean intake | Instance 3,p104000
+p104000_i4,Baked bean intake | Instance 4,p104000
+p104010_i0,Pulses intake | Instance 0,p104010
+p104010_i1,Pulses intake | Instance 1,p104010
+p104010_i2,Pulses intake | Instance 2,p104010
+p104010_i3,Pulses intake | Instance 3,p104010
+p104010_i4,Pulses intake | Instance 4,p104010
+p104900_i0,Time spent doing vigorous physical activity | Instance 0,p104900
+p104900_i1,Time spent doing vigorous physical activity | Instance 1,p104900
+p104900_i2,Time spent doing vigorous physical activity | Instance 2,p104900
+p104900_i3,Time spent doing vigorous physical activity | Instance 3,p104900
+p104900_i4,Time spent doing vigorous physical activity | Instance 4,p104900
+p104910_i0,Time spent doing moderate physical activity | Instance 0,p104910
+p104910_i1,Time spent doing moderate physical activity | Instance 1,p104910
+p104910_i2,Time spent doing moderate physical activity | Instance 2,p104910
+p104910_i3,Time spent doing moderate physical activity | Instance 3,p104910
+p104910_i4,Time spent doing moderate physical activity | Instance 4,p104910
+p104920_i0,Time spent doing light physical activity | Instance 0,p104920
+p104920_i1,Time spent doing light physical activity | Instance 1,p104920
+p104920_i2,Time spent doing light physical activity | Instance 2,p104920
+p104920_i3,Time spent doing light physical activity | Instance 3,p104920
+p104920_i4,Time spent doing light physical activity | Instance 4,p104920
