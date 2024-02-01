@@ -1,0 +1,64 @@
+---
+title: 'reducing dataset'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages('tidyverse')
+```
+
+```{r}
+library(dplyr)
+library(tidyverse)
+library(magrittr)   # For the %$% composition pipe.
+```
+
+narrowing down dataset by excluding all participants who have not completed >= 2 diet questionnaires.
+
+p20077,Number of diet questionnaires completed,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20077
+
+```{r}
+data_red <- data %>%
+    filter(p20077 >= 2)
+```
+
+creating dataset with only liver cancer diagnoses:
+
+p40006,Type of cancer: ICD10,119346,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=40006
+
+```{r}
+data_liver <- data_red %>% 
+    filter(p40006_i0 == 'C22.0 Liver cell carcinoma' | p40006_i0 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i1 == 'C22.0 Liver cell carcinoma' | p40006_i1 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i2 == 'C22.0 Liver cell carcinoma' | p40006_i2 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i3 == 'C22.0 Liver cell carcinoma' | p40006_i3 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i4 == 'C22.0 Liver cell carcinoma' | p40006_i4 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i5 == 'C22.0 Liver cell carcinoma' | p40006_i5 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i6 == 'C22.0 Liver cell carcinoma' | p40006_i6 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i7 == 'C22.0 Liver cell carcinoma' | p40006_i7 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i8 == 'C22.0 Liver cell carcinoma' | p40006_i8 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i9 == 'C22.0 Liver cell carcinoma' | p40006_i9 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i10 == 'C22.0 Liver cell carcinoma' | p40006_i10 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i11 == 'C22.0 Liver cell carcinoma' | p40006_i11 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i12 == 'C22.0 Liver cell carcinoma' | p40006_i12 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i13 == 'C22.0 Liver cell carcinoma' | p40006_i13 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i14 == 'C22.0 Liver cell carcinoma' | p40006_i14 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i15 == 'C22.0 Liver cell carcinoma' | p40006_i15 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i16 == 'C22.0 Liver cell carcinoma' | p40006_i16 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i17 == 'C22.0 Liver cell carcinoma' | p40006_i17 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i18 == 'C22.0 Liver cell carcinoma' | p40006_i18 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i19 == 'C22.0 Liver cell carcinoma' | p40006_i19 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i20 == 'C22.0 Liver cell carcinoma' | p40006_i20 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               p40006_i21 == 'C22.0 Liver cell carcinoma' |p40006_i21 == 'C22.1 Intrahepatic bile duct carcinoma' 
+               )
+```
+
+```{r}
+data %>% 
+    filter(p40006_i0 == 'C22.1 Intrahepatic bile duct carcinoma')
+```
+
