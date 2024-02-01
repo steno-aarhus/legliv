@@ -1,0 +1,26 @@
+---
+title: '123'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+data <- data %>% 
+    filter(p20077 >= 2)
+```
+
+```{r}
+summary(data)
+```
+
+```{r}
+describe(data$p40006_i3)
+```
+```{r}
+testdata2 <- data %>% 
+    filter(p40006_i0 == 'C22.0 Liver cell carcinoma' | p40006_i1 == 'C22.0 Liver cell carcinoma' |p40006_i2 == 'C22.0 Liver cell carcinoma' | p40006_i3 == 'C22.0 Liver cell carcinoma')
+```
+
