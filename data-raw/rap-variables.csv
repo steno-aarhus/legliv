@@ -10,18 +10,6 @@ p709_i0,Number in household | Instance 0,p709
 p709_i1,Number in household | Instance 1,p709
 p709_i2,Number in household | Instance 2,p709
 p709_i3,Number in household | Instance 3,p709
-p884_i0,Number of days/week of moderate physical activity 10+ minutes | Instance 0,p884
-p884_i1,Number of days/week of moderate physical activity 10+ minutes | Instance 1,p884
-p884_i2,Number of days/week of moderate physical activity 10+ minutes | Instance 2,p884
-p884_i3,Number of days/week of moderate physical activity 10+ minutes | Instance 3,p884
-p894_i0,Duration of moderate activity | Instance 0,p894
-p894_i1,Duration of moderate activity | Instance 1,p894
-p894_i2,Duration of moderate activity | Instance 2,p894
-p894_i3,Duration of moderate activity | Instance 3,p894
-p904_i0,Number of days/week of vigorous physical activity 10+ minutes | Instance 0,p904
-p904_i1,Number of days/week of vigorous physical activity 10+ minutes | Instance 1,p904
-p904_i2,Number of days/week of vigorous physical activity 10+ minutes | Instance 2,p904
-p904_i3,Number of days/week of vigorous physical activity 10+ minutes | Instance 3,p904
 p6138_i0,Qualifications | Instance 0,p6138
 p6138_i1,Qualifications | Instance 1,p6138
 p6138_i2,Qualifications | Instance 2,p6138
@@ -39,7 +27,43 @@ p21001_i0,Body mass index (BMI) | Instance 0,p21001
 p21001_i1,Body mass index (BMI) | Instance 1,p21001
 p21001_i2,Body mass index (BMI) | Instance 2,p21001
 p21001_i3,Body mass index (BMI) | Instance 3,p21001
+p22040_i0,Summed MET minutes per week for all activity | Instance 0,p22040
 p22189,Townsend deprivation index at recruitment,p22189
+p26030_i0,Alcohol | Instance 0,p26030
+p26030_i1,Alcohol | Instance 1,p26030
+p26030_i2,Alcohol | Instance 2,p26030
+p26030_i3,Alcohol | Instance 3,p26030
+p26030_i4,Alcohol | Instance 4,p26030
+p26066_i0,Beef | Instance 0,p26066
+p26066_i1,Beef | Instance 1,p26066
+p26066_i2,Beef | Instance 2,p26066
+p26066_i3,Beef | Instance 3,p26066
+p26066_i4,Beef | Instance 4,p26066
+p26100_i0,Lamb | Instance 0,p26100
+p26100_i1,Lamb | Instance 1,p26100
+p26100_i2,Lamb | Instance 2,p26100
+p26100_i3,Lamb | Instance 3,p26100
+p26100_i4,Lamb | Instance 4,p26100
+p26101_i0,Legumes and pulses | Instance 0,p26101
+p26101_i1,Legumes and pulses | Instance 1,p26101
+p26101_i2,Legumes and pulses | Instance 2,p26101
+p26101_i3,Legumes and pulses | Instance 3,p26101
+p26101_i4,Legumes and pulses | Instance 4,p26101
+p26115_i0,Peas and sweetcorn | Instance 0,p26115
+p26115_i1,Peas and sweetcorn | Instance 1,p26115
+p26115_i2,Peas and sweetcorn | Instance 2,p26115
+p26115_i3,Peas and sweetcorn | Instance 3,p26115
+p26115_i4,Peas and sweetcorn | Instance 4,p26115
+p26117_i0,Pork | Instance 0,p26117
+p26117_i1,Pork | Instance 1,p26117
+p26117_i2,Pork | Instance 2,p26117
+p26117_i3,Pork | Instance 3,p26117
+p26117_i4,Pork | Instance 4,p26117
+p26122_i0,Processed meat | Instance 0,p26122
+p26122_i1,Processed meat | Instance 1,p26122
+p26122_i2,Processed meat | Instance 2,p26122
+p26122_i3,Processed meat | Instance 3,p26122
+p26122_i4,Processed meat | Instance 4,p26122
 p40006_i0,Type of cancer: ICD10 | Instance 0,p40006
 p40006_i1,Type of cancer: ICD10 | Instance 1,p40006
 p40006_i2,Type of cancer: ICD10 | Instance 2,p40006
@@ -72,14 +96,13 @@ p100002_i1,Energy | Instance 1,p100002
 p100002_i2,Energy | Instance 2,p100002
 p100002_i3,Energy | Instance 3,p100002
 p100002_i4,Energy | Instance 4,p100002
-NA,NA,p20116
-NA,NA,p22040
-NA,NA,p26030
-NA,NA,p26066
-NA,NA,p26100
-NA,NA,p26101
-NA,NA,p26115
-NA,NA,p26117
-NA,NA,p26122
-NA,NA,p105010
-NA,NA,p105030
+p105010_i0,When diet questionnaire completed | Instance 0,p105010
+p105010_i1,When diet questionnaire completed | Instance 1,p105010
+p105010_i2,When diet questionnaire completed | Instance 2,p105010
+p105010_i3,When diet questionnaire completed | Instance 3,p105010
+p105010_i4,When diet questionnaire completed | Instance 4,p105010
+p105030_i0,When diet questionnaire started | Instance 0,p105030
+p105030_i1,When diet questionnaire started | Instance 1,p105030
+p105030_i2,When diet questionnaire started | Instance 2,p105030
+p105030_i3,When diet questionnaire started | Instance 3,p105030
+p105030_i4,When diet questionnaire started | Instance 4,p105030
