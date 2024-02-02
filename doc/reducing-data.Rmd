@@ -34,6 +34,7 @@ data <- data %>%
            education = p6138_i0,
            illness = p20002_i0,
            ques_comp_n = p20077,
+           smoking = p20116_i0,
            ethnicity = p21000_i0,
            bmi = p21001_i0,
            phys_acti = p22040_i0,
