@@ -19,6 +19,10 @@ p20002_i1,"Non-cancer illness code, self-reported | Instance 1",p20002
 p20002_i2,"Non-cancer illness code, self-reported | Instance 2",p20002
 p20002_i3,"Non-cancer illness code, self-reported | Instance 3",p20002
 p20077,Number of diet questionnaires completed,p20077
+p20116_i0,Smoking status | Instance 0,p20116
+p20116_i1,Smoking status | Instance 1,p20116
+p20116_i2,Smoking status | Instance 2,p20116
+p20116_i3,Smoking status | Instance 3,p20116
 p21000_i0,Ethnic background | Instance 0,p21000
 p21000_i1,Ethnic background | Instance 1,p21000
 p21000_i2,Ethnic background | Instance 2,p21000
