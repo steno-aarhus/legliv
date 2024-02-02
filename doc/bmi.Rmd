@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(ggplot2)
 library(Hmisc)
+library(parameters)
 ```
 
 
@@ -132,5 +133,16 @@ data_liver <- data_liver %>%
 data_liver %>% 
     count(bmi_category) %>% 
     mutate(percentage = n / sum(n) * 100)
+```
+
+
+```{r}
+t.test(data$logbmi, data_liver$logbmi) %>% 
+  parameters()
+```
+```{r}
+exp(c(3.27,
+    3.36,
+    -0.09))
 ```
 
