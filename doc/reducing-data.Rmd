@@ -98,23 +98,15 @@ data <- data %>%
 
 data <- data %>% 
     select(-contains('_i'))
-```
 
-```{r}
-data %>% 
-    summary()
-```
+# creating dataset with only liver cancer diagnoses:
 
-creating dataset with only liver cancer diagnoses:
-
-p40006,Type of cancer: ICD10,119346,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=40006
-
-```{r}
 data_liver <- data %>% 
     filter(cancer0 == 'C22.0 Liver cell carcinoma' | cancer0 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer1 == 'C22.0 Liver cell carcinoma' | cancer1 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer2 == 'C22.0 Liver cell carcinoma' | cancer2 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer3 == 'C22.0 Liver cell carcinoma' | cancer3 == 'C22.1 Intrahepatic bile duct carcinoma'
                )
+
 ```
 

@@ -7,6 +7,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(ggplot2)
+library(Hmisc)
+```
+
+
 Checking cohort BMI:
 
 ```{r}
@@ -31,7 +37,7 @@ data <- data %>%
 
 ```{r}
 data %>% 
-  ggplot(aes(x = bmi)) +
+  ggplot(aes(x = logbmi)) +
   geom_histogram(na.rm = T)
 ```
 
