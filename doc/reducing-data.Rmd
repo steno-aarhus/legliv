@@ -24,6 +24,14 @@ p20077,Number of diet questionnaires completed,210948,https://biobank.ndph.ox.ac
 ```{r}
 data_red <- data %>%
     filter(p20077 >= 2)
+
+data_red <- data_red %>%
+    rename(sex = p31,
+           birth_year = p34,
+           wc = p48_i0)
+
+data_red <- data_red %>% 
+    select(-ends_with('_i1'), -ends_with('_i2'), -ends_with('_i3'), -ends_with('_i4'))
 ```
 
 creating dataset with only liver cancer diagnoses:
@@ -55,10 +63,5 @@ data_liver <- data_red %>%
                p40006_i20 == 'C22.0 Liver cell carcinoma' | p40006_i20 == 'C22.1 Intrahepatic bile duct carcinoma' |
                p40006_i21 == 'C22.0 Liver cell carcinoma' |p40006_i21 == 'C22.1 Intrahepatic bile duct carcinoma' 
                )
-```
-
-```{r}
-data %>% 
-    filter(p40006_i0 == 'C22.1 Intrahepatic bile duct carcinoma')
 ```
 
