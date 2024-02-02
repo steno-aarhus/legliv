@@ -94,3 +94,37 @@ data_liver %$%
     exp(smean.cl.normal(logbmi))
 ```
 
+Creating BMI categories:
+
+Defining intervals and creating labels:
+```{r}
+cut_points <- c(-Inf, 24.99, 29.99, Inf)
+labels <- c( "Normal weight", "Overweight", "Obese")
+```
+
+Creating variables:
+```{r}
+data <- data %>%
+  mutate(bmi_category = cut(bmi, breaks = cut_points, labels = labels, include.lowest = TRUE))
+
+```
+
+counting n in each category and calculating %:
+```{r}
+data %>% 
+    count(bmi_category) %>% 
+    mutate(percentage = n / sum(n) * 100)
+```
+
+same for liver data:
+```{r}
+data_liver <- data_liver %>%
+  mutate(bmi_category = cut(bmi, breaks = cut_points, labels = labels, include.lowest = TRUE))
+```
+
+```{r}
+data_liver %>% 
+    count(bmi_category) %>% 
+    mutate(percentage = n / sum(n) * 100)
+```
+
