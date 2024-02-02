@@ -1,0 +1,68 @@
+---
+title: "bmi"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Checking cohort BMI:
+
+```{r}
+data_red %>% 
+    ggplot(aes(sample = p21001_i0)) + 
+    stat_qq() +
+    stat_qq_line()
+```
+smiling qq-plot. Data are not normally distributed. Trying log-transformation:
+
+```{r}
+data_red <- data_red %>% 
+    mutate(logbmi = log(p21001_i0))
+```
+
+
+```{r}
+data_red %>% 
+    ggplot(aes(sample = logbmi)) +
+    stat_qq() +
+    stat_qq_line()
+```
+Looks normally distributed. Backtransforming to get mean:
+
+```{r}
+data_red %$% 
+    exp(smean.cl.normal(logbmi))
+```
+
+```{r}
+data_red %$% 
+    exp(smean.sdl(logbmi, mult = 1.96))
+```
+
+```{r}
+data_liver <- data_liver %>% 
+    mutate(logbmi = log(p21001_i0))
+```
+
+```{r}
+data_liver %>% 
+    ggplot(aes(sample = p21001_i0)) +
+    stat_qq() +
+    stat_qq_line()
+```
+
+
+```{r}
+data_liver %>% 
+    ggplot(aes(sample = logbmi)) +
+    stat_qq() +
+    stat_qq_line()
+```
+
+```{r}
+data_liver %$% 
+    exp(smean.cl.normal(logbmi))
+```
+
