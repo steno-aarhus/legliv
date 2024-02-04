@@ -1,25 +1,23 @@
----
-title: 'reducing dataset'
-output: html_document
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r}
+install.packages('dplyr')
 install.packages('tidyverse')
-```
+install.packages('magrittr')   # For the %$% composition pipe.
+install.packages('Hmisc')      # smean.cl.normal, smean.sdl.
+install.packages('confintr')   # ci_median, ci_sd.
+install.packages('blandr')     # blandr.output.text, blandr.statistics
+install.packages('parameters') # parameters.
+install.packages('psych')      # describe
 
-```{r}
 library(dplyr)
 library(tidyverse)
 library(magrittr)   # For the %$% composition pipe.
-```
+library(ggplot2)
+library(Hmisc)      # smean.cl.normal, smean.sdl.
+library(confintr)   # ci_median, ci_sd.
+library(blandr)     # blandr.output.text, blandr.statistics
+library(parameters) # parameters.
+library(psych)      # describe
 
-p20077,Number of diet questionnaires completed,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20077
-
-```{r}
 # removing participants who did not complete 2 or more diet questionnaires
 data <- data %>%
     filter(p20077 >= 2)
@@ -109,21 +107,18 @@ data <- data %>%
            ques_star_t2 = p105030_i2,
            ques_star_t3 = p105030_i3,
            ques_star_t4 = p105030_i4
-           )
+    )
 
-# summary of data shows that p40006_i4 to p40006_i21 do not contain any data points, i.e, no information on cancer diagnoses. Removing these and follow-up values on other variables:
+# Removing follow-up values where only baseline values are needed:
 
-data <- data %>% 
+data <- data %>%
     select(-contains('_i'))
 
 # creating dataset with only liver cancer diagnoses:
 
-data_liver <- data %>% 
+data_liver <- data %>%
     filter(cancer0 == 'C22.0 Liver cell carcinoma' | cancer0 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer1 == 'C22.0 Liver cell carcinoma' | cancer1 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer2 == 'C22.0 Liver cell carcinoma' | cancer2 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer3 == 'C22.0 Liver cell carcinoma' | cancer3 == 'C22.1 Intrahepatic bile duct carcinoma'
-               )
-
-```
-
+    )
