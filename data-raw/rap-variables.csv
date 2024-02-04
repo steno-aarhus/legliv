@@ -19,6 +19,11 @@ p20002_i1,"Non-cancer illness code, self-reported | Instance 1",p20002
 p20002_i2,"Non-cancer illness code, self-reported | Instance 2",p20002
 p20002_i3,"Non-cancer illness code, self-reported | Instance 3",p20002
 p20077,Number of diet questionnaires completed,p20077
+p20078_i0,When diet questionnaire completion requested | Instance 0,p20078
+p20078_i1,When diet questionnaire completion requested | Instance 1,p20078
+p20078_i2,When diet questionnaire completion requested | Instance 2,p20078
+p20078_i3,When diet questionnaire completion requested | Instance 3,p20078
+p20078_i4,When diet questionnaire completion requested | Instance 4,p20078
 p20116_i0,Smoking status | Instance 0,p20116
 p20116_i1,Smoking status | Instance 1,p20116
 p20116_i2,Smoking status | Instance 2,p20116
@@ -68,6 +73,32 @@ p26122_i1,Processed meat | Instance 1,p26122
 p26122_i2,Processed meat | Instance 2,p26122
 p26122_i3,Processed meat | Instance 3,p26122
 p26122_i4,Processed meat | Instance 4,p26122
+p40000_i0,Date of death | Instance 0,p40000
+p40000_i1,Date of death | Instance 1,p40000
+p40001_i0,Underlying (primary) cause of death: ICD10 | Instance 0,p40001
+p40001_i1,Underlying (primary) cause of death: ICD10 | Instance 1,p40001
+p40005_i0,Date of cancer diagnosis | Instance 0,p40005
+p40005_i1,Date of cancer diagnosis | Instance 1,p40005
+p40005_i2,Date of cancer diagnosis | Instance 2,p40005
+p40005_i3,Date of cancer diagnosis | Instance 3,p40005
+p40005_i4,Date of cancer diagnosis | Instance 4,p40005
+p40005_i5,Date of cancer diagnosis | Instance 5,p40005
+p40005_i6,Date of cancer diagnosis | Instance 6,p40005
+p40005_i7,Date of cancer diagnosis | Instance 7,p40005
+p40005_i8,Date of cancer diagnosis | Instance 8,p40005
+p40005_i9,Date of cancer diagnosis | Instance 9,p40005
+p40005_i10,Date of cancer diagnosis | Instance 10,p40005
+p40005_i11,Date of cancer diagnosis | Instance 11,p40005
+p40005_i12,Date of cancer diagnosis | Instance 12,p40005
+p40005_i13,Date of cancer diagnosis | Instance 13,p40005
+p40005_i14,Date of cancer diagnosis | Instance 14,p40005
+p40005_i15,Date of cancer diagnosis | Instance 15,p40005
+p40005_i16,Date of cancer diagnosis | Instance 16,p40005
+p40005_i17,Date of cancer diagnosis | Instance 17,p40005
+p40005_i18,Date of cancer diagnosis | Instance 18,p40005
+p40005_i19,Date of cancer diagnosis | Instance 19,p40005
+p40005_i20,Date of cancer diagnosis | Instance 20,p40005
+p40005_i21,Date of cancer diagnosis | Instance 21,p40005
 p40006_i0,Type of cancer: ICD10 | Instance 0,p40006
 p40006_i1,Type of cancer: ICD10 | Instance 1,p40006
 p40006_i2,Type of cancer: ICD10 | Instance 2,p40006
@@ -90,6 +121,30 @@ p40006_i18,Type of cancer: ICD10 | Instance 18,p40006
 p40006_i19,Type of cancer: ICD10 | Instance 19,p40006
 p40006_i20,Type of cancer: ICD10 | Instance 20,p40006
 p40006_i21,Type of cancer: ICD10 | Instance 21,p40006
+p40007_i0,Age at death | Instance 0,p40007
+p40007_i1,Age at death | Instance 1,p40007
+p40008_i0,Age at cancer diagnosis | Instance 0,p40008
+p40008_i1,Age at cancer diagnosis | Instance 1,p40008
+p40008_i2,Age at cancer diagnosis | Instance 2,p40008
+p40008_i3,Age at cancer diagnosis | Instance 3,p40008
+p40008_i4,Age at cancer diagnosis | Instance 4,p40008
+p40008_i5,Age at cancer diagnosis | Instance 5,p40008
+p40008_i6,Age at cancer diagnosis | Instance 6,p40008
+p40008_i7,Age at cancer diagnosis | Instance 7,p40008
+p40008_i8,Age at cancer diagnosis | Instance 8,p40008
+p40008_i9,Age at cancer diagnosis | Instance 9,p40008
+p40008_i10,Age at cancer diagnosis | Instance 10,p40008
+p40008_i11,Age at cancer diagnosis | Instance 11,p40008
+p40008_i12,Age at cancer diagnosis | Instance 12,p40008
+p40008_i13,Age at cancer diagnosis | Instance 13,p40008
+p40008_i14,Age at cancer diagnosis | Instance 14,p40008
+p40008_i15,Age at cancer diagnosis | Instance 15,p40008
+p40008_i16,Age at cancer diagnosis | Instance 16,p40008
+p40008_i17,Age at cancer diagnosis | Instance 17,p40008
+p40008_i18,Age at cancer diagnosis | Instance 18,p40008
+p40008_i19,Age at cancer diagnosis | Instance 19,p40008
+p40008_i20,Age at cancer diagnosis | Instance 20,p40008
+p40008_i21,Age at cancer diagnosis | Instance 21,p40008
 p100001_i0,Food weight | Instance 0,p100001
 p100001_i1,Food weight | Instance 1,p100001
 p100001_i2,Food weight | Instance 2,p100001
