@@ -30,7 +30,6 @@ data <- data %>%
            month_of_birth = p52,
            number_in_household = p709_i0,
            education = p6138_i0,
-           illness = p20002_i0,
            ques_comp_n = p20077,
            ques_comp_req0 = p20078_i0,
            ques_comp_req1 = p20078_i1,
@@ -83,6 +82,8 @@ data <- data %>%
            cancer2 = p40006_i2,
            cancer3 = p40006_i3, # same as p40005
            age_dead = p40007_i0, # p40007_01 is empty
+           icd10 = p41270,
+           icd9 = p41271,
            cancer_age0 = p40008_i0,
            cancer_age1 = p40008_i1,
            cancer_age2 = p40008_i2,
@@ -122,3 +123,4 @@ data_liver <- data %>%
                cancer2 == 'C22.0 Liver cell carcinoma' | cancer2 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer3 == 'C22.0 Liver cell carcinoma' | cancer3 == 'C22.1 Intrahepatic bile duct carcinoma'
     )
+
