@@ -14,10 +14,6 @@ p6138_i0,Qualifications | Instance 0,p6138
 p6138_i1,Qualifications | Instance 1,p6138
 p6138_i2,Qualifications | Instance 2,p6138
 p6138_i3,Qualifications | Instance 3,p6138
-p20002_i0,"Non-cancer illness code, self-reported | Instance 0",p20002
-p20002_i1,"Non-cancer illness code, self-reported | Instance 1",p20002
-p20002_i2,"Non-cancer illness code, self-reported | Instance 2",p20002
-p20002_i3,"Non-cancer illness code, self-reported | Instance 3",p20002
 p20077,Number of diet questionnaires completed,p20077
 p20078_i0,When diet questionnaire completion requested | Instance 0,p20078
 p20078_i1,When diet questionnaire completion requested | Instance 1,p20078
@@ -145,6 +141,8 @@ p40008_i18,Age at cancer diagnosis | Instance 18,p40008
 p40008_i19,Age at cancer diagnosis | Instance 19,p40008
 p40008_i20,Age at cancer diagnosis | Instance 20,p40008
 p40008_i21,Age at cancer diagnosis | Instance 21,p40008
+p41270,Diagnoses - ICD10,p41270
+p41271,Diagnoses - ICD9,p41271
 p100001_i0,Food weight | Instance 0,p100001
 p100001_i1,Food weight | Instance 1,p100001
 p100001_i2,Food weight | Instance 2,p100001

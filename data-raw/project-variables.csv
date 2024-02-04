@@ -5,7 +5,6 @@ p48,Waist circumference,500290,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=48
 p52,Month of birth,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=52
 p709,Number in household,500147,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=709
 p6138,Qualifications,498838,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=6138
-p20002,"Non-cancer illness code, self-reported",391819,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20002
 p20077,Number of diet questionnaires completed,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20077
 p20078,When diet questionnaire completion requested,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20078
 p20116,Smoking status,501500,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20116
@@ -26,6 +25,8 @@ p40005,Date of cancer diagnosis,123776,https://biobank.ndph.ox.ac.uk/ukb/field.c
 p40006,Type of cancer: ICD10,119346,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=40006
 p40007,Age at death,44499,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=40007
 p40008,Age at cancer diagnosis,123776,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=40008
+p41270,Diagnoses - ICD10,446974,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=41270
+p41271,Diagnoses - ICD9,20390,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=41271
 p100001,Food weight,210960,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=100001
 p100002,Energy,210960,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=100002
 p105010,When diet questionnaire completed,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=105010
