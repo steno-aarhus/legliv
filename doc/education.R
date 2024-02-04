@@ -1,7 +1,9 @@
 # Education
 data_edu <- data %>%
     select(education)
+view(data_edu)
 
+# each participants have multiple categories. The following code is not correct.
 data_edu <- data_edu %>%
     mutate(education2 = case_when(
         grepl("College", education, ignore.case = TRUE) ~ "1 College or University degree",
