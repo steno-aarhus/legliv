@@ -32,6 +32,7 @@ p21001_i0,Body mass index (BMI) | Instance 0,p21001
 p21001_i1,Body mass index (BMI) | Instance 1,p21001
 p21001_i2,Body mass index (BMI) | Instance 2,p21001
 p21001_i3,Body mass index (BMI) | Instance 3,p21001
+p21022,Age at recruitment,p21022
 p22040_i0,Summed MET minutes per week for all activity | Instance 0,p22040
 p22189,Townsend deprivation index at recruitment,p22189
 p26030_i0,Alcohol | Instance 0,p26030
@@ -54,6 +55,11 @@ p26101_i1,Legumes and pulses | Instance 1,p26101
 p26101_i2,Legumes and pulses | Instance 2,p26101
 p26101_i3,Legumes and pulses | Instance 3,p26101
 p26101_i4,Legumes and pulses | Instance 4,p26101
+p26104_i0,"Other meat, offal | Instance 0",p26104
+p26104_i1,"Other meat, offal | Instance 1",p26104
+p26104_i2,"Other meat, offal | Instance 2",p26104
+p26104_i3,"Other meat, offal | Instance 3",p26104
+p26104_i4,"Other meat, offal | Instance 4",p26104
 p26115_i0,Peas and sweetcorn | Instance 0,p26115
 p26115_i1,Peas and sweetcorn | Instance 1,p26115
 p26115_i2,Peas and sweetcorn | Instance 2,p26115
