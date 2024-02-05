@@ -58,6 +58,22 @@ data_alc <- data %>%
 
 data_alc_liver <- data_liver %>%
     filter(str_detect(icd10, "K70")) %>%
-    select(icd10, icd9)
+    select(icd10)
 
 (10/115)*100
+
+
+# NAFLD:
+# K76.0 Fatty (change of) liver, not elsewhere classified
+
+data_nafld <- data %>%
+    filter(str_detect(icd10, "K76.0")) %>%
+    select(icd10) # no data from icd9
+
+(1389/126812)*100
+
+data_nafld_liver <- data_liver %>%
+    filter(str_detect(icd10, "K76.0")) %>%
+    select(icd10)
+
+(14/115)*100
