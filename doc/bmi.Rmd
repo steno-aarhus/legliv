@@ -7,13 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
-library(ggplot2)
-library(Hmisc)
-library(parameters)
-```
-
-
 Checking cohort BMI:
 
 ```{r}
