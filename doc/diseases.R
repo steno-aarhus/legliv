@@ -1,3 +1,4 @@
+
 # Diabetes
 
 #Creating dataset with participants who have one or more of diagnoses "E10" to "E14" in icd10 and "250" in ICD9.
@@ -46,3 +47,17 @@ data_lith_liver <- data_liver %>%
     select(icd10, icd9)
 
 (26/115)*100
+
+# Alcoholic liver disease
+
+data_alc <- data %>%
+    filter(str_detect(icd10, "K70")) %>%
+    select(icd10) # no data from icd9
+
+(221/126812)*100
+
+data_alc_liver <- data_liver %>%
+    filter(str_detect(icd10, "K70")) %>%
+    select(icd10, icd9)
+
+(10/115)*100
