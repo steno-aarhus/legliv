@@ -11,6 +11,14 @@ data <- data %>%
     )
 
 data %>%
+    select(leg_mean, red_meat_mean, proc_meat_mean) %>%
+    summary()
+
+data %>%
+    select(red_meat0, red_meat1, red_meat2, red_meat3, red_meat4) %>%
+    summary()
+
+data %>%
     filter(!is.na(leg_mean)) %>%
     summary()
 
