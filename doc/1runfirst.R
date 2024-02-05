@@ -50,12 +50,22 @@ data <- data %>%
            beef1 = p26066_i1,
            beef2 = p26066_i2,
            beef3 = p26066_i3,
+           beef4 = p26066_i4,
+           lamb0 = p26100_i0,
+           lamb1 = p26100_i1,
+           lamb2 = p26100_i2,
+           lamb3 = p26100_i3,
            lamb4 = p26100_i4,
-           legumes0 = p26101_i0,
-           legumes1 = p26101_i1,
-           legumes2 = p26101_i2,
-           legumes3 = p26101_i3,
-           legumes4 = p26101_i4,
+           pulses0 = p26101_i0,
+           pulses1 = p26101_i1,
+           pulses2 = p26101_i2,
+           pulses3 = p26101_i3,
+           pulses4 = p26101_i4,
+           offal0 = p26104_i0,
+           offal1 = p26104_i1,
+           offal2 = p26104_i2,
+           offal3 = p26104_i3,
+           offal4 = p26104_i4,
            peas_corn0 = p26115_i0,
            peas_corn1 = p26115_i1,
            peas_corn2 = p26115_i2,
@@ -114,6 +124,28 @@ data <- data %>%
 
 data <- data %>%
     select(-contains('_i'))
+
+#
+
+data <- data %>%
+    mutate(
+        red_meat0 = beef0 + lamb0 + pork0 + offal0,
+        red_meat1 = beef1 + lamb1 + pork1 + offal1,
+        red_meat2 = beef2 + lamb2 + pork2 + offal2,
+        red_meat3 = beef3 + lamb3 + pork3 + offal3,
+        red_meat4 = beef4 + lamb4 + pork4 + offal4,
+        peas0 = peas_corn0*0.5, #assuming equal amounts of peas and corn
+        peas1 = peas_corn1*0.5,
+        peas2 = peas_corn2*0.5,
+        peas3 = peas_corn3*0.5,
+        peas4 = peas_corn4*0.5,
+        legumes0 = pulses0 + peas0,
+        legumes1 = pulses1 + peas1,
+        legumes2 = pulses2 + peas2,
+        legumes3 = pulses3 + peas3,
+        legumes4 = pulses4 + peas4
+    )
+
 
 # creating dataset with only liver cancer diagnoses:
 
