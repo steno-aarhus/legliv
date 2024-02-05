@@ -17,6 +17,7 @@ library(confintr)   # ci_median, ci_sd.
 library(blandr)     # blandr.output.text, blandr.statistics
 library(parameters) # parameters.
 library(psych)      # describe
+library(stringr)
 
 # removing participants who did not complete 2 or more diet questionnaires
 data <- data %>%
@@ -39,6 +40,7 @@ data <- data %>%
            smoking = p20116_i0,
            ethnicity = p21000_i0,
            bmi = p21001_i0,
+           age_recruit = p21022,
            phys_acti = p22040_i0,
            tdi = p22189,
            alcohol0 = p26030_i0,
