@@ -148,6 +148,24 @@ data <- data %>%
         legumes4 = pulses4 + peas4
     )
 
+# Merging birth year and month of birth into one column:
+
+month_names <- c("January", "February", "March", "April", "May", "June",
+                 "July", "August", "September", "October", "November", "December")
+data <- data %>%
+    mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
+data <- data %>%
+    unite(birth, birth_year, month_of_birth_num, sep = "-")
+
+# Removing specific time stamp from date of completed questionnaires:
+
+data <- data %>%
+    mutate(quest_comp_t0 = substr(ques_comp_t0, 1, 10),
+           quest_comp_t1 = substr(ques_comp_t1, 1, 10),
+           quest_comp_t2 = substr(ques_comp_t2, 1, 10),
+           quest_comp_t3 = substr(ques_comp_t3, 1, 10),
+           quest_comp_t4 = substr(ques_comp_t4, 1, 10)
+           )
 
 # creating dataset with only liver cancer diagnoses:
 
@@ -157,4 +175,3 @@ data_liver <- data %>%
                cancer2 == 'C22.0 Liver cell carcinoma' | cancer2 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer3 == 'C22.0 Liver cell carcinoma' | cancer3 == 'C22.1 Intrahepatic bile duct carcinoma'
     )
-
