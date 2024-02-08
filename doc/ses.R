@@ -1,3 +1,5 @@
+# SES variables:
+
 # Education
 data_edu <- data %>%
     select(education)
@@ -51,3 +53,60 @@ data_edu_liver %>%
 data_edu_liver %>%
     ggplot(aes(x = education2)) +
     geom_bar()
+
+
+# townsend deprivation index
+data_tdi <- data %>%
+    select(tdi)
+
+data_tdi %>%
+    summary()
+
+data_tdi %>%
+    ggplot(aes(x = tdi)) +
+    geom_histogram()
+
+data_tdi %>%
+    ggplot(aes(sample = tdi)) +
+    stat_qq() +
+    stat_qq_line()
+
+data_tdi_liver <- data_liver %>%
+    select(tdi)
+
+data_tdi_liver %>%
+    summary()
+
+data_tdi_liver %>%
+    ggplot(aes(x=tdi))+
+    geom_histogram(bins = 10)
+
+data_tdi_liver %>%
+    ggplot(aes(sample=tdi)) +
+    stat_qq()+
+    stat_qq_line()
+
+wilcox.test(data_tdi$tdi, data_tdi_liver$tdi ) |>
+    parameters()
+
+
+# Living alone, computed from number in household
+
+data_spouse <- data %>%
+    select(spouse)
+
+data_spouse %>%
+    count(spouse) %>%
+    arrange() %>%
+    mutate(percentage = n/sum(n)*100) %>%
+    print(n=37)
+
+
+data_spouse_liver <- data_liver %>%
+    select(spouse)
+
+data_spouse_liver %>%
+    count(spouse) %>%
+    arrange() %>%
+    mutate(percentage = n/sum(n)*100) %>%
+    print(n=37)
