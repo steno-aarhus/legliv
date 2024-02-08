@@ -1,18 +1,34 @@
 # Diet variables
 
+data <- data %>%
+    rowwise() %>%
+    mutate(red_proc_mean = mean(c_across(red_proc_meat0:red_proc_meat4), na.rm = T)
+    )
+
+data %>%
+    select(red_proc_mean) %>%
+    summary()
+
 
 data <- data %>%
     rowwise() %>%
     mutate(leg_mean = mean(c_across(legumes0:legumes4), na.rm = T),
            red_meat_mean = mean(c_across(red_meat0:red_meat4), na.rm = T),
            proc_meat_mean = mean(c_across(proc_meat0:proc_meat4), na.rm = T),
+           red_proc_mean = mean(c_across(red_proc_meat0:red_proc_meat4), na.rm = T),
            food_weig_mean = mean(c_across(food_weig0:food_weig4), na.rm = T),
            food_ener_mean = mean(c_across(food_ener0:food_ener4), na.rm = T),
            alcohol_mean = mean(c_across(alcohol0:alcohol4), na.rm = T)
     )
 
 data %>%
-    select(leg_mean, red_meat_mean, proc_meat_mean, food_weig_mean, food_ener_mean, alcohol_mean) %>%
+    select(leg_mean,
+           red_meat_mean,
+           proc_meat_mean,
+           red_proc_meant,
+           food_weig_mean,
+           food_ener_mean,
+           alcohol_mean) %>%
     summary()
 
 #Checking energy intake:
@@ -57,13 +73,20 @@ data_liver <- data_liver %>%
     mutate(leg_mean = mean(c_across(legumes0:legumes4), na.rm = T),
            red_meat_mean = mean(c_across(red_meat0:red_meat4), na.rm = T),
            proc_meat_mean = mean(c_across(proc_meat0:proc_meat4), na.rm = T),
+           red_proc_mean = mean(c_across(red_proc_meat0:red_proc_meat4), na.rm = T),
            food_weig_mean = mean(c_across(food_weig0:food_weig4), na.rm = T),
            food_ener_mean = mean(c_across(food_ener0: food_ener4), na.rm = T),
            alcohol_mean = mean(c_across(alcohol0:alcohol4), na.rm = T)
            )
 
 data_liver %>%
-    select(leg_mean, red_meat_mean, proc_meat_mean, food_weig_mean, food_ener_mean, alcohol_mean) %>%
+    select(leg_mean,
+           red_meat_mean,
+           proc_meat_mean,
+           red_proc_mean,
+           food_weig_mean,
+           food_ener_mean,
+           alcohol_mean) %>%
     summary()
 
 # Energy intake:
