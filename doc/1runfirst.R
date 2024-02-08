@@ -1,23 +1,7 @@
 
-install.packages('dplyr')
-install.packages('tidyverse')
-install.packages('magrittr')   # For the %$% composition pipe.
-install.packages('Hmisc')      # smean.cl.normal, smean.sdl.
-install.packages('confintr')   # ci_median, ci_sd.
-install.packages('blandr')     # blandr.output.text, blandr.statistics
-install.packages('parameters') # parameters.
-install.packages('psych')      # describe
-
 library(dplyr)
 library(tidyverse)
 library(magrittr)   # For the %$% composition pipe.
-library(ggplot2)
-library(Hmisc)      # smean.cl.normal, smean.sdl.
-library(confintr)   # ci_median, ci_sd.
-library(blandr)     # blandr.output.text, blandr.statistics
-library(parameters) # parameters.
-library(psych)      # describe
-library(stringr)
 
 ukb_dataset <- data
 
@@ -32,11 +16,6 @@ data <- data %>%
            number_in_household = p709_i0,
            education = p6138_i0,
            ques_comp_n = p20077,
-           ques_comp_req0 = p20078_i0,
-           ques_comp_req1 = p20078_i1,
-           ques_comp_req2 = p20078_i2,
-           ques_comp_req3 = p20078_i3,
-           ques_comp_req4 = p20078_i4,
            smoking = p20116_i0,
            ethnicity = p21000_i0,
            bmi = p21001_i0,
@@ -121,11 +100,13 @@ data <- data %>%
 
 # removing participants who did not complete 2 or more diet questionnaires
 data <- data %>%
-    filter(p20077 >= 2)
+    filter(ques_comp_n >= 2)
 
-#
-data <- data %>%
-    filter(!grepl("C22", icd10))
+# excluding participants who have had liver cancer before recruitment:
+# when running this code, I only end up with 15 events :'(
+
+# data <- data %>%
+#    filter(!grepl("C22", icd10))
 
 # Removing follow-up values where only baseline values are needed:
 
@@ -165,6 +146,7 @@ data <- data %>%
     mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
 data <- data %>%
     unite(birth, birth_year, month_of_birth_num, sep = "-")
+remove(month_names)
 
 # Removing specific time stamp from date of completed questionnaires:
 
