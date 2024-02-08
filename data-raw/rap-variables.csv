@@ -6,6 +6,8 @@ p48_i1,Waist circumference | Instance 1,p48
 p48_i2,Waist circumference | Instance 2,p48
 p48_i3,Waist circumference | Instance 3,p48
 p52,Month of birth,p52
+p190,Reason lost to follow-up,p190
+p191,Date lost to follow-up,p191
 p709_i0,Number in household | Instance 0,p709
 p709_i1,Number in household | Instance 1,p709
 p709_i2,Number in household | Instance 2,p709
@@ -15,11 +17,6 @@ p6138_i1,Qualifications | Instance 1,p6138
 p6138_i2,Qualifications | Instance 2,p6138
 p6138_i3,Qualifications | Instance 3,p6138
 p20077,Number of diet questionnaires completed,p20077
-p20078_i0,When diet questionnaire completion requested | Instance 0,p20078
-p20078_i1,When diet questionnaire completion requested | Instance 1,p20078
-p20078_i2,When diet questionnaire completion requested | Instance 2,p20078
-p20078_i3,When diet questionnaire completion requested | Instance 3,p20078
-p20078_i4,When diet questionnaire completion requested | Instance 4,p20078
 p20116_i0,Smoking status | Instance 0,p20116
 p20116_i1,Smoking status | Instance 1,p20116
 p20116_i2,Smoking status | Instance 2,p20116
@@ -35,16 +32,506 @@ p21001_i3,Body mass index (BMI) | Instance 3,p21001
 p21022,Age at recruitment,p21022
 p22040_i0,Summed MET minutes per week for all activity | Instance 0,p22040
 p22189,Townsend deprivation index at recruitment,p22189
+p26000_i0,Total weight of all foods and beverages | Instance 0,p26000
+p26000_i1,Total weight of all foods and beverages | Instance 1,p26000
+p26000_i2,Total weight of all foods and beverages | Instance 2,p26000
+p26000_i3,Total weight of all foods and beverages | Instance 3,p26000
+p26000_i4,Total weight of all foods and beverages | Instance 4,p26000
+p26001_i0,Total weight of beverages only | Instance 0,p26001
+p26001_i1,Total weight of beverages only | Instance 1,p26001
+p26001_i2,Total weight of beverages only | Instance 2,p26001
+p26001_i3,Total weight of beverages only | Instance 3,p26001
+p26001_i4,Total weight of beverages only | Instance 4,p26001
+p26002_i0,Energy | Instance 0,p26002
+p26002_i1,Energy | Instance 1,p26002
+p26002_i2,Energy | Instance 2,p26002
+p26002_i3,Energy | Instance 3,p26002
+p26002_i4,Energy | Instance 4,p26002
+p26003_i0,Energy from beverages | Instance 0,p26003
+p26003_i1,Energy from beverages | Instance 1,p26003
+p26003_i2,Energy from beverages | Instance 2,p26003
+p26003_i3,Energy from beverages | Instance 3,p26003
+p26003_i4,Energy from beverages | Instance 4,p26003
+p26004_i0,Energy density | Instance 0,p26004
+p26004_i1,Energy density | Instance 1,p26004
+p26004_i2,Energy density | Instance 2,p26004
+p26004_i3,Energy density | Instance 3,p26004
+p26004_i4,Energy density | Instance 4,p26004
+p26005_i0,Protein | Instance 0,p26005
+p26005_i1,Protein | Instance 1,p26005
+p26005_i2,Protein | Instance 2,p26005
+p26005_i3,Protein | Instance 3,p26005
+p26005_i4,Protein | Instance 4,p26005
+p26006_i0,Vegetable protein | Instance 0,p26006
+p26006_i1,Vegetable protein | Instance 1,p26006
+p26006_i2,Vegetable protein | Instance 2,p26006
+p26006_i3,Vegetable protein | Instance 3,p26006
+p26006_i4,Vegetable protein | Instance 4,p26006
+p26007_i0,Animal protein | Instance 0,p26007
+p26007_i1,Animal protein | Instance 1,p26007
+p26007_i2,Animal protein | Instance 2,p26007
+p26007_i3,Animal protein | Instance 3,p26007
+p26007_i4,Animal protein | Instance 4,p26007
+p26008_i0,Fat | Instance 0,p26008
+p26008_i1,Fat | Instance 1,p26008
+p26008_i2,Fat | Instance 2,p26008
+p26008_i3,Fat | Instance 3,p26008
+p26008_i4,Fat | Instance 4,p26008
+p26009_i0,Vegetable fat | Instance 0,p26009
+p26009_i1,Vegetable fat | Instance 1,p26009
+p26009_i2,Vegetable fat | Instance 2,p26009
+p26009_i3,Vegetable fat | Instance 3,p26009
+p26009_i4,Vegetable fat | Instance 4,p26009
+p26010_i0,Animal fat | Instance 0,p26010
+p26010_i1,Animal fat | Instance 1,p26010
+p26010_i2,Animal fat | Instance 2,p26010
+p26010_i3,Animal fat | Instance 3,p26010
+p26010_i4,Animal fat | Instance 4,p26010
+p26011_i0,Total sugars | Instance 0,p26011
+p26011_i1,Total sugars | Instance 1,p26011
+p26011_i2,Total sugars | Instance 2,p26011
+p26011_i3,Total sugars | Instance 3,p26011
+p26011_i4,Total sugars | Instance 4,p26011
+p26012_i0,Free sugar | Instance 0,p26012
+p26012_i1,Free sugar | Instance 1,p26012
+p26012_i2,Free sugar | Instance 2,p26012
+p26012_i3,Free sugar | Instance 3,p26012
+p26012_i4,Free sugar | Instance 4,p26012
+p26013_i0,Carbohydrate | Instance 0,p26013
+p26013_i1,Carbohydrate | Instance 1,p26013
+p26013_i2,Carbohydrate | Instance 2,p26013
+p26013_i3,Carbohydrate | Instance 3,p26013
+p26013_i4,Carbohydrate | Instance 4,p26013
+p26014_i0,Saturated fatty acids | Instance 0,p26014
+p26014_i1,Saturated fatty acids | Instance 1,p26014
+p26014_i2,Saturated fatty acids | Instance 2,p26014
+p26014_i3,Saturated fatty acids | Instance 3,p26014
+p26014_i4,Saturated fatty acids | Instance 4,p26014
+p26015_i0,n-3 fatty acids | Instance 0,p26015
+p26015_i1,n-3 fatty acids | Instance 1,p26015
+p26015_i2,n-3 fatty acids | Instance 2,p26015
+p26015_i3,n-3 fatty acids | Instance 3,p26015
+p26015_i4,n-3 fatty acids | Instance 4,p26015
+p26016_i0,n-6 fatty acids | Instance 0,p26016
+p26016_i1,n-6 fatty acids | Instance 1,p26016
+p26016_i2,n-6 fatty acids | Instance 2,p26016
+p26016_i3,n-6 fatty acids | Instance 3,p26016
+p26016_i4,n-6 fatty acids | Instance 4,p26016
+p26017_i0,Englyst fibre | Instance 0,p26017
+p26017_i1,Englyst fibre | Instance 1,p26017
+p26017_i2,Englyst fibre | Instance 2,p26017
+p26017_i3,Englyst fibre | Instance 3,p26017
+p26017_i4,Englyst fibre | Instance 4,p26017
+p26018_i0,Calcium | Instance 0,p26018
+p26018_i1,Calcium | Instance 1,p26018
+p26018_i2,Calcium | Instance 2,p26018
+p26018_i3,Calcium | Instance 3,p26018
+p26018_i4,Calcium | Instance 4,p26018
+p26019_i0,Iron | Instance 0,p26019
+p26019_i1,Iron | Instance 1,p26019
+p26019_i2,Iron | Instance 2,p26019
+p26019_i3,Iron | Instance 3,p26019
+p26019_i4,Iron | Instance 4,p26019
+p26020_i0,Vitamin B6 | Instance 0,p26020
+p26020_i1,Vitamin B6 | Instance 1,p26020
+p26020_i2,Vitamin B6 | Instance 2,p26020
+p26020_i3,Vitamin B6 | Instance 3,p26020
+p26020_i4,Vitamin B6 | Instance 4,p26020
+p26021_i0,Vitamin B12 | Instance 0,p26021
+p26021_i1,Vitamin B12 | Instance 1,p26021
+p26021_i2,Vitamin B12 | Instance 2,p26021
+p26021_i3,Vitamin B12 | Instance 3,p26021
+p26021_i4,Vitamin B12 | Instance 4,p26021
+p26022_i0,Folate | Instance 0,p26022
+p26022_i1,Folate | Instance 1,p26022
+p26022_i2,Folate | Instance 2,p26022
+p26022_i3,Folate | Instance 3,p26022
+p26022_i4,Folate | Instance 4,p26022
+p26023_i0,Vitamin C | Instance 0,p26023
+p26023_i1,Vitamin C | Instance 1,p26023
+p26023_i2,Vitamin C | Instance 2,p26023
+p26023_i3,Vitamin C | Instance 3,p26023
+p26023_i4,Vitamin C | Instance 4,p26023
+p26024_i0,Potassium | Instance 0,p26024
+p26024_i1,Potassium | Instance 1,p26024
+p26024_i2,Potassium | Instance 2,p26024
+p26024_i3,Potassium | Instance 3,p26024
+p26024_i4,Potassium | Instance 4,p26024
+p26025_i0,Magnesium | Instance 0,p26025
+p26025_i1,Magnesium | Instance 1,p26025
+p26025_i2,Magnesium | Instance 2,p26025
+p26025_i3,Magnesium | Instance 3,p26025
+p26025_i4,Magnesium | Instance 4,p26025
+p26026_i0,Retinol | Instance 0,p26026
+p26026_i1,Retinol | Instance 1,p26026
+p26026_i2,Retinol | Instance 2,p26026
+p26026_i3,Retinol | Instance 3,p26026
+p26026_i4,Retinol | Instance 4,p26026
+p26027_i0,Total carotene | Instance 0,p26027
+p26027_i1,Total carotene | Instance 1,p26027
+p26027_i2,Total carotene | Instance 2,p26027
+p26027_i3,Total carotene | Instance 3,p26027
+p26027_i4,Total carotene | Instance 4,p26027
+p26028_i0,Vitamin E | Instance 0,p26028
+p26028_i1,Vitamin E | Instance 1,p26028
+p26028_i2,Vitamin E | Instance 2,p26028
+p26028_i3,Vitamin E | Instance 3,p26028
+p26028_i4,Vitamin E | Instance 4,p26028
+p26029_i0,Vitamin D | Instance 0,p26029
+p26029_i1,Vitamin D | Instance 1,p26029
+p26029_i2,Vitamin D | Instance 2,p26029
+p26029_i3,Vitamin D | Instance 3,p26029
+p26029_i4,Vitamin D | Instance 4,p26029
 p26030_i0,Alcohol | Instance 0,p26030
 p26030_i1,Alcohol | Instance 1,p26030
 p26030_i2,Alcohol | Instance 2,p26030
 p26030_i3,Alcohol | Instance 3,p26030
 p26030_i4,Alcohol | Instance 4,p26030
+p26031_i0,Starch | Instance 0,p26031
+p26031_i1,Starch | Instance 1,p26031
+p26031_i2,Starch | Instance 2,p26031
+p26031_i3,Starch | Instance 3,p26031
+p26031_i4,Starch | Instance 4,p26031
+p26032_i0,Monounsaturated fatty acids | Instance 0,p26032
+p26032_i1,Monounsaturated fatty acids | Instance 1,p26032
+p26032_i2,Monounsaturated fatty acids | Instance 2,p26032
+p26032_i3,Monounsaturated fatty acids | Instance 3,p26032
+p26032_i4,Monounsaturated fatty acids | Instance 4,p26032
+p26033_i0,Zinc | Instance 0,p26033
+p26033_i1,Zinc | Instance 1,p26033
+p26033_i2,Zinc | Instance 2,p26033
+p26033_i3,Zinc | Instance 3,p26033
+p26033_i4,Zinc | Instance 4,p26033
+p26034_i0,Thiamin | Instance 0,p26034
+p26034_i1,Thiamin | Instance 1,p26034
+p26034_i2,Thiamin | Instance 2,p26034
+p26034_i3,Thiamin | Instance 3,p26034
+p26034_i4,Thiamin | Instance 4,p26034
+p26035_i0,Riboflavin | Instance 0,p26035
+p26035_i1,Riboflavin | Instance 1,p26035
+p26035_i2,Riboflavin | Instance 2,p26035
+p26035_i3,Riboflavin | Instance 3,p26035
+p26035_i4,Riboflavin | Instance 4,p26035
+p26036_i0,Phosphorus | Instance 0,p26036
+p26036_i1,Phosphorus | Instance 1,p26036
+p26036_i2,Phosphorus | Instance 2,p26036
+p26036_i3,Phosphorus | Instance 3,p26036
+p26036_i4,Phosphorus | Instance 4,p26036
+p26037_i0,Cholesterol | Instance 0,p26037
+p26037_i1,Cholesterol | Instance 1,p26037
+p26037_i2,Cholesterol | Instance 2,p26037
+p26037_i3,Cholesterol | Instance 3,p26037
+p26037_i4,Cholesterol | Instance 4,p26037
+p26038_i0,Alpha-carotene | Instance 0,p26038
+p26038_i1,Alpha-carotene | Instance 1,p26038
+p26038_i2,Alpha-carotene | Instance 2,p26038
+p26038_i3,Alpha-carotene | Instance 3,p26038
+p26038_i4,Alpha-carotene | Instance 4,p26038
+p26039_i0,Beta-carotene | Instance 0,p26039
+p26039_i1,Beta-carotene | Instance 1,p26039
+p26039_i2,Beta-carotene | Instance 2,p26039
+p26039_i3,Beta-carotene | Instance 3,p26039
+p26039_i4,Beta-carotene | Instance 4,p26039
+p26040_i0,Beta cryptoxanthin | Instance 0,p26040
+p26040_i1,Beta cryptoxanthin | Instance 1,p26040
+p26040_i2,Beta cryptoxanthin | Instance 2,p26040
+p26040_i3,Beta cryptoxanthin | Instance 3,p26040
+p26040_i4,Beta cryptoxanthin | Instance 4,p26040
+p26041_i0,Biotin | Instance 0,p26041
+p26041_i1,Biotin | Instance 1,p26041
+p26041_i2,Biotin | Instance 2,p26041
+p26041_i3,Biotin | Instance 3,p26041
+p26041_i4,Biotin | Instance 4,p26041
+p26042_i0,Chloride | Instance 0,p26042
+p26042_i1,Chloride | Instance 1,p26042
+p26042_i2,Chloride | Instance 2,p26042
+p26042_i3,Chloride | Instance 3,p26042
+p26042_i4,Chloride | Instance 4,p26042
+p26043_i0,Copper | Instance 0,p26043
+p26043_i1,Copper | Instance 1,p26043
+p26043_i2,Copper | Instance 2,p26043
+p26043_i3,Copper | Instance 3,p26043
+p26043_i4,Copper | Instance 4,p26043
+p26044_i0,Fructose | Instance 0,p26044
+p26044_i1,Fructose | Instance 1,p26044
+p26044_i2,Fructose | Instance 2,p26044
+p26044_i3,Fructose | Instance 3,p26044
+p26044_i4,Fructose | Instance 4,p26044
+p26045_i0,Glucose | Instance 0,p26045
+p26045_i1,Glucose | Instance 1,p26045
+p26045_i2,Glucose | Instance 2,p26045
+p26045_i3,Glucose | Instance 3,p26045
+p26045_i4,Glucose | Instance 4,p26045
+p26046_i0,Haem iron | Instance 0,p26046
+p26046_i1,Haem iron | Instance 1,p26046
+p26046_i2,Haem iron | Instance 2,p26046
+p26046_i3,Haem iron | Instance 3,p26046
+p26046_i4,Haem iron | Instance 4,p26046
+p26047_i0,Iodine | Instance 0,p26047
+p26047_i1,Iodine | Instance 1,p26047
+p26047_i2,Iodine | Instance 2,p26047
+p26047_i3,Iodine | Instance 3,p26047
+p26047_i4,Iodine | Instance 4,p26047
+p26048_i0,Lactose | Instance 0,p26048
+p26048_i1,Lactose | Instance 1,p26048
+p26048_i2,Lactose | Instance 2,p26048
+p26048_i3,Lactose | Instance 3,p26048
+p26048_i4,Lactose | Instance 4,p26048
+p26049_i0,Maltose | Instance 0,p26049
+p26049_i1,Maltose | Instance 1,p26049
+p26049_i2,Maltose | Instance 2,p26049
+p26049_i3,Maltose | Instance 3,p26049
+p26049_i4,Maltose | Instance 4,p26049
+p26050_i0,Intrinsic and milk sugars | Instance 0,p26050
+p26050_i1,Intrinsic and milk sugars | Instance 1,p26050
+p26050_i2,Intrinsic and milk sugars | Instance 2,p26050
+p26050_i3,Intrinsic and milk sugars | Instance 3,p26050
+p26050_i4,Intrinsic and milk sugars | Instance 4,p26050
+p26051_i0,Manganese | Instance 0,p26051
+p26051_i1,Manganese | Instance 1,p26051
+p26051_i2,Manganese | Instance 2,p26051
+p26051_i3,Manganese | Instance 3,p26051
+p26051_i4,Manganese | Instance 4,p26051
+p26052_i0,Sodium | Instance 0,p26052
+p26052_i1,Sodium | Instance 1,p26052
+p26052_i2,Sodium | Instance 2,p26052
+p26052_i3,Sodium | Instance 3,p26052
+p26052_i4,Sodium | Instance 4,p26052
+p26053_i0,Non-haem iron | Instance 0,p26053
+p26053_i1,Non-haem iron | Instance 1,p26053
+p26053_i2,Non-haem iron | Instance 2,p26053
+p26053_i3,Non-haem iron | Instance 3,p26053
+p26053_i4,Non-haem iron | Instance 4,p26053
+p26054_i0,Niacin equivalent | Instance 0,p26054
+p26054_i1,Niacin equivalent | Instance 1,p26054
+p26054_i2,Niacin equivalent | Instance 2,p26054
+p26054_i3,Niacin equivalent | Instance 3,p26054
+p26054_i4,Niacin equivalent | Instance 4,p26054
+p26055_i0,Non-milk extrinsic sugars | Instance 0,p26055
+p26055_i1,Non-milk extrinsic sugars | Instance 1,p26055
+p26055_i2,Non-milk extrinsic sugars | Instance 2,p26055
+p26055_i3,Non-milk extrinsic sugars | Instance 3,p26055
+p26055_i4,Non-milk extrinsic sugars | Instance 4,p26055
+p26056_i0,Other Sugars | Instance 0,p26056
+p26056_i1,Other Sugars | Instance 1,p26056
+p26056_i2,Other Sugars | Instance 2,p26056
+p26056_i3,Other Sugars | Instance 3,p26056
+p26056_i4,Other Sugars | Instance 4,p26056
+p26057_i0,Pantothenic acid | Instance 0,p26057
+p26057_i1,Pantothenic acid | Instance 1,p26057
+p26057_i2,Pantothenic acid | Instance 2,p26057
+p26057_i3,Pantothenic acid | Instance 3,p26057
+p26057_i4,Pantothenic acid | Instance 4,p26057
+p26058_i0,Selenium | Instance 0,p26058
+p26058_i1,Selenium | Instance 1,p26058
+p26058_i2,Selenium | Instance 2,p26058
+p26058_i3,Selenium | Instance 3,p26058
+p26058_i4,Selenium | Instance 4,p26058
+p26059_i0,Sucrose | Instance 0,p26059
+p26059_i1,Sucrose | Instance 1,p26059
+p26059_i2,Sucrose | Instance 2,p26059
+p26059_i3,Sucrose | Instance 3,p26059
+p26059_i4,Sucrose | Instance 4,p26059
+p26060_i0,Total nitrogen | Instance 0,p26060
+p26060_i1,Total nitrogen | Instance 1,p26060
+p26060_i2,Total nitrogen | Instance 2,p26060
+p26060_i3,Total nitrogen | Instance 3,p26060
+p26060_i4,Total nitrogen | Instance 4,p26060
+p26061_i0,Vitamin A retinol equivalents | Instance 0,p26061
+p26061_i1,Vitamin A retinol equivalents | Instance 1,p26061
+p26061_i2,Vitamin A retinol equivalents | Instance 2,p26061
+p26061_i3,Vitamin A retinol equivalents | Instance 3,p26061
+p26061_i4,Vitamin A retinol equivalents | Instance 4,p26061
+p26062_i0,Animal fat spread lower fat | Instance 0,p26062
+p26062_i1,Animal fat spread lower fat | Instance 1,p26062
+p26062_i2,Animal fat spread lower fat | Instance 2,p26062
+p26062_i3,Animal fat spread lower fat | Instance 3,p26062
+p26062_i4,Animal fat spread lower fat | Instance 4,p26062
+p26063_i0,Animal fat spread normal | Instance 0,p26063
+p26063_i1,Animal fat spread normal | Instance 1,p26063
+p26063_i2,Animal fat spread normal | Instance 2,p26063
+p26063_i3,Animal fat spread normal | Instance 3,p26063
+p26063_i4,Animal fat spread normal | Instance 4,p26063
+p26064_i0,Added sugars and preserves | Instance 0,p26064
+p26064_i1,Added sugars and preserves | Instance 1,p26064
+p26064_i2,Added sugars and preserves | Instance 2,p26064
+p26064_i3,Added sugars and preserves | Instance 3,p26064
+p26064_i4,Added sugars and preserves | Instance 4,p26064
+p26065_i0,Allium vegetables | Instance 0,p26065
+p26065_i1,Allium vegetables | Instance 1,p26065
+p26065_i2,Allium vegetables | Instance 2,p26065
+p26065_i3,Allium vegetables | Instance 3,p26065
+p26065_i4,Allium vegetables | Instance 4,p26065
 p26066_i0,Beef | Instance 0,p26066
 p26066_i1,Beef | Instance 1,p26066
 p26066_i2,Beef | Instance 2,p26066
 p26066_i3,Beef | Instance 3,p26066
 p26066_i4,Beef | Instance 4,p26066
+p26067_i0,Beer and cider | Instance 0,p26067
+p26067_i1,Beer and cider | Instance 1,p26067
+p26067_i2,Beer and cider | Instance 2,p26067
+p26067_i3,Beer and cider | Instance 3,p26067
+p26067_i4,Beer and cider | Instance 4,p26067
+p26068_i0,Biscuits | Instance 0,p26068
+p26068_i1,Biscuits | Instance 1,p26068
+p26068_i2,Biscuits | Instance 2,p26068
+p26068_i3,Biscuits | Instance 3,p26068
+p26068_i4,Biscuits | Instance 4,p26068
+p26069_i0,Breaded/battered chicken | Instance 0,p26069
+p26069_i1,Breaded/battered chicken | Instance 1,p26069
+p26069_i2,Breaded/battered chicken | Instance 2,p26069
+p26069_i3,Breaded/battered chicken | Instance 3,p26069
+p26069_i4,Breaded/battered chicken | Instance 4,p26069
+p26070_i0,Breaded/battered fish | Instance 0,p26070
+p26070_i1,Breaded/battered fish | Instance 1,p26070
+p26070_i2,Breaded/battered fish | Instance 2,p26070
+p26070_i3,Breaded/battered fish | Instance 3,p26070
+p26070_i4,Breaded/battered fish | Instance 4,p26070
+p26071_i0,"Mixed bread (50/50), brown and seeded | Instance 0",p26071
+p26071_i1,"Mixed bread (50/50), brown and seeded | Instance 1",p26071
+p26071_i2,"Mixed bread (50/50), brown and seeded | Instance 2",p26071
+p26071_i3,"Mixed bread (50/50), brown and seeded | Instance 3",p26071
+p26071_i4,"Mixed bread (50/50), brown and seeded | Instance 4",p26071
+p26072_i0,Other bread | Instance 0,p26072
+p26072_i1,Other bread | Instance 1,p26072
+p26072_i2,Other bread | Instance 2,p26072
+p26072_i3,Other bread | Instance 3,p26072
+p26072_i4,Other bread | Instance 4,p26072
+p26073_i0,White bread | Instance 0,p26073
+p26073_i1,White bread | Instance 1,p26073
+p26073_i2,White bread | Instance 2,p26073
+p26073_i3,White bread | Instance 3,p26073
+p26073_i4,White bread | Instance 4,p26073
+p26074_i0,Wholemeal bread | Instance 0,p26074
+p26074_i1,Wholemeal bread | Instance 1,p26074
+p26074_i2,Wholemeal bread | Instance 2,p26074
+p26074_i3,Wholemeal bread | Instance 3,p26074
+p26074_i4,Wholemeal bread | Instance 4,p26074
+p26075_i0,Biscuit cereal | Instance 0,p26075
+p26075_i1,Biscuit cereal | Instance 1,p26075
+p26075_i2,Biscuit cereal | Instance 2,p26075
+p26075_i3,Biscuit cereal | Instance 3,p26075
+p26075_i4,Biscuit cereal | Instance 4,p26075
+p26076_i0,Bran cereal | Instance 0,p26076
+p26076_i1,Bran cereal | Instance 1,p26076
+p26076_i2,Bran cereal | Instance 2,p26076
+p26076_i3,Bran cereal | Instance 3,p26076
+p26076_i4,Bran cereal | Instance 4,p26076
+p26077_i0,Oat cereal (non sugar) | Instance 0,p26077
+p26077_i1,Oat cereal (non sugar) | Instance 1,p26077
+p26077_i2,Oat cereal (non sugar) | Instance 2,p26077
+p26077_i3,Oat cereal (non sugar) | Instance 3,p26077
+p26077_i4,Oat cereal (non sugar) | Instance 4,p26077
+p26078_i0,Oat cereal (sugar) | Instance 0,p26078
+p26078_i1,Oat cereal (sugar) | Instance 1,p26078
+p26078_i2,Oat cereal (sugar) | Instance 2,p26078
+p26078_i3,Oat cereal (sugar) | Instance 3,p26078
+p26078_i4,Oat cereal (sugar) | Instance 4,p26078
+p26079_i0,Other cereal (sugar) | Instance 0,p26079
+p26079_i1,Other cereal (sugar) | Instance 1,p26079
+p26079_i2,Other cereal (sugar) | Instance 2,p26079
+p26079_i3,Other cereal (sugar) | Instance 3,p26079
+p26079_i4,Other cereal (sugar) | Instance 4,p26079
+p26080_i0,Chocolate confectionery | Instance 0,p26080
+p26080_i1,Chocolate confectionery | Instance 1,p26080
+p26080_i2,Chocolate confectionery | Instance 2,p26080
+p26080_i3,Chocolate confectionery | Instance 3,p26080
+p26080_i4,Chocolate confectionery | Instance 4,p26080
+p26081_i0,"Coffee, caffeinated | Instance 0",p26081
+p26081_i1,"Coffee, caffeinated | Instance 1",p26081
+p26081_i2,"Coffee, caffeinated | Instance 2",p26081
+p26081_i3,"Coffee, caffeinated | Instance 3",p26081
+p26081_i4,"Coffee, caffeinated | Instance 4",p26081
+p26082_i0,"Coffee, decaffeinated | Instance 0",p26082
+p26082_i1,"Coffee, decaffeinated | Instance 1",p26082
+p26082_i2,"Coffee, decaffeinated | Instance 2",p26082
+p26082_i3,"Coffee, decaffeinated | Instance 3",p26082
+p26082_i4,"Coffee, decaffeinated | Instance 4",p26082
+p26083_i0,Savoury crackers | Instance 0,p26083
+p26083_i1,Savoury crackers | Instance 1,p26083
+p26083_i2,Savoury crackers | Instance 2,p26083
+p26083_i3,Savoury crackers | Instance 3,p26083
+p26083_i4,Savoury crackers | Instance 4,p26083
+p26084_i0,Milk-dairy desserts | Instance 0,p26084
+p26084_i1,Milk-dairy desserts | Instance 1,p26084
+p26084_i2,Milk-dairy desserts | Instance 2,p26084
+p26084_i3,Milk-dairy desserts | Instance 3,p26084
+p26084_i4,Milk-dairy desserts | Instance 4,p26084
+p26085_i0,Other desserts and cakes and pastries | Instance 0,p26085
+p26085_i1,Other desserts and cakes and pastries | Instance 1,p26085
+p26085_i2,Other desserts and cakes and pastries | Instance 2,p26085
+p26085_i3,Other desserts and cakes and pastries | Instance 3,p26085
+p26085_i4,Other desserts and cakes and pastries | Instance 4,p26085
+p26086_i0,Soy desserts and yogurt | Instance 0,p26086
+p26086_i1,Soy desserts and yogurt | Instance 1,p26086
+p26086_i2,Soy desserts and yogurt | Instance 2,p26086
+p26086_i3,Soy desserts and yogurt | Instance 3,p26086
+p26086_i4,Soy desserts and yogurt | Instance 4,p26086
+p26087_i0,Milk-based and powdered drinks | Instance 0,p26087
+p26087_i1,Milk-based and powdered drinks | Instance 1,p26087
+p26087_i2,Milk-based and powdered drinks | Instance 2,p26087
+p26087_i3,Milk-based and powdered drinks | Instance 3,p26087
+p26087_i4,Milk-based and powdered drinks | Instance 4,p26087
+p26088_i0,Egg and egg dishes | Instance 0,p26088
+p26088_i1,Egg and egg dishes | Instance 1,p26088
+p26088_i2,Egg and egg dishes | Instance 2,p26088
+p26088_i3,Egg and egg dishes | Instance 3,p26088
+p26088_i4,Egg and egg dishes | Instance 4,p26088
+p26089_i0,Apples and pears | Instance 0,p26089
+p26089_i1,Apples and pears | Instance 1,p26089
+p26089_i2,Apples and pears | Instance 2,p26089
+p26089_i3,Apples and pears | Instance 3,p26089
+p26089_i4,Apples and pears | Instance 4,p26089
+p26090_i0,Berries | Instance 0,p26090
+p26090_i1,Berries | Instance 1,p26090
+p26090_i2,Berries | Instance 2,p26090
+p26090_i3,Berries | Instance 3,p26090
+p26090_i4,Berries | Instance 4,p26090
+p26091_i0,Citrus | Instance 0,p26091
+p26091_i1,Citrus | Instance 1,p26091
+p26091_i2,Citrus | Instance 2,p26091
+p26091_i3,Citrus | Instance 3,p26091
+p26091_i4,Citrus | Instance 4,p26091
+p26092_i0,Dried fruit | Instance 0,p26092
+p26092_i1,Dried fruit | Instance 1,p26092
+p26092_i2,Dried fruit | Instance 2,p26092
+p26092_i3,Dried fruit | Instance 3,p26092
+p26092_i4,Dried fruit | Instance 4,p26092
+p26093_i0,Other fruit | Instance 0,p26093
+p26093_i1,Other fruit | Instance 1,p26093
+p26093_i2,Other fruit | Instance 2,p26093
+p26093_i3,Other fruit | Instance 3,p26093
+p26093_i4,Other fruit | Instance 4,p26093
+p26094_i0,Stewed fruit | Instance 0,p26094
+p26094_i1,Stewed fruit | Instance 1,p26094
+p26094_i2,Stewed fruit | Instance 2,p26094
+p26094_i3,Stewed fruit | Instance 3,p26094
+p26094_i4,Stewed fruit | Instance 4,p26094
+p26095_i0,Fruit juice | Instance 0,p26095
+p26095_i1,Fruit juice | Instance 1,p26095
+p26095_i2,Fruit juice | Instance 2,p26095
+p26095_i3,Fruit juice | Instance 3,p26095
+p26095_i4,Fruit juice | Instance 4,p26095
+p26096_i0,Full fat yogurt | Instance 0,p26096
+p26096_i1,Full fat yogurt | Instance 1,p26096
+p26096_i2,Full fat yogurt | Instance 2,p26096
+p26096_i3,Full fat yogurt | Instance 3,p26096
+p26096_i4,Full fat yogurt | Instance 4,p26096
+p26097_i0,Grain dishes - added fat | Instance 0,p26097
+p26097_i1,Grain dishes - added fat | Instance 1,p26097
+p26097_i2,Grain dishes - added fat | Instance 2,p26097
+p26097_i3,Grain dishes - added fat | Instance 3,p26097
+p26097_i4,Grain dishes - added fat | Instance 4,p26097
+p26098_i0,Green leafy/cabbages | Instance 0,p26098
+p26098_i1,Green leafy/cabbages | Instance 1,p26098
+p26098_i2,Green leafy/cabbages | Instance 2,p26098
+p26098_i3,Green leafy/cabbages | Instance 3,p26098
+p26098_i4,Green leafy/cabbages | Instance 4,p26098
+p26099_i0,High fat cheese | Instance 0,p26099
+p26099_i1,High fat cheese | Instance 1,p26099
+p26099_i2,High fat cheese | Instance 2,p26099
+p26099_i3,High fat cheese | Instance 3,p26099
+p26099_i4,High fat cheese | Instance 4,p26099
 p26100_i0,Lamb | Instance 0,p26100
 p26100_i1,Lamb | Instance 1,p26100
 p26100_i2,Lamb | Instance 2,p26100
@@ -55,26 +542,276 @@ p26101_i1,Legumes and pulses | Instance 1,p26101
 p26101_i2,Legumes and pulses | Instance 2,p26101
 p26101_i3,Legumes and pulses | Instance 3,p26101
 p26101_i4,Legumes and pulses | Instance 4,p26101
+p26102_i0,Low fat yogurt | Instance 0,p26102
+p26102_i1,Low fat yogurt | Instance 1,p26102
+p26102_i2,Low fat yogurt | Instance 2,p26102
+p26102_i3,Low fat yogurt | Instance 3,p26102
+p26102_i4,Low fat yogurt | Instance 4,p26102
+p26103_i0,Medium and low fat cheese | Instance 0,p26103
+p26103_i1,Medium and low fat cheese | Instance 1,p26103
+p26103_i2,Medium and low fat cheese | Instance 2,p26103
+p26103_i3,Medium and low fat cheese | Instance 3,p26103
+p26103_i4,Medium and low fat cheese | Instance 4,p26103
 p26104_i0,"Other meat, offal | Instance 0",p26104
 p26104_i1,"Other meat, offal | Instance 1",p26104
 p26104_i2,"Other meat, offal | Instance 2",p26104
 p26104_i3,"Other meat, offal | Instance 3",p26104
 p26104_i4,"Other meat, offal | Instance 4",p26104
+p26105_i0,Muesli | Instance 0,p26105
+p26105_i1,Muesli | Instance 1,p26105
+p26105_i2,Muesli | Instance 2,p26105
+p26105_i3,Muesli | Instance 3,p26105
+p26105_i4,Muesli | Instance 4,p26105
+p26106_i0,Nut-based spreads | Instance 0,p26106
+p26106_i1,Nut-based spreads | Instance 1,p26106
+p26106_i2,Nut-based spreads | Instance 2,p26106
+p26106_i3,Nut-based spreads | Instance 3,p26106
+p26106_i4,Nut-based spreads | Instance 4,p26106
+p26107_i0,Unsalted nuts and seeds | Instance 0,p26107
+p26107_i1,Unsalted nuts and seeds | Instance 1,p26107
+p26107_i2,Unsalted nuts and seeds | Instance 2,p26107
+p26107_i3,Unsalted nuts and seeds | Instance 3,p26107
+p26107_i4,Unsalted nuts and seeds | Instance 4,p26107
+p26108_i0,Salted nuts and seeds | Instance 0,p26108
+p26108_i1,Salted nuts and seeds | Instance 1,p26108
+p26108_i2,Salted nuts and seeds | Instance 2,p26108
+p26108_i3,Salted nuts and seeds | Instance 3,p26108
+p26108_i4,Salted nuts and seeds | Instance 4,p26108
+p26109_i0,Oily fish | Instance 0,p26109
+p26109_i1,Oily fish | Instance 1,p26109
+p26109_i2,Oily fish | Instance 2,p26109
+p26109_i3,Oily fish | Instance 3,p26109
+p26109_i4,Oily fish | Instance 4,p26109
+p26110_i0,Olive oil (drizzling/dunking) | Instance 0,p26110
+p26110_i1,Olive oil (drizzling/dunking) | Instance 1,p26110
+p26110_i2,Olive oil (drizzling/dunking) | Instance 2,p26110
+p26110_i3,Olive oil (drizzling/dunking) | Instance 3,p26110
+p26110_i4,Olive oil (drizzling/dunking) | Instance 4,p26110
+p26111_i0,Plant-based spread lower fat | Instance 0,p26111
+p26111_i1,Plant-based spread lower fat | Instance 1,p26111
+p26111_i2,Plant-based spread lower fat | Instance 2,p26111
+p26111_i3,Plant-based spread lower fat | Instance 3,p26111
+p26111_i4,Plant-based spread lower fat | Instance 4,p26111
+p26112_i0,Plant-based spread normal | Instance 0,p26112
+p26112_i1,Plant-based spread normal | Instance 1,p26112
+p26112_i2,Plant-based spread normal | Instance 2,p26112
+p26112_i3,Plant-based spread normal | Instance 3,p26112
+p26112_i4,Plant-based spread normal | Instance 4,p26112
+p26113_i0,White pasta and rice | Instance 0,p26113
+p26113_i1,White pasta and rice | Instance 1,p26113
+p26113_i2,White pasta and rice | Instance 2,p26113
+p26113_i3,White pasta and rice | Instance 3,p26113
+p26113_i4,White pasta and rice | Instance 4,p26113
+p26114_i0,"Wholemeal pasta, brown rice and other wholegrains | Instance 0",p26114
+p26114_i1,"Wholemeal pasta, brown rice and other wholegrains | Instance 1",p26114
+p26114_i2,"Wholemeal pasta, brown rice and other wholegrains | Instance 2",p26114
+p26114_i3,"Wholemeal pasta, brown rice and other wholegrains | Instance 3",p26114
+p26114_i4,"Wholemeal pasta, brown rice and other wholegrains | Instance 4",p26114
 p26115_i0,Peas and sweetcorn | Instance 0,p26115
 p26115_i1,Peas and sweetcorn | Instance 1,p26115
 p26115_i2,Peas and sweetcorn | Instance 2,p26115
 p26115_i3,Peas and sweetcorn | Instance 3,p26115
 p26115_i4,Peas and sweetcorn | Instance 4,p26115
+p26116_i0,Pizza | Instance 0,p26116
+p26116_i1,Pizza | Instance 1,p26116
+p26116_i2,Pizza | Instance 2,p26116
+p26116_i3,Pizza | Instance 3,p26116
+p26116_i4,Pizza | Instance 4,p26116
 p26117_i0,Pork | Instance 0,p26117
 p26117_i1,Pork | Instance 1,p26117
 p26117_i2,Pork | Instance 2,p26117
 p26117_i3,Pork | Instance 3,p26117
 p26117_i4,Pork | Instance 4,p26117
+p26118_i0,Potatoes and sweet potatoes (baked/boiled) | Instance 0,p26118
+p26118_i1,Potatoes and sweet potatoes (baked/boiled) | Instance 1,p26118
+p26118_i2,Potatoes and sweet potatoes (baked/boiled) | Instance 2,p26118
+p26118_i3,Potatoes and sweet potatoes (baked/boiled) | Instance 3,p26118
+p26118_i4,Potatoes and sweet potatoes (baked/boiled) | Instance 4,p26118
+p26119_i0,Fried/roast potatoes | Instance 0,p26119
+p26119_i1,Fried/roast potatoes | Instance 1,p26119
+p26119_i2,Fried/roast potatoes | Instance 2,p26119
+p26119_i3,Fried/roast potatoes | Instance 3,p26119
+p26119_i4,Fried/roast potatoes | Instance 4,p26119
+p26120_i0,Mashed potatoes | Instance 0,p26120
+p26120_i1,Mashed potatoes | Instance 1,p26120
+p26120_i2,Mashed potatoes | Instance 2,p26120
+p26120_i3,Mashed potatoes | Instance 3,p26120
+p26120_i4,Mashed potatoes | Instance 4,p26120
+p26121_i0,Poultry | Instance 0,p26121
+p26121_i1,Poultry | Instance 1,p26121
+p26121_i2,Poultry | Instance 2,p26121
+p26121_i3,Poultry | Instance 3,p26121
+p26121_i4,Poultry | Instance 4,p26121
 p26122_i0,Processed meat | Instance 0,p26122
 p26122_i1,Processed meat | Instance 1,p26122
 p26122_i2,Processed meat | Instance 2,p26122
 p26122_i3,Processed meat | Instance 3,p26122
 p26122_i4,Processed meat | Instance 4,p26122
+p26123_i0,Raw salad | Instance 0,p26123
+p26123_i1,Raw salad | Instance 1,p26123
+p26123_i2,Raw salad | Instance 2,p26123
+p26123_i3,Raw salad | Instance 3,p26123
+p26123_i4,Raw salad | Instance 4,p26123
+p26124_i0,Rice/oat milk | Instance 0,p26124
+p26124_i1,Rice/oat milk | Instance 1,p26124
+p26124_i2,Rice/oat milk | Instance 2,p26124
+p26124_i3,Rice/oat milk | Instance 3,p26124
+p26124_i4,Rice/oat milk | Instance 4,p26124
+p26125_i0,Root vegetables | Instance 0,p26125
+p26125_i1,Root vegetables | Instance 1,p26125
+p26125_i2,Root vegetables | Instance 2,p26125
+p26125_i3,Root vegetables | Instance 3,p26125
+p26125_i4,Root vegetables | Instance 4,p26125
+p26126_i0,Low/non sugar sugar-sweetened beverages | Instance 0,p26126
+p26126_i1,Low/non sugar sugar-sweetened beverages | Instance 1,p26126
+p26126_i2,Low/non sugar sugar-sweetened beverages | Instance 2,p26126
+p26126_i3,Low/non sugar sugar-sweetened beverages | Instance 3,p26126
+p26126_i4,Low/non sugar sugar-sweetened beverages | Instance 4,p26126
+p26127_i0,Sugar-sweetened beverages and other sugary drinks | Instance 0,p26127
+p26127_i1,Sugar-sweetened beverages and other sugary drinks | Instance 1,p26127
+p26127_i2,Sugar-sweetened beverages and other sugary drinks | Instance 2,p26127
+p26127_i3,Sugar-sweetened beverages and other sugary drinks | Instance 3,p26127
+p26127_i4,Sugar-sweetened beverages and other sugary drinks | Instance 4,p26127
+p26128_i0,"Samosa, pakora | Instance 0",p26128
+p26128_i1,"Samosa, pakora | Instance 1",p26128
+p26128_i2,"Samosa, pakora | Instance 2",p26128
+p26128_i3,"Samosa, pakora | Instance 3",p26128
+p26128_i4,"Samosa, pakora | Instance 4",p26128
+p26129_i0,Sauces and condiments (high fat) | Instance 0,p26129
+p26129_i1,Sauces and condiments (high fat) | Instance 1,p26129
+p26129_i2,Sauces and condiments (high fat) | Instance 2,p26129
+p26129_i3,Sauces and condiments (high fat) | Instance 3,p26129
+p26129_i4,Sauces and condiments (high fat) | Instance 4,p26129
+p26130_i0,Sauces and condiments (low fat) | Instance 0,p26130
+p26130_i1,Sauces and condiments (low fat) | Instance 1,p26130
+p26130_i2,Sauces and condiments (low fat) | Instance 2,p26130
+p26130_i3,Sauces and condiments (low fat) | Instance 3,p26130
+p26130_i4,Sauces and condiments (low fat) | Instance 4,p26130
+p26131_i0,Semi skimmed milk | Instance 0,p26131
+p26131_i1,Semi skimmed milk | Instance 1,p26131
+p26131_i2,Semi skimmed milk | Instance 2,p26131
+p26131_i3,Semi skimmed milk | Instance 3,p26131
+p26131_i4,Semi skimmed milk | Instance 4,p26131
+p26132_i0,Shellfish | Instance 0,p26132
+p26132_i1,Shellfish | Instance 1,p26132
+p26132_i2,Shellfish | Instance 2,p26132
+p26132_i3,Shellfish | Instance 3,p26132
+p26132_i4,Shellfish | Instance 4,p26132
+p26133_i0,Skimmed milk and cholesterol-lowering milk | Instance 0,p26133
+p26133_i1,Skimmed milk and cholesterol-lowering milk | Instance 1,p26133
+p26133_i2,Skimmed milk and cholesterol-lowering milk | Instance 2,p26133
+p26133_i3,Skimmed milk and cholesterol-lowering milk | Instance 3,p26133
+p26133_i4,Skimmed milk and cholesterol-lowering milk | Instance 4,p26133
+p26134_i0,Savoury snacks | Instance 0,p26134
+p26134_i1,Savoury snacks | Instance 1,p26134
+p26134_i2,Savoury snacks | Instance 2,p26134
+p26134_i3,Savoury snacks | Instance 3,p26134
+p26134_i4,Savoury snacks | Instance 4,p26134
+p26135_i0,Soups | Instance 0,p26135
+p26135_i1,Soups | Instance 1,p26135
+p26135_i2,Soups | Instance 2,p26135
+p26135_i3,Soups | Instance 3,p26135
+p26135_i4,Soups | Instance 4,p26135
+p26136_i0,Soy milk | Instance 0,p26136
+p26136_i1,Soy milk | Instance 1,p26136
+p26136_i2,Soy milk | Instance 2,p26136
+p26136_i3,Soy milk | Instance 3,p26136
+p26136_i4,Soy milk | Instance 4,p26136
+p26137_i0,Meat substitutes - soy | Instance 0,p26137
+p26137_i1,Meat substitutes - soy | Instance 1,p26137
+p26137_i2,Meat substitutes - soy | Instance 2,p26137
+p26137_i3,Meat substitutes - soy | Instance 3,p26137
+p26137_i4,Meat substitutes - soy | Instance 4,p26137
+p26138_i0,Spirits | Instance 0,p26138
+p26138_i1,Spirits | Instance 1,p26138
+p26138_i2,Spirits | Instance 2,p26138
+p26138_i3,Spirits | Instance 3,p26138
+p26138_i4,Spirits | Instance 4,p26138
+p26139_i0,Sushi | Instance 0,p26139
+p26139_i1,Sushi | Instance 1,p26139
+p26139_i2,Sushi | Instance 2,p26139
+p26139_i3,Sushi | Instance 3,p26139
+p26139_i4,Sushi | Instance 4,p26139
+p26140_i0,Other sweets | Instance 0,p26140
+p26140_i1,Other sweets | Instance 1,p26140
+p26140_i2,Other sweets | Instance 2,p26140
+p26140_i3,Other sweets | Instance 3,p26140
+p26140_i4,Other sweets | Instance 4,p26140
+p26141_i0,Tea | Instance 0,p26141
+p26141_i1,Tea | Instance 1,p26141
+p26141_i2,Tea | Instance 2,p26141
+p26141_i3,Tea | Instance 3,p26141
+p26141_i4,Tea | Instance 4,p26141
+p26142_i0,"Tea, decaffeinated | Instance 0",p26142
+p26142_i1,"Tea, decaffeinated | Instance 1",p26142
+p26142_i2,"Tea, decaffeinated | Instance 2",p26142
+p26142_i3,"Tea, decaffeinated | Instance 3",p26142
+p26142_i4,"Tea, decaffeinated | Instance 4",p26142
+p26143_i0,Tomatoes | Instance 0,p26143
+p26143_i1,Tomatoes | Instance 1,p26143
+p26143_i2,Tomatoes | Instance 2,p26143
+p26143_i3,Tomatoes | Instance 3,p26143
+p26143_i4,Tomatoes | Instance 4,p26143
+p26144_i0,Vegetable dips | Instance 0,p26144
+p26144_i1,Vegetable dips | Instance 1,p26144
+p26144_i2,Vegetable dips | Instance 2,p26144
+p26144_i3,Vegetable dips | Instance 3,p26144
+p26144_i4,Vegetable dips | Instance 4,p26144
+p26145_i0,Meat substitutes - vegetarian | Instance 0,p26145
+p26145_i1,Meat substitutes - vegetarian | Instance 1,p26145
+p26145_i2,Meat substitutes - vegetarian | Instance 2,p26145
+p26145_i3,Meat substitutes - vegetarian | Instance 3,p26145
+p26145_i4,Meat substitutes - vegetarian | Instance 4,p26145
+p26146_i0,"Other vegetables, including mushrooms, fruiting and mixed vegetables | Instance 0",p26146
+p26146_i1,"Other vegetables, including mushrooms, fruiting and mixed vegetables | Instance 1",p26146
+p26146_i2,"Other vegetables, including mushrooms, fruiting and mixed vegetables | Instance 2",p26146
+p26146_i3,"Other vegetables, including mushrooms, fruiting and mixed vegetables | Instance 3",p26146
+p26146_i4,"Other vegetables, including mushrooms, fruiting and mixed vegetables | Instance 4",p26146
+p26147_i0,Vegetable side dishes | Instance 0,p26147
+p26147_i1,Vegetable side dishes | Instance 1,p26147
+p26147_i2,Vegetable side dishes | Instance 2,p26147
+p26147_i3,Vegetable side dishes | Instance 3,p26147
+p26147_i4,Vegetable side dishes | Instance 4,p26147
+p26148_i0,Water (still and sparkling) | Instance 0,p26148
+p26148_i1,Water (still and sparkling) | Instance 1,p26148
+p26148_i2,Water (still and sparkling) | Instance 2,p26148
+p26148_i3,Water (still and sparkling) | Instance 3,p26148
+p26148_i4,Water (still and sparkling) | Instance 4,p26148
+p26149_i0,White fish and tinned tuna | Instance 0,p26149
+p26149_i1,White fish and tinned tuna | Instance 1,p26149
+p26149_i2,White fish and tinned tuna | Instance 2,p26149
+p26149_i3,White fish and tinned tuna | Instance 3,p26149
+p26149_i4,White fish and tinned tuna | Instance 4,p26149
+p26150_i0,Whole milk | Instance 0,p26150
+p26150_i1,Whole milk | Instance 1,p26150
+p26150_i2,Whole milk | Instance 2,p26150
+p26150_i3,Whole milk | Instance 3,p26150
+p26150_i4,Whole milk | Instance 4,p26150
+p26151_i0,Fortified wine | Instance 0,p26151
+p26151_i1,Fortified wine | Instance 1,p26151
+p26151_i2,Fortified wine | Instance 2,p26151
+p26151_i3,Fortified wine | Instance 3,p26151
+p26151_i4,Fortified wine | Instance 4,p26151
+p26152_i0,Red wine | Instance 0,p26152
+p26152_i1,Red wine | Instance 1,p26152
+p26152_i2,Red wine | Instance 2,p26152
+p26152_i3,Red wine | Instance 3,p26152
+p26152_i4,Red wine | Instance 4,p26152
+p26153_i0,White wine | Instance 0,p26153
+p26153_i1,White wine | Instance 1,p26153
+p26153_i2,White wine | Instance 2,p26153
+p26153_i3,White wine | Instance 3,p26153
+p26153_i4,White wine | Instance 4,p26153
+p26154_i0,Cream | Instance 0,p26154
+p26154_i1,Cream | Instance 1,p26154
+p26154_i2,Cream | Instance 2,p26154
+p26154_i3,Cream | Instance 3,p26154
+p26154_i4,Cream | Instance 4,p26154
+p26155_i0,Trans fatty acids | Instance 0,p26155
+p26155_i1,Trans fatty acids | Instance 1,p26155
+p26155_i2,Trans fatty acids | Instance 2,p26155
+p26155_i3,Trans fatty acids | Instance 3,p26155
+p26155_i4,Trans fatty acids | Instance 4,p26155
 p40000_i0,Date of death | Instance 0,p40000
 p40000_i1,Date of death | Instance 1,p40000
 p40001_i0,Underlying (primary) cause of death: ICD10 | Instance 0,p40001
@@ -149,6 +886,456 @@ p40008_i20,Age at cancer diagnosis | Instance 20,p40008
 p40008_i21,Age at cancer diagnosis | Instance 21,p40008
 p41270,Diagnoses - ICD10,p41270
 p41271,Diagnoses - ICD9,p41271
+p41272,Operative procedures - OPCS4,p41272
+p41273,Operative procedures - OPCS3,p41273
+p41280_a0,Date of first in-patient diagnosis - ICD10 | Array 0,p41280
+p41280_a1,Date of first in-patient diagnosis - ICD10 | Array 1,p41280
+p41280_a2,Date of first in-patient diagnosis - ICD10 | Array 2,p41280
+p41280_a3,Date of first in-patient diagnosis - ICD10 | Array 3,p41280
+p41280_a4,Date of first in-patient diagnosis - ICD10 | Array 4,p41280
+p41280_a5,Date of first in-patient diagnosis - ICD10 | Array 5,p41280
+p41280_a6,Date of first in-patient diagnosis - ICD10 | Array 6,p41280
+p41280_a7,Date of first in-patient diagnosis - ICD10 | Array 7,p41280
+p41280_a8,Date of first in-patient diagnosis - ICD10 | Array 8,p41280
+p41280_a9,Date of first in-patient diagnosis - ICD10 | Array 9,p41280
+p41280_a10,Date of first in-patient diagnosis - ICD10 | Array 10,p41280
+p41280_a11,Date of first in-patient diagnosis - ICD10 | Array 11,p41280
+p41280_a12,Date of first in-patient diagnosis - ICD10 | Array 12,p41280
+p41280_a13,Date of first in-patient diagnosis - ICD10 | Array 13,p41280
+p41280_a14,Date of first in-patient diagnosis - ICD10 | Array 14,p41280
+p41280_a15,Date of first in-patient diagnosis - ICD10 | Array 15,p41280
+p41280_a16,Date of first in-patient diagnosis - ICD10 | Array 16,p41280
+p41280_a17,Date of first in-patient diagnosis - ICD10 | Array 17,p41280
+p41280_a18,Date of first in-patient diagnosis - ICD10 | Array 18,p41280
+p41280_a19,Date of first in-patient diagnosis - ICD10 | Array 19,p41280
+p41280_a20,Date of first in-patient diagnosis - ICD10 | Array 20,p41280
+p41280_a21,Date of first in-patient diagnosis - ICD10 | Array 21,p41280
+p41280_a22,Date of first in-patient diagnosis - ICD10 | Array 22,p41280
+p41280_a23,Date of first in-patient diagnosis - ICD10 | Array 23,p41280
+p41280_a24,Date of first in-patient diagnosis - ICD10 | Array 24,p41280
+p41280_a25,Date of first in-patient diagnosis - ICD10 | Array 25,p41280
+p41280_a26,Date of first in-patient diagnosis - ICD10 | Array 26,p41280
+p41280_a27,Date of first in-patient diagnosis - ICD10 | Array 27,p41280
+p41280_a28,Date of first in-patient diagnosis - ICD10 | Array 28,p41280
+p41280_a29,Date of first in-patient diagnosis - ICD10 | Array 29,p41280
+p41280_a30,Date of first in-patient diagnosis - ICD10 | Array 30,p41280
+p41280_a31,Date of first in-patient diagnosis - ICD10 | Array 31,p41280
+p41280_a32,Date of first in-patient diagnosis - ICD10 | Array 32,p41280
+p41280_a33,Date of first in-patient diagnosis - ICD10 | Array 33,p41280
+p41280_a34,Date of first in-patient diagnosis - ICD10 | Array 34,p41280
+p41280_a35,Date of first in-patient diagnosis - ICD10 | Array 35,p41280
+p41280_a36,Date of first in-patient diagnosis - ICD10 | Array 36,p41280
+p41280_a37,Date of first in-patient diagnosis - ICD10 | Array 37,p41280
+p41280_a38,Date of first in-patient diagnosis - ICD10 | Array 38,p41280
+p41280_a39,Date of first in-patient diagnosis - ICD10 | Array 39,p41280
+p41280_a40,Date of first in-patient diagnosis - ICD10 | Array 40,p41280
+p41280_a41,Date of first in-patient diagnosis - ICD10 | Array 41,p41280
+p41280_a42,Date of first in-patient diagnosis - ICD10 | Array 42,p41280
+p41280_a43,Date of first in-patient diagnosis - ICD10 | Array 43,p41280
+p41280_a44,Date of first in-patient diagnosis - ICD10 | Array 44,p41280
+p41280_a45,Date of first in-patient diagnosis - ICD10 | Array 45,p41280
+p41280_a46,Date of first in-patient diagnosis - ICD10 | Array 46,p41280
+p41280_a47,Date of first in-patient diagnosis - ICD10 | Array 47,p41280
+p41280_a48,Date of first in-patient diagnosis - ICD10 | Array 48,p41280
+p41280_a49,Date of first in-patient diagnosis - ICD10 | Array 49,p41280
+p41280_a50,Date of first in-patient diagnosis - ICD10 | Array 50,p41280
+p41280_a51,Date of first in-patient diagnosis - ICD10 | Array 51,p41280
+p41280_a52,Date of first in-patient diagnosis - ICD10 | Array 52,p41280
+p41280_a53,Date of first in-patient diagnosis - ICD10 | Array 53,p41280
+p41280_a54,Date of first in-patient diagnosis - ICD10 | Array 54,p41280
+p41280_a55,Date of first in-patient diagnosis - ICD10 | Array 55,p41280
+p41280_a56,Date of first in-patient diagnosis - ICD10 | Array 56,p41280
+p41280_a57,Date of first in-patient diagnosis - ICD10 | Array 57,p41280
+p41280_a58,Date of first in-patient diagnosis - ICD10 | Array 58,p41280
+p41280_a59,Date of first in-patient diagnosis - ICD10 | Array 59,p41280
+p41280_a60,Date of first in-patient diagnosis - ICD10 | Array 60,p41280
+p41280_a61,Date of first in-patient diagnosis - ICD10 | Array 61,p41280
+p41280_a62,Date of first in-patient diagnosis - ICD10 | Array 62,p41280
+p41280_a63,Date of first in-patient diagnosis - ICD10 | Array 63,p41280
+p41280_a64,Date of first in-patient diagnosis - ICD10 | Array 64,p41280
+p41280_a65,Date of first in-patient diagnosis - ICD10 | Array 65,p41280
+p41280_a66,Date of first in-patient diagnosis - ICD10 | Array 66,p41280
+p41280_a67,Date of first in-patient diagnosis - ICD10 | Array 67,p41280
+p41280_a68,Date of first in-patient diagnosis - ICD10 | Array 68,p41280
+p41280_a69,Date of first in-patient diagnosis - ICD10 | Array 69,p41280
+p41280_a70,Date of first in-patient diagnosis - ICD10 | Array 70,p41280
+p41280_a71,Date of first in-patient diagnosis - ICD10 | Array 71,p41280
+p41280_a72,Date of first in-patient diagnosis - ICD10 | Array 72,p41280
+p41280_a73,Date of first in-patient diagnosis - ICD10 | Array 73,p41280
+p41280_a74,Date of first in-patient diagnosis - ICD10 | Array 74,p41280
+p41280_a75,Date of first in-patient diagnosis - ICD10 | Array 75,p41280
+p41280_a76,Date of first in-patient diagnosis - ICD10 | Array 76,p41280
+p41280_a77,Date of first in-patient diagnosis - ICD10 | Array 77,p41280
+p41280_a78,Date of first in-patient diagnosis - ICD10 | Array 78,p41280
+p41280_a79,Date of first in-patient diagnosis - ICD10 | Array 79,p41280
+p41280_a80,Date of first in-patient diagnosis - ICD10 | Array 80,p41280
+p41280_a81,Date of first in-patient diagnosis - ICD10 | Array 81,p41280
+p41280_a82,Date of first in-patient diagnosis - ICD10 | Array 82,p41280
+p41280_a83,Date of first in-patient diagnosis - ICD10 | Array 83,p41280
+p41280_a84,Date of first in-patient diagnosis - ICD10 | Array 84,p41280
+p41280_a85,Date of first in-patient diagnosis - ICD10 | Array 85,p41280
+p41280_a86,Date of first in-patient diagnosis - ICD10 | Array 86,p41280
+p41280_a87,Date of first in-patient diagnosis - ICD10 | Array 87,p41280
+p41280_a88,Date of first in-patient diagnosis - ICD10 | Array 88,p41280
+p41280_a89,Date of first in-patient diagnosis - ICD10 | Array 89,p41280
+p41280_a90,Date of first in-patient diagnosis - ICD10 | Array 90,p41280
+p41280_a91,Date of first in-patient diagnosis - ICD10 | Array 91,p41280
+p41280_a92,Date of first in-patient diagnosis - ICD10 | Array 92,p41280
+p41280_a93,Date of first in-patient diagnosis - ICD10 | Array 93,p41280
+p41280_a94,Date of first in-patient diagnosis - ICD10 | Array 94,p41280
+p41280_a95,Date of first in-patient diagnosis - ICD10 | Array 95,p41280
+p41280_a96,Date of first in-patient diagnosis - ICD10 | Array 96,p41280
+p41280_a97,Date of first in-patient diagnosis - ICD10 | Array 97,p41280
+p41280_a98,Date of first in-patient diagnosis - ICD10 | Array 98,p41280
+p41280_a99,Date of first in-patient diagnosis - ICD10 | Array 99,p41280
+p41280_a100,Date of first in-patient diagnosis - ICD10 | Array 100,p41280
+p41280_a101,Date of first in-patient diagnosis - ICD10 | Array 101,p41280
+p41280_a102,Date of first in-patient diagnosis - ICD10 | Array 102,p41280
+p41280_a103,Date of first in-patient diagnosis - ICD10 | Array 103,p41280
+p41280_a104,Date of first in-patient diagnosis - ICD10 | Array 104,p41280
+p41280_a105,Date of first in-patient diagnosis - ICD10 | Array 105,p41280
+p41280_a106,Date of first in-patient diagnosis - ICD10 | Array 106,p41280
+p41280_a107,Date of first in-patient diagnosis - ICD10 | Array 107,p41280
+p41280_a108,Date of first in-patient diagnosis - ICD10 | Array 108,p41280
+p41280_a109,Date of first in-patient diagnosis - ICD10 | Array 109,p41280
+p41280_a110,Date of first in-patient diagnosis - ICD10 | Array 110,p41280
+p41280_a111,Date of first in-patient diagnosis - ICD10 | Array 111,p41280
+p41280_a112,Date of first in-patient diagnosis - ICD10 | Array 112,p41280
+p41280_a113,Date of first in-patient diagnosis - ICD10 | Array 113,p41280
+p41280_a114,Date of first in-patient diagnosis - ICD10 | Array 114,p41280
+p41280_a115,Date of first in-patient diagnosis - ICD10 | Array 115,p41280
+p41280_a116,Date of first in-patient diagnosis - ICD10 | Array 116,p41280
+p41280_a117,Date of first in-patient diagnosis - ICD10 | Array 117,p41280
+p41280_a118,Date of first in-patient diagnosis - ICD10 | Array 118,p41280
+p41280_a119,Date of first in-patient diagnosis - ICD10 | Array 119,p41280
+p41280_a120,Date of first in-patient diagnosis - ICD10 | Array 120,p41280
+p41280_a121,Date of first in-patient diagnosis - ICD10 | Array 121,p41280
+p41280_a122,Date of first in-patient diagnosis - ICD10 | Array 122,p41280
+p41280_a123,Date of first in-patient diagnosis - ICD10 | Array 123,p41280
+p41280_a124,Date of first in-patient diagnosis - ICD10 | Array 124,p41280
+p41280_a125,Date of first in-patient diagnosis - ICD10 | Array 125,p41280
+p41280_a126,Date of first in-patient diagnosis - ICD10 | Array 126,p41280
+p41280_a127,Date of first in-patient diagnosis - ICD10 | Array 127,p41280
+p41280_a128,Date of first in-patient diagnosis - ICD10 | Array 128,p41280
+p41280_a129,Date of first in-patient diagnosis - ICD10 | Array 129,p41280
+p41280_a130,Date of first in-patient diagnosis - ICD10 | Array 130,p41280
+p41280_a131,Date of first in-patient diagnosis - ICD10 | Array 131,p41280
+p41280_a132,Date of first in-patient diagnosis - ICD10 | Array 132,p41280
+p41280_a133,Date of first in-patient diagnosis - ICD10 | Array 133,p41280
+p41280_a134,Date of first in-patient diagnosis - ICD10 | Array 134,p41280
+p41280_a135,Date of first in-patient diagnosis - ICD10 | Array 135,p41280
+p41280_a136,Date of first in-patient diagnosis - ICD10 | Array 136,p41280
+p41280_a137,Date of first in-patient diagnosis - ICD10 | Array 137,p41280
+p41280_a138,Date of first in-patient diagnosis - ICD10 | Array 138,p41280
+p41280_a139,Date of first in-patient diagnosis - ICD10 | Array 139,p41280
+p41280_a140,Date of first in-patient diagnosis - ICD10 | Array 140,p41280
+p41280_a141,Date of first in-patient diagnosis - ICD10 | Array 141,p41280
+p41280_a142,Date of first in-patient diagnosis - ICD10 | Array 142,p41280
+p41280_a143,Date of first in-patient diagnosis - ICD10 | Array 143,p41280
+p41280_a144,Date of first in-patient diagnosis - ICD10 | Array 144,p41280
+p41280_a145,Date of first in-patient diagnosis - ICD10 | Array 145,p41280
+p41280_a146,Date of first in-patient diagnosis - ICD10 | Array 146,p41280
+p41280_a147,Date of first in-patient diagnosis - ICD10 | Array 147,p41280
+p41280_a148,Date of first in-patient diagnosis - ICD10 | Array 148,p41280
+p41280_a149,Date of first in-patient diagnosis - ICD10 | Array 149,p41280
+p41280_a150,Date of first in-patient diagnosis - ICD10 | Array 150,p41280
+p41280_a151,Date of first in-patient diagnosis - ICD10 | Array 151,p41280
+p41280_a152,Date of first in-patient diagnosis - ICD10 | Array 152,p41280
+p41280_a153,Date of first in-patient diagnosis - ICD10 | Array 153,p41280
+p41280_a154,Date of first in-patient diagnosis - ICD10 | Array 154,p41280
+p41280_a155,Date of first in-patient diagnosis - ICD10 | Array 155,p41280
+p41280_a156,Date of first in-patient diagnosis - ICD10 | Array 156,p41280
+p41280_a157,Date of first in-patient diagnosis - ICD10 | Array 157,p41280
+p41280_a158,Date of first in-patient diagnosis - ICD10 | Array 158,p41280
+p41280_a159,Date of first in-patient diagnosis - ICD10 | Array 159,p41280
+p41280_a160,Date of first in-patient diagnosis - ICD10 | Array 160,p41280
+p41280_a161,Date of first in-patient diagnosis - ICD10 | Array 161,p41280
+p41280_a162,Date of first in-patient diagnosis - ICD10 | Array 162,p41280
+p41280_a163,Date of first in-patient diagnosis - ICD10 | Array 163,p41280
+p41280_a164,Date of first in-patient diagnosis - ICD10 | Array 164,p41280
+p41280_a165,Date of first in-patient diagnosis - ICD10 | Array 165,p41280
+p41280_a166,Date of first in-patient diagnosis - ICD10 | Array 166,p41280
+p41280_a167,Date of first in-patient diagnosis - ICD10 | Array 167,p41280
+p41280_a168,Date of first in-patient diagnosis - ICD10 | Array 168,p41280
+p41280_a169,Date of first in-patient diagnosis - ICD10 | Array 169,p41280
+p41280_a170,Date of first in-patient diagnosis - ICD10 | Array 170,p41280
+p41280_a171,Date of first in-patient diagnosis - ICD10 | Array 171,p41280
+p41280_a172,Date of first in-patient diagnosis - ICD10 | Array 172,p41280
+p41280_a173,Date of first in-patient diagnosis - ICD10 | Array 173,p41280
+p41280_a174,Date of first in-patient diagnosis - ICD10 | Array 174,p41280
+p41280_a175,Date of first in-patient diagnosis - ICD10 | Array 175,p41280
+p41280_a176,Date of first in-patient diagnosis - ICD10 | Array 176,p41280
+p41280_a177,Date of first in-patient diagnosis - ICD10 | Array 177,p41280
+p41280_a178,Date of first in-patient diagnosis - ICD10 | Array 178,p41280
+p41280_a179,Date of first in-patient diagnosis - ICD10 | Array 179,p41280
+p41280_a180,Date of first in-patient diagnosis - ICD10 | Array 180,p41280
+p41280_a181,Date of first in-patient diagnosis - ICD10 | Array 181,p41280
+p41280_a182,Date of first in-patient diagnosis - ICD10 | Array 182,p41280
+p41280_a183,Date of first in-patient diagnosis - ICD10 | Array 183,p41280
+p41280_a184,Date of first in-patient diagnosis - ICD10 | Array 184,p41280
+p41280_a185,Date of first in-patient diagnosis - ICD10 | Array 185,p41280
+p41280_a186,Date of first in-patient diagnosis - ICD10 | Array 186,p41280
+p41280_a187,Date of first in-patient diagnosis - ICD10 | Array 187,p41280
+p41280_a188,Date of first in-patient diagnosis - ICD10 | Array 188,p41280
+p41280_a189,Date of first in-patient diagnosis - ICD10 | Array 189,p41280
+p41280_a190,Date of first in-patient diagnosis - ICD10 | Array 190,p41280
+p41280_a191,Date of first in-patient diagnosis - ICD10 | Array 191,p41280
+p41280_a192,Date of first in-patient diagnosis - ICD10 | Array 192,p41280
+p41280_a193,Date of first in-patient diagnosis - ICD10 | Array 193,p41280
+p41280_a194,Date of first in-patient diagnosis - ICD10 | Array 194,p41280
+p41280_a195,Date of first in-patient diagnosis - ICD10 | Array 195,p41280
+p41280_a196,Date of first in-patient diagnosis - ICD10 | Array 196,p41280
+p41280_a197,Date of first in-patient diagnosis - ICD10 | Array 197,p41280
+p41280_a198,Date of first in-patient diagnosis - ICD10 | Array 198,p41280
+p41280_a199,Date of first in-patient diagnosis - ICD10 | Array 199,p41280
+p41280_a200,Date of first in-patient diagnosis - ICD10 | Array 200,p41280
+p41280_a201,Date of first in-patient diagnosis - ICD10 | Array 201,p41280
+p41280_a202,Date of first in-patient diagnosis - ICD10 | Array 202,p41280
+p41280_a203,Date of first in-patient diagnosis - ICD10 | Array 203,p41280
+p41280_a204,Date of first in-patient diagnosis - ICD10 | Array 204,p41280
+p41280_a205,Date of first in-patient diagnosis - ICD10 | Array 205,p41280
+p41280_a206,Date of first in-patient diagnosis - ICD10 | Array 206,p41280
+p41280_a207,Date of first in-patient diagnosis - ICD10 | Array 207,p41280
+p41280_a208,Date of first in-patient diagnosis - ICD10 | Array 208,p41280
+p41280_a209,Date of first in-patient diagnosis - ICD10 | Array 209,p41280
+p41280_a210,Date of first in-patient diagnosis - ICD10 | Array 210,p41280
+p41280_a211,Date of first in-patient diagnosis - ICD10 | Array 211,p41280
+p41280_a212,Date of first in-patient diagnosis - ICD10 | Array 212,p41280
+p41280_a213,Date of first in-patient diagnosis - ICD10 | Array 213,p41280
+p41280_a214,Date of first in-patient diagnosis - ICD10 | Array 214,p41280
+p41280_a215,Date of first in-patient diagnosis - ICD10 | Array 215,p41280
+p41280_a216,Date of first in-patient diagnosis - ICD10 | Array 216,p41280
+p41280_a217,Date of first in-patient diagnosis - ICD10 | Array 217,p41280
+p41280_a218,Date of first in-patient diagnosis - ICD10 | Array 218,p41280
+p41280_a219,Date of first in-patient diagnosis - ICD10 | Array 219,p41280
+p41280_a220,Date of first in-patient diagnosis - ICD10 | Array 220,p41280
+p41280_a221,Date of first in-patient diagnosis - ICD10 | Array 221,p41280
+p41280_a222,Date of first in-patient diagnosis - ICD10 | Array 222,p41280
+p41280_a223,Date of first in-patient diagnosis - ICD10 | Array 223,p41280
+p41280_a224,Date of first in-patient diagnosis - ICD10 | Array 224,p41280
+p41280_a225,Date of first in-patient diagnosis - ICD10 | Array 225,p41280
+p41280_a226,Date of first in-patient diagnosis - ICD10 | Array 226,p41280
+p41280_a227,Date of first in-patient diagnosis - ICD10 | Array 227,p41280
+p41280_a228,Date of first in-patient diagnosis - ICD10 | Array 228,p41280
+p41280_a229,Date of first in-patient diagnosis - ICD10 | Array 229,p41280
+p41280_a230,Date of first in-patient diagnosis - ICD10 | Array 230,p41280
+p41280_a231,Date of first in-patient diagnosis - ICD10 | Array 231,p41280
+p41280_a232,Date of first in-patient diagnosis - ICD10 | Array 232,p41280
+p41280_a233,Date of first in-patient diagnosis - ICD10 | Array 233,p41280
+p41280_a234,Date of first in-patient diagnosis - ICD10 | Array 234,p41280
+p41280_a235,Date of first in-patient diagnosis - ICD10 | Array 235,p41280
+p41280_a236,Date of first in-patient diagnosis - ICD10 | Array 236,p41280
+p41280_a237,Date of first in-patient diagnosis - ICD10 | Array 237,p41280
+p41280_a238,Date of first in-patient diagnosis - ICD10 | Array 238,p41280
+p41280_a239,Date of first in-patient diagnosis - ICD10 | Array 239,p41280
+p41280_a240,Date of first in-patient diagnosis - ICD10 | Array 240,p41280
+p41280_a241,Date of first in-patient diagnosis - ICD10 | Array 241,p41280
+p41280_a242,Date of first in-patient diagnosis - ICD10 | Array 242,p41280
+p41280_a243,Date of first in-patient diagnosis - ICD10 | Array 243,p41280
+p41280_a244,Date of first in-patient diagnosis - ICD10 | Array 244,p41280
+p41280_a245,Date of first in-patient diagnosis - ICD10 | Array 245,p41280
+p41280_a246,Date of first in-patient diagnosis - ICD10 | Array 246,p41280
+p41280_a247,Date of first in-patient diagnosis - ICD10 | Array 247,p41280
+p41280_a248,Date of first in-patient diagnosis - ICD10 | Array 248,p41280
+p41280_a249,Date of first in-patient diagnosis - ICD10 | Array 249,p41280
+p41280_a250,Date of first in-patient diagnosis - ICD10 | Array 250,p41280
+p41280_a251,Date of first in-patient diagnosis - ICD10 | Array 251,p41280
+p41280_a252,Date of first in-patient diagnosis - ICD10 | Array 252,p41280
+p41280_a253,Date of first in-patient diagnosis - ICD10 | Array 253,p41280
+p41280_a254,Date of first in-patient diagnosis - ICD10 | Array 254,p41280
+p41280_a255,Date of first in-patient diagnosis - ICD10 | Array 255,p41280
+p41280_a256,Date of first in-patient diagnosis - ICD10 | Array 256,p41280
+p41280_a257,Date of first in-patient diagnosis - ICD10 | Array 257,p41280
+p41280_a258,Date of first in-patient diagnosis - ICD10 | Array 258,p41280
+p41281_a0,Date of first in-patient diagnosis - ICD9 | Array 0,p41281
+p41281_a1,Date of first in-patient diagnosis - ICD9 | Array 1,p41281
+p41281_a2,Date of first in-patient diagnosis - ICD9 | Array 2,p41281
+p41281_a3,Date of first in-patient diagnosis - ICD9 | Array 3,p41281
+p41281_a4,Date of first in-patient diagnosis - ICD9 | Array 4,p41281
+p41281_a5,Date of first in-patient diagnosis - ICD9 | Array 5,p41281
+p41281_a6,Date of first in-patient diagnosis - ICD9 | Array 6,p41281
+p41281_a7,Date of first in-patient diagnosis - ICD9 | Array 7,p41281
+p41281_a8,Date of first in-patient diagnosis - ICD9 | Array 8,p41281
+p41281_a9,Date of first in-patient diagnosis - ICD9 | Array 9,p41281
+p41281_a10,Date of first in-patient diagnosis - ICD9 | Array 10,p41281
+p41281_a11,Date of first in-patient diagnosis - ICD9 | Array 11,p41281
+p41281_a12,Date of first in-patient diagnosis - ICD9 | Array 12,p41281
+p41281_a13,Date of first in-patient diagnosis - ICD9 | Array 13,p41281
+p41281_a14,Date of first in-patient diagnosis - ICD9 | Array 14,p41281
+p41281_a15,Date of first in-patient diagnosis - ICD9 | Array 15,p41281
+p41281_a16,Date of first in-patient diagnosis - ICD9 | Array 16,p41281
+p41281_a17,Date of first in-patient diagnosis - ICD9 | Array 17,p41281
+p41281_a18,Date of first in-patient diagnosis - ICD9 | Array 18,p41281
+p41281_a19,Date of first in-patient diagnosis - ICD9 | Array 19,p41281
+p41281_a20,Date of first in-patient diagnosis - ICD9 | Array 20,p41281
+p41281_a21,Date of first in-patient diagnosis - ICD9 | Array 21,p41281
+p41281_a22,Date of first in-patient diagnosis - ICD9 | Array 22,p41281
+p41281_a23,Date of first in-patient diagnosis - ICD9 | Array 23,p41281
+p41281_a24,Date of first in-patient diagnosis - ICD9 | Array 24,p41281
+p41281_a25,Date of first in-patient diagnosis - ICD9 | Array 25,p41281
+p41281_a26,Date of first in-patient diagnosis - ICD9 | Array 26,p41281
+p41281_a27,Date of first in-patient diagnosis - ICD9 | Array 27,p41281
+p41281_a28,Date of first in-patient diagnosis - ICD9 | Array 28,p41281
+p41281_a29,Date of first in-patient diagnosis - ICD9 | Array 29,p41281
+p41281_a30,Date of first in-patient diagnosis - ICD9 | Array 30,p41281
+p41281_a31,Date of first in-patient diagnosis - ICD9 | Array 31,p41281
+p41281_a32,Date of first in-patient diagnosis - ICD9 | Array 32,p41281
+p41281_a33,Date of first in-patient diagnosis - ICD9 | Array 33,p41281
+p41281_a34,Date of first in-patient diagnosis - ICD9 | Array 34,p41281
+p41281_a35,Date of first in-patient diagnosis - ICD9 | Array 35,p41281
+p41281_a36,Date of first in-patient diagnosis - ICD9 | Array 36,p41281
+p41281_a37,Date of first in-patient diagnosis - ICD9 | Array 37,p41281
+p41281_a38,Date of first in-patient diagnosis - ICD9 | Array 38,p41281
+p41281_a39,Date of first in-patient diagnosis - ICD9 | Array 39,p41281
+p41281_a40,Date of first in-patient diagnosis - ICD9 | Array 40,p41281
+p41281_a41,Date of first in-patient diagnosis - ICD9 | Array 41,p41281
+p41281_a42,Date of first in-patient diagnosis - ICD9 | Array 42,p41281
+p41281_a43,Date of first in-patient diagnosis - ICD9 | Array 43,p41281
+p41281_a44,Date of first in-patient diagnosis - ICD9 | Array 44,p41281
+p41281_a45,Date of first in-patient diagnosis - ICD9 | Array 45,p41281
+p41281_a46,Date of first in-patient diagnosis - ICD9 | Array 46,p41281
+p41282_a0,Date of first operative procedure - OPCS4 | Array 0,p41282
+p41282_a1,Date of first operative procedure - OPCS4 | Array 1,p41282
+p41282_a2,Date of first operative procedure - OPCS4 | Array 2,p41282
+p41282_a3,Date of first operative procedure - OPCS4 | Array 3,p41282
+p41282_a4,Date of first operative procedure - OPCS4 | Array 4,p41282
+p41282_a5,Date of first operative procedure - OPCS4 | Array 5,p41282
+p41282_a6,Date of first operative procedure - OPCS4 | Array 6,p41282
+p41282_a7,Date of first operative procedure - OPCS4 | Array 7,p41282
+p41282_a8,Date of first operative procedure - OPCS4 | Array 8,p41282
+p41282_a9,Date of first operative procedure - OPCS4 | Array 9,p41282
+p41282_a10,Date of first operative procedure - OPCS4 | Array 10,p41282
+p41282_a11,Date of first operative procedure - OPCS4 | Array 11,p41282
+p41282_a12,Date of first operative procedure - OPCS4 | Array 12,p41282
+p41282_a13,Date of first operative procedure - OPCS4 | Array 13,p41282
+p41282_a14,Date of first operative procedure - OPCS4 | Array 14,p41282
+p41282_a15,Date of first operative procedure - OPCS4 | Array 15,p41282
+p41282_a16,Date of first operative procedure - OPCS4 | Array 16,p41282
+p41282_a17,Date of first operative procedure - OPCS4 | Array 17,p41282
+p41282_a18,Date of first operative procedure - OPCS4 | Array 18,p41282
+p41282_a19,Date of first operative procedure - OPCS4 | Array 19,p41282
+p41282_a20,Date of first operative procedure - OPCS4 | Array 20,p41282
+p41282_a21,Date of first operative procedure - OPCS4 | Array 21,p41282
+p41282_a22,Date of first operative procedure - OPCS4 | Array 22,p41282
+p41282_a23,Date of first operative procedure - OPCS4 | Array 23,p41282
+p41282_a24,Date of first operative procedure - OPCS4 | Array 24,p41282
+p41282_a25,Date of first operative procedure - OPCS4 | Array 25,p41282
+p41282_a26,Date of first operative procedure - OPCS4 | Array 26,p41282
+p41282_a27,Date of first operative procedure - OPCS4 | Array 27,p41282
+p41282_a28,Date of first operative procedure - OPCS4 | Array 28,p41282
+p41282_a29,Date of first operative procedure - OPCS4 | Array 29,p41282
+p41282_a30,Date of first operative procedure - OPCS4 | Array 30,p41282
+p41282_a31,Date of first operative procedure - OPCS4 | Array 31,p41282
+p41282_a32,Date of first operative procedure - OPCS4 | Array 32,p41282
+p41282_a33,Date of first operative procedure - OPCS4 | Array 33,p41282
+p41282_a34,Date of first operative procedure - OPCS4 | Array 34,p41282
+p41282_a35,Date of first operative procedure - OPCS4 | Array 35,p41282
+p41282_a36,Date of first operative procedure - OPCS4 | Array 36,p41282
+p41282_a37,Date of first operative procedure - OPCS4 | Array 37,p41282
+p41282_a38,Date of first operative procedure - OPCS4 | Array 38,p41282
+p41282_a39,Date of first operative procedure - OPCS4 | Array 39,p41282
+p41282_a40,Date of first operative procedure - OPCS4 | Array 40,p41282
+p41282_a41,Date of first operative procedure - OPCS4 | Array 41,p41282
+p41282_a42,Date of first operative procedure - OPCS4 | Array 42,p41282
+p41282_a43,Date of first operative procedure - OPCS4 | Array 43,p41282
+p41282_a44,Date of first operative procedure - OPCS4 | Array 44,p41282
+p41282_a45,Date of first operative procedure - OPCS4 | Array 45,p41282
+p41282_a46,Date of first operative procedure - OPCS4 | Array 46,p41282
+p41282_a47,Date of first operative procedure - OPCS4 | Array 47,p41282
+p41282_a48,Date of first operative procedure - OPCS4 | Array 48,p41282
+p41282_a49,Date of first operative procedure - OPCS4 | Array 49,p41282
+p41282_a50,Date of first operative procedure - OPCS4 | Array 50,p41282
+p41282_a51,Date of first operative procedure - OPCS4 | Array 51,p41282
+p41282_a52,Date of first operative procedure - OPCS4 | Array 52,p41282
+p41282_a53,Date of first operative procedure - OPCS4 | Array 53,p41282
+p41282_a54,Date of first operative procedure - OPCS4 | Array 54,p41282
+p41282_a55,Date of first operative procedure - OPCS4 | Array 55,p41282
+p41282_a56,Date of first operative procedure - OPCS4 | Array 56,p41282
+p41282_a57,Date of first operative procedure - OPCS4 | Array 57,p41282
+p41282_a58,Date of first operative procedure - OPCS4 | Array 58,p41282
+p41282_a59,Date of first operative procedure - OPCS4 | Array 59,p41282
+p41282_a60,Date of first operative procedure - OPCS4 | Array 60,p41282
+p41282_a61,Date of first operative procedure - OPCS4 | Array 61,p41282
+p41282_a62,Date of first operative procedure - OPCS4 | Array 62,p41282
+p41282_a63,Date of first operative procedure - OPCS4 | Array 63,p41282
+p41282_a64,Date of first operative procedure - OPCS4 | Array 64,p41282
+p41282_a65,Date of first operative procedure - OPCS4 | Array 65,p41282
+p41282_a66,Date of first operative procedure - OPCS4 | Array 66,p41282
+p41282_a67,Date of first operative procedure - OPCS4 | Array 67,p41282
+p41282_a68,Date of first operative procedure - OPCS4 | Array 68,p41282
+p41282_a69,Date of first operative procedure - OPCS4 | Array 69,p41282
+p41282_a70,Date of first operative procedure - OPCS4 | Array 70,p41282
+p41282_a71,Date of first operative procedure - OPCS4 | Array 71,p41282
+p41282_a72,Date of first operative procedure - OPCS4 | Array 72,p41282
+p41282_a73,Date of first operative procedure - OPCS4 | Array 73,p41282
+p41282_a74,Date of first operative procedure - OPCS4 | Array 74,p41282
+p41282_a75,Date of first operative procedure - OPCS4 | Array 75,p41282
+p41282_a76,Date of first operative procedure - OPCS4 | Array 76,p41282
+p41282_a77,Date of first operative procedure - OPCS4 | Array 77,p41282
+p41282_a78,Date of first operative procedure - OPCS4 | Array 78,p41282
+p41282_a79,Date of first operative procedure - OPCS4 | Array 79,p41282
+p41282_a80,Date of first operative procedure - OPCS4 | Array 80,p41282
+p41282_a81,Date of first operative procedure - OPCS4 | Array 81,p41282
+p41282_a82,Date of first operative procedure - OPCS4 | Array 82,p41282
+p41282_a83,Date of first operative procedure - OPCS4 | Array 83,p41282
+p41282_a84,Date of first operative procedure - OPCS4 | Array 84,p41282
+p41282_a85,Date of first operative procedure - OPCS4 | Array 85,p41282
+p41282_a86,Date of first operative procedure - OPCS4 | Array 86,p41282
+p41282_a87,Date of first operative procedure - OPCS4 | Array 87,p41282
+p41282_a88,Date of first operative procedure - OPCS4 | Array 88,p41282
+p41282_a89,Date of first operative procedure - OPCS4 | Array 89,p41282
+p41282_a90,Date of first operative procedure - OPCS4 | Array 90,p41282
+p41282_a91,Date of first operative procedure - OPCS4 | Array 91,p41282
+p41282_a92,Date of first operative procedure - OPCS4 | Array 92,p41282
+p41282_a93,Date of first operative procedure - OPCS4 | Array 93,p41282
+p41282_a94,Date of first operative procedure - OPCS4 | Array 94,p41282
+p41282_a95,Date of first operative procedure - OPCS4 | Array 95,p41282
+p41282_a96,Date of first operative procedure - OPCS4 | Array 96,p41282
+p41282_a97,Date of first operative procedure - OPCS4 | Array 97,p41282
+p41282_a98,Date of first operative procedure - OPCS4 | Array 98,p41282
+p41282_a99,Date of first operative procedure - OPCS4 | Array 99,p41282
+p41282_a100,Date of first operative procedure - OPCS4 | Array 100,p41282
+p41282_a101,Date of first operative procedure - OPCS4 | Array 101,p41282
+p41282_a102,Date of first operative procedure - OPCS4 | Array 102,p41282
+p41282_a103,Date of first operative procedure - OPCS4 | Array 103,p41282
+p41282_a104,Date of first operative procedure - OPCS4 | Array 104,p41282
+p41282_a105,Date of first operative procedure - OPCS4 | Array 105,p41282
+p41282_a106,Date of first operative procedure - OPCS4 | Array 106,p41282
+p41282_a107,Date of first operative procedure - OPCS4 | Array 107,p41282
+p41282_a108,Date of first operative procedure - OPCS4 | Array 108,p41282
+p41282_a109,Date of first operative procedure - OPCS4 | Array 109,p41282
+p41282_a110,Date of first operative procedure - OPCS4 | Array 110,p41282
+p41282_a111,Date of first operative procedure - OPCS4 | Array 111,p41282
+p41282_a112,Date of first operative procedure - OPCS4 | Array 112,p41282
+p41282_a113,Date of first operative procedure - OPCS4 | Array 113,p41282
+p41282_a114,Date of first operative procedure - OPCS4 | Array 114,p41282
+p41282_a115,Date of first operative procedure - OPCS4 | Array 115,p41282
+p41282_a116,Date of first operative procedure - OPCS4 | Array 116,p41282
+p41282_a117,Date of first operative procedure - OPCS4 | Array 117,p41282
+p41282_a118,Date of first operative procedure - OPCS4 | Array 118,p41282
+p41282_a119,Date of first operative procedure - OPCS4 | Array 119,p41282
+p41282_a120,Date of first operative procedure - OPCS4 | Array 120,p41282
+p41282_a121,Date of first operative procedure - OPCS4 | Array 121,p41282
+p41282_a122,Date of first operative procedure - OPCS4 | Array 122,p41282
+p41282_a123,Date of first operative procedure - OPCS4 | Array 123,p41282
+p41282_a124,Date of first operative procedure - OPCS4 | Array 124,p41282
+p41282_a125,Date of first operative procedure - OPCS4 | Array 125,p41282
+p41283_a0,Date of first operative procedure - OPCS3 | Array 0,p41283
+p41283_a1,Date of first operative procedure - OPCS3 | Array 1,p41283
+p41283_a2,Date of first operative procedure - OPCS3 | Array 2,p41283
+p41283_a3,Date of first operative procedure - OPCS3 | Array 3,p41283
+p41283_a4,Date of first operative procedure - OPCS3 | Array 4,p41283
+p41283_a5,Date of first operative procedure - OPCS3 | Array 5,p41283
+p41283_a6,Date of first operative procedure - OPCS3 | Array 6,p41283
+p41283_a7,Date of first operative procedure - OPCS3 | Array 7,p41283
+p41283_a8,Date of first operative procedure - OPCS3 | Array 8,p41283
+p41283_a9,Date of first operative procedure - OPCS3 | Array 9,p41283
+p41283_a10,Date of first operative procedure - OPCS3 | Array 10,p41283
+p41283_a11,Date of first operative procedure - OPCS3 | Array 11,p41283
+p41283_a12,Date of first operative procedure - OPCS3 | Array 12,p41283
+p41283_a13,Date of first operative procedure - OPCS3 | Array 13,p41283
+p41283_a14,Date of first operative procedure - OPCS3 | Array 14,p41283
+p41283_a15,Date of first operative procedure - OPCS3 | Array 15,p41283
 p100001_i0,Food weight | Instance 0,p100001
 p100001_i1,Food weight | Instance 1,p100001
 p100001_i2,Food weight | Instance 2,p100001
@@ -164,8 +1351,3 @@ p105010_i1,When diet questionnaire completed | Instance 1,p105010
 p105010_i2,When diet questionnaire completed | Instance 2,p105010
 p105010_i3,When diet questionnaire completed | Instance 3,p105010
 p105010_i4,When diet questionnaire completed | Instance 4,p105010
-p105030_i0,When diet questionnaire started | Instance 0,p105030
-p105030_i1,When diet questionnaire started | Instance 1,p105030
-p105030_i2,When diet questionnaire started | Instance 2,p105030
-p105030_i3,When diet questionnaire started | Instance 3,p105030
-p105030_i4,When diet questionnaire started | Instance 4,p105030
