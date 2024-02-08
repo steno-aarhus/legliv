@@ -19,9 +19,7 @@ library(parameters) # parameters.
 library(psych)      # describe
 library(stringr)
 
-# removing participants who did not complete 2 or more diet questionnaires
-data <- data %>%
-    filter(p20077 >= 2)
+ukb_dataset <- data
 
 # renaming variables to appropriate names
 data <- data %>%
@@ -29,6 +27,8 @@ data <- data %>%
            birth_year = p34,
            wc = p48_i0,
            month_of_birth = p52,
+           l2fu_r = p190,
+           l2fu_d = p190,
            number_in_household = p709_i0,
            education = p6138_i0,
            ques_comp_n = p20077,
@@ -94,12 +94,14 @@ data <- data %>%
            cancer2 = p40006_i2,
            cancer3 = p40006_i3, # same as p40005
            age_dead = p40007_i0, # p40007_01 is empty
-           icd10 = p41270,
-           icd9 = p41271,
            cancer_age0 = p40008_i0,
            cancer_age1 = p40008_i1,
            cancer_age2 = p40008_i2,
            cancer_age3 = p40008_i3, # same as p40005
+           icd10 = p41270,
+           icd9 = p41271,
+           opcs4 = p41272,
+           opcs3 = p41273,
            food_weig0 = p100001_i0,
            food_weig1 = p100001_i1,
            food_weig2 = p100001_i2,
@@ -114,13 +116,16 @@ data <- data %>%
            ques_comp_t1 = p105010_i1,
            ques_comp_t2 = p105010_i2,
            ques_comp_t3 = p105010_i3,
-           ques_comp_t4 = p105010_i4,
-           ques_star_t0 = p105030_i0,
-           ques_star_t1 = p105030_i1,
-           ques_star_t2 = p105030_i2,
-           ques_star_t3 = p105030_i3,
-           ques_star_t4 = p105030_i4
+           ques_comp_t4 = p105010_i4
     )
+
+# removing participants who did not complete 2 or more diet questionnaires
+data <- data %>%
+    filter(p20077 >= 2)
+
+#
+data <- data %>%
+    filter(!grepl("C22", icd10))
 
 # Removing follow-up values where only baseline values are needed:
 
@@ -129,6 +134,10 @@ data <- data %>%
 
 #
 
+data <- data %>%
+    select(where(~ !all(is.na(.))))
+
+#
 data <- data %>%
     mutate(
         red_meat0 = beef0 + lamb0 + pork0 + offal0,
@@ -165,7 +174,7 @@ data <- data %>%
            quest_comp_t2 = substr(ques_comp_t2, 1, 10),
            quest_comp_t3 = substr(ques_comp_t3, 1, 10),
            quest_comp_t4 = substr(ques_comp_t4, 1, 10)
-           )
+    )
 
 # creating dataset with only liver cancer diagnoses:
 
