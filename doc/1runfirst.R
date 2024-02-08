@@ -2,6 +2,7 @@
 library(dplyr)
 library(tidyverse)
 library(magrittr)   # For the %$% composition pipe.
+library(lubridate) # For creating baseline age
 
 ukb_dataset <- data
 
@@ -139,7 +140,7 @@ data <- data %>%
         red_proc_meat4 = red_meat4 + proc_meat4,
     )
 
-# Removing redundant variables:
+# Removing irrelevant variables:
 data <- data %>%
     select(-matches("^beef\\d+$"),
            -matches("^lamb\\d+$"),
@@ -174,6 +175,43 @@ data <- data %>%
            quest_comp_t3 = substr(ques_comp_t3, 1, 10),
            quest_comp_t4 = substr(ques_comp_t4, 1, 10)
     )
+
+# Creating baseline age:
+    # creating id column:
+data <- data %>%
+    mutate(id = 1:nrow(data))
+
+
+    # Create a new column with the baseline start date
+
+data <- data %>%
+    # Gather questionnaire dates into long format
+    pivot_longer(cols = starts_with("ques_comp_t"),
+                 names_to = "questionnaire",
+                 values_to = "completion_date") %>%
+    # Remove rows with NA completion dates
+    filter(!is.na(completion_date)) %>%
+    # Group by participant_id
+    group_by(id) %>%
+    # Arrange by completion date within each participant
+    arrange(completion_date) %>%
+    # Create a lagged column to find the last completed questionnaire
+    mutate(last_questionnaire_date = lag(completion_date)) %>%
+    # Filter participants who completed >= 2 questionnaires
+    filter(!is.na(last_questionnaire_date)) %>%
+    # Keep only the last completed questionnaire for each participant
+    filter(is.na(lead(completion_date))) %>%
+    # Rename the columns to match the desired output
+    rename(baseline_start_date = completion_date)
+
+data$birth <- as.Date(paste0(data$birth, "-01"))
+
+data <- data %>%
+    mutate(age_at_baseline = year(baseline_start_date) - year(birth) -
+               ifelse(month(baseline_start_date) < month(birth) |
+                          (month(baseline_start_date) == month(birth) &
+                               day(baseline_start_date) < day(birth)), 1, 0))
+
 
 # creating dataset with only liver cancer diagnoses:
 
