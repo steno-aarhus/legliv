@@ -12,8 +12,8 @@ data <- data %>%
            wc = p48_i0,
            month_of_birth = p52,
            l2fu_r = p190,
-           l2fu_d = p190,
-           number_in_household = p709_i0,
+           l2fu_d = p191,
+           spouse = p709_i0,
            education = p6138_i0,
            ques_comp_n = p20077,
            smoking = p20116_i0,
@@ -183,3 +183,4 @@ data_liver <- data %>%
                cancer2 == 'C22.0 Liver cell carcinoma' | cancer2 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer3 == 'C22.0 Liver cell carcinoma' | cancer3 == 'C22.1 Intrahepatic bile duct carcinoma'
     )
+
