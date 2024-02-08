@@ -2,6 +2,9 @@ data_tdi <- data %>%
     select(tdi)
 
 data_tdi %>%
+    summary()
+
+data_tdi %>%
     ggplot(aes(x = tdi)) +
     geom_histogram()
 
@@ -35,6 +38,9 @@ data_tdi %$%
 
 data_tdi_liver <- data_liver %>%
     select(tdi)
+
+data_tdi_liver %>%
+    summary()
 
 data_tdi_liver %>%
     ggplot(aes(x=tdi))+
