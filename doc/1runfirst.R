@@ -131,7 +131,12 @@ data <- data %>%
         legumes1 = pulses1 + peas_corn1*0.5,
         legumes2 = pulses2 + peas_corn2*0.5,
         legumes3 = pulses3 + peas_corn3*0.5,
-        legumes4 = pulses4 + peas_corn4*0.5
+        legumes4 = pulses4 + peas_corn4*0.5,
+        red_proc_meat0 = red_meat0 + proc_meat0,
+        red_proc_meat1 = red_meat1 + proc_meat1,
+        red_proc_meat2 = red_meat2 + proc_meat2,
+        red_proc_meat3 = red_meat3 + proc_meat3,
+        red_proc_meat4 = red_meat4 + proc_meat4,
     )
 
 # Removing redundant variables:
