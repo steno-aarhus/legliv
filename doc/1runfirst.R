@@ -72,7 +72,7 @@ data <- data %>%
            cancer1 = p40006_i1,
            cancer2 = p40006_i2,
            cancer3 = p40006_i3, # same as p40005
-           age_dead = p40007_i0, # p40007_01 is empty
+           age_dead = p40007_i0, # p40007_i1 is empty
            cancer_age0 = p40008_i0,
            cancer_age1 = p40008_i1,
            cancer_age2 = p40008_i2,
@@ -113,12 +113,13 @@ data <- data %>%
 data <- data %>%
     select(-contains('_i'))
 
-#
+# Removing columns where all rows = NA:
 
 data <- data %>%
     select(where(~ !all(is.na(.))))
 
-#
+# creating food group variables:
+
 data <- data %>%
     mutate(
         red_meat0 = beef0 + lamb0 + pork0 + offal0,
@@ -126,27 +127,38 @@ data <- data %>%
         red_meat2 = beef2 + lamb2 + pork2 + offal2,
         red_meat3 = beef3 + lamb3 + pork3 + offal3,
         red_meat4 = beef4 + lamb4 + pork4 + offal4,
-        peas0 = peas_corn0*0.5, #assuming equal amounts of peas and corn
-        peas1 = peas_corn1*0.5,
-        peas2 = peas_corn2*0.5,
-        peas3 = peas_corn3*0.5,
-        peas4 = peas_corn4*0.5,
-        legumes0 = pulses0 + peas0,
-        legumes1 = pulses1 + peas1,
-        legumes2 = pulses2 + peas2,
-        legumes3 = pulses3 + peas3,
-        legumes4 = pulses4 + peas4
+        legumes0 = pulses0 + peas_corn0*0.5, #assuming equal amounts of peas and corn
+        legumes1 = pulses1 + peas_corn1*0.5,
+        legumes2 = pulses2 + peas_corn2*0.5,
+        legumes3 = pulses3 + peas_corn3*0.5,
+        legumes4 = pulses4 + peas_corn4*0.5
     )
+
+# Removing redundant variables:
+data <- data %>%
+    select(-matches("^beef\\d+$"),
+           -matches("^lamb\\d+$"),
+           -matches("^pork\\d+$"),
+           -matches("^offal\\d+$"),
+           -matches("^peas\\d+$"),
+           -matches("^pulses\\d+$")
+           )
 
 # Merging birth year and month of birth into one column:
 
 month_names <- c("January", "February", "March", "April", "May", "June",
                  "July", "August", "September", "October", "November", "December")
+
 data <- data %>%
     mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
+
 data <- data %>%
     unite(birth, birth_year, month_of_birth_num, sep = "-")
+
 remove(month_names)
+
+data <- data %>%
+    select(-month_of_birth)
 
 # Removing specific time stamp from date of completed questionnaires:
 
