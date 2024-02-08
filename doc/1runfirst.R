@@ -169,11 +169,11 @@ data <- data %>%
 # Removing specific time stamp from date of completed questionnaires:
 
 data <- data %>%
-    mutate(quest_comp_t0 = substr(ques_comp_t0, 1, 10),
-           quest_comp_t1 = substr(ques_comp_t1, 1, 10),
-           quest_comp_t2 = substr(ques_comp_t2, 1, 10),
-           quest_comp_t3 = substr(ques_comp_t3, 1, 10),
-           quest_comp_t4 = substr(ques_comp_t4, 1, 10)
+    mutate(ques_comp_t0 = substr(ques_comp_t0, 1, 10),
+           ques_comp_t1 = substr(ques_comp_t1, 1, 10),
+           ques_comp_t2 = substr(ques_comp_t2, 1, 10),
+           ques_comp_t3 = substr(ques_comp_t3, 1, 10),
+           ques_comp_t4 = substr(ques_comp_t4, 1, 10)
     )
 
 # Creating baseline age:
@@ -202,7 +202,8 @@ data <- data %>%
     # Keep only the last completed questionnaire for each participant
     filter(is.na(lead(completion_date))) %>%
     # Rename the columns to match the desired output
-    rename(baseline_start_date = completion_date)
+    rename(baseline_start_date = completion_date) %>%
+    select(-starts_with("ques_comp_t"))
 
 data$birth <- as.Date(paste0(data$birth, "-01"))
 

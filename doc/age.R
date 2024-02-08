@@ -24,7 +24,7 @@ data_baseline <- data %>%
     # Rename the columns to match the desired output
     rename(baseline_start_date = completion_date) %>%
     # Remove unnecessary columns
-    select(id, birth, baseline_start_date)
+    select(id, birth, baseline_start_date, last_questionnaire_date)
 
 data_baseline$birth <- as.Date(paste0(data_baseline$birth, "-01"))
 
