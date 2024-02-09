@@ -46,3 +46,19 @@ data_age_liv <- data_liver %>%
 
 data_age_liv %>%
     summary()
+
+data_sex <- data %>%
+    select(sex)
+
+data_sex %>%
+    group_by(sex) %>%
+    summarise(count = n()) %>%
+    mutate(percentage = count / sum(count) * 100)
+
+data_sex_liv <- data_liver %>%
+    select(sex)
+
+data_sex_liv %>%
+    group_by(sex) %>%
+    summarise(count = n()) %>%
+    mutate(percentage = count / sum(count) * 100)
