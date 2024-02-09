@@ -1,4 +1,3 @@
-
 library(dplyr)
 library(tidyverse)
 library(magrittr)   # For the %$% composition pipe.
@@ -69,10 +68,10 @@ data <- data %>%
            cancer_date1 = p40005_i1,
            cancer_date2 = p40005_i2,
            cancer_date3 = p40005_i3, # summary of data shows that p40005_i4 to p40005_i21 do not contain any data points
-           cancer0 = p40006_i0,
-           cancer1 = p40006_i1,
-           cancer2 = p40006_i2,
-           cancer3 = p40006_i3, # same as p40005
+           cancer_diag0 = p40006_i0,
+           cancer_diag1 = p40006_i1,
+           cancer_diag2 = p40006_i2,
+           cancer_diag3 = p40006_i3, # same as p40005
            age_dead = p40007_i0, # p40007_i1 is empty
            cancer_age0 = p40008_i0,
            cancer_age1 = p40008_i1,
@@ -166,6 +165,10 @@ remove(month_names)
 data <- data %>%
     select(-month_of_birth)
 
+# adding 15 as DD for all participants:
+
+data$birth <- as.Date(paste0(data$birth, "-15"))
+
 # Removing specific time stamp from date of completed questionnaires:
 
 data <- data %>%
@@ -205,21 +208,33 @@ data <- data %>%
     rename(baseline_start_date = completion_date) %>%
     select(-starts_with("ques_comp_t"))
 
-data$birth <- as.Date(paste0(data$birth, "-01"))
-
+# Creating age at baseline:
 data <- data %>%
     mutate(age_at_baseline = year(baseline_start_date) - year(birth) -
                ifelse(month(baseline_start_date) < month(birth) |
                           (month(baseline_start_date) == month(birth) &
                                day(baseline_start_date) < day(birth)), 1, 0))
 
+# removing ICD10 and ICD 9 date of first diagnosis after date of baseline (maybe not needed)
 
-# creating dataset with only liver cancer diagnoses:
+#filtered_data <- data_liver %>%
+ #   mutate(across(starts_with("p41280_a"), ~ replace(., . > baseline_start_date, NA)),
+  #         across(starts_with("p41281_a"), ~ replace(., . > baseline_start_date, NA)))
+
+# Removing all participants who have had liver cancer before baseline :
+
+data <- data %>%
+    filter(!(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date0) < as.Date(baseline_start_date)) &
+               !(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date1) < as.Date(baseline_start_date)) &
+               !(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date2) < as.Date(baseline_start_date)) &
+               !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date)))
+
+# creating dataset with only liver cancer diagnoses after baseline:
 
 data_liver <- data %>%
-    filter(cancer0 == 'C22.0 Liver cell carcinoma' | cancer0 == 'C22.1 Intrahepatic bile duct carcinoma' |
-               cancer1 == 'C22.0 Liver cell carcinoma' | cancer1 == 'C22.1 Intrahepatic bile duct carcinoma' |
-               cancer2 == 'C22.0 Liver cell carcinoma' | cancer2 == 'C22.1 Intrahepatic bile duct carcinoma' |
-               cancer3 == 'C22.0 Liver cell carcinoma' | cancer3 == 'C22.1 Intrahepatic bile duct carcinoma'
+    filter(cancer_diag0 == 'C22.0 Liver cell carcinoma' | cancer_diag0 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               cancer_diag1 == 'C22.0 Liver cell carcinoma' | cancer_diag1 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               cancer_diag2 == 'C22.0 Liver cell carcinoma' | cancer_diag2 == 'C22.1 Intrahepatic bile duct carcinoma' |
+               cancer_diag3 == 'C22.0 Liver cell carcinoma' | cancer_diag3 == 'C22.1 Intrahepatic bile duct carcinoma'
     )
 
