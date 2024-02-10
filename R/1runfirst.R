@@ -2,6 +2,7 @@ library(dplyr)
 library(tidyverse)
 library(magrittr)   # For the %$% composition pipe.
 library(lubridate) # For creating baseline age
+library(stringr) # for renaming several columns at once
 
 ukb_dataset <- data
 
@@ -101,6 +102,7 @@ data <- data %>%
 # removing participants who did not complete 2 or more diet questionnaires
 data <- data %>%
     filter(ques_comp_n >= 2)
+
 
 # excluding participants who have had liver cancer before recruitment:
 # when running this code, I only end up with 15 events :'(
@@ -228,6 +230,7 @@ data <- data %>%
                !(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date1) < as.Date(baseline_start_date)) &
                !(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date2) < as.Date(baseline_start_date)) &
                !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date)))
+
 
 # creating dataset with only liver cancer diagnoses after baseline:
 
