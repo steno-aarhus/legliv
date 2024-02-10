@@ -383,3 +383,56 @@ table1_liv %>%
 
 table1_liv %>%
     summary()
+
+
+# Etnicity
+
+table1 <- data %>%
+    select(ethnicity)
+
+table1 %>%
+    group_by(ethnicity) %>%
+    summarise() %>%
+    print(n=30)
+
+# Recoding variables similar to UKB Showcase variables:
+table1 <- table1 %>%
+    mutate(ethnicity2 = case_when(
+        ethnicity %in% c("White", "British", "Irish", "Any other white background") ~ "White",
+        ethnicity %in% c("Mixed", "White and Black Caribbean", "White and Black African", "White and Asian", "Any other mixed background") ~ "Mixed",
+        ethnicity %in% c("Asian or Asian British", "Indian", "Pakistani", "Bangladeshi", "Any other Asian background") ~ "Asian or Asian British",
+        ethnicity %in% c("Black or Black British", "Caribbean", "African", "Any other Black background") ~ "Black or Black British",
+        TRUE ~ as.character(ethnicity)
+    ))
+
+table1 %>%
+    group_by() %>%
+    count(ethnicity2) %>%
+    mutate(percentage = n / sum(n) * 100) %>%
+    print()
+
+# For liver cancer
+
+table1_liv <- data_liver %>%
+    select(ethnicity)
+
+table1_liv %>%
+    group_by(ethnicity) %>%
+    summarise() %>%
+    print(n=30)
+
+# Recoding variables similar to UKB Showcase variables:
+table1_liv <- table1_liv %>%
+    mutate(ethnicity2 = case_when(
+        ethnicity %in% c("White", "British", "Irish", "Any other white background") ~ "White",
+        ethnicity %in% c("Mixed", "White and Black Caribbean", "White and Black African", "White and Asian", "Any other mixed background") ~ "Mixed",
+        ethnicity %in% c("Asian or Asian British", "Indian", "Pakistani", "Bangladeshi", "Any other Asian background") ~ "Asian or Asian British",
+        ethnicity %in% c("Black or Black British", "Caribbean", "African", "Any other Black background") ~ "Black or Black British",
+        TRUE ~ as.character(ethnicity)
+    ))
+
+table1_liv %>%
+    group_by() %>%
+    count(ethnicity2) %>%
+    mutate(percentage = n / sum(n) * 100) %>%
+    print()
