@@ -6,6 +6,10 @@ library(stringr) # for renaming several columns at once
 
 ukb_dataset <- data
 
+# removing participants who did not complete 2 or more diet questionnaires
+data <- data %>%
+  filter(p20077 >= 2)
+
 # renaming variables to appropriate names
 data <- data %>%
     rename(sex = p31,
@@ -23,6 +27,16 @@ data <- data %>%
            age_recruit = p21022,
            phys_acti = p22040_i0,
            tdi = p22189,
+           food_weight0 = p26000_i0,
+           food_weight1 = p26000_i1,
+           food_weight2 = p26000_i2,
+           food_weight3 = p26000_i3,
+           food_weight4 = p26000_i4,
+           food_energy0 = p26002_i0,
+           food_energy1 = p26002_i1,
+           food_energy2 = p26002_i2,
+           food_energy3 = p26002_i3,
+           food_energy4 = p26002_i4,
            alcohol0 = p26030_i0,
            alcohol1 = p26030_i1,
            alcohol2 = p26030_i2,
@@ -33,6 +47,11 @@ data <- data %>%
            beef2 = p26066_i2,
            beef3 = p26066_i3,
            beef4 = p26066_i4,
+           soy_yog0 = p26086_i0,
+           soy_yog1 = p26086_i1,
+           soy_yog2 = p26086_i2,
+           soy_yog3 = p26086_i3,
+           soy_yog4 = p26086_i4,
            lamb0 = p26100_i0,
            lamb1 = p26100_i1,
            lamb2 = p26100_i2,
@@ -63,6 +82,21 @@ data <- data %>%
            proc_meat2 = p26122_i2,
            proc_meat3 = p26122_i3,
            proc_meat4 = p26122_i4,
+           soy_milk0 = p26136_i0,
+           soy_milk1 = p26136_i1,
+           soy_milk2 = p26136_i2,
+           soy_milk3 = p26136_i3,
+           soy_milk4 = p26136_i4,
+           soy_meat0 = p26137_i0,
+           soy_meat1 = p26137_i1,
+           soy_meat2 = p26137_i2,
+           soy_meat3 = p26137_i3,
+           soy_meat4 = p26137_i4,
+           veg_dip0 = p26144_i0,
+           veg_dip1 = p26144_i1,
+           veg_dip2 = p26144_i2,
+           veg_dip3 = p26144_i3,
+           veg_dip4 = p26144_i4,
            dead_date = p40000_i0, # p40000_i1 is empty
            dead_cause = p40001_i0, # p40001_i1 is empty
            cancer_date0 = p40005_i0,
@@ -82,16 +116,6 @@ data <- data %>%
            icd9 = p41271,
            opcs4 = p41272,
            opcs3 = p41273,
-           food_weig0 = p100001_i0,
-           food_weig1 = p100001_i1,
-           food_weig2 = p100001_i2,
-           food_weig3 = p100001_i3,
-           food_weig4 = p100001_i4,
-           food_ener0 = p100002_i0,
-           food_ener1 = p100002_i1,
-           food_ener2 = p100002_i2,
-           food_ener3 = p100002_i3,
-           food_ener4 = p100002_i4,
            ques_comp_t0 = p105010_i0,
            ques_comp_t1 = p105010_i1,
            ques_comp_t2 = p105010_i2,
@@ -99,9 +123,8 @@ data <- data %>%
            ques_comp_t4 = p105010_i4
     )
 
-# removing participants who did not complete 2 or more diet questionnaires
 data <- data %>%
-    filter(ques_comp_n >= 2)
+  rename_with(~str_replace(., "p41280", "icd10d"), starts_with("p41280_a"))
 
 
 # excluding participants who have had liver cancer before recruitment:
@@ -129,11 +152,11 @@ data <- data %>%
         red_meat2 = beef2 + lamb2 + pork2 + offal2,
         red_meat3 = beef3 + lamb3 + pork3 + offal3,
         red_meat4 = beef4 + lamb4 + pork4 + offal4,
-        legumes0 = pulses0 + peas_corn0*0.5, #assuming equal amounts of peas and corn
-        legumes1 = pulses1 + peas_corn1*0.5,
-        legumes2 = pulses2 + peas_corn2*0.5,
-        legumes3 = pulses3 + peas_corn3*0.5,
-        legumes4 = pulses4 + peas_corn4*0.5,
+        legumes0 = pulses0 + soy_meat0 + soy_milk0 + soy_yog0 + veg_dip0*0.5 + peas_corn0*0.5, #assuming equal amounts of peas and corn / hummus and guacamole
+        legumes1 = pulses1 + soy_meat1 + soy_milk1 + soy_yog1 + veg_dip1*0.5 + peas_corn1*0.5,
+        legumes2 = pulses2 + soy_meat2 + soy_milk2 + soy_yog2 + veg_dip2*0.5 + peas_corn2*0.5,
+        legumes3 = pulses3 + soy_meat3 + soy_milk3 + soy_yog3 + veg_dip3*0.5 + peas_corn3*0.5,
+        legumes4 = pulses4 + soy_meat4 + soy_milk4 + soy_yog4 + veg_dip4*0.5 + peas_corn4*0.5,
         red_proc_meat0 = red_meat0 + proc_meat0,
         red_proc_meat1 = red_meat1 + proc_meat1,
         red_proc_meat2 = red_meat2 + proc_meat2,
@@ -147,8 +170,10 @@ data <- data %>%
            -matches("^lamb\\d+$"),
            -matches("^pork\\d+$"),
            -matches("^offal\\d+$"),
-           -matches("^peas\\d+$"),
-           -matches("^pulses\\d+$")
+           -matches("^soy_yog\\d+$"),
+           -matches("^soy_milk\\d+$"),
+           -matches("^soy_meat\\d+$"),
+           -matches("^veg_dip\\d+$")
            )
 
 # Merging birth year and month of birth into one column:
@@ -172,6 +197,7 @@ data <- data %>%
 data$birth <- as.Date(paste0(data$birth, "-15"))
 
 # Removing specific time stamp from date of completed questionnaires:
+# (May be irrelevant)
 
 data <- data %>%
     mutate(ques_comp_t0 = substr(ques_comp_t0, 1, 10),
@@ -203,6 +229,7 @@ data <- data %>%
     # Create a lagged column to find the last completed questionnaire
     mutate(last_questionnaire_date = lag(completion_date)) %>%
     # Filter participants who completed >= 2 questionnaires
+    # (may be irrelevant as data are already filtered for this)
     filter(!is.na(last_questionnaire_date)) %>%
     # Keep only the last completed questionnaire for each participant
     filter(is.na(lead(completion_date))) %>%
@@ -211,13 +238,15 @@ data <- data %>%
     select(-starts_with("ques_comp_t"))
 
 # Creating age at baseline:
-data <- data %>%
-    mutate(age_at_baseline = year(baseline_start_date) - year(birth) -
-               ifelse(month(baseline_start_date) < month(birth) |
-                          (month(baseline_start_date) == month(birth) &
-                               day(baseline_start_date) < day(birth)), 1, 0))
+# (Takes a long time to load)
+#data <- data %>%
+ #   mutate(age_at_baseline = year(baseline_start_date) - year(birth) -
+  #             ifelse(month(baseline_start_date) < month(birth) |
+   #                       (month(baseline_start_date) == month(birth) &
+    #                           day(baseline_start_date) < day(birth)), 1, 0))
 
-# removing ICD10 and ICD 9 date of first diagnosis after date of baseline (maybe not needed)
+# removing ICD10 and ICD 9 date of first diagnosis after date of baseline
+#(maybe not needed)
 
 #filtered_data <- data_liver %>%
  #   mutate(across(starts_with("p41280_a"), ~ replace(., . > baseline_start_date, NA)),
