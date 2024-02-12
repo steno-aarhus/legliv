@@ -1,4 +1,12 @@
 
+# removing ICD10 and ICD 9 date of first diagnosis after date of baseline
+#(maybe not needed)
+
+#filtered_data <- data_liver %>%
+#   mutate(across(starts_with("p41280_a"), ~ replace(., . > baseline_start_date, NA)),
+#         across(starts_with("p41281_a"), ~ replace(., . > baseline_start_date, NA)))
+
+
 #WARNING runs for a very long time when applied.
 
 # Function to separate multiple ICD codes in a cell
