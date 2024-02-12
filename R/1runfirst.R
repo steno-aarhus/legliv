@@ -27,76 +27,6 @@ data <- data %>%
            age_recruit = p21022,
            phys_acti = p22040_i0,
            tdi = p22189,
-           food_weight0 = p26000_i0,
-           food_weight1 = p26000_i1,
-           food_weight2 = p26000_i2,
-           food_weight3 = p26000_i3,
-           food_weight4 = p26000_i4,
-           food_energy0 = p26002_i0,
-           food_energy1 = p26002_i1,
-           food_energy2 = p26002_i2,
-           food_energy3 = p26002_i3,
-           food_energy4 = p26002_i4,
-           alcohol0 = p26030_i0,
-           alcohol1 = p26030_i1,
-           alcohol2 = p26030_i2,
-           alcohol3 = p26030_i3,
-           alcohol4 = p26030_i4,
-           beef0 = p26066_i0,
-           beef1 = p26066_i1,
-           beef2 = p26066_i2,
-           beef3 = p26066_i3,
-           beef4 = p26066_i4,
-           soy_yog0 = p26086_i0,
-           soy_yog1 = p26086_i1,
-           soy_yog2 = p26086_i2,
-           soy_yog3 = p26086_i3,
-           soy_yog4 = p26086_i4,
-           lamb0 = p26100_i0,
-           lamb1 = p26100_i1,
-           lamb2 = p26100_i2,
-           lamb3 = p26100_i3,
-           lamb4 = p26100_i4,
-           pulses0 = p26101_i0,
-           pulses1 = p26101_i1,
-           pulses2 = p26101_i2,
-           pulses3 = p26101_i3,
-           pulses4 = p26101_i4,
-           offal0 = p26104_i0,
-           offal1 = p26104_i1,
-           offal2 = p26104_i2,
-           offal3 = p26104_i3,
-           offal4 = p26104_i4,
-           peas_corn0 = p26115_i0,
-           peas_corn1 = p26115_i1,
-           peas_corn2 = p26115_i2,
-           peas_corn3 = p26115_i3,
-           peas_corn4 = p26115_i4,
-           pork0 = p26117_i0,
-           pork1 = p26117_i1,
-           pork2 = p26117_i2,
-           pork3 = p26117_i3,
-           pork4 = p26117_i4,
-           proc_meat0 = p26122_i0,
-           proc_meat1 = p26122_i1,
-           proc_meat2 = p26122_i2,
-           proc_meat3 = p26122_i3,
-           proc_meat4 = p26122_i4,
-           soy_milk0 = p26136_i0,
-           soy_milk1 = p26136_i1,
-           soy_milk2 = p26136_i2,
-           soy_milk3 = p26136_i3,
-           soy_milk4 = p26136_i4,
-           soy_meat0 = p26137_i0,
-           soy_meat1 = p26137_i1,
-           soy_meat2 = p26137_i2,
-           soy_meat3 = p26137_i3,
-           soy_meat4 = p26137_i4,
-           veg_dip0 = p26144_i0,
-           veg_dip1 = p26144_i1,
-           veg_dip2 = p26144_i2,
-           veg_dip3 = p26144_i3,
-           veg_dip4 = p26144_i4,
            dead_date = p40000_i0, # p40000_i1 is empty
            dead_cause = p40001_i0, # p40001_i1 is empty
            cancer_date0 = p40005_i0,
@@ -126,131 +56,49 @@ data <- data %>%
 data <- data %>%
   rename_with(~str_replace(., "p41280", "icd10d"), starts_with("p41280_a"))
 
-
-# excluding participants who have had liver cancer before recruitment:
-# when running this code, I only end up with 15 events :'(
-
-# data <- data %>%
-#    filter(!grepl("C22", icd10))
-
-# Removing follow-up values where only baseline values are needed:
-
-data <- data %>%
-    select(-contains('_i'))
-
 # Removing columns where all rows = NA:
 
 data <- data %>%
     select(where(~ !all(is.na(.))))
 
-# creating food group variables:
+  # creating id column:
+data <- data %>%
+  mutate(id = 1:nrow(data))
+
+# Creating baseline start date:
+  # Removing specific time stamp from date of completed questionnaires:
 
 data <- data %>%
-    mutate(
-        red_meat0 = beef0 + lamb0 + pork0 + offal0,
-        red_meat1 = beef1 + lamb1 + pork1 + offal1,
-        red_meat2 = beef2 + lamb2 + pork2 + offal2,
-        red_meat3 = beef3 + lamb3 + pork3 + offal3,
-        red_meat4 = beef4 + lamb4 + pork4 + offal4,
-        legumes0 = pulses0 + soy_meat0 + soy_milk0 + soy_yog0 + veg_dip0*0.5 + peas_corn0*0.5, #assuming equal amounts of peas and corn / hummus and guacamole
-        legumes1 = pulses1 + soy_meat1 + soy_milk1 + soy_yog1 + veg_dip1*0.5 + peas_corn1*0.5,
-        legumes2 = pulses2 + soy_meat2 + soy_milk2 + soy_yog2 + veg_dip2*0.5 + peas_corn2*0.5,
-        legumes3 = pulses3 + soy_meat3 + soy_milk3 + soy_yog3 + veg_dip3*0.5 + peas_corn3*0.5,
-        legumes4 = pulses4 + soy_meat4 + soy_milk4 + soy_yog4 + veg_dip4*0.5 + peas_corn4*0.5,
-        red_proc_meat0 = red_meat0 + proc_meat0,
-        red_proc_meat1 = red_meat1 + proc_meat1,
-        red_proc_meat2 = red_meat2 + proc_meat2,
-        red_proc_meat3 = red_meat3 + proc_meat3,
-        red_proc_meat4 = red_meat4 + proc_meat4,
-    )
+  mutate(ques_comp_t0 = substr(ques_comp_t0, 1, 10),
+         ques_comp_t1 = substr(ques_comp_t1, 1, 10),
+         ques_comp_t2 = substr(ques_comp_t2, 1, 10),
+         ques_comp_t3 = substr(ques_comp_t3, 1, 10),
+         ques_comp_t4 = substr(ques_comp_t4, 1, 10)
+  )
 
-# Removing irrelevant variables:
-data <- data %>%
-    select(-matches("^beef\\d+$"),
-           -matches("^lamb\\d+$"),
-           -matches("^pork\\d+$"),
-           -matches("^offal\\d+$"),
-           -matches("^soy_yog\\d+$"),
-           -matches("^soy_milk\\d+$"),
-           -matches("^soy_meat\\d+$"),
-           -matches("^veg_dip\\d+$")
-           )
-
-# Merging birth year and month of birth into one column:
-
-month_names <- c("January", "February", "March", "April", "May", "June",
-                 "July", "August", "September", "October", "November", "December")
+  # Create a new column with the baseline start date
 
 data <- data %>%
-    mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
-
-data <- data %>%
-    unite(birth, birth_year, month_of_birth_num, sep = "-")
-
-remove(month_names)
-
-data <- data %>%
-    select(-month_of_birth)
-
-# adding 15 as DD for all participants:
-
-data$birth <- as.Date(paste0(data$birth, "-15"))
-
-# Removing specific time stamp from date of completed questionnaires:
-# (May be irrelevant)
-
-data <- data %>%
-    mutate(ques_comp_t0 = substr(ques_comp_t0, 1, 10),
-           ques_comp_t1 = substr(ques_comp_t1, 1, 10),
-           ques_comp_t2 = substr(ques_comp_t2, 1, 10),
-           ques_comp_t3 = substr(ques_comp_t3, 1, 10),
-           ques_comp_t4 = substr(ques_comp_t4, 1, 10)
-    )
-
-# Creating baseline age:
-    # creating id column:
-data <- data %>%
-    mutate(id = 1:nrow(data))
-
-
-    # Create a new column with the baseline start date
-
-data <- data %>%
-    # Gather questionnaire dates into long format
-    pivot_longer(cols = starts_with("ques_comp_t"),
-                 names_to = "questionnaire",
-                 values_to = "completion_date") %>%
-    # Remove rows with NA completion dates
-    filter(!is.na(completion_date)) %>%
-    # Group by participant_id
-    group_by(id) %>%
-    # Arrange by completion date within each participant
-    arrange(completion_date) %>%
-    # Create a lagged column to find the last completed questionnaire
-    mutate(last_questionnaire_date = lag(completion_date)) %>%
-    # Filter participants who completed >= 2 questionnaires
-    # (may be irrelevant as data are already filtered for this)
-    filter(!is.na(last_questionnaire_date)) %>%
-    # Keep only the last completed questionnaire for each participant
-    filter(is.na(lead(completion_date))) %>%
-    # Rename the columns to match the desired output
-    rename(baseline_start_date = completion_date) %>%
-    select(-starts_with("ques_comp_t"))
-
-# Creating age at baseline:
-# (Takes a long time to load)
-#data <- data %>%
- #   mutate(age_at_baseline = year(baseline_start_date) - year(birth) -
-  #             ifelse(month(baseline_start_date) < month(birth) |
-   #                       (month(baseline_start_date) == month(birth) &
-    #                           day(baseline_start_date) < day(birth)), 1, 0))
-
-# removing ICD10 and ICD 9 date of first diagnosis after date of baseline
-#(maybe not needed)
-
-#filtered_data <- data_liver %>%
- #   mutate(across(starts_with("p41280_a"), ~ replace(., . > baseline_start_date, NA)),
-  #         across(starts_with("p41281_a"), ~ replace(., . > baseline_start_date, NA)))
+  # Gather questionnaire dates into long format
+  pivot_longer(cols = starts_with("ques_comp_t"),
+               names_to = "questionnaire",
+               values_to = "completion_date") %>%
+  # Remove rows with NA completion dates
+  filter(!is.na(completion_date)) %>%
+  # Group by participant_id
+  group_by(id) %>%
+  # Arrange by completion date within each participant
+  arrange(completion_date) %>%
+  # Create a lagged column to find the last completed questionnaire
+  mutate(last_questionnaire_date = lag(completion_date)) %>%
+  # Filter participants who completed >= 2 questionnaires
+  # (may be irrelevant as data are already filtered for this)
+  filter(!is.na(last_questionnaire_date)) %>%
+  # Keep only the last completed questionnaire for each participant
+  filter(is.na(lead(completion_date))) %>%
+  # Rename the columns to match the desired output
+  rename(baseline_start_date = completion_date) %>%
+  select(-starts_with("ques_comp_t"))
 
 # Removing all participants who have had liver cancer before baseline :
 
