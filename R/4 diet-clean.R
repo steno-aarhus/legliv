@@ -1,7 +1,5 @@
 # Average dietary intake of food groups -----------------------------------
 calculate_food_intake <- function(diet_data) {
-    data <- data %>%
-        select(-id) # Or else function wont work
     # estimating average daily and weekly intakes of food groups in g
     diet_data <- data %>%
         #include foods from 24h recalls, number of recalls, and id's
@@ -114,6 +112,9 @@ calculate_food_intake <- function(diet_data) {
             proc_meat_total = rowSums(select(., starts_with("p26122")), na.rm = TRUE),
             proc_meat_daily = proc_meat_total/ques_comp_n,
             proc_meat_weekly = proc_meat_daily * 7,
+            # Red & processed meat:
+            red_proc_meat_total = red_meat_total + proc_meat_total,
+            red_proc_meat_daily = red_proc_meat_total/ques_comp_n,
             # poultry
             poultry_total = rowSums(select(., starts_with("p26121") | starts_with("p26069")), na.rm = TRUE),
             poultry_daily = poultry_total/ques_comp_n,
@@ -134,9 +135,6 @@ calculate_food_intake <- function(diet_data) {
 
 diet_data <- calculate_food_intake(diet_data)
 
-data <- data %>%
-    select(-id)
 
 diet_data %>%
-    select(proc_meat_daily, legume_daily, red_meat_daily, alc_beverage_daily) %>%
     summary()
