@@ -38,10 +38,10 @@ data <- data %>%
            cancer_diag2 = p40006_i2,
            cancer_diag3 = p40006_i3, # same as p40005
            age_dead = p40007_i0, # p40007_i1 is empty
-           cancer_age0 = p40008_i0,
-           cancer_age1 = p40008_i1,
-           cancer_age2 = p40008_i2,
-           cancer_age3 = p40008_i3, # same as p40005
+           age_cancer0 = p40008_i0,
+           age_cancer1 = p40008_i1,
+           age_cancer2 = p40008_i2,
+           age_cancer3 = p40008_i3, # same as p40005
            icd10 = p41270,
            icd9 = p41271,
            opcs4 = p41272,
@@ -211,7 +211,7 @@ data <- data %>%
   mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
 
 data <- data %>%
-  unite(birth, birth_year, month_of_birth_num, sep = "-")
+  unite(date_birth, birth_year, month_of_birth_num, sep = "-")
 
 remove(month_names)
 
@@ -220,7 +220,7 @@ data <- data %>%
 
 # adding 15 as DD for all participants:
 
-data$birth <- as.Date(paste0(data$birth, "-15"))
+data$date_birth <- as.Date(paste0(data$date_birth, "-15"))
 
 # Removing specific time stamp from date of completed questionnaires:
 # (May be irrelevant)
@@ -273,15 +273,17 @@ data <- data %>%
   rename(baseline_start_date = completion_date) %>%
   ungroup()
 
-# Creating baseline age:
-
 # Creating age at baseline:
-# (Takes a long time to load)
 data <- data %>%
-  mutate(age_at_baseline = year(baseline_start_date) - year(birth) -
-           ifelse(month(baseline_start_date) < month(birth) |
-                    (month(baseline_start_date) == month(birth) &
-                       day(baseline_start_date) < day(birth)), 1, 0))
+  mutate(age_at_baseline = year(baseline_start_date) - year(date_birth) -
+           ifelse(month(baseline_start_date) < month(date_birth) |
+                    (month(baseline_start_date) == month(date_birth) &
+                       day(baseline_start_date) < day(date_birth)), 1, 0))
+
+# Creating age af loss to follow-up:
+
+data <- data %>%
+  mutate(age_l2fu = as.numeric(difftime(l2fu_d, date_birth, units = "days")) / 365.25)
 
 # Removing all participants who have had liver cancer before baseline :
 
@@ -292,6 +294,20 @@ data <- data %>%
                !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date)))
 
 
+# Converting other cancer and corresponding diagnosis date to NA's:
+
+data <- data %>%
+  mutate(
+    cancer_diag0 = if_else(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_diag0, NA),
+    cancer_diag1 = if_else(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_diag1, NA),
+    cancer_diag2 = if_else(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_diag2, NA),
+    cancer_diag3 = if_else(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_diag3, NA),
+    cancer_date0 = if_else(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date0, NA),
+    cancer_date1 = if_else(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date1, NA),
+    cancer_date2 = if_else(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date2, NA),
+    cancer_date3 = if_else(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date3, NA)
+  )
+
 # creating dataset with only liver cancer diagnoses after baseline:
 
 data_liver <- data %>%
@@ -300,11 +316,3 @@ data_liver <- data %>%
                cancer_diag2 == 'C22.0 Liver cell carcinoma' | cancer_diag2 == 'C22.1 Intrahepatic bile duct carcinoma' |
                cancer_diag3 == 'C22.0 Liver cell carcinoma' | cancer_diag3 == 'C22.1 Intrahepatic bile duct carcinoma'
     )
-
-data %>%
-  select(ends_with("daily")) %>%
-  summary()
-
-data_liver %>%
-  select(ends_with("daily")) %>%
-  summary()
