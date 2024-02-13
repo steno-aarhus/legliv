@@ -36,7 +36,8 @@ separate_icd <- function(df, column_name, new_column_prefix, max_columns = 131, 
 # Apply the function to your dataframe
 data <- separate_icd(df = data, column_name = "icd10", new_column_prefix = "icd10", max_columns = 131)
 
-
+# Looked through data: 39 columns icd10 codes in a130, going from R to Z
+# So i do not miss out on any icd10 codes relevant to my cohort
 
 data %>%
     filter(!is.na(icd10_a130)) %>%
