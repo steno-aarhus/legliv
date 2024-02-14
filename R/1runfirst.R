@@ -294,6 +294,7 @@ data <- data %>%
                !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date)))
 
 
+# Removing participants who were lost to follow-up before baseline:
 data <- data %>%
   filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date)
 
@@ -315,6 +316,25 @@ data <- data %>%
     age_cancer2 = if_else(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer2, NA),
     age_cancer3 = if_else(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer3, NA)
   )
+
+# Creating status, status date and status age:
+data <- data %>%
+  mutate(
+    earliest_date = pmin(dead_date, cancer_date0, cancer_date1, cancer_date2, cancer_date3, l2fu_d, na.rm = TRUE),
+    status = case_when(
+      earliest_date == cancer_date0 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == cancer_date1 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == cancer_date2 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == cancer_date3 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "lost to follow-up",
+      earliest_date == dead_date ~ "dead",
+      TRUE ~ "alive"
+    ),
+    status_date = earliest_date,
+    status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25  # Calculating age in years
+  ) %>%
+  select(-earliest_date)
+
 
 # creating dataset with only liver cancer diagnoses after baseline:
 
