@@ -280,7 +280,7 @@ data <- data %>%
                     (month(baseline_start_date) == month(date_birth) &
                        day(baseline_start_date) < day(date_birth)), 1, 0))
 
-# Creating age af loss to follow-up:
+# Creating age at loss to follow-up:
 
 data <- data %>%
   mutate(age_l2fu = as.numeric(difftime(l2fu_d, date_birth, units = "days")) / 365.25)
@@ -294,7 +294,11 @@ data <- data %>%
                !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date)))
 
 
-# Converting other cancer and corresponding diagnosis date to NA's:
+data <- data %>%
+  filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date)
+
+
+# Converting other cancer and corresponding diagnosis date and age at cancer to NA's:
 
 data <- data %>%
   mutate(
@@ -305,7 +309,11 @@ data <- data %>%
     cancer_date0 = if_else(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date0, NA),
     cancer_date1 = if_else(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date1, NA),
     cancer_date2 = if_else(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date2, NA),
-    cancer_date3 = if_else(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date3, NA)
+    cancer_date3 = if_else(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), cancer_date3, NA),
+    age_cancer0 = if_else(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer0, NA),
+    age_cancer1 = if_else(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer1, NA),
+    age_cancer2 = if_else(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer2, NA),
+    age_cancer3 = if_else(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer3, NA)
   )
 
 # creating dataset with only liver cancer diagnoses after baseline:
