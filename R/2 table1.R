@@ -156,7 +156,7 @@ table1_liv %>%
 # physical activity
 
 # Creating MET-categories:
-cut_points <- c(-Inf, 600, 1200, Inf)
+cut_points <- c(-Inf, 600, 3000, Inf)
 labels <- c( "low MET", "med MET", "high MET")
 
 #data with only MET-variable:
@@ -342,6 +342,10 @@ table1 %>%
     stat_qq() +
     stat_qq_line()
 
+table1 %>%
+    select(wc) %>%
+    summary()
+
 # smiling line, not normal distributed. log-transforming:
 
 table1 <- table1 %>%
@@ -381,7 +385,6 @@ table1_liv %>%
 
 table1_liv %>%
     summary()
-
 
 # Etnicity
 
@@ -563,7 +566,7 @@ data_disease %>%
 # K.76.0 Fatty (change of) liver, not elsewhere classified
 
 
-# cholecystectomy
+# cholecystectomy J.18
 
 # Run opcs4 script first!
 data_surg <- data %>%

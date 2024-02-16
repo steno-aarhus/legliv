@@ -53,6 +53,28 @@ data <- data %>%
            ques_comp_t4 = p105010_i4
     )
 
+# Recoding education to high, intermediate, or low:
+data <- data %>%
+  mutate(education = case_when(
+    grepl("College", education, ignore.case = TRUE) ~ "high",
+    grepl("A levels/AS levels", education, ignore.case = TRUE) ~ "intermediate",
+    grepl("O levels", education, ignore.case = TRUE) ~ "intermediate",
+    grepl("CSEs", education, ignore.case = TRUE) ~ "low",
+    grepl("NVQ or HND", education, ignore.case = TRUE) ~ "low",
+    grepl("Other professional", education, ignore.case = TRUE) ~ "low",
+    grepl("None of the above", education, ignore.case = TRUE) ~ "low",
+    TRUE ~ as.character(education)
+  ))
+
+# BMI categories:
+cut_points <- c(-Inf, 24.99, 29.99, Inf)
+labels <- c( "Normal weight", "Overweight", "Obese")
+
+data <- data %>%
+  mutate(bmi_category = cut(bmi, breaks = cut_points, labels = labels, include.lowest = TRUE))
+
+remove(cut_points)
+remove(labels)
 
 # Function with food group variables:
 # Average dietary intake of food groups -----------------------------------
@@ -320,18 +342,21 @@ data <- data %>%
 # Creating status, status date and status age:
 data <- data %>%
   mutate(
-    earliest_date = pmin(dead_date, cancer_date0, cancer_date1, cancer_date2, cancer_date3, l2fu_d, na.rm = TRUE),
+    earliest_date = pmin(dead_date, cancer_date0, cancer_date1, cancer_date2, cancer_date3, l2fu_d, na.rm = TRUE) %>%
+      coalesce(as.Date("2022-12-31")),
     status = case_when(
       earliest_date == cancer_date0 & earliest_date > baseline_start_date ~ "liver cancer",
       earliest_date == cancer_date1 & earliest_date > baseline_start_date ~ "liver cancer",
       earliest_date == cancer_date2 & earliest_date > baseline_start_date ~ "liver cancer",
       earliest_date == cancer_date3 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "lost to follow-up",
-      earliest_date == dead_date ~ "dead",
-      TRUE ~ "alive"
+      earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "censured",
+      earliest_date == dead_date ~ "censured",
+      TRUE ~ "censured"
     ),
     status_date = earliest_date,
-    status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25  # Calculating age in years
+    status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
+    status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25,  # Calculating age in years
+    time = status_age - age_at_baseline
   ) %>%
   select(-earliest_date)
 
