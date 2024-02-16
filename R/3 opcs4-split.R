@@ -21,11 +21,10 @@ separate_opcs4 <- function(df, column_name, new_column_prefix, max_columns = 73,
         separate(!!sym(column_name), into = c("opcs4_a0", icd_columns), sep = "\\|", fill = "right") %>%
         mutate(across(starts_with(new_column_prefix), str_trim))
 
-    data <- data %>%
-        mutate(opcs4_a0 = na_if(opcs4_a0, ""))
 }
 
 # Apply the function to your dataframe
 data <- separate_opcs4(df = data, column_name = "opcs4", new_column_prefix = "opcs4", max_columns = 73)
 
-
+data <- data %>%
+    mutate(opcs4_a0 = na_if(opcs4_a0, ""))
