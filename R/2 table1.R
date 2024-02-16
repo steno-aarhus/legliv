@@ -124,8 +124,6 @@ table1_liv %>%
     stat_qq()+
     stat_qq_line()
 
-install.packages('parameters')
-library(parameters)
 
 wilcox.test(table1$tdi, table1_liv$tdi ) |>
     parameters()
