@@ -53,6 +53,9 @@ data <- data %>%
            ques_comp_t4 = p105010_i4
     )
 
+data <- data %>%
+  mutate(spouse = ifelse(spouse == 1, "No", "Yes"))
+
 # Recoding education to high, intermediate, or low:
 data <- data %>%
   mutate(education = case_when(
@@ -203,7 +206,10 @@ calculate_food_intake <- function(data) {
       fish_weekly = fish_daily * 7,
       # total weight of all foods
       total_weight_food = rowSums(select(., starts_with("p26000")), na.rm = TRUE),
-      total_weight_food_daily = total_weight_food/ques_comp_n
+      total_weight_food_daily = total_weight_food/ques_comp_n,
+      # total energy of all foods and beverages
+      total_energy_food = rowSums(select(., starts_with("p26002")), na.rm = TRUE),
+      total_energy_food_daily = total_energy_food/ques_comp_n,
     )
   data <- data %>%
     select(-starts_with("p26"), -ends_with("weekly"), -ends_with("total"), -ends_with("_n"))
