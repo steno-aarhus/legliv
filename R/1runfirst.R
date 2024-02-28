@@ -54,7 +54,9 @@ data <- data %>%
     )
 
 data <- data %>%
-  mutate(spouse = ifelse(spouse == 1, "No", "Yes"))
+  mutate(spouse = ifelse(spouse == 1, "No", "Yes"),
+         smoking = ifelse(smoking == "Prefer not to answer", "Never", smoking))
+
 
 # Recoding education to high, intermediate, or low:
 data <- data %>%
@@ -66,8 +68,33 @@ data <- data %>%
     grepl("NVQ or HND", education, ignore.case = TRUE) ~ "low",
     grepl("Other professional", education, ignore.case = TRUE) ~ "low",
     grepl("None of the above", education, ignore.case = TRUE) ~ "low",
+    grepl("Prefer not to answer", education, ignore.case = TRUE) ~ "low",
     TRUE ~ as.character(education)
   ))
+
+# Ethnicity:
+data <- data %>%
+  mutate(
+    ethnicity = case_when(ethnicity == "African" ~ "Other", #check the layers to the variable
+                           ethnicity == "Any other Black background" ~ "Other",
+                           ethnicity == "Asian or Asian British" ~ "Other",
+                           ethnicity == "Bangladeshi" ~ "Other",
+                           ethnicity == "Chinese" ~ "Other",
+                           ethnicity == "Indian" ~ "Other",
+                           ethnicity == "Pakistani" ~ "Other",
+                           ethnicity == "Any other Asian background" ~ "Other",
+                           ethnicity ==  "British" ~ "White",
+                           ethnicity ==  "Any other white background" ~ "White",
+                           ethnicity ==  "Irish" ~ "White",
+                           ethnicity ==  "White" ~ "White",
+                           ethnicity ==  "White and Asian" ~ "Other",
+                           ethnicity ==  "White and Black African" ~ "Other",
+                           ethnicity ==  "White and Black Caribbean" ~ "Other",
+                           ethnicity ==  "Any other mixed background" ~ "Other",
+                           ethnicity ==  "Caribbean" ~ "Other",
+                           ethnicity ==  "Do not know" ~ "Other",
+                           ethnicity ==  "Other ethnic group" ~ "Other",
+                           ethnicity ==  "Prefer not to answer" ~ "Other"))
 
 # BMI categories:
 cut_points <- c(-Inf, 24.99, 29.99, Inf)
@@ -75,6 +102,13 @@ labels <- c( "Normal weight", "Overweight", "Obese")
 
 data <- data %>%
   mutate(bmi_category = cut(bmi, breaks = cut_points, labels = labels, include.lowest = TRUE))
+
+# Creating MET-categories:
+cut_points <- c(-Inf, 600, 3000, Inf)
+labels <- c( "low MET", "med MET", "high MET")
+
+data <- data %>%
+  mutate(phys_acti = cut(phys_acti, breaks = cut_points, labels = labels, include.lowest = TRUE))
 
 remove(cut_points)
 remove(labels)
