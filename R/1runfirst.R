@@ -126,18 +126,21 @@ calculate_food_intake <- function(data) {
                                               starts_with("p26073") | starts_with("p26075") |
                                               starts_with("p26068") | starts_with("p26083")), na.rm = TRUE),
       cereal_refined_daily = cereal_refined_total/ques_comp_n,
+      cereal_refined_daily_25 = (cereal_refined_total/ques_comp_n)/25,
       cereal_refined_weekly = cereal_refined_daily * 7,
       # whole-grain cereals
       whole_grain_total = rowSums(select(., starts_with("p26074") | starts_with("p26076") |
                                            starts_with("p26077") | starts_with("p26078") |
                                            starts_with("p26105") | starts_with("p26114")), na.rm = TRUE),
       whole_grain_daily = whole_grain_total/ques_comp_n,
+      whole_grain_daily_25 = (whole_grain_total/ques_comp_n)/25,
       whole_grain_weekly = whole_grain_daily * 7,
       # mixed dishes
       mixed_dish_total = rowSums(select(., starts_with("p26128") | starts_with("p26097") |
                                           starts_with("p26116") | starts_with("p26135") |
                                           starts_with("p26139")), na.rm = TRUE),
       mixed_dish_daily = mixed_dish_total/ques_comp_n,
+      mixed_dish_daily_25 = (mixed_dish_total/ques_comp_n)/25,
       mixed_dish_weekly = mixed_dish_daily * 7,
       # dairy
       dairy_total = rowSums(select(., starts_with("p26154") | starts_with("p26087") |
@@ -146,22 +149,26 @@ calculate_food_intake <- function(data) {
                                      starts_with("p26131") | starts_with("p26133") |
                                      starts_with("p26150")), na.rm = TRUE),
       dairy_daily = dairy_total/ques_comp_n,
+      dairy_daily_25 = (dairy_total/ques_comp_n)/25,
       dairy_weekly = dairy_daily * 7,
       # fats and spread
       fats_total = rowSums(select(., starts_with("p26112") | starts_with("p26062") |
                                     starts_with("p26063") | starts_with("p26155") |
                                     starts_with("p26110") | starts_with("p26111")), na.rm = TRUE),
       fats_daily = fats_total/ques_comp_n,
+      fats_daily_25 = (fats_total/ques_comp_n)/25,
       fats_weekly = fats_daily * 7,
       # fruit
       fruit_total = rowSums(select(., starts_with("p26089") | starts_with("p26090") |
                                      starts_with("p26091") | starts_with("p26092") |
                                      starts_with("p26093") | starts_with("p26094")), na.rm = TRUE),
       fruit_daily = fruit_total/ques_comp_n,
+      fruit_daily_25 = (fruit_total/ques_comp_n)/25,
       fruit_weekly = fruit_daily * 7,
       # nuts and seeds
       nut_total = rowSums(select(., starts_with("p26107") | starts_with("p26108")), na.rm = TRUE),
       nut_daily = nut_total/ques_comp_n,
+      nut_daily_25 = (nut_total/ques_comp_n)/25,
       nut_weekly = nut_daily*7,
       # vegetables
       veggie_total = rowSums(select(., starts_with("p26065") | starts_with("p26098") |
@@ -171,19 +178,23 @@ calculate_food_intake <- function(data) {
         rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + #assuming half hummus half guacamole
         rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE), #assuming half peas half corn
       veggie_daily = veggie_total/ques_comp_n,
+      veggie_daily_25 = (veggie_total/ques_comp_n)/25,
       veggie_weekly = veggie_daily * 7,
       # potatoes
       potato_total = rowSums(select(., starts_with("p26118") | starts_with("p26119") |
                                       starts_with("p26120")), na.rm = TRUE),
       potato_daily = potato_total/ques_comp_n,
+      potato_daily_25 = (potato_total/ques_comp_n)/25,
       potato_weekly = potato_daily * 7,
       # eggs
       egg_total = rowSums(select(., starts_with("p26088")), na.rm = TRUE),
       egg_daily = egg_total/ques_comp_n,
+      egg_daily_25 = (egg_total/ques_comp_n)/25,
       egg_weekly = egg_daily * 7,
       # meat substitutes
       meat_sub_total = rowSums(select(., starts_with("p26145")), na.rm = TRUE),
       meat_sub_daily = meat_sub_total/ques_comp_n,
+      meat_sub_daily_25 = (meat_sub_total/ques_comp_n)/25,
       meat_sub_weekly = meat_sub_daily * 7,
       # non-alcoholic beverages
       non_alc_beverage_total = rowSums(select(., starts_with("p26124") | starts_with("p26141") |
@@ -192,12 +203,14 @@ calculate_food_intake <- function(data) {
                                                 starts_with("p26095") | starts_with("p26126") |
                                                 starts_with("p26127")), na.rm = TRUE),
       non_alc_beverage_daily = non_alc_beverage_total/ques_comp_n,
+      non_alc_beverage_daily_25 = (non_alc_beverage_total/ques_comp_n)/25,
       non_alc_beverages_weekly = non_alc_beverage_daily * 7,
       # alcoholic beverages
       alc_beverage_total = rowSums(select(., starts_with("p26151") | starts_with("p26152") |
                                             starts_with("p26153") | starts_with("p26067") |
                                             starts_with("p26138")), na.rm = TRUE),
       alc_beverage_daily = alc_beverage_total/ques_comp_n,
+      alc_beverage_daily_25 = (alc_beverage_total/ques_comp_n)/25,
       alc_beverage_weekly = alc_beverage_daily * 7,
       # sugar, preserves, cakes & confectionery, snacks
       snack_total = rowSums(select(., starts_with("p26106") | starts_with("p26140") |
@@ -205,10 +218,12 @@ calculate_food_intake <- function(data) {
                                      starts_with("p26085") | starts_with("p26064") |
                                      starts_with("p26080")), na.rm = TRUE),
       snack_daily = snack_total/ques_comp_n,
-      Snack_weekly = snack_daily * 7,
+      snack_daily_25 = (snack_total/ques_comp_n)/25,
+      snack_weekly = snack_daily * 7,
       # Sauces & condiments
       sauce_total = rowSums(select(., starts_with("p26129") | starts_with("p26130")), na.rm = TRUE),
       sauce_daily = sauce_total/ques_comp_n,
+      sauce_daily_25 = (sauce_total/ques_comp_n)/25,
       sauce_weekly = sauce_daily * 7,
       # legumes
       legume_total = rowSums(select(., starts_with("p26086") | starts_with("p26101") |
@@ -216,6 +231,7 @@ calculate_food_intake <- function(data) {
         rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + #assuming half hummus half guacamole
         rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE), #assuming half peas half corn
       legume_daily = legume_total/ques_comp_n,
+      legume_daily_25 = (legume_total/ques_comp_n)/25,
       legume_weekly = legume_daily * 7,
       # red meats
       red_meat_total = rowSums(select(., starts_with("p26066") | starts_with("p26100") |
@@ -229,14 +245,17 @@ calculate_food_intake <- function(data) {
       # Red & processed meat:
       red_proc_meat_total = red_meat_total + proc_meat_total,
       red_proc_meat_daily = red_proc_meat_total/ques_comp_n,
+      red_proc_meat_daily_25 = (red_proc_meat_total/ques_comp_n)/25,
       # poultry
       poultry_total = rowSums(select(., starts_with("p26121") | starts_with("p26069")), na.rm = TRUE),
       poultry_daily = poultry_total/ques_comp_n,
+      poultry_daily_25 = (poultry_total/ques_comp_n)/25,
       poultry_weekly = poultry_daily * 7,
       # fish
       fish_total = rowSums(select(., starts_with("p26070") | starts_with("p26109") |
                                     starts_with("p26132") | starts_with("p26149")), na.rm = TRUE),
       fish_daily = fish_total/ques_comp_n,
+      fish_daily_25 = (fish_total/ques_comp_n)/25,
       fish_weekly = fish_daily * 7,
       # total weight of all foods
       total_weight_food = rowSums(select(., starts_with("p26000")), na.rm = TRUE),
