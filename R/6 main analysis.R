@@ -237,7 +237,7 @@ data %>%
     summary()
 
 model_pulse <- coxph(Surv(time = status_age, event = status=="liver cancer") ~
-                    pulse_daily_25 +
+                    pulse_daily_15 +
                     sex +
                     age_at_baseline +
                     total_weight_food_daily +
@@ -271,6 +271,9 @@ model_pulse <- coxph(Surv(time = status_age, event = status=="liver cancer") ~
                         nafld +
                         cystectomy,
                 data = data)
+
+model_pulse <- coxph(Surv(time = status_age, event = status=="liver cancer") ~ proc_meat_daily_25,
+                     data = data)
 
 model_pulse %>%
     parameters(exponentiate = T)
