@@ -279,10 +279,30 @@ model_pulse %>%
     parameters(exponentiate = T)
 
 
-fit <- coxph(Surv(time = time, event = status=="liver cancer") ~ rcs(legume_daily, 4),
+fit <- coxph(Surv(time = time, event = status=="liver cancer") ~ rcs(red_meat_daily, 4),
              data = data, ties='breslow')
 fit %>%
     parameters(exponentiate = T)
+
+termplot(fit, term=1, se=TRUE, col.term=1, col.se=1)
+
+# Extract coefficients for the spline terms
+coefficients <- coef(fit)
+
+# Extract the names of the coefficients
+coef_names <- names(coefficients)
+
+# Find the coefficients related to the spline terms
+spline_coef_names <- grep("legume_daily_25:", coef_names, value = TRUE)
+
+# Extract coefficients related to spline terms
+spline_coefs <- coefficients[spline_coef_names]
+
+# Calculate the knots from the coefficients
+knots <- -spline_coefs[-1] / spline_coefs[2]
+
+# Display the knots
+knots
 
 # Generate values of red_proc_meat_daily to cover the range of your data
 legume_daily_values <- seq(min(data$legume_daily), 50, length.out = 100)
