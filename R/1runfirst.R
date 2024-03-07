@@ -211,10 +211,12 @@ calculate_food_intake <- function(data) {
       # poultry
       poultry_daily = rowSums(select(., starts_with("p26121") | starts_with("p26069")), na.rm = TRUE)/ques_comp_n,
       poultry_daily_25 = poultry_daily/25,
+      poultry_daily_15 = poultry_daily/15,
       # fish
       fish_daily = rowSums(select(., starts_with("p26070") | starts_with("p26109") |
                                     starts_with("p26132") | starts_with("p26149")), na.rm = TRUE)/ques_comp_n,
       fish_daily_25 = fish_daily/25,
+      fish_daily_15 = fish_daily/15,
       # total weight of all foods
       total_weight_food_daily = legume_daily + red_meat_daily + proc_meat_daily +
         poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
