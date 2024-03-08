@@ -394,10 +394,12 @@ data <- data %>%
 # Removing all participants who have had liver cancer before baseline :
 
 data <- data %>%
-    filter(!(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date0) < as.Date(baseline_start_date)) &
-               !(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date1) < as.Date(baseline_start_date)) &
-               !(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date2) < as.Date(baseline_start_date)) &
-               !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date)))
+    filter(
+      !(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date0) < as.Date(baseline_start_date)) &
+        !(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date1) < as.Date(baseline_start_date)) &
+        !(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date2) < as.Date(baseline_start_date)) &
+        !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date))
+    )
 
 
 # Removing participants who were lost to follow-up before baseline:
@@ -866,81 +868,11 @@ data <- data %>%
 
 data <- data %>%
   mutate(
-    cystectomy = case_when(
-      grepl("J18", opcs4_a0) & p41282_a0 < baseline_start_date|
-        grepl("J18", opcs4_a1) & p41282_a1 < baseline_start_date|
-        grepl("J18", opcs4_a2) & p41282_a2 < baseline_start_date|
-        grepl("J18", opcs4_a3) & p41282_a3 < baseline_start_date|
-        grepl("J18", opcs4_a4) & p41282_a4 < baseline_start_date|
-        grepl("J18", opcs4_a5) & p41282_a5 < baseline_start_date|
-        grepl("J18", opcs4_a6) & p41282_a6 < baseline_start_date|
-        grepl("J18", opcs4_a7) & p41282_a7 < baseline_start_date|
-        grepl("J18", opcs4_a8) & p41282_a8 < baseline_start_date|
-        grepl("J18", opcs4_a9) & p41282_a9 < baseline_start_date|
-        grepl("J18", opcs4_a10) & p41282_a10 < baseline_start_date|
-        grepl("J18", opcs4_a11) & p41282_a11 < baseline_start_date|
-        grepl("J18", opcs4_a12) & p41282_a12 < baseline_start_date|
-        grepl("J18", opcs4_a13) & p41282_a13 < baseline_start_date|
-        grepl("J18", opcs4_a14) & p41282_a14 < baseline_start_date|
-        grepl("J18", opcs4_a15) & p41282_a15 < baseline_start_date|
-        grepl("J18", opcs4_a16) & p41282_a16 < baseline_start_date|
-        grepl("J18", opcs4_a17) & p41282_a17 < baseline_start_date|
-        grepl("J18", opcs4_a18) & p41282_a18 < baseline_start_date|
-        grepl("J18", opcs4_a19) & p41282_a19 < baseline_start_date|
-        grepl("J18", opcs4_a20) & p41282_a20 < baseline_start_date|
-        grepl("J18", opcs4_a21) & p41282_a21 < baseline_start_date|
-        grepl("J18", opcs4_a22) & p41282_a22 < baseline_start_date|
-        grepl("J18", opcs4_a23) & p41282_a23 < baseline_start_date|
-        grepl("J18", opcs4_a24) & p41282_a24 < baseline_start_date|
-        grepl("J18", opcs4_a25) & p41282_a25 < baseline_start_date|
-        grepl("J18", opcs4_a26) & p41282_a26 < baseline_start_date|
-        grepl("J18", opcs4_a27) & p41282_a27 < baseline_start_date|
-        grepl("J18", opcs4_a28) & p41282_a28 < baseline_start_date|
-        grepl("J18", opcs4_a29) & p41282_a29 < baseline_start_date|
-        grepl("J18", opcs4_a30) & p41282_a30 < baseline_start_date|
-        grepl("J18", opcs4_a31) & p41282_a31 < baseline_start_date|
-        grepl("J18", opcs4_a32) & p41282_a32 < baseline_start_date|
-        grepl("J18", opcs4_a33) & p41282_a33 < baseline_start_date|
-        grepl("J18", opcs4_a34) & p41282_a34 < baseline_start_date|
-        grepl("J18", opcs4_a35) & p41282_a35 < baseline_start_date|
-        grepl("J18", opcs4_a36) & p41282_a36 < baseline_start_date|
-        grepl("J18", opcs4_a37) & p41282_a37 < baseline_start_date|
-        grepl("J18", opcs4_a38) & p41282_a38 < baseline_start_date|
-        grepl("J18", opcs4_a39) & p41282_a39 < baseline_start_date|
-        grepl("J18", opcs4_a40) & p41282_a40 < baseline_start_date|
-        grepl("J18", opcs4_a41) & p41282_a41 < baseline_start_date|
-        grepl("J18", opcs4_a42) & p41282_a42 < baseline_start_date|
-        grepl("J18", opcs4_a43) & p41282_a43 < baseline_start_date|
-        grepl("J18", opcs4_a44) & p41282_a44 < baseline_start_date|
-        grepl("J18", opcs4_a45) & p41282_a45 < baseline_start_date|
-        grepl("J18", opcs4_a46) & p41282_a46 < baseline_start_date|
-        grepl("J18", opcs4_a47) & p41282_a47 < baseline_start_date|
-        grepl("J18", opcs4_a48) & p41282_a48 < baseline_start_date|
-        grepl("J18", opcs4_a49) & p41282_a49 < baseline_start_date|
-        grepl("J18", opcs4_a50) & p41282_a50 < baseline_start_date|
-        grepl("J18", opcs4_a51) & p41282_a51 < baseline_start_date|
-        grepl("J18", opcs4_a52) & p41282_a52 < baseline_start_date|
-        grepl("J18", opcs4_a53) & p41282_a53 < baseline_start_date|
-        grepl("J18", opcs4_a54) & p41282_a54 < baseline_start_date|
-        grepl("J18", opcs4_a55) & p41282_a55 < baseline_start_date|
-        grepl("J18", opcs4_a56) & p41282_a56 < baseline_start_date|
-        grepl("J18", opcs4_a57) & p41282_a57 < baseline_start_date|
-        grepl("J18", opcs4_a58) & p41282_a58 < baseline_start_date|
-        grepl("J18", opcs4_a59) & p41282_a59 < baseline_start_date|
-        grepl("J18", opcs4_a60) & p41282_a60 < baseline_start_date|
-        grepl("J18", opcs4_a61) & p41282_a61 < baseline_start_date|
-        grepl("J18", opcs4_a62) & p41282_a62 < baseline_start_date|
-        grepl("J18", opcs4_a63) & p41282_a63 < baseline_start_date|
-        grepl("J18", opcs4_a64) & p41282_a64 < baseline_start_date|
-        grepl("J18", opcs4_a65) & p41282_a65 < baseline_start_date|
-        grepl("J18", opcs4_a66) & p41282_a66 < baseline_start_date|
-        grepl("J18", opcs4_a67) & p41282_a67 < baseline_start_date|
-        grepl("J18", opcs4_a68) & p41282_a68 < baseline_start_date|
-        grepl("J18", opcs4_a69) & p41282_a69 < baseline_start_date|
-        grepl("J18", opcs4_a70) & p41282_a70 < baseline_start_date|
-        grepl("J18", opcs4_a71) & p41282_a71 < baseline_start_date|
-        grepl("J18", opcs4_a72) & p41282_a72 < baseline_start_date ~ "yes",
-      TRUE ~ "no"
+    cystectomy = if_else(
+      rowSums(across(starts_with("opcs4_a"), ~ grepl("J18", .x)) &
+                across(starts_with("p41282_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
     )
   )
 
@@ -950,8 +882,14 @@ data %>%
 # creating dataset with only liver cancer diagnoses after baseline:
 
 data_liver <- data %>%
-    filter(cancer_diag0 == 'C22.0 Liver cell carcinoma' | cancer_diag0 == 'C22.1 Intrahepatic bile duct carcinoma' |
-               cancer_diag1 == 'C22.0 Liver cell carcinoma' | cancer_diag1 == 'C22.1 Intrahepatic bile duct carcinoma' |
-               cancer_diag2 == 'C22.0 Liver cell carcinoma' | cancer_diag2 == 'C22.1 Intrahepatic bile duct carcinoma' |
-               cancer_diag3 == 'C22.0 Liver cell carcinoma' | cancer_diag3 == 'C22.1 Intrahepatic bile duct carcinoma'
-    )
+  filter(
+    cancer_diag0 == 'C22.0 Liver cell carcinoma' | cancer_diag0 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      cancer_diag1 == 'C22.0 Liver cell carcinoma' | cancer_diag1 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      cancer_diag2 == 'C22.0 Liver cell carcinoma' | cancer_diag2 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      cancer_diag3 == 'C22.0 Liver cell carcinoma' | cancer_diag3 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      icd10_a0 == 'C22.0 Liver cell carcinoma' | icd10d_a0 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      icd10_a1 == 'C22.0 Liver cell carcinoma' | icd10d_a1 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      icd10_a2 == 'C22.0 Liver cell carcinoma' | icd10d_a2 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      icd10_a3 == 'C22.0 Liver cell carcinoma' | icd10d_a3 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      icd10_a4 == 'C22.0 Liver cell carcinoma' | icd10d_a4 == 'C22.1 Intrahepatic bile duct carcinoma'
+  )
