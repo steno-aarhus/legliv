@@ -11,88 +11,89 @@ data <- ukb_dataset %>%
   filter(p20077 >= 2)
 
 covariates <- function(data) {
-# renaming variables to appropriate names and mutating covariates:
+  # renaming variables to appropriate names and mutating covariates:
   data <- data %>%
-    mutate(sex = p31,
-           birth_year = p34,
-           wc = p48_i0,
-           month_of_birth = p52,
-           l2fu_r = p190,
-           l2fu_d = p191,
-           spouse = p709_i0,
-           education = p6138_i0,
-           ques_comp_n = p20077,
-           bmi = p21001_i0,
-           age_recruit = p21022,
-           phys_acti = p22040_i0,
-           tdi = p22189,
-           dead_date = p40000_i0, # p40000_i1 is empty
-           dead_cause = p40001_i0, # p40001_i1 is empty
-           cancer_date0 = p40005_i0,
-           cancer_date1 = p40005_i1,
-           cancer_date2 = p40005_i2,
-           cancer_date3 = p40005_i3, # summary of data shows that p40005_i4 to p40005_i21 do not contain any data points
-           cancer_diag0 = p40006_i0,
-           cancer_diag1 = p40006_i1,
-           cancer_diag2 = p40006_i2,
-           cancer_diag3 = p40006_i3, # same as p40005
-           age_dead = p40007_i0, # p40007_i1 is empty
-           age_cancer0 = p40008_i0,
-           age_cancer1 = p40008_i1,
-           age_cancer2 = p40008_i2,
-           age_cancer3 = p40008_i3, # same as p40005
-           icd10 = p41270,
-           icd9 = p41271,
-           opcs4 = p41272,
-           opcs3 = p41273,
-           ques_comp_t0 = p105010_i0,
-           ques_comp_t1 = p105010_i1,
-           ques_comp_t2 = p105010_i2,
-           ques_comp_t3 = p105010_i3,
-           ques_comp_t4 = p105010_i4,
-           spouse = ifelse(spouse == 1, "No", "Yes"),
-           smoking = ifelse(p20116_i0 == "Prefer not to answer", "Never", p20116_i0),
-           education = case_when(
-             grepl("College", education, ignore.case = TRUE) ~ "high",
-             grepl("A levels/AS levels", education, ignore.case = TRUE) ~ "intermediate",
-             grepl("O levels", education, ignore.case = TRUE) ~ "intermediate",
-             grepl("CSEs", education, ignore.case = TRUE) ~ "low",
-             grepl("NVQ or HND", education, ignore.case = TRUE) ~ "low",
-             grepl("Other professional", education, ignore.case = TRUE) ~ "low",
-             grepl("None of the above", education, ignore.case = TRUE) ~ "low",
-             grepl("Prefer not to answer", education, ignore.case = TRUE) ~ "low",
-             TRUE ~ as.character(education)
-             ),
-           ethnicity = case_when(p21000_i0 == "African" ~ "Other", #check the layers to the variable
-                                 p21000_i0 == "Any other Black background" ~ "Other",
-                                 p21000_i0 == "Asian or Asian British" ~ "Other",
-                                 p21000_i0 == "Bangladeshi" ~ "Other",
-                                 p21000_i0 == "Chinese" ~ "Other",
-                                 p21000_i0 == "Indian" ~ "Other",
-                                 p21000_i0 == "Pakistani" ~ "Other",
-                                 p21000_i0 == "Any other Asian background" ~ "Other",
-                                 p21000_i0 ==  "British" ~ "White",
-                                 p21000_i0 ==  "Any other white background" ~ "White",
-                                 p21000_i0 ==  "Irish" ~ "White",
-                                 p21000_i0 ==  "White" ~ "White",
-                                 p21000_i0 ==  "White and Asian" ~ "Other",
-                                 p21000_i0 ==  "White and Black African" ~ "Other",
-                                 p21000_i0 ==  "White and Black Caribbean" ~ "Other",
-                                 p21000_i0 ==  "Any other mixed background" ~ "Other",
-                                 p21000_i0 ==  "Caribbean" ~ "Other",
-                                 p21000_i0 ==  "Do not know" ~ "Other",
-                                 p21000_i0 ==  "Other ethnic group" ~ "Other",
-                                 p21000_i0 ==  "Prefer not to answer" ~ "Other"
-                                 ),
-           bmi_category = case_when(bmi < 25 ~ "Normal",
-                                    bmi >= 25 & bmi <30 ~ "Overweight",
-                                    bmi >= 30 ~ "Obese"
-                                    ),
-           exercise = case_when(p22040_i0 < 600 ~ "Low",
-                                p22040_i0 >= 600 & p22040_i0 < 3000 ~ "Moderate",
-                                p22040_i0 > 3000 ~ "High"
-                                )
-           )
+    mutate(
+      id = 1:n(), .before = everything(),
+      sex = p31,
+      birth_year = p34,
+      wc = p48_i0,
+      month_of_birth = p52,
+      l2fu_r = p190,
+      l2fu_d = p191,
+      spouse = p709_i0,
+      education = p6138_i0,
+      ques_comp_n = p20077,
+      bmi = p21001_i0,
+      age_recruit = p21022,
+      phys_acti = p22040_i0,
+      tdi = p22189,
+      dead_date = p40000_i0, # p40000_i1 is empty
+      dead_cause = p40001_i0, # p40001_i1 is empty
+      cancer_date0 = p40005_i0,
+      cancer_date1 = p40005_i1,
+      cancer_date2 = p40005_i2,
+      cancer_date3 = p40005_i3, # summary of data shows that p40005_i4 to p40005_i21 do not contain any data points
+      cancer_diag0 = p40006_i0,
+      cancer_diag1 = p40006_i1,
+      cancer_diag2 = p40006_i2,
+      cancer_diag3 = p40006_i3, # same as p40005
+      age_dead = p40007_i0, # p40007_i1 is empty
+      age_cancer0 = p40008_i0,
+      age_cancer1 = p40008_i1,
+      age_cancer2 = p40008_i2,
+      age_cancer3 = p40008_i3, # same as p40005
+      icd9 = p41271,
+      opcs4 = p41272,
+      opcs3 = p41273,
+      ques_comp_t0 = p105010_i0,
+      ques_comp_t1 = p105010_i1,
+      ques_comp_t2 = p105010_i2,
+      ques_comp_t3 = p105010_i3,
+      ques_comp_t4 = p105010_i4,
+      spouse = ifelse(spouse == 1, "No", "Yes"),
+      smoking = ifelse(p20116_i0 == "Prefer not to answer", "Never", p20116_i0),
+      education = case_when(
+        grepl("College", education, ignore.case = TRUE) ~ "high",
+        grepl("A levels/AS levels", education, ignore.case = TRUE) ~ "intermediate",
+        grepl("O levels", education, ignore.case = TRUE) ~ "intermediate",
+        grepl("CSEs", education, ignore.case = TRUE) ~ "low",
+        grepl("NVQ or HND", education, ignore.case = TRUE) ~ "low",
+        grepl("Other professional", education, ignore.case = TRUE) ~ "low",
+        grepl("None of the above", education, ignore.case = TRUE) ~ "low",
+        grepl("Prefer not to answer", education, ignore.case = TRUE) ~ "low",
+        TRUE ~ as.character(education)
+      ),
+      ethnicity = case_when(p21000_i0 == "African" ~ "Other", #check the layers to the variable
+                            p21000_i0 == "Any other Black background" ~ "Other",
+                            p21000_i0 == "Asian or Asian British" ~ "Other",
+                            p21000_i0 == "Bangladeshi" ~ "Other",
+                            p21000_i0 == "Chinese" ~ "Other",
+                            p21000_i0 == "Indian" ~ "Other",
+                            p21000_i0 == "Pakistani" ~ "Other",
+                            p21000_i0 == "Any other Asian background" ~ "Other",
+                            p21000_i0 ==  "British" ~ "White",
+                            p21000_i0 ==  "Any other white background" ~ "White",
+                            p21000_i0 ==  "Irish" ~ "White",
+                            p21000_i0 ==  "White" ~ "White",
+                            p21000_i0 ==  "White and Asian" ~ "Other",
+                            p21000_i0 ==  "White and Black African" ~ "Other",
+                            p21000_i0 ==  "White and Black Caribbean" ~ "Other",
+                            p21000_i0 ==  "Any other mixed background" ~ "Other",
+                            p21000_i0 ==  "Caribbean" ~ "Other",
+                            p21000_i0 ==  "Do not know" ~ "Other",
+                            p21000_i0 ==  "Other ethnic group" ~ "Other",
+                            p21000_i0 ==  "Prefer not to answer" ~ "Other"
+      ),
+      bmi_category = case_when(bmi < 25 ~ "Normal",
+                               bmi >= 25 & bmi <30 ~ "Overweight",
+                               bmi >= 30 ~ "Obese"
+      ),
+      exercise = case_when(p22040_i0 < 600 ~ "Low",
+                           p22040_i0 >= 600 & p22040_i0 < 3000 ~ "Moderate",
+                           p22040_i0 > 3000 ~ "High"
+      )
+    )
   return(data)
 }
 data <- covariates(data)
@@ -106,9 +107,9 @@ calculate_food_intake <- function(data) {
     mutate(
       # refined cereals
       cereal_refined_daily = (rowSums(select(., starts_with("p26113") | starts_with("p26079") |
-                                              starts_with("p26071") | starts_with("p26072") |
-                                              starts_with("p26073") | starts_with("p26075") |
-                                              starts_with("p26068") | starts_with("p26083")), na.rm = TRUE))/ques_comp_n,
+                                               starts_with("p26071") | starts_with("p26072") |
+                                               starts_with("p26073") | starts_with("p26075") |
+                                               starts_with("p26068") | starts_with("p26083")), na.rm = TRUE))/ques_comp_n,
       cereal_refined_daily_25 = (cereal_refined_daily)/25,
       # whole-grain cereals
       whole_grain_daily = rowSums(select(., starts_with("p26074") | starts_with("p26076") |
@@ -142,11 +143,11 @@ calculate_food_intake <- function(data) {
       nut_daily_25 = nut_daily/25,
       # vegetables
       veggie_daily = (rowSums(select(., starts_with("p26065") | starts_with("p26098") |
-                                      starts_with("p26115") | starts_with("p26123") |
-                                      starts_with("p26125") | starts_with("p26143") |
-                                      starts_with("p26146") | starts_with("p26147")), na.rm = TRUE) +
-        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + #assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE))/ques_comp_n, #assuming half peas half corn
+                                       starts_with("p26115") | starts_with("p26123") |
+                                       starts_with("p26125") | starts_with("p26143") |
+                                       starts_with("p26146") | starts_with("p26147")), na.rm = TRUE) +
+                        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + #assuming half hummus half guacamole
+                        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE))/ques_comp_n, #assuming half peas half corn
       veggie_daily_25 = veggie_daily/25,
       # potatoes
       potato_daily = rowSums(select(., starts_with("p26118") | starts_with("p26119") |
@@ -181,18 +182,18 @@ calculate_food_intake <- function(data) {
       sauce_daily_25 = sauce_daily/25,
       # legumes
       legume_daily = (rowSums(select(., starts_with("p26086") | starts_with("p26101") |
-                                      starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
-        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + #assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE))/ques_comp_n, #assuming half peas half corn
+                                       starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
+                        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + #assuming half hummus half guacamole
+                        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE))/ques_comp_n, #assuming half peas half corn
       legume_daily_25 = legume_daily/25,
       legume_daily_25 = legume_daily/15,
       pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE)/ques_comp_n,
       pulse_daily_25 = pulse_daily/25,
       pulse_daily_15 = pulse_daily/15,
       legume_other_daily = (rowSums(select(., starts_with("p26086") |
-                                      starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
-        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + #assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE))/ques_comp_n, #assuming half peas half corn
+                                             starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
+                              rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + #assuming half hummus half guacamole
+                              rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE))/ques_comp_n, #assuming half peas half corn
       legume_other_daily_25 = legume_other_daily/25,
       legume_other_daily_15 = legume_other_daily/15,
       # red meats
@@ -233,80 +234,6 @@ calculate_food_intake <- function(data) {
 
 data <- calculate_food_intake(data)
 
-# Excluding potential misreporters
-data <- data %>%
-  filter(
-    (sex == "Male" & total_energy_food_daily >= 3200 & total_energy_food_daily <= 16800) |
-      (sex == "Female" & total_energy_food_daily >= 2000 & total_energy_food_daily <= 14000)
-  )
-
-data <- data %>%
-  rename_with(~str_replace(., "p41280", "icd10d"), starts_with("p41280_a"))
-
-# Function to separate multiple ICD codes in a cell
-separate_icd <- function(df, column_name, new_column_prefix, max_columns = 131, sep = "|") {
-  # Replace NA values in the column with an empty string
-  df <- df %>%
-    mutate(!!sym(column_name) := ifelse(is.na(!!sym(column_name)), "", !!sym(column_name)))
-
-  # Get maximum number of ICD codes in a single cell
-  max_icd_count <- df %>%
-    mutate(icd_count = str_count(!!sym(column_name), sep) + 1) %>%
-    pull(icd_count) %>%
-    max()
-
-  # Determine the number of columns to create
-  num_columns <- min(max_icd_count, max_columns)
-
-  # Create a sequence for the maximum number of ICD codes
-  icd_columns <- paste0(new_column_prefix, "_a", seq_len(num_columns - 1))
-
-  # Separate ICD codes into separate columns
-  df %>%
-    separate(!!sym(column_name), into = c("icd10_a0", icd_columns), sep = "\\|", fill = "right") %>%
-    mutate(across(starts_with(new_column_prefix), str_trim))
-}
-
-# Apply the function to your dataframe
-data <- separate_icd(df = data, column_name = "icd10", new_column_prefix = "icd10", max_columns = 131)
-
-# Function to separate multiple OPCS4 codes in a cell
-separate_opcs4 <- function(df, column_name, new_column_prefix, max_columns = 73, sep = "|") {
-  # Replace NA values in the column with an empty string
-  df <- df %>%
-    mutate(!!sym(column_name) := ifelse(is.na(!!sym(column_name)), "", !!sym(column_name)))
-
-  # Get maximum number of ICD codes in a single cell
-  max_icd_count <- df %>%
-    mutate(icd_count = str_count(!!sym(column_name), sep) + 1) %>%
-    pull(icd_count) %>%
-    max()
-
-  # Determine the number of columns to create
-  num_columns <- min(max_icd_count, max_columns)
-
-  # Create a sequence for the maximum number of ICD codes
-  icd_columns <- paste0(new_column_prefix, "_a", seq_len(num_columns - 1))
-
-  # Separate ICD codes into separate columns
-  df %>%
-    separate(!!sym(column_name), into = c("opcs4_a0", icd_columns), sep = "\\|", fill = "right") %>%
-    mutate(across(starts_with(new_column_prefix), str_trim))
-
-}
-
-# Apply the function to your dataframe
-data <- separate_opcs4(df = data, column_name = "opcs4", new_column_prefix = "opcs4", max_columns = 73)
-
-
-# Removing follow-up variables where they are not needed.
-data <- data %>%
-  select(-contains("_i"))
-
-# Removing columns where all rows = NA:
-
-data <- data %>%
-    select(where(~ !all(is.na(.))))
 
 # Merging birth year and month of birth into one column:
 
@@ -328,24 +255,40 @@ data <- data %>%
 
 data$date_birth <- as.Date(paste0(data$date_birth, "-15"))
 
-# Removing specific time stamp from date of completed questionnaires:
-# (May be irrelevant)
+
+# ICD10 codes ---------------------------------------------------------
+# Split the diagnosis-variable into separate columns based on delimiter "|"
+data <- data %>%
+  separate_wider_delim(p41270,
+                       delim = "|",
+                       names = paste0("p41270var_a", 0:258), too_few = "debug")
 
 data <- data %>%
-  mutate(ques_comp_t0 = substr(ques_comp_t0, 1, 10),
-         ques_comp_t1 = substr(ques_comp_t1, 1, 10),
-         ques_comp_t2 = substr(ques_comp_t2, 1, 10),
-         ques_comp_t3 = substr(ques_comp_t3, 1, 10),
-         ques_comp_t4 = substr(ques_comp_t4, 1, 10)
+  mutate(
+    icd10_age0 = as.numeric(difftime(p41280_a0, date_birth, units = "days"))/365.25,
+    icd10_age1 = as.numeric(difftime(p41280_a1, date_birth, units = "days"))/365.25,
+    icd10_age2 = as.numeric(difftime(p41280_a2, date_birth, units = "days"))/365.25,
+    icd10_age3 = as.numeric(difftime(p41280_a3, date_birth, units = "days"))/365.25,
+    icd10_age4 = as.numeric(difftime(p41280_a4, date_birth, units = "days"))/365.25
   )
 
-
-  # creating id column:
+# OPCS4 codes ---------------------------------------------------------
+# Split the diagnosis-variable into separate columns based on delimiter "|"
 data <- data %>%
-  mutate(id = 1:nrow(data))
+  separate_wider_delim(p41272,
+                       delim = "|",
+                       names = paste0("p41272var_a", 0:125), too_few = "debug")
+
+
+
+# Removing follow-up variables where they are not needed.
+data <- data %>%
+  select(-contains("_i"))
+
+
 
 # Creating baseline start date:
-  # Removing specific time stamp from date of completed questionnaires:
+# Removing specific time stamp from date of completed questionnaires:
 
 data <- data %>%
   mutate(ques_comp_t0 = substr(ques_comp_t0, 1, 10),
@@ -355,7 +298,7 @@ data <- data %>%
          ques_comp_t4 = substr(ques_comp_t4, 1, 10)
   )
 
-  # Create a new column with the baseline start date
+# Create a new column with the baseline start date
 
 data <- data %>%
   # Gather questionnaire dates into long format
@@ -379,6 +322,34 @@ data <- data %>%
   rename(baseline_start_date = completion_date) %>%
   ungroup()
 
+data <- data %>%
+  mutate(
+    diabetes = if_else(
+      rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
+                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
+    ),
+    cholelith = if_else(
+      rowSums(across(starts_with("p41270var_a"), ~ grepl("K80", .x)) &
+                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
+    ),
+    alc_liver = if_else(
+      rowSums(across(starts_with("p41270var_a"), ~ grepl("K70", .x)) &
+                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
+    ),
+    nafld = if_else(
+      rowSums(across(starts_with("p41270var_a"), ~ grepl("76.0", .x)) &
+                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
+    )
+  )
+
 # Creating age at baseline:
 data <- data %>%
   mutate(age_at_baseline = year(baseline_start_date) - year(date_birth) -
@@ -394,12 +365,18 @@ data <- data %>%
 # Removing all participants who have had liver cancer before baseline :
 
 data <- data %>%
-    filter(
-      !(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date0) < as.Date(baseline_start_date)) &
-        !(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date1) < as.Date(baseline_start_date)) &
-        !(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date2) < as.Date(baseline_start_date)) &
-        !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date))
-    )
+  filter(
+    !(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date0) < as.Date(baseline_start_date)) &
+      !(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date1) < as.Date(baseline_start_date)) &
+      !(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date2) < as.Date(baseline_start_date)) &
+      !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date)) &
+      !(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(cancer_date3) < as.Date(baseline_start_date)) &
+      !(p41270var_a0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(p41280_a0) < as.Date(baseline_start_date)) &
+      !(p41270var_a1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(p41280_a1) < as.Date(baseline_start_date)) &
+      !(p41270var_a2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(p41280_a2) < as.Date(baseline_start_date)) &
+      !(p41270var_a3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(p41280_a3) < as.Date(baseline_start_date)) &
+      !(p41270var_a4 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma") & as.Date(p41280_a4) < as.Date(baseline_start_date))
+  )
 
 
 # Removing participants who were lost to follow-up before baseline:
@@ -408,6 +385,7 @@ data <- data %>%
 
 
 # Converting other cancer and corresponding diagnosis date and age at cancer to NA's:
+
 
 data <- data %>%
   mutate(
@@ -422,19 +400,39 @@ data <- data %>%
     age_cancer0 = if_else(cancer_diag0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer0, NA),
     age_cancer1 = if_else(cancer_diag1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer1, NA),
     age_cancer2 = if_else(cancer_diag2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer2, NA),
-    age_cancer3 = if_else(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer3, NA)
+    age_cancer3 = if_else(cancer_diag3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), age_cancer3, NA),
+    p41270var_a0 = if_else(p41270var_a0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41270var_a0, NA),
+    p41270var_a1 = if_else(p41270var_a1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41270var_a1, NA),
+    p41270var_a2 = if_else(p41270var_a2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41270var_a2, NA),
+    p41270var_a3 = if_else(p41270var_a3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41270var_a3, NA),
+    p41270var_a4 = if_else(p41270var_a4 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41270var_a4, NA),
+    p41280_a0 = if_else(p41270var_a0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41280_a0, NA),
+    p41280_a1 = if_else(p41270var_a1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41280_a1, NA),
+    p41280_a2 = if_else(p41270var_a2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41280_a2, NA),
+    p41280_a3 = if_else(p41270var_a3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41280_a3, NA),
+    p41280_a4 = if_else(p41270var_a4 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), p41280_a4, NA),
+    icd10_age0 = if_else(p41270var_a0 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), icd10_age0, NA),
+    icd10_age1 = if_else(p41270var_a1 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), icd10_age1, NA),
+    icd10_age2 = if_else(p41270var_a2 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), icd10_age2, NA),
+    icd10_age3 = if_else(p41270var_a3 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), icd10_age3, NA),
+    icd10_age4 = if_else(p41270var_a4 %in% c("C22.0 Liver cell carcinoma", "C22.1 Intrahepatic bile duct carcinoma"), icd10_age4, NA)
   )
 
 # Creating status, status date and status age:
 data <- data %>%
   mutate(
-    earliest_date = pmin(dead_date, cancer_date0, cancer_date1, cancer_date2, cancer_date3, l2fu_d, na.rm = TRUE) %>%
+    earliest_date = pmin(dead_date, cancer_date0, cancer_date1, cancer_date2, cancer_date3, p41280_a0, p41280_a1, p41280_a2, p41280_a3, p41280_a4, l2fu_d, na.rm = TRUE) %>%
       coalesce(as.Date("2022-12-31")),
     status = case_when(
       earliest_date == cancer_date0 & earliest_date > baseline_start_date ~ "liver cancer",
       earliest_date == cancer_date1 & earliest_date > baseline_start_date ~ "liver cancer",
       earliest_date == cancer_date2 & earliest_date > baseline_start_date ~ "liver cancer",
       earliest_date == cancer_date3 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == p41280_a0 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == p41280_a1 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == p41280_a2 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == p41280_a3 & earliest_date > baseline_start_date ~ "liver cancer",
+      earliest_date == p41280_a4 & earliest_date > baseline_start_date ~ "liver cancer",
       earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "censured",
       earliest_date == dead_date ~ "censured",
       TRUE ~ "censured"
@@ -448,438 +446,14 @@ data <- data %>%
 
 data <- data %>%
   mutate(
-    diabetes = case_when(
-      grepl("E11", icd10_a0) & icd10d_a0 < baseline_start_date|
-        grepl("E11", icd10_a1) & icd10d_a1 < baseline_start_date|
-        grepl("E11", icd10_a2) & icd10d_a2 < baseline_start_date|
-        grepl("E11", icd10_a3) & icd10d_a3 < baseline_start_date|
-        grepl("E11", icd10_a4) & icd10d_a4 < baseline_start_date|
-        grepl("E11", icd10_a5) & icd10d_a5 < baseline_start_date|
-        grepl("E11", icd10_a6) & icd10d_a6 < baseline_start_date|
-        grepl("E11", icd10_a7) & icd10d_a7 < baseline_start_date|
-        grepl("E11", icd10_a8) & icd10d_a8 < baseline_start_date|
-        grepl("E11", icd10_a9) & icd10d_a9 < baseline_start_date|
-        grepl("E11", icd10_a10) & icd10d_a10 < baseline_start_date|
-        grepl("E11", icd10_a11) & icd10d_a11 < baseline_start_date|
-        grepl("E11", icd10_a12) & icd10d_a12 < baseline_start_date|
-        grepl("E11", icd10_a13) & icd10d_a13 < baseline_start_date|
-        grepl("E11", icd10_a14) & icd10d_a14 < baseline_start_date|
-        grepl("E11", icd10_a15) & icd10d_a15 < baseline_start_date|
-        grepl("E11", icd10_a16) & icd10d_a16 < baseline_start_date|
-        grepl("E11", icd10_a17) & icd10d_a17 < baseline_start_date|
-        grepl("E11", icd10_a18) & icd10d_a18 < baseline_start_date|
-        grepl("E11", icd10_a19) & icd10d_a19 < baseline_start_date|
-        grepl("E11", icd10_a20) & icd10d_a20 < baseline_start_date|
-        grepl("E11", icd10_a21) & icd10d_a21 < baseline_start_date|
-        grepl("E11", icd10_a22) & icd10d_a22 < baseline_start_date|
-        grepl("E11", icd10_a23) & icd10d_a23 < baseline_start_date|
-        grepl("E11", icd10_a24) & icd10d_a24 < baseline_start_date|
-        grepl("E11", icd10_a25) & icd10d_a25 < baseline_start_date|
-        grepl("E11", icd10_a26) & icd10d_a26 < baseline_start_date|
-        grepl("E11", icd10_a27) & icd10d_a27 < baseline_start_date|
-        grepl("E11", icd10_a28) & icd10d_a28 < baseline_start_date|
-        grepl("E11", icd10_a29) & icd10d_a29 < baseline_start_date|
-        grepl("E11", icd10_a30) & icd10d_a30 < baseline_start_date|
-        grepl("E11", icd10_a31) & icd10d_a31 < baseline_start_date|
-        grepl("E11", icd10_a32) & icd10d_a32 < baseline_start_date|
-        grepl("E11", icd10_a33) & icd10d_a33 < baseline_start_date|
-        grepl("E11", icd10_a34) & icd10d_a34 < baseline_start_date|
-        grepl("E11", icd10_a35) & icd10d_a35 < baseline_start_date|
-        grepl("E11", icd10_a36) & icd10d_a36 < baseline_start_date|
-        grepl("E11", icd10_a37) & icd10d_a37 < baseline_start_date|
-        grepl("E11", icd10_a38) & icd10d_a38 < baseline_start_date|
-        grepl("E11", icd10_a39) & icd10d_a39 < baseline_start_date|
-        grepl("E11", icd10_a40) & icd10d_a40 < baseline_start_date|
-        grepl("E11", icd10_a41) & icd10d_a41 < baseline_start_date|
-        grepl("E11", icd10_a42) & icd10d_a42 < baseline_start_date|
-        grepl("E11", icd10_a43) & icd10d_a43 < baseline_start_date|
-        grepl("E11", icd10_a44) & icd10d_a44 < baseline_start_date|
-        grepl("E11", icd10_a45) & icd10d_a45 < baseline_start_date|
-        grepl("E11", icd10_a46) & icd10d_a46 < baseline_start_date|
-        grepl("E11", icd10_a47) & icd10d_a47 < baseline_start_date|
-        grepl("E11", icd10_a48) & icd10d_a48 < baseline_start_date|
-        grepl("E11", icd10_a49) & icd10d_a49 < baseline_start_date|
-        grepl("E11", icd10_a50) & icd10d_a50 < baseline_start_date|
-        grepl("E11", icd10_a51) & icd10d_a51 < baseline_start_date|
-        grepl("E11", icd10_a52) & icd10d_a52 < baseline_start_date|
-        grepl("E11", icd10_a53) & icd10d_a53 < baseline_start_date|
-        grepl("E11", icd10_a54) & icd10d_a54 < baseline_start_date|
-        grepl("E11", icd10_a55) & icd10d_a55 < baseline_start_date|
-        grepl("E11", icd10_a56) & icd10d_a56 < baseline_start_date|
-        grepl("E11", icd10_a57) & icd10d_a57 < baseline_start_date|
-        grepl("E11", icd10_a58) & icd10d_a58 < baseline_start_date|
-        grepl("E11", icd10_a59) & icd10d_a59 < baseline_start_date|
-        grepl("E11", icd10_a60) & icd10d_a60 < baseline_start_date|
-        grepl("E11", icd10_a61) & icd10d_a61 < baseline_start_date|
-        grepl("E11", icd10_a62) & icd10d_a62 < baseline_start_date|
-        grepl("E11", icd10_a63) & icd10d_a63 < baseline_start_date|
-        grepl("E11", icd10_a64) & icd10d_a64 < baseline_start_date|
-        grepl("E11", icd10_a65) & icd10d_a65 < baseline_start_date|
-        grepl("E11", icd10_a66) & icd10d_a66 < baseline_start_date|
-        grepl("E11", icd10_a67) & icd10d_a67 < baseline_start_date|
-        grepl("E11", icd10_a68) & icd10d_a68 < baseline_start_date|
-        grepl("E11", icd10_a69) & icd10d_a69 < baseline_start_date|
-        grepl("E11", icd10_a70) & icd10d_a70 < baseline_start_date|
-        grepl("E11", icd10_a71) & icd10d_a71 < baseline_start_date|
-        grepl("E11", icd10_a72) & icd10d_a72 < baseline_start_date|
-        grepl("E11", icd10_a73) & icd10d_a73 < baseline_start_date|
-        grepl("E11", icd10_a74) & icd10d_a74 < baseline_start_date|
-        grepl("E11", icd10_a75) & icd10d_a75 < baseline_start_date|
-        grepl("E11", icd10_a76) & icd10d_a76 < baseline_start_date|
-        grepl("E11", icd10_a77) & icd10d_a77 < baseline_start_date|
-        grepl("E11", icd10_a78) & icd10d_a78 < baseline_start_date|
-        grepl("E11", icd10_a79) & icd10d_a79 < baseline_start_date|
-        grepl("E11", icd10_a80) & icd10d_a80 < baseline_start_date|
-        grepl("E11", icd10_a81) & icd10d_a81 < baseline_start_date|
-        grepl("E11", icd10_a82) & icd10d_a82 < baseline_start_date|
-        grepl("E11", icd10_a83) & icd10d_a83 < baseline_start_date|
-        grepl("E11", icd10_a84) & icd10d_a84 < baseline_start_date|
-        grepl("E11", icd10_a85) & icd10d_a85 < baseline_start_date|
-        grepl("E11", icd10_a86) & icd10d_a86 < baseline_start_date|
-        grepl("E11", icd10_a87) & icd10d_a87 < baseline_start_date|
-        grepl("E11", icd10_a88) & icd10d_a88 < baseline_start_date|
-        grepl("E11", icd10_a89) & icd10d_a89 < baseline_start_date|
-        grepl("E11", icd10_a90) & icd10d_a90 < baseline_start_date|
-        grepl("E11", icd10_a91) & icd10d_a91 < baseline_start_date|
-        grepl("E11", icd10_a92) & icd10d_a92 < baseline_start_date|
-        grepl("E11", icd10_a93) & icd10d_a93 < baseline_start_date|
-        grepl("E11", icd10_a94) & icd10d_a94 < baseline_start_date|
-        grepl("E11", icd10_a95) & icd10d_a95 < baseline_start_date|
-        grepl("E11", icd10_a96) & icd10d_a96 < baseline_start_date|
-        grepl("E11", icd10_a97) & icd10d_a97 < baseline_start_date|
-        grepl("E11", icd10_a98) & icd10d_a98 < baseline_start_date|
-        grepl("E11", icd10_a99) & icd10d_a99 < baseline_start_date|
-        grepl("E11", icd10_a100) & icd10d_a100 < baseline_start_date ~ "yes",
-      TRUE ~ "no"
-    ),
-    cholelith = case_when(
-      grepl("K80", icd10_a0) & icd10d_a0 < baseline_start_date|
-        grepl("K80", icd10_a1) & icd10d_a1 < baseline_start_date|
-        grepl("K80", icd10_a2) & icd10d_a2 < baseline_start_date|
-        grepl("K80", icd10_a3) & icd10d_a3 < baseline_start_date|
-        grepl("K80", icd10_a4) & icd10d_a4 < baseline_start_date|
-        grepl("K80", icd10_a5) & icd10d_a5 < baseline_start_date|
-        grepl("K80", icd10_a6) & icd10d_a6 < baseline_start_date|
-        grepl("K80", icd10_a7) & icd10d_a7 < baseline_start_date|
-        grepl("K80", icd10_a8) & icd10d_a8 < baseline_start_date|
-        grepl("K80", icd10_a9) & icd10d_a9 < baseline_start_date|
-        grepl("K80", icd10_a10) & icd10d_a10 < baseline_start_date|
-        grepl("K80", icd10_a11) & icd10d_a11 < baseline_start_date|
-        grepl("K80", icd10_a12) & icd10d_a12 < baseline_start_date|
-        grepl("K80", icd10_a13) & icd10d_a13 < baseline_start_date|
-        grepl("K80", icd10_a14) & icd10d_a14 < baseline_start_date|
-        grepl("K80", icd10_a15) & icd10d_a15 < baseline_start_date|
-        grepl("K80", icd10_a16) & icd10d_a16 < baseline_start_date|
-        grepl("K80", icd10_a17) & icd10d_a17 < baseline_start_date|
-        grepl("K80", icd10_a18) & icd10d_a18 < baseline_start_date|
-        grepl("K80", icd10_a19) & icd10d_a19 < baseline_start_date|
-        grepl("K80", icd10_a20) & icd10d_a20 < baseline_start_date|
-        grepl("K80", icd10_a21) & icd10d_a21 < baseline_start_date|
-        grepl("K80", icd10_a22) & icd10d_a22 < baseline_start_date|
-        grepl("K80", icd10_a23) & icd10d_a23 < baseline_start_date|
-        grepl("K80", icd10_a24) & icd10d_a24 < baseline_start_date|
-        grepl("K80", icd10_a25) & icd10d_a25 < baseline_start_date|
-        grepl("K80", icd10_a26) & icd10d_a26 < baseline_start_date|
-        grepl("K80", icd10_a27) & icd10d_a27 < baseline_start_date|
-        grepl("K80", icd10_a28) & icd10d_a28 < baseline_start_date|
-        grepl("K80", icd10_a29) & icd10d_a29 < baseline_start_date|
-        grepl("K80", icd10_a30) & icd10d_a30 < baseline_start_date|
-        grepl("K80", icd10_a31) & icd10d_a31 < baseline_start_date|
-        grepl("K80", icd10_a32) & icd10d_a32 < baseline_start_date|
-        grepl("K80", icd10_a33) & icd10d_a33 < baseline_start_date|
-        grepl("K80", icd10_a34) & icd10d_a34 < baseline_start_date|
-        grepl("K80", icd10_a35) & icd10d_a35 < baseline_start_date|
-        grepl("K80", icd10_a36) & icd10d_a36 < baseline_start_date|
-        grepl("K80", icd10_a37) & icd10d_a37 < baseline_start_date|
-        grepl("K80", icd10_a38) & icd10d_a38 < baseline_start_date|
-        grepl("K80", icd10_a39) & icd10d_a39 < baseline_start_date|
-        grepl("K80", icd10_a40) & icd10d_a40 < baseline_start_date|
-        grepl("K80", icd10_a41) & icd10d_a41 < baseline_start_date|
-        grepl("K80", icd10_a42) & icd10d_a42 < baseline_start_date|
-        grepl("K80", icd10_a43) & icd10d_a43 < baseline_start_date|
-        grepl("K80", icd10_a44) & icd10d_a44 < baseline_start_date|
-        grepl("K80", icd10_a45) & icd10d_a45 < baseline_start_date|
-        grepl("K80", icd10_a46) & icd10d_a46 < baseline_start_date|
-        grepl("K80", icd10_a47) & icd10d_a47 < baseline_start_date|
-        grepl("K80", icd10_a48) & icd10d_a48 < baseline_start_date|
-        grepl("K80", icd10_a49) & icd10d_a49 < baseline_start_date|
-        grepl("K80", icd10_a50) & icd10d_a50 < baseline_start_date|
-        grepl("K80", icd10_a51) & icd10d_a51 < baseline_start_date|
-        grepl("K80", icd10_a52) & icd10d_a52 < baseline_start_date|
-        grepl("K80", icd10_a53) & icd10d_a53 < baseline_start_date|
-        grepl("K80", icd10_a54) & icd10d_a54 < baseline_start_date|
-        grepl("K80", icd10_a55) & icd10d_a55 < baseline_start_date|
-        grepl("K80", icd10_a56) & icd10d_a56 < baseline_start_date|
-        grepl("K80", icd10_a57) & icd10d_a57 < baseline_start_date|
-        grepl("K80", icd10_a58) & icd10d_a58 < baseline_start_date|
-        grepl("K80", icd10_a59) & icd10d_a59 < baseline_start_date|
-        grepl("K80", icd10_a60) & icd10d_a60 < baseline_start_date|
-        grepl("K80", icd10_a61) & icd10d_a61 < baseline_start_date|
-        grepl("K80", icd10_a62) & icd10d_a62 < baseline_start_date|
-        grepl("K80", icd10_a63) & icd10d_a63 < baseline_start_date|
-        grepl("K80", icd10_a64) & icd10d_a64 < baseline_start_date|
-        grepl("K80", icd10_a65) & icd10d_a65 < baseline_start_date|
-        grepl("K80", icd10_a66) & icd10d_a66 < baseline_start_date|
-        grepl("K80", icd10_a67) & icd10d_a67 < baseline_start_date|
-        grepl("K80", icd10_a68) & icd10d_a68 < baseline_start_date|
-        grepl("K80", icd10_a69) & icd10d_a69 < baseline_start_date|
-        grepl("K80", icd10_a70) & icd10d_a70 < baseline_start_date|
-        grepl("K80", icd10_a71) & icd10d_a71 < baseline_start_date|
-        grepl("K80", icd10_a72) & icd10d_a72 < baseline_start_date|
-        grepl("K80", icd10_a73) & icd10d_a73 < baseline_start_date|
-        grepl("K80", icd10_a74) & icd10d_a74 < baseline_start_date|
-        grepl("K80", icd10_a75) & icd10d_a75 < baseline_start_date|
-        grepl("K80", icd10_a76) & icd10d_a76 < baseline_start_date|
-        grepl("K80", icd10_a77) & icd10d_a77 < baseline_start_date|
-        grepl("K80", icd10_a78) & icd10d_a78 < baseline_start_date|
-        grepl("K80", icd10_a79) & icd10d_a79 < baseline_start_date|
-        grepl("K80", icd10_a80) & icd10d_a80 < baseline_start_date|
-        grepl("K80", icd10_a81) & icd10d_a81 < baseline_start_date|
-        grepl("K80", icd10_a82) & icd10d_a82 < baseline_start_date|
-        grepl("K80", icd10_a83) & icd10d_a83 < baseline_start_date|
-        grepl("K80", icd10_a84) & icd10d_a84 < baseline_start_date|
-        grepl("K80", icd10_a85) & icd10d_a85 < baseline_start_date|
-        grepl("K80", icd10_a86) & icd10d_a86 < baseline_start_date|
-        grepl("K80", icd10_a87) & icd10d_a87 < baseline_start_date|
-        grepl("K80", icd10_a88) & icd10d_a88 < baseline_start_date|
-        grepl("K80", icd10_a89) & icd10d_a89 < baseline_start_date|
-        grepl("K80", icd10_a90) & icd10d_a90 < baseline_start_date|
-        grepl("K80", icd10_a91) & icd10d_a91 < baseline_start_date|
-        grepl("K80", icd10_a92) & icd10d_a92 < baseline_start_date|
-        grepl("K80", icd10_a93) & icd10d_a93 < baseline_start_date|
-        grepl("K80", icd10_a94) & icd10d_a94 < baseline_start_date|
-        grepl("K80", icd10_a95) & icd10d_a95 < baseline_start_date|
-        grepl("K80", icd10_a96) & icd10d_a96 < baseline_start_date|
-        grepl("K80", icd10_a97) & icd10d_a97 < baseline_start_date|
-        grepl("K80", icd10_a98) & icd10d_a98 < baseline_start_date|
-        grepl("K80", icd10_a99) & icd10d_a99 < baseline_start_date|
-        grepl("K80", icd10_a100) & icd10d_a100 < baseline_start_date ~ "yes",
-      TRUE ~ "no"
-    ),
-    alc_liver = case_when(
-      grepl("K70", icd10_a0) & icd10d_a0 < baseline_start_date|
-        grepl("K70", icd10_a1) & icd10d_a1 < baseline_start_date|
-        grepl("K70", icd10_a2) & icd10d_a2 < baseline_start_date|
-        grepl("K70", icd10_a3) & icd10d_a3 < baseline_start_date|
-        grepl("K70", icd10_a4) & icd10d_a4 < baseline_start_date|
-        grepl("K70", icd10_a5) & icd10d_a5 < baseline_start_date|
-        grepl("K70", icd10_a6) & icd10d_a6 < baseline_start_date|
-        grepl("K70", icd10_a7) & icd10d_a7 < baseline_start_date|
-        grepl("K70", icd10_a8) & icd10d_a8 < baseline_start_date|
-        grepl("K70", icd10_a9) & icd10d_a9 < baseline_start_date|
-        grepl("K70", icd10_a10) & icd10d_a10 < baseline_start_date|
-        grepl("K70", icd10_a11) & icd10d_a11 < baseline_start_date|
-        grepl("K70", icd10_a12) & icd10d_a12 < baseline_start_date|
-        grepl("K70", icd10_a13) & icd10d_a13 < baseline_start_date|
-        grepl("K70", icd10_a14) & icd10d_a14 < baseline_start_date|
-        grepl("K70", icd10_a15) & icd10d_a15 < baseline_start_date|
-        grepl("K70", icd10_a16) & icd10d_a16 < baseline_start_date|
-        grepl("K70", icd10_a17) & icd10d_a17 < baseline_start_date|
-        grepl("K70", icd10_a18) & icd10d_a18 < baseline_start_date|
-        grepl("K70", icd10_a19) & icd10d_a19 < baseline_start_date|
-        grepl("K70", icd10_a20) & icd10d_a20 < baseline_start_date|
-        grepl("K70", icd10_a21) & icd10d_a21 < baseline_start_date|
-        grepl("K70", icd10_a22) & icd10d_a22 < baseline_start_date|
-        grepl("K70", icd10_a23) & icd10d_a23 < baseline_start_date|
-        grepl("K70", icd10_a24) & icd10d_a24 < baseline_start_date|
-        grepl("K70", icd10_a25) & icd10d_a25 < baseline_start_date|
-        grepl("K70", icd10_a26) & icd10d_a26 < baseline_start_date|
-        grepl("K70", icd10_a27) & icd10d_a27 < baseline_start_date|
-        grepl("K70", icd10_a28) & icd10d_a28 < baseline_start_date|
-        grepl("K70", icd10_a29) & icd10d_a29 < baseline_start_date|
-        grepl("K70", icd10_a30) & icd10d_a30 < baseline_start_date|
-        grepl("K70", icd10_a31) & icd10d_a31 < baseline_start_date|
-        grepl("K70", icd10_a32) & icd10d_a32 < baseline_start_date|
-        grepl("K70", icd10_a33) & icd10d_a33 < baseline_start_date|
-        grepl("K70", icd10_a34) & icd10d_a34 < baseline_start_date|
-        grepl("K70", icd10_a35) & icd10d_a35 < baseline_start_date|
-        grepl("K70", icd10_a36) & icd10d_a36 < baseline_start_date|
-        grepl("K70", icd10_a37) & icd10d_a37 < baseline_start_date|
-        grepl("K70", icd10_a38) & icd10d_a38 < baseline_start_date|
-        grepl("K70", icd10_a39) & icd10d_a39 < baseline_start_date|
-        grepl("K70", icd10_a40) & icd10d_a40 < baseline_start_date|
-        grepl("K70", icd10_a41) & icd10d_a41 < baseline_start_date|
-        grepl("K70", icd10_a42) & icd10d_a42 < baseline_start_date|
-        grepl("K70", icd10_a43) & icd10d_a43 < baseline_start_date|
-        grepl("K70", icd10_a44) & icd10d_a44 < baseline_start_date|
-        grepl("K70", icd10_a45) & icd10d_a45 < baseline_start_date|
-        grepl("K70", icd10_a46) & icd10d_a46 < baseline_start_date|
-        grepl("K70", icd10_a47) & icd10d_a47 < baseline_start_date|
-        grepl("K70", icd10_a48) & icd10d_a48 < baseline_start_date|
-        grepl("K70", icd10_a49) & icd10d_a49 < baseline_start_date|
-        grepl("K70", icd10_a50) & icd10d_a50 < baseline_start_date|
-        grepl("K70", icd10_a51) & icd10d_a51 < baseline_start_date|
-        grepl("K70", icd10_a52) & icd10d_a52 < baseline_start_date|
-        grepl("K70", icd10_a53) & icd10d_a53 < baseline_start_date|
-        grepl("K70", icd10_a54) & icd10d_a54 < baseline_start_date|
-        grepl("K70", icd10_a55) & icd10d_a55 < baseline_start_date|
-        grepl("K70", icd10_a56) & icd10d_a56 < baseline_start_date|
-        grepl("K70", icd10_a57) & icd10d_a57 < baseline_start_date|
-        grepl("K70", icd10_a58) & icd10d_a58 < baseline_start_date|
-        grepl("K70", icd10_a59) & icd10d_a59 < baseline_start_date|
-        grepl("K70", icd10_a60) & icd10d_a60 < baseline_start_date|
-        grepl("K70", icd10_a61) & icd10d_a61 < baseline_start_date|
-        grepl("K70", icd10_a62) & icd10d_a62 < baseline_start_date|
-        grepl("K70", icd10_a63) & icd10d_a63 < baseline_start_date|
-        grepl("K70", icd10_a64) & icd10d_a64 < baseline_start_date|
-        grepl("K70", icd10_a65) & icd10d_a65 < baseline_start_date|
-        grepl("K70", icd10_a66) & icd10d_a66 < baseline_start_date|
-        grepl("K70", icd10_a67) & icd10d_a67 < baseline_start_date|
-        grepl("K70", icd10_a68) & icd10d_a68 < baseline_start_date|
-        grepl("K70", icd10_a69) & icd10d_a69 < baseline_start_date|
-        grepl("K70", icd10_a70) & icd10d_a70 < baseline_start_date|
-        grepl("K70", icd10_a71) & icd10d_a71 < baseline_start_date|
-        grepl("K70", icd10_a72) & icd10d_a72 < baseline_start_date|
-        grepl("K70", icd10_a73) & icd10d_a73 < baseline_start_date|
-        grepl("K70", icd10_a74) & icd10d_a74 < baseline_start_date|
-        grepl("K70", icd10_a75) & icd10d_a75 < baseline_start_date|
-        grepl("K70", icd10_a76) & icd10d_a76 < baseline_start_date|
-        grepl("K70", icd10_a77) & icd10d_a77 < baseline_start_date|
-        grepl("K70", icd10_a78) & icd10d_a78 < baseline_start_date|
-        grepl("K70", icd10_a79) & icd10d_a79 < baseline_start_date|
-        grepl("K70", icd10_a80) & icd10d_a80 < baseline_start_date|
-        grepl("K70", icd10_a81) & icd10d_a81 < baseline_start_date|
-        grepl("K70", icd10_a82) & icd10d_a82 < baseline_start_date|
-        grepl("K70", icd10_a83) & icd10d_a83 < baseline_start_date|
-        grepl("K70", icd10_a84) & icd10d_a84 < baseline_start_date|
-        grepl("K70", icd10_a85) & icd10d_a85 < baseline_start_date|
-        grepl("K70", icd10_a86) & icd10d_a86 < baseline_start_date|
-        grepl("K70", icd10_a87) & icd10d_a87 < baseline_start_date|
-        grepl("K70", icd10_a88) & icd10d_a88 < baseline_start_date|
-        grepl("K70", icd10_a89) & icd10d_a89 < baseline_start_date|
-        grepl("K70", icd10_a90) & icd10d_a90 < baseline_start_date|
-        grepl("K70", icd10_a91) & icd10d_a91 < baseline_start_date|
-        grepl("K70", icd10_a92) & icd10d_a92 < baseline_start_date|
-        grepl("K70", icd10_a93) & icd10d_a93 < baseline_start_date|
-        grepl("K70", icd10_a94) & icd10d_a94 < baseline_start_date|
-        grepl("K70", icd10_a95) & icd10d_a95 < baseline_start_date|
-        grepl("K70", icd10_a96) & icd10d_a96 < baseline_start_date|
-        grepl("K70", icd10_a97) & icd10d_a97 < baseline_start_date|
-        grepl("K70", icd10_a98) & icd10d_a98 < baseline_start_date|
-        grepl("K70", icd10_a99) & icd10d_a99 < baseline_start_date|
-        grepl("K70", icd10_a100) & icd10d_a100 < baseline_start_date ~ "yes",
-      TRUE ~ "no"
-    ),
-    nafld = case_when(
-      grepl("76.0", icd10_a0) & icd10d_a0 < baseline_start_date|
-        grepl("76.0", icd10_a1) & icd10d_a1 < baseline_start_date|
-        grepl("76.0", icd10_a2) & icd10d_a2 < baseline_start_date|
-        grepl("76.0", icd10_a3) & icd10d_a3 < baseline_start_date|
-        grepl("76.0", icd10_a4) & icd10d_a4 < baseline_start_date|
-        grepl("76.0", icd10_a5) & icd10d_a5 < baseline_start_date|
-        grepl("76.0", icd10_a6) & icd10d_a6 < baseline_start_date|
-        grepl("76.0", icd10_a7) & icd10d_a7 < baseline_start_date|
-        grepl("76.0", icd10_a8) & icd10d_a8 < baseline_start_date|
-        grepl("76.0", icd10_a9) & icd10d_a9 < baseline_start_date|
-        grepl("76.0", icd10_a10) & icd10d_a10 < baseline_start_date|
-        grepl("76.0", icd10_a11) & icd10d_a11 < baseline_start_date|
-        grepl("76.0", icd10_a12) & icd10d_a12 < baseline_start_date|
-        grepl("76.0", icd10_a13) & icd10d_a13 < baseline_start_date|
-        grepl("76.0", icd10_a14) & icd10d_a14 < baseline_start_date|
-        grepl("76.0", icd10_a15) & icd10d_a15 < baseline_start_date|
-        grepl("76.0", icd10_a16) & icd10d_a16 < baseline_start_date|
-        grepl("76.0", icd10_a17) & icd10d_a17 < baseline_start_date|
-        grepl("76.0", icd10_a18) & icd10d_a18 < baseline_start_date|
-        grepl("76.0", icd10_a19) & icd10d_a19 < baseline_start_date|
-        grepl("76.0", icd10_a20) & icd10d_a20 < baseline_start_date|
-        grepl("76.0", icd10_a21) & icd10d_a21 < baseline_start_date|
-        grepl("76.0", icd10_a22) & icd10d_a22 < baseline_start_date|
-        grepl("76.0", icd10_a23) & icd10d_a23 < baseline_start_date|
-        grepl("76.0", icd10_a24) & icd10d_a24 < baseline_start_date|
-        grepl("76.0", icd10_a25) & icd10d_a25 < baseline_start_date|
-        grepl("76.0", icd10_a26) & icd10d_a26 < baseline_start_date|
-        grepl("76.0", icd10_a27) & icd10d_a27 < baseline_start_date|
-        grepl("76.0", icd10_a28) & icd10d_a28 < baseline_start_date|
-        grepl("76.0", icd10_a29) & icd10d_a29 < baseline_start_date|
-        grepl("76.0", icd10_a30) & icd10d_a30 < baseline_start_date|
-        grepl("76.0", icd10_a31) & icd10d_a31 < baseline_start_date|
-        grepl("76.0", icd10_a32) & icd10d_a32 < baseline_start_date|
-        grepl("76.0", icd10_a33) & icd10d_a33 < baseline_start_date|
-        grepl("76.0", icd10_a34) & icd10d_a34 < baseline_start_date|
-        grepl("76.0", icd10_a35) & icd10d_a35 < baseline_start_date|
-        grepl("76.0", icd10_a36) & icd10d_a36 < baseline_start_date|
-        grepl("76.0", icd10_a37) & icd10d_a37 < baseline_start_date|
-        grepl("76.0", icd10_a38) & icd10d_a38 < baseline_start_date|
-        grepl("76.0", icd10_a39) & icd10d_a39 < baseline_start_date|
-        grepl("76.0", icd10_a40) & icd10d_a40 < baseline_start_date|
-        grepl("76.0", icd10_a41) & icd10d_a41 < baseline_start_date|
-        grepl("76.0", icd10_a42) & icd10d_a42 < baseline_start_date|
-        grepl("76.0", icd10_a43) & icd10d_a43 < baseline_start_date|
-        grepl("76.0", icd10_a44) & icd10d_a44 < baseline_start_date|
-        grepl("76.0", icd10_a45) & icd10d_a45 < baseline_start_date|
-        grepl("76.0", icd10_a46) & icd10d_a46 < baseline_start_date|
-        grepl("76.0", icd10_a47) & icd10d_a47 < baseline_start_date|
-        grepl("76.0", icd10_a48) & icd10d_a48 < baseline_start_date|
-        grepl("76.0", icd10_a49) & icd10d_a49 < baseline_start_date|
-        grepl("76.0", icd10_a50) & icd10d_a50 < baseline_start_date|
-        grepl("76.0", icd10_a51) & icd10d_a51 < baseline_start_date|
-        grepl("76.0", icd10_a52) & icd10d_a52 < baseline_start_date|
-        grepl("76.0", icd10_a53) & icd10d_a53 < baseline_start_date|
-        grepl("76.0", icd10_a54) & icd10d_a54 < baseline_start_date|
-        grepl("76.0", icd10_a55) & icd10d_a55 < baseline_start_date|
-        grepl("76.0", icd10_a56) & icd10d_a56 < baseline_start_date|
-        grepl("76.0", icd10_a57) & icd10d_a57 < baseline_start_date|
-        grepl("76.0", icd10_a58) & icd10d_a58 < baseline_start_date|
-        grepl("76.0", icd10_a59) & icd10d_a59 < baseline_start_date|
-        grepl("76.0", icd10_a60) & icd10d_a60 < baseline_start_date|
-        grepl("76.0", icd10_a61) & icd10d_a61 < baseline_start_date|
-        grepl("76.0", icd10_a62) & icd10d_a62 < baseline_start_date|
-        grepl("76.0", icd10_a63) & icd10d_a63 < baseline_start_date|
-        grepl("76.0", icd10_a64) & icd10d_a64 < baseline_start_date|
-        grepl("76.0", icd10_a65) & icd10d_a65 < baseline_start_date|
-        grepl("76.0", icd10_a66) & icd10d_a66 < baseline_start_date|
-        grepl("76.0", icd10_a67) & icd10d_a67 < baseline_start_date|
-        grepl("76.0", icd10_a68) & icd10d_a68 < baseline_start_date|
-        grepl("76.0", icd10_a69) & icd10d_a69 < baseline_start_date|
-        grepl("76.0", icd10_a70) & icd10d_a70 < baseline_start_date|
-        grepl("76.0", icd10_a71) & icd10d_a71 < baseline_start_date|
-        grepl("76.0", icd10_a72) & icd10d_a72 < baseline_start_date|
-        grepl("76.0", icd10_a73) & icd10d_a73 < baseline_start_date|
-        grepl("76.0", icd10_a74) & icd10d_a74 < baseline_start_date|
-        grepl("76.0", icd10_a75) & icd10d_a75 < baseline_start_date|
-        grepl("76.0", icd10_a76) & icd10d_a76 < baseline_start_date|
-        grepl("76.0", icd10_a77) & icd10d_a77 < baseline_start_date|
-        grepl("76.0", icd10_a78) & icd10d_a78 < baseline_start_date|
-        grepl("76.0", icd10_a79) & icd10d_a79 < baseline_start_date|
-        grepl("76.0", icd10_a80) & icd10d_a80 < baseline_start_date|
-        grepl("76.0", icd10_a81) & icd10d_a81 < baseline_start_date|
-        grepl("76.0", icd10_a82) & icd10d_a82 < baseline_start_date|
-        grepl("76.0", icd10_a83) & icd10d_a83 < baseline_start_date|
-        grepl("76.0", icd10_a84) & icd10d_a84 < baseline_start_date|
-        grepl("76.0", icd10_a85) & icd10d_a85 < baseline_start_date|
-        grepl("76.0", icd10_a86) & icd10d_a86 < baseline_start_date|
-        grepl("76.0", icd10_a87) & icd10d_a87 < baseline_start_date|
-        grepl("76.0", icd10_a88) & icd10d_a88 < baseline_start_date|
-        grepl("76.0", icd10_a89) & icd10d_a89 < baseline_start_date|
-        grepl("76.0", icd10_a90) & icd10d_a90 < baseline_start_date|
-        grepl("76.0", icd10_a91) & icd10d_a91 < baseline_start_date|
-        grepl("76.0", icd10_a92) & icd10d_a92 < baseline_start_date|
-        grepl("76.0", icd10_a93) & icd10d_a93 < baseline_start_date|
-        grepl("76.0", icd10_a94) & icd10d_a94 < baseline_start_date|
-        grepl("76.0", icd10_a95) & icd10d_a95 < baseline_start_date|
-        grepl("76.0", icd10_a96) & icd10d_a96 < baseline_start_date|
-        grepl("76.0", icd10_a97) & icd10d_a97 < baseline_start_date|
-        grepl("76.0", icd10_a98) & icd10d_a98 < baseline_start_date|
-        grepl("76.0", icd10_a99) & icd10d_a99 < baseline_start_date|
-        grepl("76.0", icd10_a100) & icd10d_a100 < baseline_start_date ~ "yes",
-      TRUE ~ "no"
-    )
-  )
-
-data <- data %>%
-  mutate(
     cystectomy = if_else(
-      rowSums(across(starts_with("opcs4_a"), ~ grepl("J18", .x)) &
+      rowSums(across(starts_with("p41272var_a"), ~ grepl("J18", .x)) &
                 across(starts_with("p41282_a"), ~ .x < baseline_start_date)) > 0,
       "yes",
       "no"
     )
   )
 
-data %>%
-  group_by(cystectomy) %>%
-  count()
-# creating dataset with only liver cancer diagnoses after baseline:
 
 data_liver <- data %>%
   filter(
@@ -887,9 +461,12 @@ data_liver <- data %>%
       cancer_diag1 == 'C22.0 Liver cell carcinoma' | cancer_diag1 == 'C22.1 Intrahepatic bile duct carcinoma' |
       cancer_diag2 == 'C22.0 Liver cell carcinoma' | cancer_diag2 == 'C22.1 Intrahepatic bile duct carcinoma' |
       cancer_diag3 == 'C22.0 Liver cell carcinoma' | cancer_diag3 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      icd10_a0 == 'C22.0 Liver cell carcinoma' | icd10d_a0 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      icd10_a1 == 'C22.0 Liver cell carcinoma' | icd10d_a1 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      icd10_a2 == 'C22.0 Liver cell carcinoma' | icd10d_a2 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      icd10_a3 == 'C22.0 Liver cell carcinoma' | icd10d_a3 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      icd10_a4 == 'C22.0 Liver cell carcinoma' | icd10d_a4 == 'C22.1 Intrahepatic bile duct carcinoma'
+      p41270var_a0 == 'C22.0 Liver cell carcinoma' | p41270var_a0 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      p41270var_a1 == 'C22.0 Liver cell carcinoma' | p41270var_a1 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      p41270var_a2 == 'C22.0 Liver cell carcinoma' | p41270var_a2 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      p41270var_a3 == 'C22.0 Liver cell carcinoma' | p41270var_a3 == 'C22.1 Intrahepatic bile duct carcinoma' |
+      p41270var_a4 == 'C22.0 Liver cell carcinoma' | p41270var_a4 == 'C22.1 Intrahepatic bile duct carcinoma'
   )
+
+data <- data %>%
+  select(-matches("^p\\d+$"))
