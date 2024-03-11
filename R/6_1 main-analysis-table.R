@@ -44,7 +44,7 @@ model2t <- coxph(Surv(time = status_age, event = status=="Liver cancer") ~
                      mixed_dish_daily + sauce_daily + fats_daily +
                      non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
                      sex + age_at_baseline +
-                     education + tdi + ethnicity +
+                     education + tdi + ethnicity + spouse +
                      bmi_category + exercise + smoking + wc + alcohol_daily +
                      diabetes + cholelith + nafld + cystectomy,
                  data = data)
@@ -103,7 +103,7 @@ model2r <- coxph(Surv(time = status_age, event = status=="Liver cancer") ~
                      mixed_dish_daily + sauce_daily + fats_daily +
                      non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
                      sex + age_at_baseline +
-                     education + tdi + ethnicity +
+                     education + tdi + ethnicity + spouse +
                      bmi_category + exercise + smoking + wc + alcohol_daily +
                      diabetes + cholelith + nafld + cystectomy,
                  data = data)
@@ -163,7 +163,7 @@ model2p <- coxph(Surv(time = status_age, event = status=="Liver cancer") ~
                      mixed_dish_daily + sauce_daily + fats_daily +
                      non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
                      sex + age_at_baseline +
-                     education + tdi + ethnicity +
+                     education + tdi + ethnicity + spouse +
                      bmi_category + exercise + smoking + wc + alcohol_daily +
                      diabetes + cholelith + nafld + cystectomy,
                  data = data)
@@ -181,6 +181,7 @@ row2 <- tbl_merge(list(m1t, m1r, m1p))
 row3 <- tbl_merge(list(m2t, m2r, m2p))
 
 tbl_stack <-
-    tbl_stack(list(row1, row2, row3), group_header = c("Model 0", "Model 1", "Model 2"))
+    tbl_stack(list(row1, row2, row3), group_header = c("Model 0", "Model 1", "Model 2")) %>%
+    modify_header(label = "**25 g/day substitution**")
 
 tbl_stack
