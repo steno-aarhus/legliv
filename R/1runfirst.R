@@ -1,4 +1,4 @@
-#ukb_dataset <- data
+# ukb_dataset <- data
 
 library(dplyr)
 library(tidyverse)
@@ -326,33 +326,45 @@ data <- data %>%
   rename(baseline_start_date = completion_date) %>%
   ungroup()
 
-data <- data %>%
-  mutate(
-    diabetes = if_else(
-      rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
-                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-      "yes",
-      "no"
-    ),
-    cholelith = if_else(
-      rowSums(across(starts_with("p41270var_a"), ~ grepl("K80", .x)) &
-                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-      "yes",
-      "no"
-    ),
-    alc_liver = if_else(
-      rowSums(across(starts_with("p41270var_a"), ~ grepl("K70", .x)) &
-                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-      "yes",
-      "no"
-    ),
-    nafld = if_else(
-      rowSums(across(starts_with("p41270var_a"), ~ grepl("76.0", .x)) &
-                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-      "yes",
-      "no"
-    )
-  )
+# data <- data %>%
+#   mutate(
+#     diabetes = if_else(
+#       rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
+#                 across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+#       "yes",
+#       "no"
+#     )
+#   )
+#
+# data <- data %>%
+#   mutate(
+#     cholelith = if_else(
+#       rowSums(across(starts_with("p41270var_a"), ~ grepl("K80", .x)) &
+#                 across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+#       "yes",
+#       "no"
+#     )
+#   )
+#
+# data <- data %>%
+#   mutate(
+#     alc_liver = if_else(
+#       rowSums(across(starts_with("p41270var_a"), ~ grepl("K70", .x)) &
+#                 across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+#       "yes",
+#       "no"
+#     )
+#   )
+#
+# data <- data %>%
+#   mutate(
+#     nafld = if_else(
+#       rowSums(across(starts_with("p41270var_a"), ~ grepl("76.0", .x)) &
+#                 across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+#       "yes",
+#       "no"
+#     )
+#   )
 
 # Creating age at baseline:
 data <- data %>%
@@ -460,15 +472,4 @@ data <- data %>%
 
 
 data_liver <- data %>%
-  filter(
-    cancer_diag0 == 'C22.0 Liver cell carcinoma' | cancer_diag0 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      cancer_diag1 == 'C22.0 Liver cell carcinoma' | cancer_diag1 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      cancer_diag2 == 'C22.0 Liver cell carcinoma' | cancer_diag2 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      cancer_diag3 == 'C22.0 Liver cell carcinoma' | cancer_diag3 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      p41270var_a0 == 'C22.0 Liver cell carcinoma' | p41270var_a0 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      p41270var_a1 == 'C22.0 Liver cell carcinoma' | p41270var_a1 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      p41270var_a2 == 'C22.0 Liver cell carcinoma' | p41270var_a2 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      p41270var_a3 == 'C22.0 Liver cell carcinoma' | p41270var_a3 == 'C22.1 Intrahepatic bile duct carcinoma' |
-      p41270var_a4 == 'C22.0 Liver cell carcinoma' | p41270var_a4 == 'C22.1 Intrahepatic bile duct carcinoma'
-  )
-
+  filter(status == "Liver cancer")
