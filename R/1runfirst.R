@@ -326,45 +326,45 @@ data <- data %>%
   rename(baseline_start_date = completion_date) %>%
   ungroup()
 
-# data <- data %>%
-#   mutate(
-#     diabetes = if_else(
-#       rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
-#                 across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-#       "yes",
-#       "no"
-#     )
-#   )
-#
-# data <- data %>%
-#   mutate(
-#     cholelith = if_else(
-#       rowSums(across(starts_with("p41270var_a"), ~ grepl("K80", .x)) &
-#                 across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-#       "yes",
-#       "no"
-#     )
-#   )
-#
-# data <- data %>%
-#   mutate(
-#     alc_liver = if_else(
-#       rowSums(across(starts_with("p41270var_a"), ~ grepl("K70", .x)) &
-#                 across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-#       "yes",
-#       "no"
-#     )
-#   )
-#
-# data <- data %>%
-#   mutate(
-#     nafld = if_else(
-#       rowSums(across(starts_with("p41270var_a"), ~ grepl("76.0", .x)) &
-#                 across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-#       "yes",
-#       "no"
-#     )
-#   )
+data <- data %>%
+  mutate(
+    diabetes = if_else(
+      rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
+                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
+    )
+  )
+
+data <- data %>%
+  mutate(
+    cholelith = if_else(
+      rowSums(across(starts_with("p41270var_a"), ~ grepl("K80", .x)) &
+                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
+    )
+  )
+
+data <- data %>%
+  mutate(
+    alc_liver = if_else(
+      rowSums(across(starts_with("p41270var_a"), ~ grepl("K70", .x)) &
+                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
+    )
+  )
+
+data <- data %>%
+  mutate(
+    nafld = if_else(
+      rowSums(across(starts_with("p41270var_a"), ~ grepl("76.0", .x)) &
+                across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+      "yes",
+      "no"
+    )
+  )
 
 # Creating age at baseline:
 data <- data %>%
