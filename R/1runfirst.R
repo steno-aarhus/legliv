@@ -1,3 +1,5 @@
+#ukb_dataset <- data
+
 library(dplyr)
 library(tidyverse)
 library(magrittr)   # For the %$% composition pipe.
@@ -218,6 +220,8 @@ calculate_food_intake <- function(data) {
                                     starts_with("p26132") | starts_with("p26149")), na.rm = TRUE)/ques_comp_n,
       fish_daily_25 = fish_daily/25,
       fish_daily_15 = fish_daily/15,
+      # alcohol
+      alcohol_daily = rowSums(select(., starts_with("p26030")), na.rm = TRUE)/ques_comp_n,
       # total weight of all foods
       total_weight_food_daily = legume_daily + red_meat_daily + proc_meat_daily +
         poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
@@ -424,18 +428,18 @@ data <- data %>%
     earliest_date = pmin(dead_date, cancer_date0, cancer_date1, cancer_date2, cancer_date3, p41280_a0, p41280_a1, p41280_a2, p41280_a3, p41280_a4, l2fu_d, na.rm = TRUE) %>%
       coalesce(as.Date("2022-12-31")),
     status = case_when(
-      earliest_date == cancer_date0 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == cancer_date1 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == cancer_date2 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == cancer_date3 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == p41280_a0 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == p41280_a1 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == p41280_a2 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == p41280_a3 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == p41280_a4 & earliest_date > baseline_start_date ~ "liver cancer",
-      earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "censured",
-      earliest_date == dead_date ~ "censured",
-      TRUE ~ "censured"
+      earliest_date == cancer_date0 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == cancer_date1 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == cancer_date2 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == cancer_date3 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == p41280_a0 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == p41280_a1 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == p41280_a2 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == p41280_a3 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == p41280_a4 & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
+      earliest_date == dead_date ~ "Censored",
+      TRUE ~ "Censored"
     ),
     status_date = earliest_date,
     status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
@@ -468,5 +472,3 @@ data_liver <- data %>%
       p41270var_a4 == 'C22.0 Liver cell carcinoma' | p41270var_a4 == 'C22.1 Intrahepatic bile duct carcinoma'
   )
 
-data <- data %>%
-  select(-matches("^p\\d+$"))
