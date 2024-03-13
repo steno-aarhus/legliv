@@ -1,3 +1,3 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-download_project_data|stem|38eb492312f27826|a2d5526e97b1e4dd|ef46db3751d8e999|376546580|/home/rstudio-server/legliv/data/data.csv|t19754.789822073s|9e404f837023570a|158493899|file|local|vector|||4.672||
+download_project_data|stem|2ab4e8ee3aa1d03a|a2d5526e97b1e4dd|ef46db3751d8e999|-405941752|/home/rstudio-server/legliv/data/data.csv|t19795.6720846171s|665a51a834461fea|1461051909|file|local|vector|||9.176||
 package_deps|object|fac4c6e35c5bc815|||||||||||||||
