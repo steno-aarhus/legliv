@@ -1,5 +1,5 @@
 # ukb_dataset <- data
-#data <- ukb_dataset
+# data <- ukb_dataset
 
 library(dplyr)
 library(tidyverse)
@@ -80,6 +80,57 @@ create_baseline_start_date <- function(data) {
 }
 data <- create_baseline_start_date(data)
 
+detect_cancer <- function(data) {
+    cancer <- data %>%
+        select(starts_with("p40006"), starts_with("p40005"), starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            cancer1 = if_else(
+                rowSums(across(starts_with("p40006"), ~ grepl("C22.0", .x)) &
+                            across(starts_with("p40005"), ~ .x > baseline_start_date)) > 0,
+                "Liver cancer",
+                "no"
+            ),
+            cancer2 = if_else(
+                rowSums(across(starts_with("p40006"), ~ grepl("C22.1", .x)) &
+                            across(starts_with("p40005"), ~ .x > baseline_start_date)) > 0,
+                "Liver cancer",
+                "no"
+            ),
+            cancer3 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("C22.0", .x)) &
+                            across(starts_with("p41280_a"), ~ .x > baseline_start_date)) > 0,
+                "Liver cancer",
+                "no"
+            ),
+            cancer4 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("C22.1", .x)) &
+                            across(starts_with("p41280_a"), ~ .x > baseline_start_date)) > 0,
+                "Liver cancer",
+                "no"
+            )
+        )
+
+    cancer <- cancer %>%
+        mutate(liver_cancer = ifelse(cancer1 == "Liver cancer" |
+                                         cancer2 == "Liver cancer" |
+                                         cancer3 == "Liver cancer" |
+                                         cancer4 == "Liver cancer",
+                                     "Liver cancer", "no"),
+               hcc = ifelse(cancer1 == "Liver cancer" |
+                                cancer3 == "Liver cancer",
+                            "Liver cancer", "no"),
+               icc = ifelse(cancer2 == "Liver cancer" |
+                                cancer4 == "Liver cancer",
+                            "Liver cancer", "no")
+        )
+
+    data <- data %>%
+        left_join(cancer %>% select(id, liver_cancer, hcc, icc), by = "id")
+
+    return(data)
+}
+data <- detect_cancer(data)
+
 process_diseases <- function(data) {
     diseases <- data %>%
         select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
@@ -105,7 +156,7 @@ process_diseases <- function(data) {
         )
 
     data <- data %>%
-        left_join(diseases %>% select(id, diabetes, cholelith, alc_liver, nafld), by = "id")
+        left_join(diseases %>% select(id, diabetes, cholelith, nafld), by = "id")
     remove(diseases)
 
     cystect <- data %>%
@@ -125,7 +176,6 @@ process_diseases <- function(data) {
     return(data)
 }
 data <- process_diseases(data)
-
 
 covariates <- function(data) {
     # renaming variables to appropriate names and mutating covariates:
