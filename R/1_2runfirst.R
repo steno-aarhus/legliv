@@ -235,7 +235,7 @@ covariates <- function(data) {
     return(data)
 }
 data <- covariates(data)
-.
+
 other_variables <- function(data) {
     data <- data %>%
         mutate(
