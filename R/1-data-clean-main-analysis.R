@@ -31,7 +31,7 @@ ready_data <- function(data) {
 }
 data <- ready_data(data)
 
-cancer_longer <- function(data) {
+outcomes <- function(data) {
   icd10_subset <- data %>%
     select(matches("p41270|p41280|id")) %>%
     pivot_longer(
@@ -48,16 +48,11 @@ cancer_longer <- function(data) {
       names_sep = "_"
     )
 
- return(data)
-}
-data <- cancer_longer(data)
-
-icd10_hcc <- function(data) {
   icd10_hcc <- icd10_subset %>%
     mutate(
       icd10_hcc_date = ifelse(str_detect(p41270var, "C22.0"),
-        as.character(c_across(starts_with("p41280"))),
-        NA
+                              as.character(c_across(starts_with("p41280"))),
+                              NA
       ),
       icd10_hcc_date = as.Date(icd10_hcc_date, format = "%Y-%m-%d")
     )
@@ -68,11 +63,6 @@ icd10_hcc <- function(data) {
     slice(1) %>%
     ungroup()
 
-  return(data)
-}
-data <- icd10_hcc(data)
-
-icd10_icc <- function(data) {
   icd10_icc <- icd10_subset %>%
     mutate(
       icd10_icc_date = ifelse(str_detect(p41270var, "C22.1"),
@@ -88,11 +78,6 @@ icd10_icc <- function(data) {
     slice(1) %>%
     ungroup()
 
-  return(data)
-}
-data <- icd10_icc(data)
-
-cancer_hcc <- function(data) {
   cancer_hcc <- cancer_subset %>%
     mutate(
       cancer_hcc_date = ifelse(str_detect(p40006, "C22.0"),
@@ -108,11 +93,7 @@ cancer_hcc <- function(data) {
     slice(1) %>%
     ungroup()
 
-  return(data)
-}
-data <- cancer_hcc()
 
-cancer_icc <- function(data) {
   cancer_icc <- cancer_subset %>%
     mutate(
       cancer_icc_date = ifelse(str_detect(p40006, "C22.1"),
@@ -128,12 +109,6 @@ cancer_icc <- function(data) {
     slice(1) %>%
     ungroup()
 
-  return(data)
-}
-data <- cancer_icc(data)
-
-
-join_cancer <- function(data) {
   data <- data %>%
     left_join(first_non_na_hcc %>% select(id, icd10_hcc_date), by = "id")
 
@@ -148,7 +123,8 @@ join_cancer <- function(data) {
 
   return(data)
 }
-data <- join_cancer(data)
+data <- outcomes(data)
+
 
 baseline_date <- function(data) {
   # Removing specific time stamp from date of completed questionnaires:
@@ -203,8 +179,8 @@ baseline_date <- function(data) {
 }
 data <- baseline_date(data)
 
-covariates2 <- function(data) {
-  diseases <- data %>%
+diabetes <- function(data) {
+  diabetes <- data %>%
     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
     mutate(
       diabetes = if_else(
@@ -229,25 +205,32 @@ covariates2 <- function(data) {
 
   data <- data %>%
     left_join(diseases %>% select(id, diabetes, cholelith, nafld), by = "id")
-  remove(diseases)
+  remove(diabetes)
 
+  return(data)
+}
+data <- diabetes(data)
+
+cystectomy <- function(data) {
   cystect <- data %>%
     select(starts_with("p41272"), starts_with("p41282"), baseline_start_date, id) %>%
     mutate(
       cystectomy = if_else(
         rowSums(across(starts_with("p41272var_a"), ~ grepl("J18", .x)) &
-          across(starts_with("p41282_a"), ~ .x < baseline_start_date)) > 0,
+                  across(starts_with("p41282_a"), ~ .x < baseline_start_date)) > 0,
         "yes",
         "no"
       )
     )
+
   data <- data %>%
     left_join(cystect %>% select(id, cystectomy), by = "id")
-  remove(diseases)
+
   remove(cystect)
+
   return(data)
 }
-data <- covariates2(data)
+data <- cystectomy(data)
 
 covariates <- function(data) {
   # renaming variables to appropriate names and mutating covariates:
@@ -418,6 +401,8 @@ calculate_food_intake <- function(data) {
       legume_daily_15 = legume_daily / 15,
       pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE) / p20077,
       pulse_daily_15 = pulse_daily / 15,
+      legume_quintile = ntile(legume_daily, 5),
+      legume_category = factor(legume_quintile, labels = c("Lowest", "Low", "Medium", "High", "Highest")),
       legume_other_daily = (rowSums(select(., starts_with("p26086") |
         starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
         rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
@@ -544,9 +529,21 @@ stratify_prepare1 <- function(data) {
   data_women <- data %>%
     filter(sex == "Female")
 
-  return(data)
+  return(list(data_wc_high = data_wc_high,
+              data_wc_low = data_wc_low,
+              data_diabetes_yes = data_diabetes_yes,
+              data_diabetes_no = data_diabetes_no,
+              data_men = data_men,
+              data_women = data_women))
 }
-data <- stratify_prepare1(data)
+
+data_list <- stratify_prepare1(data)
+data_wc_high <- data_list$data_wc_high
+data_wc_low <- data_list$data_wc_low
+data_diabetes_yes <- data_list$data_diabetes_yes
+data_diabetes_no <- data_list$data_diabetes_no
+data_men <- data_list$data_men
+data_women <- data_list$data_women
 
 stratify_prepare2 <- function(data) {
   data_hcc <- data %>%
@@ -567,9 +564,9 @@ stratify_prepare2 <- function(data) {
     ) %>%
     select(-earliest_date)
 
-  return(data)
+  return(data_hcc)
 }
-data <- stratify_prepare2(data)
+data_hcc <- stratify_prepare2(data)
 
 stratify_prepare3 <- function(data) {
   data_icc <- data %>%
@@ -590,9 +587,11 @@ stratify_prepare3 <- function(data) {
     ) %>%
     select(-earliest_date)
 
-  return(data)
+  return(data_icc)
 }
-data <- stratify_prepare3
+
+# Usage:
+data_icc <- stratify_prepare3(data)
 
 data_liver <- data %>%
   filter(status == "Liver cancer")
