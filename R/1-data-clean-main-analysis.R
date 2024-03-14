@@ -4,7 +4,7 @@ library(magrittr) # For the %$% composition pipe.
 library(lubridate) # For creating baseline age
 library(stringr) # for renaming several columns at once
 
-data <- read_csv("data/data.csv")
+# data <- read_csv("data/data.csv")
 
 ready_data <- function(data) {
   # Removing participants who did not complete 2 or more diet questionnaires
@@ -312,117 +312,109 @@ calculate_food_intake <- function(data) {
       cereal_refined_daily = (rowSums(select(., starts_with("p26113") | starts_with("p26079") |
         starts_with("p26071") | starts_with("p26072") |
         starts_with("p26073") | starts_with("p26075") |
-        starts_with("p26068") | starts_with("p26083")), na.rm = TRUE)) / ques_comp_n,
-      cereal_refined_daily_25 = (cereal_refined_daily) / 25,
+        starts_with("p26068") | starts_with("p26083")), na.rm = TRUE)) / p20077,
+      cereal_refined_daily_15 = (cereal_refined_daily) / 15,
       # whole-grain cereals
       whole_grain_daily = rowSums(select(., starts_with("p26074") | starts_with("p26076") |
         starts_with("p26077") | starts_with("p26078") |
-        starts_with("p26105") | starts_with("p26114")), na.rm = TRUE) / ques_comp_n,
-      whole_grain_daily_25 = whole_grain_daily / 25,
+        starts_with("p26105") | starts_with("p26114")), na.rm = TRUE) / p20077,
+      whole_grain_daily_15 = whole_grain_daily / 15,
       # mixed dishes
       mixed_dish_daily = rowSums(select(., starts_with("p26128") | starts_with("p26097") |
         starts_with("p26116") | starts_with("p26135") |
-        starts_with("p26139")), na.rm = TRUE) / ques_comp_n,
-      mixed_dish_daily_25 = mixed_dish_daily / 25,
+        starts_with("p26139")), na.rm = TRUE) / p20077,
+      mixed_dish_daily_15 = mixed_dish_daily / 15,
       # dairy
       dairy_daily = rowSums(select(., starts_with("p26154") | starts_with("p26087") |
         starts_with("p26096") | starts_with("p26102") |
         starts_with("p26103") | starts_with("p26099") |
         starts_with("p26131") | starts_with("p26133") |
-        starts_with("p26150")), na.rm = TRUE) / ques_comp_n,
-      dairy_daily_25 = dairy_daily / 25,
+        starts_with("p26150")), na.rm = TRUE) / p20077,
+      dairy_daily_15 = dairy_daily / 15,
       # fats and spread
       fats_daily = rowSums(select(., starts_with("p26112") | starts_with("p26062") |
         starts_with("p26063") | starts_with("p26155") |
         starts_with("p26110") | starts_with("p26111")), na.rm = TRUE),
-      fats_daily_25 = fats_daily / 25,
+      fats_daily_15 = fats_daily / 15,
       # fruit
       fruit_daily = rowSums(select(., starts_with("p26089") | starts_with("p26090") |
         starts_with("p26091") | starts_with("p26092") |
-        starts_with("p26093") | starts_with("p26094")), na.rm = TRUE) / ques_comp_n,
-      fruit_daily_25 = fruit_daily / 25,
+        starts_with("p26093") | starts_with("p26094")), na.rm = TRUE) / p20077,
+      fruit_daily_15 = fruit_daily / 15,
       # nuts and seeds
-      nut_daily = rowSums(select(., starts_with("p26107") | starts_with("p26108")), na.rm = TRUE) / ques_comp_n,
-      nut_daily_25 = nut_daily / 25,
+      nut_daily = rowSums(select(., starts_with("p26107") | starts_with("p26108")), na.rm = TRUE) / p20077,
+      nut_daily_15 = nut_daily / 15,
       # vegetables
       veggie_daily = (rowSums(select(., starts_with("p26065") | starts_with("p26098") |
         starts_with("p26115") | starts_with("p26123") |
         starts_with("p26125") | starts_with("p26143") |
         starts_with("p26146") | starts_with("p26147")), na.rm = TRUE) +
         rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / ques_comp_n, # assuming half peas half corn
-      veggie_daily_25 = veggie_daily / 25,
+        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
+      veggie_daily_15 = veggie_daily / 15,
       # potatoes
       potato_daily = rowSums(select(., starts_with("p26118") | starts_with("p26119") |
-        starts_with("p26120")), na.rm = TRUE) / ques_comp_n,
-      potato_daily_25 = potato_daily / 25,
+        starts_with("p26120")), na.rm = TRUE) / p20077,
+      potato_daily_15 = potato_daily / 15,
       # eggs
-      egg_daily = rowSums(select(., starts_with("p26088")), na.rm = TRUE) / ques_comp_n,
-      egg_daily_25 = egg_daily / 25,
+      egg_daily = rowSums(select(., starts_with("p26088")), na.rm = TRUE) / p20077,
+      egg_daily_15 = egg_daily / 15,
       # meat substitutes
-      meat_sub_daily = rowSums(select(., starts_with("p26145")), na.rm = TRUE) / ques_comp_n,
-      meat_sub_daily_25 = meat_sub_daily / 25,
+      meat_sub_daily = rowSums(select(., starts_with("p26145")), na.rm = TRUE) / p20077,
+      meat_sub_daily_15 = meat_sub_daily / 15,
       # non-alcoholic beverages
       non_alc_beverage_daily = rowSums(select(., starts_with("p26124") | starts_with("p26141") |
         starts_with("p26142") | starts_with("p26148") |
         starts_with("p26081") | starts_with("p26082") |
         starts_with("p26095") | starts_with("p26126") |
-        starts_with("p26127")), na.rm = TRUE) / ques_comp_n,
-      non_alc_beverage_daily_25 = non_alc_beverage_daily / 25,
+        starts_with("p26127")), na.rm = TRUE) / p20077,
+      non_alc_beverage_daily_15 = non_alc_beverage_daily / 15,
       # alcoholic beverages
       alc_beverage_daily = rowSums(select(., starts_with("p26151") | starts_with("p26152") |
         starts_with("p26153") | starts_with("p26067") |
-        starts_with("p26138")), na.rm = TRUE) / ques_comp_n,
-      alc_beverage_daily_25 = alc_beverage_daily / 25,
+        starts_with("p26138")), na.rm = TRUE) / p20077,
+      alc_beverage_daily_15 = alc_beverage_daily / 15,
       # sugar, preserves, cakes & confectionery, snacks
       snack_daily = rowSums(select(., starts_with("p26106") | starts_with("p26140") |
         starts_with("p26134") | starts_with("p26084") |
         starts_with("p26085") | starts_with("p26064") |
-        starts_with("p26080")), na.rm = TRUE) / ques_comp_n,
-      snack_daily_25 = snack_daily / 25,
+        starts_with("p26080")), na.rm = TRUE) / p20077,
+      snack_daily_15 = snack_daily / 15,
       # Sauces & condiments
-      sauce_daily = rowSums(select(., starts_with("p26129") | starts_with("p26130")), na.rm = TRUE) / ques_comp_n,
-      sauce_daily_25 = sauce_daily / 25,
+      sauce_daily = rowSums(select(., starts_with("p26129") | starts_with("p26130")), na.rm = TRUE) / p20077,
+      sauce_daily_15 = sauce_daily / 15,
       # legumes
       legume_daily = (rowSums(select(., starts_with("p26086") | starts_with("p26101") |
         starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
         rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / ques_comp_n, # assuming half peas half corn
-      legume_daily_25 = legume_daily / 25,
-      legume_daily_25 = legume_daily / 15,
-      pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE) / ques_comp_n,
-      pulse_daily_25 = pulse_daily / 25,
+        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
+      legume_daily_15 = legume_daily / 15,
+      pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE) / p20077,
       pulse_daily_15 = pulse_daily / 15,
       legume_other_daily = (rowSums(select(., starts_with("p26086") |
         starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
         rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / ques_comp_n, # assuming half peas half corn
-      legume_other_daily_25 = legume_other_daily / 25,
+        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
       legume_other_daily_15 = legume_other_daily / 15,
       # red meats
       red_meat_daily = rowSums(select(., starts_with("p26066") | starts_with("p26100") |
-        starts_with("p26104") | starts_with("p26117")), na.rm = TRUE) / ques_comp_n,
-      red_meat_daily_25 = red_meat_daily / 25,
+        starts_with("p26104") | starts_with("p26117")), na.rm = TRUE) / p20077,
       red_meat_daily_15 = red_meat_daily / 15,
       # processed meat
-      proc_meat_daily = rowSums(select(., starts_with("p26122")), na.rm = TRUE) / ques_comp_n,
-      proc_meat_daily_25 = proc_meat_daily / 25,
+      proc_meat_daily = rowSums(select(., starts_with("p26122")), na.rm = TRUE) / p20077,
       proc_meat_daily_15 = proc_meat_daily / 15,
       # Red & processed meat:
       red_proc_meat_daily = red_meat_daily + proc_meat_daily,
-      red_proc_meat_daily_25 = red_proc_meat_daily / 25,
       red_proc_meat_daily_15 = red_proc_meat_daily / 15,
       # poultry
-      poultry_daily = rowSums(select(., starts_with("p26121") | starts_with("p26069")), na.rm = TRUE) / ques_comp_n,
-      poultry_daily_25 = poultry_daily / 25,
+      poultry_daily = rowSums(select(., starts_with("p26121") | starts_with("p26069")), na.rm = TRUE) / p20077,
       poultry_daily_15 = poultry_daily / 15,
       # fish
       fish_daily = rowSums(select(., starts_with("p26070") | starts_with("p26109") |
-        starts_with("p26132") | starts_with("p26149")), na.rm = TRUE) / ques_comp_n,
-      fish_daily_25 = fish_daily / 25,
+        starts_with("p26132") | starts_with("p26149")), na.rm = TRUE) / p20077,
       fish_daily_15 = fish_daily / 15,
       # alcohol
-      alcohol_daily = rowSums(select(., starts_with("p26030")), na.rm = TRUE) / ques_comp_n,
+      alcohol_daily = rowSums(select(., starts_with("p26030")), na.rm = TRUE) / p20077,
       # total weight of all foods
       total_weight_food_daily = legume_daily + red_meat_daily + proc_meat_daily +
         poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
@@ -430,10 +422,8 @@ calculate_food_intake <- function(data) {
         meat_sub_daily + snack_daily + mixed_dish_daily + sauce_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily,
       # total energy of all foods and beverages
-      total_energy_food_daily = rowSums(select(., starts_with("p26002")), na.rm = TRUE) / ques_comp_n,
+      total_energy_food_daily = rowSums(select(., starts_with("p26002")), na.rm = TRUE) / p20077,
     )
-  data <- data %>%
-    select(-starts_with("p26"), -ends_with("_n"))
   return(data)
 }
 
@@ -502,6 +492,52 @@ data <- data %>%
     time = status_age - age_at_baseline
   ) %>%
   select(-earliest_date)
+
+stratify_prepare <- function(data) {
+  data <- data |>
+    mutate(
+      status_diabetes_yes = case_when(
+        status == "Liver cancer" & diabetes == "yes" ~ "Liver cancer",
+        status == "Censored" & diabetes == "yes" ~ "Censored"
+      ),
+      status_diabetes_no = case_when(
+        status == "Liver cancer" & diabetes == "no" ~ "Liver cancer",
+        status == "Censored" & diabetes == "no" ~ "Censored"
+      ),
+      wc_category = case_when(
+        sex == "Male" & wc >= 102 ~ "high",
+        sex == "Male" & wc < 102 ~ "low",
+        sex == "Female" & wc >= 88 ~ "high",
+        sex == "Female" & wc < 88 ~ "low"
+      ),
+      status_wc_high = case_when(
+        status == "Liver cancer" & wc_category == "high" ~ "Liver cancer",
+        status == "Censored" & wc_category == "high" ~ "Censored"
+      ),
+      status_wc_low = case_when(
+        status == "Liver cancer" & wc_category == "low" ~ "Liver cancer",
+        status == "Censored" & wc_category == "low" ~ "Censored"
+      )
+    )
+  return(data)
+}
+data <- stratify_prepare(data)
+
+data %>%
+  group_by(status_wc_low) %>%
+  summarise(n=n())
+
+data_wc_high <- data %>%
+  filter(sex == "Male" & wc >= 102 | sex == "Female" & wc >= 88)
+
+data_wc_low <- data %>%
+  filter(sex == "Male" & wc < 102 | sex == "Female" & wc < 88)
+
+data_diabetes_yes <- data %>%
+  filter(diabetes == "yes")
+
+data_diabetes_no <- data %>%
+  filter(diabetes == "no")
 
 data_liver <- data %>%
   filter(status == "Liver cancer")
