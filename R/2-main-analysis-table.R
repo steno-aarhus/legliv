@@ -54,7 +54,7 @@ model2t <- coxph(
     diabetes + cholelith + nafld + cystectomy,
   data = data
 )
-model2t %>% parameters(exponentiate = T)
+
 m2t <- model2t %>%
   tbl_regression(
     exponentiate = T,
