@@ -4,7 +4,8 @@ library(magrittr) # For the %$% composition pipe.
 library(lubridate) # For creating baseline age
 library(stringr) # for renaming several columns at once
 
-# data <- read_csv("data/data.csv")
+data <- read_csv("data/data.csv")
+ukb_dataset <- data
 
 ready_data <- function(data) {
   # Removing participants who did not complete 2 or more diet questionnaires
@@ -30,7 +31,7 @@ ready_data <- function(data) {
 }
 data <- ready_data(data)
 
-outcomes <- function(data) {
+cancer_longer <- function(data) {
   icd10_subset <- data %>%
     select(matches("p41270|p41280|id")) %>%
     pivot_longer(
@@ -39,6 +40,19 @@ outcomes <- function(data) {
       names_sep = "_"
     )
 
+  cancer_subset <- data %>%
+    select(matches("p40006|p40005|id")) %>%
+    pivot_longer(
+      cols = matches("_i[0-9]*$"),
+      names_to = c(".value", "a"),
+      names_sep = "_"
+    )
+
+ return(data)
+}
+data <- cancer_longer(data)
+
+icd10_hcc <- function(data) {
   icd10_hcc <- icd10_subset %>%
     mutate(
       icd10_hcc_date = ifelse(str_detect(p41270var, "C22.0"),
@@ -54,14 +68,16 @@ outcomes <- function(data) {
     slice(1) %>%
     ungroup()
 
-  data <- data %>%
-    left_join(first_non_na_hcc %>% select(id, icd10_hcc_date), by = "id")
+  return(data)
+}
+data <- icd10_hcc(data)
 
+icd10_icc <- function(data) {
   icd10_icc <- icd10_subset %>%
     mutate(
       icd10_icc_date = ifelse(str_detect(p41270var, "C22.1"),
-        as.character(c_across(starts_with("p41280"))),
-        NA
+                              as.character(c_across(starts_with("p41280"))),
+                              NA
       ),
       icd10_icc_date = as.Date(icd10_icc_date, format = "%Y-%m-%d")
     )
@@ -72,23 +88,16 @@ outcomes <- function(data) {
     slice(1) %>%
     ungroup()
 
-  data <- data %>%
-    left_join(first_non_na_icc %>% select(id, icd10_icc_date), by = "id")
+  return(data)
+}
+data <- icd10_icc(data)
 
-
-  cancer_subset <- data %>%
-    select(matches("p40006|p40005|id")) %>%
-    pivot_longer(
-      cols = matches("_i[0-9]*$"),
-      names_to = c(".value", "a"),
-      names_sep = "_"
-    )
-
+cancer_hcc <- function(data) {
   cancer_hcc <- cancer_subset %>%
     mutate(
       cancer_hcc_date = ifelse(str_detect(p40006, "C22.0"),
-        as.character(c_across(starts_with("p40005"))),
-        NA
+                               as.character(c_across(starts_with("p40005"))),
+                               NA
       ),
       cancer_hcc_date = as.Date(cancer_hcc_date, format = "%Y-%m-%d")
     )
@@ -99,14 +108,16 @@ outcomes <- function(data) {
     slice(1) %>%
     ungroup()
 
-  data <- data %>%
-    left_join(first_non_na_hcc_c %>% select(id, cancer_hcc_date), by = "id")
+  return(data)
+}
+data <- cancer_hcc()
 
+cancer_icc <- function(data) {
   cancer_icc <- cancer_subset %>%
     mutate(
       cancer_icc_date = ifelse(str_detect(p40006, "C22.1"),
-        as.character(c_across(starts_with("p40005"))),
-        NA
+                               as.character(c_across(starts_with("p40005"))),
+                               NA
       ),
       cancer_icc_date = as.Date(cancer_icc_date, format = "%Y-%m-%d")
     )
@@ -117,11 +128,27 @@ outcomes <- function(data) {
     slice(1) %>%
     ungroup()
 
-  data <- data %>%
-    left_join(first_non_na_icc_c %>% select(id, cancer_icc_date), by = "id")
   return(data)
 }
-data <- outcomes(data)
+data <- cancer_icc(data)
+
+
+join_cancer <- function(data) {
+  data <- data %>%
+    left_join(first_non_na_hcc %>% select(id, icd10_hcc_date), by = "id")
+
+  data <- data %>%
+    left_join(first_non_na_icc %>% select(id, icd10_icc_date), by = "id")
+
+  data <- data %>%
+    left_join(first_non_na_hcc_c %>% select(id, cancer_hcc_date), by = "id")
+
+  data <- data %>%
+    left_join(first_non_na_icc_c %>% select(id, cancer_icc_date), by = "id")
+
+  return(data)
+}
+data <- join_cancer(data)
 
 baseline_date <- function(data) {
   # Removing specific time stamp from date of completed questionnaires:
@@ -426,118 +453,146 @@ calculate_food_intake <- function(data) {
     )
   return(data)
 }
-
 data <- calculate_food_intake(data)
 
+birth_and_age <- function(data) {
+  # Merging birth year and month of birth into one column:
 
-# Merging birth year and month of birth into one column:
+  month_names <- c(
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  )
 
-month_names <- c(
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-)
+  data <- data %>%
+    mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
 
-data <- data %>%
-  mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
+  data <- data %>%
+    unite(date_birth, birth_year, month_of_birth_num, sep = "-")
 
-data <- data %>%
-  unite(date_birth, birth_year, month_of_birth_num, sep = "-")
+  remove(month_names)
 
-remove(month_names)
+  # adding 15 as DD for all participants:
 
-data <- data %>%
-  select(-month_of_birth)
+  data$date_birth <- as.Date(paste0(data$date_birth, "-15"))
 
-# adding 15 as DD for all participants:
+  # Creating age at baseline:
+  data <- data %>%
+    mutate(age_at_baseline = year(baseline_start_date) - year(date_birth) -
+             ifelse(month(baseline_start_date) < month(date_birth) |
+                      (month(baseline_start_date) == month(date_birth) &
+                         day(baseline_start_date) < day(date_birth)), 1, 0))
 
-data$date_birth <- as.Date(paste0(data$date_birth, "-15"))
+  # Creating age at loss to follow-up:
 
-# Creating age at baseline:
-data <- data %>%
-  mutate(age_at_baseline = year(baseline_start_date) - year(date_birth) -
-    ifelse(month(baseline_start_date) < month(date_birth) |
-      (month(baseline_start_date) == month(date_birth) &
-        day(baseline_start_date) < day(date_birth)), 1, 0))
+  data <- data %>%
+    mutate(age_l2fu = as.numeric(difftime(l2fu_d, date_birth, units = "days")) / 365.25)
 
-# Creating age at loss to follow-up:
+  # Removing participants who were lost to follow-up before baseline:
+  data <- data %>%
+    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date)
 
-data <- data %>%
-  mutate(age_l2fu = as.numeric(difftime(l2fu_d, date_birth, units = "days")) / 365.25)
-
-# Removing participants who were lost to follow-up before baseline:
-data <- data %>%
-  filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date)
+  return(data)
+}
+data <- birth_and_age(data)
 
 ############################################################################################
 # Removing all participants who have had liver cancer before baseline :
 ############################################################################################
 
-# Creating status, status date and status age:
-data <- data %>%
-  mutate(
-    earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
-      coalesce(as.Date("2022-12-31")),
-    status = case_when(
-      earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-      earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-      earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-      earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-      earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
-      earliest_date == dead_date ~ "Censored",
-      TRUE ~ "Censored"
-    ),
-    status_date = earliest_date,
-    status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
-    status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
-    time = status_age - age_at_baseline
-  ) %>%
-  select(-earliest_date)
-
-stratify_prepare <- function(data) {
-  data <- data |>
+status <- function(data) {
+  # Creating status, status date and status age:
+  data <- data %>%
     mutate(
-      status_diabetes_yes = case_when(
-        status == "Liver cancer" & diabetes == "yes" ~ "Liver cancer",
-        status == "Censored" & diabetes == "yes" ~ "Censored"
+      earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
+        coalesce(as.Date("2022-12-31")),
+      status = case_when(
+        earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
+        earliest_date == dead_date ~ "Censored",
+        TRUE ~ "Censored"
       ),
-      status_diabetes_no = case_when(
-        status == "Liver cancer" & diabetes == "no" ~ "Liver cancer",
-        status == "Censored" & diabetes == "no" ~ "Censored"
-      ),
-      wc_category = case_when(
-        sex == "Male" & wc >= 102 ~ "high",
-        sex == "Male" & wc < 102 ~ "low",
-        sex == "Female" & wc >= 88 ~ "high",
-        sex == "Female" & wc < 88 ~ "low"
-      ),
-      status_wc_high = case_when(
-        status == "Liver cancer" & wc_category == "high" ~ "Liver cancer",
-        status == "Censored" & wc_category == "high" ~ "Censored"
-      ),
-      status_wc_low = case_when(
-        status == "Liver cancer" & wc_category == "low" ~ "Liver cancer",
-        status == "Censored" & wc_category == "low" ~ "Censored"
-      )
-    )
+      status_date = earliest_date,
+      status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
+      status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
+      time = status_age - age_at_baseline
+    ) %>%
+    select(-earliest_date)
+
   return(data)
 }
-data <- stratify_prepare(data)
+data <- status(data)
 
-data %>%
-  group_by(status_wc_low) %>%
-  summarise(n=n())
+stratify_prepare1 <- function(data) {
+  data_wc_high <- data %>%
+    filter(sex == "Male" & wc >= 102 | sex == "Female" & wc >= 88)
 
-data_wc_high <- data %>%
-  filter(sex == "Male" & wc >= 102 | sex == "Female" & wc >= 88)
+  data_wc_low <- data %>%
+    filter(sex == "Male" & wc < 102 | sex == "Female" & wc < 88)
 
-data_wc_low <- data %>%
-  filter(sex == "Male" & wc < 102 | sex == "Female" & wc < 88)
+  data_diabetes_yes <- data %>%
+    filter(diabetes == "yes")
 
-data_diabetes_yes <- data %>%
-  filter(diabetes == "yes")
+  data_diabetes_no <- data %>%
+    filter(diabetes == "no")
 
-data_diabetes_no <- data %>%
-  filter(diabetes == "no")
+  data_men <- data %>%
+    filter(sex == "Male")
+
+  data_women <- data %>%
+    filter(sex == "Female")
+
+  return(data)
+}
+data <- stratify_prepare1(data)
+
+stratify_prepare2 <- function(data) {
+  data_hcc <- data %>%
+    mutate(
+      earliest_date = pmin(dead_date, cancer_hcc_date, icd10_hcc_date, l2fu_d, na.rm = TRUE) %>%
+        coalesce(as.Date("2022-12-31")),
+      status = case_when(
+        earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
+        earliest_date == dead_date ~ "Censored",
+        TRUE ~ "Censored"
+      ),
+      status_date = earliest_date,
+      status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
+      status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
+      time = status_age - age_at_baseline
+    ) %>%
+    select(-earliest_date)
+
+  return(data)
+}
+data <- stratify_prepare2(data)
+
+stratify_prepare3 <- function(data) {
+  data_icc <- data %>%
+    mutate(
+      earliest_date = pmin(dead_date, cancer_icc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
+        coalesce(as.Date("2022-12-31")),
+      status = case_when(
+        earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
+        earliest_date == dead_date ~ "Censored",
+        TRUE ~ "Censored"
+      ),
+      status_date = earliest_date,
+      status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
+      status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
+      time = status_age - age_at_baseline
+    ) %>%
+    select(-earliest_date)
+
+  return(data)
+}
+data <- stratify_prepare3
 
 data_liver <- data %>%
   filter(status == "Liver cancer")
