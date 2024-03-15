@@ -18,7 +18,7 @@ m0t <- model0t %>%
     include = legume_daily_15,
     label = legume_daily_15 ~ " ",
   ) %>%
-  modify_caption("**Full cohort** (N = {N})")
+  modify_caption("**Participants who completed two or more  24-hour recall diet questionnaires** (N = {N})")
 
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
