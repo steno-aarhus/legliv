@@ -204,7 +204,7 @@ diseases <- function(data) {
     )
 
   data <- data %>%
-    left_join(diseases %>% select(id, diabetes, cholelith, nafld), by = "id")
+    left_join(diabetes %>% select(id, diabetes, cholelith, nafld), by = "id")
   remove(diabetes)
 
   return(data)
