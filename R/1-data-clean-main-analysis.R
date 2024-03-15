@@ -179,7 +179,7 @@ baseline_date <- function(data) {
 }
 data <- baseline_date(data)
 
-diabetes <- function(data) {
+diseases <- function(data) {
   diabetes <- data %>%
     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
     mutate(
@@ -503,8 +503,7 @@ status <- function(data) {
       status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
       status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
       time = status_age - age_at_baseline
-    ) %>%
-    select(-earliest_date)
+    )
 
   return(data)
 }
@@ -589,9 +588,15 @@ stratify_prepare3 <- function(data) {
 
   return(data_icc)
 }
-
-# Usage:
 data_icc <- stratify_prepare3(data)
+
+data_liver_before <- data %>%
+  filter(cancer_hcc_date <= baseline_start_date |
+           cancer_icc_date <= baseline_start_date |
+           icd10_hcc_date <= baseline_start_date |
+           icd10_icc_date <= baseline_start_date)
+
+data <- anti_join(data, data_liver_before)
 
 data_liver <- data %>%
   filter(status == "Liver cancer")
