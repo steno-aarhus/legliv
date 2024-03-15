@@ -209,7 +209,7 @@ diseases <- function(data) {
 
   return(data)
 }
-data <- diabetes(data)
+data <- diseases(data)
 
 cystectomy <- function(data) {
   cystect <- data %>%
