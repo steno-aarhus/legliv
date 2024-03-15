@@ -297,7 +297,7 @@ covariates <- function(data) {
                 p22040_i0 >= 600 & p22040_i0 < 3000 ~ "Moderate",
                 p22040_i0 > 3000 ~ "High"
             ),
-            diabetes = if_else(diabetes_non_ins == "no" | diabetes_ins == "no", "No", "Yes")
+            diabetes = if_else(diabetes_ins_non == "no" | diabetes_ins == "no", "No", "Yes")
         )
     return(data)
 }
