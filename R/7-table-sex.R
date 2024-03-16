@@ -18,7 +18,7 @@ m0t_men <- model0t_men %>%
         include = legume_daily_15,
         label = legume_daily_15 ~ "Men",
     ) %>%
-    modify_caption("**Stratified on sex ** (N = {N})")
+    modify_caption("**Stratified on sex** (N = {N})")
 
 model1t_men <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
