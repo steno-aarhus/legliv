@@ -1,5 +1,5 @@
 table_1 <- data %>%
-  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, bmi_category, wc, ethnicity, diabetes, nafld, cholelith, cystectomy, status)
+  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, bmi_category, wc, ethnicity, diabetes, nafld, cholelith, cystectomy, inflam_liver, alc_liver, cirr_liver, viral_hepatitis, status)
 
 table_1 %>%
   tbl_summary(
