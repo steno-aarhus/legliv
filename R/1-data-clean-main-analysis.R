@@ -179,43 +179,131 @@ baseline_date <- function(data) {
 }
 data <- baseline_date(data)
 
-diseases <- function(data) {
+icd10_diabetes <- function(data) {
     diabetes <- data %>%
         select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
         mutate(
             diabetes_ins_non = if_else(
                 rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
                             across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-                "yes",
-                "no"
+                "Yes",
+                "No"
             ),
             diabetes_ins = if_else(
                 rowSums(across(starts_with("p41270var_a"), ~ grepl("E10", .x)) &
                             across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-                "yes",
-                "no"
-            ),
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(diabetes %>% select(id, diabetes_ins_non, diabetes_ins), by = "id")
+    return(data)
+}
+data <- icd10_diabetes(data)
+
+
+icd10_cholelith <- function(data) {
+    cholelith <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
             cholelith = if_else(
                 rowSums(across(starts_with("p41270var_a"), ~ grepl("K80", .x)) &
                             across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-                "yes",
-                "no"
-            ),
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(cholelith %>% select(id,), by = "id")
+    return(data)
+}
+data <- icd10_cholelith(data)
+
+icd10_nafld <- function(data) {
+    nafld <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
             nafld = if_else(
                 rowSums(across(starts_with("p41270var_a"), ~ grepl("K76.0", .x)) &
                             across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-                "yes",
-                "no"
+                "Yes",
+                "No"
             )
         )
-
     data <- data %>%
-        left_join(diabetes %>% select(id, diabetes_ins_non, diabetes_ins, cholelith, nafld), by = "id")
-    remove(diabetes)
-
+        left_join( nafld %>% select(id,), by = "id")
     return(data)
 }
-data <- diseases(data)
+data <- icd10_nafld(data)
+
+icd10_nash <- function(data) {
+    nash <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            nash = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("75.8", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(nash %>% select(id,), by = "id")
+    return(data)
+}
+data <- icd10_nash(data)
+
+icd10_alc_liver <- function(data) {
+    alc_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            alc_liver = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K70", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(alc_liver %>% select(id,), by = "id")
+    return(data)
+}
+data <- icd10_alc_liver(data)
+
+icd10_cirr_liver <- function(data) {
+    cirr_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            cirr_liver = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K74", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(cirr_liver %>% select(id,), by = "id")
+    return(data)
+}
+data <- icd10_cirr_liver(data)
+
+icd10_viral_hepatitis <- function(data) {
+    viral_hepatitis <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            viral_hepatitis = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("B18", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(viral_hepatitis %>% select(id,), by = "id")
+    return(data)
+}
+data <- icd10_viral_hepatitis(data)
 
 cystectomy <- function(data) {
     cystect <- data %>%
@@ -249,7 +337,7 @@ covariates <- function(data) {
             bmi = p21001_i0,
             phys_acti = p22040_i0,
             tdi = p22189,
-            spouse = ifelse(p709_i0 == 1, "Yes", "No"),
+            spouse = if_else(p709_i0 == 1, "Yes", "No"),
             smoking = ifelse(p20116_i0 == "Prefer not to answer", "Never", p20116_i0),
             smoking = factor(smoking, levels = c("Never", "Previous", "Current")),
             education = case_when(
@@ -297,7 +385,7 @@ covariates <- function(data) {
                 p22040_i0 >= 600 & p22040_i0 < 3000 ~ "Moderate",
                 p22040_i0 > 3000 ~ "High"
             ),
-            diabetes = if_else(diabetes_non_ins == "no" | diabetes_ins == "no", "No", "Yes")
+            diabetes = if_else(diabetes_non_ins == "No" & diabetes_ins == "No", "No", "Yes")
         )
     return(data)
 }
