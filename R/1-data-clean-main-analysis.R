@@ -1,4 +1,3 @@
-library(dplyr)
 library(tidyverse)
 library(lubridate) # For creating baseline age
 library(stringr) # for renaming several columns at once
