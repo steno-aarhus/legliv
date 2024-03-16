@@ -271,7 +271,8 @@ m0r_icc <- model0r_icc %>%
         exponentiate = T,
         include = legume_daily_15,
         label = legume_daily_15 ~ "ICC",
-    )
+    ) %>%
+    bold_p(t=0.05)
 
 model1r_icc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
@@ -289,7 +290,8 @@ m1r_icc <- model1r_icc %>%
         exponentiate = T,
         include = legume_daily_15,
         label = legume_daily_15 ~ "ICC",
-    )
+    ) %>%
+    bold_p(t=0.05)
 
 
 
