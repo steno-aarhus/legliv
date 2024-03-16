@@ -1,5 +1,5 @@
 table_1 <- data %>%
-  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, bmi_category, wc, ethnicity, diabetes, nafld, cholelith, cystectomy, inflam_liver, alc_liver, cirr_liver, viral_hepatitis, status)
+  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, bmi_category, wc, ethnicity, diabetes, cholelith, cystectomy, liver_disease, status)
 
 table_1 %>%
   tbl_summary(
@@ -18,7 +18,6 @@ table_1 %>%
       sex ~ "Sex",
       ethnicity ~ "Ethnicity",
       diabetes ~ "Type 2 diabetes",
-      nafld ~ "NAFLD",
       cholelith ~ "Cholelithiasis",
       cystectomy ~ "Cholecystectomy"
     )
