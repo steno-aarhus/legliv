@@ -704,5 +704,12 @@ data_liver_before <- data %>%
 
 data <- anti_join(data, data_liver_before)
 
+data_disease_before <- data |>
+    filter(
+        nash == "Yes" | alc_liver == "Yes" | cirr_liver == "Yes" | viral_hepatitis == "Yes"
+    )
+
+data_sens <- anti_join(data, data_disease_before)
+
 data_liver <- data %>%
     filter(status == "Liver cancer")
