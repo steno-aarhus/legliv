@@ -684,5 +684,26 @@ remove_liver_disease_before <- function(data) {
 }
 data_sens <- remove_liver_disease_before(data)
 
+data <- data %>%
+    mutate(
+        liver_disease = if_else(nafld=="Yes"|inflam_liver=="Yes"||alc_liver=="Yes"|cirr_liver=="Yes"|viral_hepatitis=="Yes", "Yes", "No")
+    )
+
+filter_ques_comp_n <- function(data) {
+    data_ques_3 <- data %>%
+        filter(p20077 >= 3)
+    data_ques_4 <- data %>%
+        filter(p20077 >= 4)
+    data_ques_5 <- data %>%
+        filter(p20077 >= 5)
+    return(list(data_ques_3 = data_ques_3,
+                data_ques_4 = data_ques_4,
+                data_ques_5 = data_ques_5))
+}
+ques_comp_list <- filter_ques_comp_n(data)
+data_ques_3 <- ques_comp_list$data_ques_3
+data_ques_4 <- ques_comp_list$data_ques_4
+data_ques_5 <- ques_comp_list$data_ques_5
+
 data_liver <- data %>%
     filter(status == "Liver cancer")
