@@ -28,7 +28,7 @@ model1t <- coxph(
     fruit_daily + nut_daily + meat_sub_daily + snack_daily +
     mixed_dish_daily + sauce_daily + fats_daily +
     non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
-    sex + age_at_baseline,
+    sex,
   data = data
 )
 
@@ -49,7 +49,7 @@ model2t <- coxph(
     fruit_daily + nut_daily + meat_sub_daily + snack_daily +
     mixed_dish_daily + sauce_daily + fats_daily +
     non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
-    sex + age_at_baseline +
+    sex +
     education + tdi + ethnicity + spouse +
     bmi_category + exercise + smoking + wc + alcohol_daily +
     diabetes + cholelith + nafld + cystectomy,
@@ -93,7 +93,7 @@ model1r <- coxph(
     fruit_daily + nut_daily + meat_sub_daily + snack_daily +
     mixed_dish_daily + sauce_daily + fats_daily +
     non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
-    sex + age_at_baseline,
+    sex,
   data = data
 )
 
@@ -114,7 +114,7 @@ model2r <- coxph(
     fruit_daily + nut_daily + meat_sub_daily + snack_daily +
     mixed_dish_daily + sauce_daily + fats_daily +
     non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
-    sex + age_at_baseline +
+    sex +
     education + tdi + ethnicity + spouse +
     bmi_category + exercise + smoking + wc + alcohol_daily +
     diabetes + cholelith + nafld + cystectomy,
@@ -159,7 +159,7 @@ model1p <- coxph(
     fruit_daily + nut_daily + meat_sub_daily + snack_daily +
     mixed_dish_daily + sauce_daily + fats_daily +
     non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
-    sex + age_at_baseline,
+    sex,
   data = data
 )
 
@@ -180,7 +180,7 @@ model2p <- coxph(
     fruit_daily + nut_daily + meat_sub_daily + snack_daily +
     mixed_dish_daily + sauce_daily + fats_daily +
     non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
-    sex + age_at_baseline +
+    sex +
     education + tdi + ethnicity + spouse +
     bmi_category + exercise + smoking + wc + alcohol_daily +
     diabetes + cholelith + nafld + cystectomy,
