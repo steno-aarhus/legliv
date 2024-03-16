@@ -291,6 +291,9 @@ icd10_viral_hepatitis <- function(data) {
 }
 data <- icd10_viral_hepatitis(data)
 
+remove(icd10_subset)
+remove(cancer_subset)
+
 cystectomy <- function(data) {
   cystect <- data %>%
     select(starts_with("p41272"), starts_with("p41282"), baseline_start_date, id) %>%
@@ -500,7 +503,7 @@ calculate_food_intake <- function(data) {
 data <- calculate_food_intake(data)
 
 food_intake_extra <- function(data) {
-  data <- data |>
+  data <- data %>%
     mutate(
       # baked beans and pulses separated from other legumes
       pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE) / p20077,
