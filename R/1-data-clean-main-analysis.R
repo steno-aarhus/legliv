@@ -807,5 +807,5 @@ remove_liver_before <- function(data) {
 }
 data <- remove_liver_before(data)
 
-stratify_prepare1 <- function(data) {
-  data_wc_high <- data %>%
+data_liver <- data %>%
+  filter(status == "Liver cancer")
