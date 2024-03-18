@@ -3,14 +3,18 @@ p31,Sex,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=31
 p34,Year of birth,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=34
 p48,Waist circumference,500290,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=48
 p52,Month of birth,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=52
+p53,Date of attending assessment centre,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=53
 p190,Reason lost to follow-up,1297,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=190
 p191,Date lost to follow-up,1297,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=191
 p709,Number in household,500147,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=709
 p6138,Qualifications,498838,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=6138
 p20077,Number of diet questionnaires completed,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20077
 p20116,Smoking status,501500,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20116
+p20161,Pack years of smoking,153151,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20161
+p20162,Pack years adult smoking as proportion of life span exposed to smoking,153151,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=20162p22189,Townsend deprivation index at recruitment,501740,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22189
 p21000,Ethnic background,501479,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=21000
 p21001,Body mass index (BMI),499393,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=21001
+p21003,Age when attended assessment centre,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=21003
 p21022,Age at recruitment,502366,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=21022
 p22040,Summed MET minutes per week for all activity,394466,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22040
 p22189,Townsend deprivation index at recruitment,501740,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=22189
@@ -133,4 +137,5 @@ p41280,Date of first in-patient diagnosis - ICD10,446974,https://biobank.ndph.ox
 p41281,Date of first in-patient diagnosis - ICD9,20390,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=41281
 p41282,Date of first operative procedure - OPCS4,446544,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=41282
 p41283,Date of first operative procedure - OPCS3,10699,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=41283
+p100020,Typical diet yesterday,210945,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=100020
 p105010,When diet questionnaire completed,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=105010
