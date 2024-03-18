@@ -187,6 +187,42 @@ data <- baseline_date(data)
 
 
 # Diseases before baseline ------------------------------------------------
+
+
+cancer_register <- function(data) {
+  data_cancer_before <- data %>%
+    select(starts_with("p40006"), starts_with("p40005"), baseline_start_date, id) %>%
+    mutate(
+      cancer_before = if_else(
+        rowSums(across(starts_with("p40006_i"), ~ grepl("C\\d{2}", .x)) &
+                  across(starts_with("p40005_i"), ~ .x < baseline_start_date)) > 0,
+        "Yes",
+        "No"
+      )
+    )
+  data <- data %>%
+    left_join(data_cancer_before %>% select(id, cancer_before), by = "id")
+  return(data)
+}
+data <- cancer_register(data)
+
+cancer_icd10_register <- function(data) {
+  data_cancer_before_icd10 <- data %>%
+    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+    mutate(
+      cancer_before_icd10 = if_else(
+        rowSums(across(starts_with("p41270var_a"), ~ grepl("C\\d{2}", .x)) &
+                  across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+        "Yes",
+        "No"
+      )
+    )
+  data <- data %>%
+    left_join(data_cancer_before_icd10 %>% select(id, cancer_before_icd10), by = "id")
+  return(data)
+}
+data <- cancer_icd10_register(data)
+
 icd10_diabetes <- function(data) {
   diabetes <- data %>%
     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
@@ -563,6 +599,7 @@ other_variables <- function(data) {
     mutate(
       birth_year = p34,
       month_of_birth = p52,
+      recruit_to_baseline = as.numeric(difftime(baseline_start_date, p53_i0, units = "days")) / 365.25,
       l2fu_d = p191,
       age_recruit = p21022,
       dead_date = p40000_i0,
@@ -809,3 +846,6 @@ data <- remove_liver_before(data)
 
 data_liver <- data %>%
   filter(status == "Liver cancer")
+
+data <- data %>%
+  filter(!(is.na(age_at_baseline))) # 3 participants who lack dates for completed questionnaire.
