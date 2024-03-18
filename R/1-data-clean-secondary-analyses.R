@@ -84,19 +84,21 @@ data_icc <- stratify_prepare3(data)
 
 remove_liver_disease_before <- function(data) {
     data_liver_disease_before <- data %>%
-        filter(
-            inflam_liver == "Yes" | alc_liver == "Yes" | cirr_liver == "Yes" | viral_hepatitis == "Yes" |
-                nafld == "Yes"
-        )
+        mutate(
+            liver_disease = if_else(inflam_liver_icd10 == "No" & alc_liver == "No" & cirr_liver == "No" & viral_hepatitis == "No"
+                                    & tox_liver_icd10 == "No" & fail_liver_icd10 == "No" & chronic_liver_icd10 == "No", "No", "Yes")
+        ) %>%
+        filter(liver_disease == "Yes")
     data <- data %>%
-        anti_join(data_liver_disease_before %>% select(id, inflam_liver, alc_liver, cirr_liver, viral_hepatitis, nafld), by = "id")
+        anti_join(data_liver_disease_before %>% select(id, liver_disease), by = "id")
     return(data)
 }
 data_sens <- remove_liver_disease_before(data)
 
 data <- data %>%
     mutate(
-        liver_disease = if_else(nafld == "Yes" | inflam_liver == "Yes" || alc_liver == "Yes" | cirr_liver == "Yes" | viral_hepatitis == "Yes", "Yes", "No")
+        liver_disease = if_else(inflam_liver_icd10 == "No" & alc_liver == "No" & cirr_liver == "No" & viral_hepatitis == "No"
+                                & tox_liver_icd10 == "No" & fail_liver_icd10 == "No" & chronic_liver_icd10 == "No", "No", "Yes")
     )
 
 filter_ques_comp_n <- function(data) {
@@ -135,10 +137,10 @@ cancer_register <- function(data) {
 data <- cancer_register(data)
 
 cancer_icd10_register <- function(data) {
-    data_cancer_icd10_before <- data %>%
+    data_cancer_before_icd10 <- data %>%
         select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
         mutate(
-            cancer_icd10_before = if_else(
+            cancer_before_icd10 = if_else(
                 rowSums(across(starts_with("p41270var_a"), ~ grepl("C\\d{2}", .x)) &
                             across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
                 "Yes",
@@ -146,13 +148,13 @@ cancer_icd10_register <- function(data) {
             )
         )
     data <- data %>%
-        left_join(data_cancer_icd10_before %>% select(id, cancer_icd10_before), by = "id")
+        left_join(data_cancer_before_icd10 %>% select(id, cancer_before_icd10), by = "id")
     return(data)
 }
 data <- cancer_icd10_register(data)
 
 data <- data %>%
-    mutate(cancer_before_baseline = if_else(cancer_before == "No" & cancer_icd10_before == "No", "No", "Yes"))
+    mutate(cancer_before_baseline = if_else(cancer_before == "No" & cancer_before_icd10 == "No", "No", "Yes"))
 data %>% group_by(cancer_before_baseline) %>% summarise(n=n())
 
 data_no_cancer <- data %>%
