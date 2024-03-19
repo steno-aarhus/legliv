@@ -6,6 +6,8 @@ data <- read_csv("data/data.csv")
 ukb_dataset <- data
 
 # Prepare data ------------------------------------------------------------
+
+
 ready_data <- function(data) {
   # Removing participants who did not complete 2 or more diet questionnaires
   data <- data %>%
@@ -40,7 +42,11 @@ ready_data <- function(data) {
 data <- ready_data(data)
 
 
+
+
 # Find liver cancer cases -------------------------------------------------
+
+
 cancer_longer <- function(data) {
   icd10_subset <- data %>%
     select(matches("p41270|p41280|id")) %>%
@@ -148,7 +154,13 @@ remove(icd10_subset)
 remove(cancer_subset)
 
 
+
+
+
+
 # Define baseline date ----------------------------------------------------
+
+
 remove_timestamp <- function(data) {
   # Removing specific time stamp from date of completed questionnaires:
   data <- data %>%
@@ -184,6 +196,8 @@ baseline_date <- function(data) {
   return(data)
 }
 data <- baseline_date(data)
+
+
 
 
 # Diseases before baseline ------------------------------------------------
@@ -483,6 +497,10 @@ icd10_chronic_liver <- function(data) {
   return(data)
 }
 data <- icd10_chronic_liver(data)
+
+
+
+
 
 
 # Cystectomy before baseline ----------------------------------------------
