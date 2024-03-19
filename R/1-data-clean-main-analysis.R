@@ -233,7 +233,28 @@ data <- cancer_liver_other(data)
 remove(icd10_subset)
 remove(cancer_subset)
 
+data <- data %>%
+  mutate(
+    liver_cancer = if_else(is.na(icd10_hcc_date) & is.na(icd10_icc_date) & is.na(cancer_hcc_date) & is.na(cancer_icc_date), "No", "Yes"),
+    liver_cancer_unsp = if_else(is.na(icd10_liver_unsp_date) & is.na(cancer_liver_unsp_date), "No", "Yes"),
+    liver_cancer_other = if_else(is.na(icd10_liver_other_date) & is.na(cancer_liver_other_date), "No", "Yes")
+  )
 
+remove_two_liver_cancer <- function(data) {
+  two_liver_cancer <- data %>%
+    filter(liver_cancer == "Yes" & liver_cancer_unsp == "Yes" |
+             liver_cancer == "Yes" & liver_cancer_other == "Yes") %>%
+    mutate(
+      icd10_liver_unsp_date_new = ifelse(!is.na(icd10_liver_unsp_date), NA, icd10_liver_unsp_date),
+      icd10_liver_other_date_new = ifelse(!is.na(icd10_liver_other_date), NA, icd10_liver_other_date),
+      cancer_liver_unsp_date_new = ifelse(!is.na(cancer_liver_unsp_date), NA, cancer_liver_unsp_date),
+      cancer_liver_other_date_new = ifelse(!is.na(cancer_liver_other_date), NA, cancer_liver_other_date)
+    )
+  data <- data %>%
+    left_join(two_liver_cancer %>% select(id, icd10_liver_unsp_date_new, icd10_liver_other_date_new, cancer_liver_unsp_date_new, cancer_liver_other_date_new), by = "id")
+  return(data)
+}
+data <- remove_two_liver_cancer(data)
 
 # Define baseline date ----------------------------------------------------
 
@@ -912,6 +933,10 @@ status <- function(data) {
         earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
         earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
         earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == cancer_liver_unsp_date_new & earliest_date > baseline_start_date ~ "Censored",
+        earliest_date == cancer_liver_other_date_new & earliest_date > baseline_start_date ~ "Censored",
+        earliest_date == icd10_liver_unsp_date_new & earliest_date > baseline_start_date ~ "Censored",
+        earliest_date == icd10_liver_other_date_new & earliest_date > baseline_start_date ~ "Censored",
         earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
         earliest_date == dead_date ~ "Censored",
         TRUE ~ "Censored"
@@ -947,28 +972,7 @@ remove_liver_before <- function(data) {
 }
 data <- remove_liver_before(data)
 
-data <- data %>%
-  mutate(
-    liver_cancer = if_else(is.na(icd10_hcc_date) & is.na(icd10_icc_date) & is.na(cancer_hcc_date) & is.na(cancer_icc_date), "No", "Yes"),
-    liver_cancer_unsp = if_else(is.na(icd10_liver_unsp_date) & is.na(cancer_liver_unsp_date), "No", "Yes"),
-    liver_cancer_other = if_else(is.na(icd10_liver_other_date) & is.na(cancer_liver_other_date), "No", "Yes")
-  )
 
-remove_two_liver_cancer <- function() {
-  two_liver_cancer <- data %>%
-    filter(liver_cancer == "Yes" & liver_cancer_unsp == "Yes" |
-             liver_cancer == "Yes" & liver_cancer_other == "Yes") %>%
-    mutate(
-      icd10_liver_unsp_date = ifelse(!is.na(icd10_liver_unsp_date), NA, icd10_liver_unsp_date),
-      icd10_liver_other_date = ifelse(!is.na(icd10_liver_other_date), NA, icd10_liver_other_date),
-      cancer_liver_unsp_date = ifelse(!is.na(cancer_liver_unsp_date), NA, cancer_liver_unsp_date),
-      cancer_liver_other_date = ifelse(!is.na(cancer_liver_other_date), NA, cancer_liver_other_date)
-    )
-  data <- data %>%
-    left_join(two_liver_cancer %>% select(id, icd10_liver_unsp_date, icd10_liver_other_date, cancer_liver_unsp_date, cancer_liver_other_date), by = "id")
-  return(data)
-}
-data <- remove_two_liver_cancer(data)
 
 data_liver <- data %>%
   filter(status == "Liver cancer")
