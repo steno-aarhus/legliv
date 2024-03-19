@@ -12,7 +12,9 @@ data <- data %>%
         liver_disease = if_else(inflam_liver_icd10 == "No" & alc_liver == "No" & cirr_liver == "No"
                                 & viral_hepatitis == "No" & tox_liver_icd10 == "No"
                                 & fail_liver_icd10 == "No" & chronic_liver_icd10 == "No", "No", "Yes"),
-        cancer_before_baseline = if_else(cancer_before == "No" & cancer_before_icd10 == "No", "No", "Yes")
+        liver_disease = ifelse(nafld == "Yes", "No", liver_disease),
+        cancer_before_baseline = if_else(cancer_before == "No" & cancer_before_icd10 == "No", "No", "Yes"),
+        smoking_ever_never = if_else(smoking == "Never", "No", "Yes")
     )
 
 # Stratified data for sex, waist circumference, and diabetes ----------
@@ -55,11 +57,13 @@ data_women <- data_list$data_women
 cancer_is_hcc <- function(data) {
     data_hcc <- data %>%
         mutate(
-            earliest_date = pmin(dead_date, cancer_hcc_date, icd10_hcc_date, l2fu_d, na.rm = TRUE) %>%
+            earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
                 coalesce(as.Date("2022-12-31")),
             status = case_when(
                 earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+                earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Censored",
                 earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+                earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Censored",
                 earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
                 earliest_date == dead_date ~ "Censored",
                 TRUE ~ "Censored"
@@ -77,10 +81,12 @@ data_hcc <- cancer_is_hcc(data)
 cancer_is_icc <- function(data) {
     data_icc <- data %>%
         mutate(
-            earliest_date = pmin(dead_date, cancer_icc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
+            earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
                 coalesce(as.Date("2022-12-31")),
             status = case_when(
+                earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Censored",
                 earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+                earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Censored",
                 earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
                 earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
                 earliest_date == dead_date ~ "Censored",
@@ -116,7 +122,10 @@ data_no_cancer <- data %>%
 
 data_no_alcohol <- data %>%
     filter(high_alcohol == "No")
-
+data_no_alcohol_hcc <- data_hcc %>%
+    filter(high_alcohol == "No")
+data_no_alcohol_icc <- data_icc %>%
+    filter(high_alcohol == "No")
 
 # Remove untypical diet ---------------------------------------------------
 
@@ -158,5 +167,9 @@ data_filtered <- data %>%
     filter(
         cancer_before_baseline == "No" &
             liver_disease == "No" &
-            misreporter == "No"
+            misreporter == "No" &
+            high_alcohol == "No"
     )
+
+data_smoking <- data %>%
+    filter(smoking_ever_never == "No")
