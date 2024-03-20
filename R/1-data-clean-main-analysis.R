@@ -404,8 +404,6 @@ covariates <- function(data) {
         p22040_i0 > 3000 ~ "High"
       ),
       exercise = factor(exercise, levels = c("Low", "Moderate", "High")),
-      exercise_rec = p22035_i0,
-      exercise_rec_walk = p22035_i0,
       diabetes = if_else(diabetes_ins_non == "No" & diabetes_ins == "No" & diabetes_icd9 == "No", "No", "Yes"),
       cholelith = if_else(cholelith_icd10 == "No" & cholelith_icd9 == "No", "No", "Yes"),
       cystectomy = if_else(cystectomy_opcs4 == "No" & cystectomy_opcs3 == "No", "No", "Yes"),
