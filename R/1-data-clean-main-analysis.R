@@ -150,111 +150,6 @@ cancer_icc <- function(data) {
 }
 data <- cancer_icc(data)
 
-icd10_liver_unsp <- function(data) {
-  icd10_liver_unsp <- icd10_subset %>%
-    mutate(
-      icd10_liver_unsp_date = ifelse(str_detect(p41270var, "C22.9"),
-                                     as.character(c_across(starts_with("p41280"))),
-                                     NA
-      ),
-      icd10_liver_unsp_date = as.Date(icd10_liver_unsp_date, format = "%Y-%m-%d")
-    )
-  first_non_na_liver_unsp <- icd10_liver_unsp %>%
-    filter(!is.na(icd10_liver_unsp_date)) %>%
-    group_by(id) %>%
-    slice(1) %>%
-    ungroup()
-  data <- data %>%
-    left_join(first_non_na_liver_unsp %>% select(id, icd10_liver_unsp_date), by = "id")
-  return(data)
-}
-data <- icd10_liver_unsp(data)
-
-cancer_liver_unsp <- function(data) {
-  cancer_liver_unsp <- cancer_subset %>%
-    mutate(
-      cancer_liver_unsp_date = ifelse(str_detect(p40006, "C22.9"),
-                                      as.character(c_across(starts_with("p40005"))),
-                                      NA
-      ),
-      cancer_liver_unsp_date = as.Date(cancer_liver_unsp_date, format = "%Y-%m-%d")
-    )
-  first_non_na_liver_unsp_c <- cancer_liver_unsp %>%
-    filter(!is.na(cancer_liver_unsp_date)) %>%
-    group_by(id) %>%
-    slice(1) %>%
-    ungroup()
-  data <- data %>%
-    left_join(first_non_na_liver_unsp_c %>% select(id, cancer_liver_unsp_date), by = "id")
-  return(data)
-}
-data <- cancer_liver_unsp(data)
-
-icd10_liver_other <- function(data) {
-  icd10_liver_other <- icd10_subset %>%
-    mutate(
-      icd10_liver_other_date = ifelse(str_detect(p41270var, "C22.7"),
-                                      as.character(c_across(starts_with("p41280"))),
-                                      NA
-      ),
-      icd10_liver_other_date = as.Date(icd10_liver_other_date, format = "%Y-%m-%d")
-    )
-  first_non_na_liver_other <- icd10_liver_other %>%
-    filter(!is.na(icd10_liver_other_date)) %>%
-    group_by(id) %>%
-    slice(1) %>%
-    ungroup()
-  data <- data %>%
-    left_join(first_non_na_liver_other %>% select(id, icd10_liver_other_date), by = "id")
-  return(data)
-}
-data <- icd10_liver_other(data)
-
-cancer_liver_other <- function(data) {
-  cancer_liver_other <- cancer_subset %>%
-    mutate(
-      cancer_liver_other_date = ifelse(str_detect(p40006, "C22.7"),
-                                       as.character(c_across(starts_with("p40005"))),
-                                       NA
-      ),
-      cancer_liver_other_date = as.Date(cancer_liver_other_date, format = "%Y-%m-%d")
-    )
-  first_non_na_liver_other_c <- cancer_liver_other %>%
-    filter(!is.na(cancer_liver_other_date)) %>%
-    group_by(id) %>%
-    slice(1) %>%
-    ungroup()
-  data <- data %>%
-    left_join(first_non_na_liver_other_c %>% select(id, cancer_liver_other_date), by = "id")
-  return(data)
-}
-data <- cancer_liver_other(data)
-
-remove(icd10_subset)
-remove(cancer_subset)
-
-data <- data %>%
-  mutate(
-    liver_cancer = if_else(is.na(icd10_hcc_date) & is.na(icd10_icc_date) & is.na(cancer_hcc_date) & is.na(cancer_icc_date), "No", "Yes"),
-    liver_cancer_unsp = if_else(is.na(icd10_liver_unsp_date) & is.na(cancer_liver_unsp_date), "No", "Yes"),
-    liver_cancer_other = if_else(is.na(icd10_liver_other_date) & is.na(cancer_liver_other_date), "No", "Yes")
-  )
-
-remove_two_liver_cancer <- function(data) {
-  two_liver_cancer <- data %>%
-    filter(liver_cancer == "Yes" & liver_cancer_unsp == "Yes" |
-             liver_cancer == "Yes" & liver_cancer_other == "Yes") %>%
-    mutate(
-      icd10_liver_unsp_date_new = ifelse(!is.na(icd10_liver_unsp_date), NA, icd10_liver_unsp_date),
-      icd10_liver_other_date_new = ifelse(!is.na(icd10_liver_other_date), NA, icd10_liver_other_date),
-      cancer_liver_unsp_date_new = ifelse(!is.na(cancer_liver_unsp_date), NA, cancer_liver_unsp_date),
-      cancer_liver_other_date_new = ifelse(!is.na(cancer_liver_other_date), NA, cancer_liver_other_date)
-    )
-  data <- data %>%
-    left_join(two_liver_cancer %>% select(id, icd10_liver_unsp_date_new, icd10_liver_other_date_new, cancer_liver_unsp_date_new, cancer_liver_other_date_new), by = "id")
-  return(data)
-}
-data <- remove_two_liver_cancer(data)
 
 # Define baseline date ----------------------------------------------------
 
@@ -300,40 +195,6 @@ data <- baseline_date(data)
 
 # Diseases before baseline ------------------------------------------------
 
-
-cancer_register <- function(data) {
-  data_cancer_before <- data %>%
-    select(starts_with("p40006"), starts_with("p40005"), baseline_start_date, id) %>%
-    mutate(
-      cancer_before = if_else(
-        rowSums(across(starts_with("p40006_i"), ~ grepl("C\\d{2}", .x)) &
-                  across(starts_with("p40005_i"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(data_cancer_before %>% select(id, cancer_before), by = "id")
-  return(data)
-}
-data <- cancer_register(data)
-
-cancer_icd10_register <- function(data) {
-  data_cancer_before_icd10 <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      cancer_before_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("C\\d{2}", .x)) &
-                  across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(data_cancer_before_icd10 %>% select(id, cancer_before_icd10), by = "id")
-  return(data)
-}
-data <- cancer_icd10_register(data)
 
 icd10_diabetes <- function(data) {
   diabetes <- data %>%
@@ -443,164 +304,6 @@ icd10_nash <- function(data) {
 }
 data <- icd10_nash(data)
 
-icd10_inflam_liver <- function(data) {
-  inflam_liver <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      inflam_liver_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K75\\.[0-79]", .x)) &
-          across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(inflam_liver %>% select(id, inflam_liver_icd10), by = "id")
-  return(data)
-}
-data <- icd10_inflam_liver(data)
-
-icd10_alc_liver <- function(data) {
-  alc_liver <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      alc_liver = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K70", .x)) &
-          across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(alc_liver %>% select(id, alc_liver), by = "id")
-  return(data)
-}
-data <- icd10_alc_liver(data)
-
-icd10_cirr_liver <- function(data) {
-  cirr_liver <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      cirr_liver = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K74", .x)) &
-          across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(cirr_liver %>% select(id, cirr_liver), by = "id")
-  return(data)
-}
-data <- icd10_cirr_liver(data)
-
-icd10_viral_hepatitis <- function(data) {
-  viral_hepatitis <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      viral_hepatitis_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("B18", .x)) &
-          across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(viral_hepatitis %>% select(id, viral_hepatitis_icd10), by = "id")
-  return(data)
-}
-data <- icd10_viral_hepatitis(data)
-
-icd9_viral_hepatitis <- function(data) {
-  viral_hepatitis <- data %>%
-    select(starts_with("p41271"), starts_with("p41281"), baseline_start_date, id) %>%
-    mutate(
-      viral_hepatitis_icd9 = if_else(
-        rowSums(across(starts_with("p41271var_a"), ~ grepl("5733", .x)) &
-                  across(starts_with("p41281_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(viral_hepatitis %>% select(id, viral_hepatitis_icd9), by = "id")
-  return(data)
-}
-data <- icd9_viral_hepatitis(data)
-
-icd10_other_liver <- function(data) {
-  other_liver <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      other_liver_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K76\\.[1-9]", .x)) &
-                  across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(other_liver %>% select(id, other_liver_icd10), by = "id")
-  return(data)
-}
-data <- icd10_other_liver(data)
-
-icd10_tox_liver <- function(data) {
-  tox_liver <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      tox_liver_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K71", .x)) &
-                  across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(tox_liver %>% select(id, tox_liver_icd10), by = "id")
-  return(data)
-}
-data <- icd10_tox_liver(data)
-
-icd10_fail_liver <- function(data) {
-  fail_liver <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      fail_liver_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K72", .x)) &
-                  across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(fail_liver %>% select(id, fail_liver_icd10), by = "id")
-  return(data)
-}
-data <- icd10_fail_liver(data)
-
-icd10_chronic_liver <- function(data) {
-  chronic_liver <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      chronic_liver_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K73", .x)) &
-                  across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(chronic_liver %>% select(id, chronic_liver_icd10), by = "id")
-  return(data)
-}
-data <- icd10_chronic_liver(data)
-
-
-
-
-
-
 # Cystectomy before baseline ----------------------------------------------
 opcs4_cystectomy <- function(data) {
   cystect <- data %>%
@@ -701,9 +404,10 @@ covariates <- function(data) {
         p22040_i0 > 3000 ~ "High"
       ),
       exercise = factor(exercise, levels = c("Low", "Moderate", "High")),
+      exercise_rec = p22035_i0,
+      exercise_rec_walk = p22035_i0,
       diabetes = if_else(diabetes_ins_non == "No" & diabetes_ins == "No" & diabetes_icd9 == "No", "No", "Yes"),
       cholelith = if_else(cholelith_icd10 == "No" & cholelith_icd9 == "No", "No", "Yes"),
-      viral_hepatitis = if_else(viral_hepatitis_icd10 == "No" & viral_hepatitis_icd9 == "No", "No", "Yes"),
       cystectomy = if_else(cystectomy_opcs4 == "No" & cystectomy_opcs3 == "No", "No", "Yes"),
       nafld = if_else(nafl_icd10 == "No" & nash_icd10 == "No", "No", "Yes")
     )
@@ -862,11 +566,15 @@ food_intake_extra <- function(data) {
         meat_sub_daily + snack_daily + mixed_dish_daily + sauce_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily,
       # total energy of all foods and beverages
-      other_foods = poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
+      total_energy_food_daily = rowSums(select(., starts_with("p26002")), na.rm = TRUE) / p20077,
+      other_foods_daily = poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
         whole_grain_daily + veggie_daily + potato_daily + fruit_daily + nut_daily +
         meat_sub_daily + snack_daily + mixed_dish_daily + sauce_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily,
-      total_energy_food_daily = rowSums(select(., starts_with("p26002")), na.rm = TRUE) / p20077
+      mixed_daily = fats_daily + sauce_daily + mixed_dish_daily + meat_sub_daily,
+      vegetable_daily = veggie_daily + potato_daily,
+
+
     )
   return(data)
 }
@@ -938,10 +646,6 @@ status <- function(data) {
         earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
         earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
         earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == cancer_liver_unsp_date_new & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == cancer_liver_other_date_new & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == icd10_liver_unsp_date_new & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == icd10_liver_other_date_new & earliest_date > baseline_start_date ~ "Censored",
         earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
         earliest_date == dead_date ~ "Censored",
         TRUE ~ "Censored"
@@ -963,15 +667,10 @@ remove_liver_before <- function(data) {
       cancer_hcc_date <= baseline_start_date |
       cancer_icc_date <= baseline_start_date |
       icd10_hcc_date <= baseline_start_date |
-      icd10_icc_date <= baseline_start_date |
-        cancer_liver_unsp_date <= baseline_start_date |
-        cancer_liver_other_date <= baseline_start_date |
-        icd10_liver_unsp_date <= baseline_start_date |
-        icd10_liver_other_date <= baseline_start_date
+      icd10_icc_date <= baseline_start_date
       )
   data <- data %>%
-    anti_join(data_liver_before %>% select(id, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date,
-                                           cancer_liver_unsp_date, cancer_liver_other_date, icd10_liver_unsp_date, icd10_liver_other_date),
+    anti_join(data_liver_before %>% select(id, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date),
               by = "id")
   return(data)
 }
