@@ -653,6 +653,7 @@ covariates <- function(data) {
       spouse = if_else(p709_i0 == 1, "Yes", "No"),
       smoking = ifelse(p20116_i0 == "Prefer not to answer", "Never", p20116_i0),
       smoking = factor(smoking, levels = c("Never", "Previous", "Current")),
+      smoking_pack = p20162_i0,
       education = case_when(
         grepl("College", education, ignore.case = TRUE) ~ "High",
         grepl("A levels/AS levels", education, ignore.case = TRUE) ~ "Intermediate",
@@ -861,6 +862,10 @@ food_intake_extra <- function(data) {
         meat_sub_daily + snack_daily + mixed_dish_daily + sauce_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily,
       # total energy of all foods and beverages
+      other_foods = poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
+        whole_grain_daily + veggie_daily + potato_daily + fruit_daily + nut_daily +
+        meat_sub_daily + snack_daily + mixed_dish_daily + sauce_daily + fats_daily +
+        non_alc_beverage_daily + alc_beverage_daily,
       total_energy_food_daily = rowSums(select(., starts_with("p26002")), na.rm = TRUE) / p20077
     )
   return(data)
