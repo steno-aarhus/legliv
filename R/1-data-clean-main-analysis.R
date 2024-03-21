@@ -398,12 +398,7 @@ covariates <- function(data) {
         bmi >= 30 ~ "Obese"
       ),
       bmi_category = factor(bmi_category, levels = c("Normal weight", "Overweight", "Obese")),
-      exercise = case_when(
-        p22040_i0 < 600 ~ "Low",
-        p22040_i0 >= 600 & p22040_i0 < 3000 ~ "Moderate",
-        p22040_i0 > 3000 ~ "High"
-      ),
-      exercise = factor(exercise, levels = c("Low", "Moderate", "High")),
+      exercise = p22035_i0,
       diabetes = if_else(diabetes_ins_non == "No" & diabetes_ins == "No" & diabetes_icd9 == "No", "No", "Yes"),
       cholelith = if_else(cholelith_icd10 == "No" & cholelith_icd9 == "No", "No", "Yes"),
       cystectomy = if_else(cystectomy_opcs4 == "No" & cystectomy_opcs3 == "No", "No", "Yes"),
@@ -485,10 +480,10 @@ calculate_food_intake <- function(data) {
             cereal_refined_daily_15 = (cereal_refined_daily) / 15,
             # vegetables
             veggie_daily = (rowSums(select(., starts_with("p26065") | starts_with("p26098") |
-                                               starts_with("p26118") | starts_with("p26120")
-                                           starts_with("p26123") | starts_with("p26125") |
-                                               starts_with("p26143") | starts_with("p26146") |
-                                               starts_with("p26147")), na.rm = TRUE) +
+                                             starts_with("p26118") | starts_with("p26120") |
+                                             starts_with("p26123") | starts_with("p26125") |
+                                             starts_with("p26143") | starts_with("p26146") |
+                                             starts_with("p26147")), na.rm = TRUE) +
                                 rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
                                 rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
             veggie_daily_15 = veggie_daily / 15,
