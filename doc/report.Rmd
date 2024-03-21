@@ -50,15 +50,13 @@ Confounders were defined *a priori* from a literature review of diet components 
 
 **The substitution model**
 
-Substitutions were carried out in an equal-mass manner, i.e., substituting x grams of red meats with x grams of legumes. The size of the substitution was set to 15 grams of legumes for 15 grams of red meats to keep the substitution size below the mean intake any of the substituted food groups in the cohort. Substitutions were modelled using the leave-one-out-approach in which variables for every food group along with a variable for total food intake are included, except the food group that are to be substituted \[5\]. To estimate substitution of 15 grams of all red meats with 15 grams of legumes, the following model was defined:
-$$
-log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Total food intake (g)
-$$
-When substituting red meat with legumes, processed meat was added to the model:
-
-When substituting processed meat with legumes, red meat was added to the model:
-
-**Statistical analysis**
+Substitutions were carried out in an equal-mass manner, i.e., substituting x grams of red meats with x grams of legumes. The size of the substitution was set to 15 grams of legumes for 15 grams of red meats to keep the substitution size below the mean intake any of the substituted food groups in the cohort. Substitutions were modelled using the leave-one-out-approach in which variables for every food group along with a variable for total food intake are included, except the food group that are to be substituted \[5\]. To estimate substitution of 15 grams of all red meats with 15 grams of legumes, the following model was defined: $$
+log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Total food intake (g) + \beta_3 Other food groups(g) + \beta_4 Covariates
+$$ When substituting red meat with legumes, processed meat was added to the model: $$
+log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Processed meat (g) + \beta_3 Total food intake (g) + \beta_4 Other food groups(g) + \beta_5 Covariates
+$$ When substituting processed meat with legumes, red meat was added to the model: $$
+log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Red meat (g) + \beta_3 Total food intake (g) + \beta_4 Other food groups(g) + \beta_5 Covariates
+$$ **Statistical analysis**
 
 Multivariable-adjusted Cox proportional hazards regression models were used to estimate hazard ratios (HR) with corresponding 95% confidence intervals (CI) with age as the underlying timescale. Participants were followed from the date of their last completed diet questionnaire until the event of interest occurred or due to right censoring, whichever came first. Participants were right censored due to one of the following events occurring: death, loss to follow-up, or administrative end of follow-up (set to Jan 31, 2022). Two levels of adjustments were added to the substitution model. Model 1 were minimally adjusted for age, sex, total weight of food intake, and all other foods groups. Model 2 were further adjusted for educational level, Townsend Deprivation Index, ethnicity, living alone, smoking status, alcohol intake, BMI, waist circumference, diabetes, NAFLD, cholelithiasis, and cholecystectomy.
 
