@@ -2,10 +2,10 @@
 # Uses Quarto metadata: https://quarto.org/docs/journals/authors.html
 title: ""
 author:
-  - name: ""
+  - name: "Niels Bock"
     orcid: ""
     affiliations: 
-        - name: ""
+        - name: "Department of Public Health, Aarhus, University"
 date: "`r Sys.Date()`"
 format: html
 ---
@@ -24,7 +24,7 @@ Results:
 
 Conclusions:
 
-# Introduction 
+# Introduction
 
 # Research Design and Methods
 
