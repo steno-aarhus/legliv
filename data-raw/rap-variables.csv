@@ -6,7 +6,10 @@ p48_i1,Waist circumference | Instance 1,p48
 p48_i2,Waist circumference | Instance 2,p48
 p48_i3,Waist circumference | Instance 3,p48
 p52,Month of birth,p52
-p190,Reason lost to follow-up,p190
+p53_i0,Date of attending assessment centre | Instance 0,p53
+p53_i1,Date of attending assessment centre | Instance 1,p53
+p53_i2,Date of attending assessment centre | Instance 2,p53
+p53_i3,Date of attending assessment centre | Instance 3,p53
 p191,Date lost to follow-up,p191
 p709_i0,Number in household | Instance 0,p709
 p709_i1,Number in household | Instance 1,p709
@@ -21,6 +24,14 @@ p20116_i0,Smoking status | Instance 0,p20116
 p20116_i1,Smoking status | Instance 1,p20116
 p20116_i2,Smoking status | Instance 2,p20116
 p20116_i3,Smoking status | Instance 3,p20116
+p20161_i0,Pack years of smoking | Instance 0,p20161
+p20161_i1,Pack years of smoking | Instance 1,p20161
+p20161_i2,Pack years of smoking | Instance 2,p20161
+p20161_i3,Pack years of smoking | Instance 3,p20161
+p20162_i0,Pack years adult smoking as proportion of life span exposed to smoking | Instance 0,p20162
+p20162_i1,Pack years adult smoking as proportion of life span exposed to smoking | Instance 1,p20162
+p20162_i2,Pack years adult smoking as proportion of life span exposed to smoking | Instance 2,p20162
+p20162_i3,Pack years adult smoking as proportion of life span exposed to smoking | Instance 3,p20162
 p21000_i0,Ethnic background | Instance 0,p21000
 p21000_i1,Ethnic background | Instance 1,p21000
 p21000_i2,Ethnic background | Instance 2,p21000
@@ -29,7 +40,13 @@ p21001_i0,Body mass index (BMI) | Instance 0,p21001
 p21001_i1,Body mass index (BMI) | Instance 1,p21001
 p21001_i2,Body mass index (BMI) | Instance 2,p21001
 p21001_i3,Body mass index (BMI) | Instance 3,p21001
+p21003_i0,Age when attended assessment centre | Instance 0,p21003
+p21003_i1,Age when attended assessment centre | Instance 1,p21003
+p21003_i2,Age when attended assessment centre | Instance 2,p21003
+p21003_i3,Age when attended assessment centre | Instance 3,p21003
 p21022,Age at recruitment,p21022
+p22035_i0,At or above moderate/vigorous recommendation | Instance 0,p22035
+p22036_i0,At or above moderate/vigorous/walking recommendation | Instance 0,p22036
 p22040_i0,Summed MET minutes per week for all activity | Instance 0,p22040
 p22189,Townsend deprivation index at recruitment,p22189
 p26000_i0,Total weight of all foods and beverages | Instance 0,p26000
@@ -1081,6 +1098,11 @@ p41283_a12,Date of first operative procedure - OPCS3 | Array 12,p41283
 p41283_a13,Date of first operative procedure - OPCS3 | Array 13,p41283
 p41283_a14,Date of first operative procedure - OPCS3 | Array 14,p41283
 p41283_a15,Date of first operative procedure - OPCS3 | Array 15,p41283
+p100020_i0,Typical diet yesterday | Instance 0,p100020
+p100020_i1,Typical diet yesterday | Instance 1,p100020
+p100020_i2,Typical diet yesterday | Instance 2,p100020
+p100020_i3,Typical diet yesterday | Instance 3,p100020
+p100020_i4,Typical diet yesterday | Instance 4,p100020
 p105010_i0,When diet questionnaire completed | Instance 0,p105010
 p105010_i1,When diet questionnaire completed | Instance 1,p105010
 p105010_i2,When diet questionnaire completed | Instance 2,p105010
