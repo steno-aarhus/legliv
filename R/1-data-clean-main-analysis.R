@@ -437,159 +437,148 @@ data <- other_variables(data)
 # Function with food group variables:
 # Average dietary intake of food groups -----------------------------------
 calculate_food_intake <- function(data) {
-  # estimating average daily and weekly intakes of food groups in g
-  data <- data %>%
-    # creating food groups from UKB Aurora Perez
-    mutate(
-      # refined cereals
-      cereal_refined_daily = (rowSums(select(., starts_with("p26113") | starts_with("p26079") |
-        starts_with("p26071") | starts_with("p26072") |
-        starts_with("p26073") | starts_with("p26075") |
-        starts_with("p26068") | starts_with("p26083")), na.rm = TRUE)) / p20077,
-      cereal_refined_daily_15 = (cereal_refined_daily) / 15,
-      # whole-grain cereals
-      whole_grain_daily = rowSums(select(., starts_with("p26074") | starts_with("p26076") |
-        starts_with("p26077") | starts_with("p26078") |
-        starts_with("p26105") | starts_with("p26114")), na.rm = TRUE) / p20077,
-      whole_grain_daily_15 = whole_grain_daily / 15,
-      # mixed dishes
-      mixed_dish_daily = rowSums(select(., starts_with("p26128") | starts_with("p26097") |
-        starts_with("p26116") | starts_with("p26135") |
-        starts_with("p26139")), na.rm = TRUE) / p20077,
-      mixed_dish_daily_15 = mixed_dish_daily / 15,
-      # dairy
-      dairy_daily = rowSums(select(., starts_with("p26154") | starts_with("p26087") |
-        starts_with("p26096") | starts_with("p26102") |
-        starts_with("p26103") | starts_with("p26099") |
-        starts_with("p26131") | starts_with("p26133") |
-        starts_with("p26150")), na.rm = TRUE) / p20077,
-      dairy_daily_15 = dairy_daily / 15,
-      # fats and spread
-      fats_daily = rowSums(select(., starts_with("p26112") | starts_with("p26062") |
-        starts_with("p26063") | starts_with("p26155") |
-        starts_with("p26110") | starts_with("p26111")), na.rm = TRUE),
-      fats_daily_15 = fats_daily / 15,
-      # fruit
-      fruit_daily = rowSums(select(., starts_with("p26089") | starts_with("p26090") |
-        starts_with("p26091") | starts_with("p26092") |
-        starts_with("p26093") | starts_with("p26094")), na.rm = TRUE) / p20077,
-      fruit_daily_15 = fruit_daily / 15,
-      # nuts and seeds
-      nut_daily = rowSums(select(., starts_with("p26107") | starts_with("p26108")), na.rm = TRUE) / p20077,
-      nut_daily_15 = nut_daily / 15,
-      # vegetables
-      veggie_daily = (rowSums(select(., starts_with("p26065") | starts_with("p26098") |
-        starts_with("p26115") | starts_with("p26123") |
-        starts_with("p26125") | starts_with("p26143") |
-        starts_with("p26146") | starts_with("p26147")), na.rm = TRUE) +
-        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
-      veggie_daily_15 = veggie_daily / 15,
-      # potatoes
-      potato_daily = rowSums(select(., starts_with("p26118") | starts_with("p26119") |
-        starts_with("p26120")), na.rm = TRUE) / p20077,
-      potato_daily_15 = potato_daily / 15,
-      # eggs
-      egg_daily = rowSums(select(., starts_with("p26088")), na.rm = TRUE) / p20077,
-      egg_daily_15 = egg_daily / 15,
-      # meat substitutes
-      meat_sub_daily = rowSums(select(., starts_with("p26145")), na.rm = TRUE) / p20077,
-      meat_sub_daily_15 = meat_sub_daily / 15,
-      # non-alcoholic beverages
-      non_alc_beverage_daily = rowSums(select(., starts_with("p26124") | starts_with("p26141") |
-        starts_with("p26142") | starts_with("p26148") |
-        starts_with("p26081") | starts_with("p26082") |
-        starts_with("p26095") | starts_with("p26126") |
-        starts_with("p26127")), na.rm = TRUE) / p20077,
-      non_alc_beverage_daily_15 = non_alc_beverage_daily / 15,
-      # alcoholic beverages
-      alc_beverage_daily = rowSums(select(., starts_with("p26151") | starts_with("p26152") |
-        starts_with("p26153") | starts_with("p26067") |
-        starts_with("p26138")), na.rm = TRUE) / p20077,
-      alc_beverage_daily_15 = alc_beverage_daily / 15,
-      # sugar, preserves, cakes & confectionery, snacks
-      snack_daily = rowSums(select(., starts_with("p26106") | starts_with("p26140") |
-        starts_with("p26134") | starts_with("p26084") |
-        starts_with("p26085") | starts_with("p26064") |
-        starts_with("p26080")), na.rm = TRUE) / p20077,
-      snack_daily_15 = snack_daily / 15,
-      # Sauces & condiments
-      sauce_daily = rowSums(select(., starts_with("p26129") | starts_with("p26130")), na.rm = TRUE) / p20077,
-      sauce_daily_15 = sauce_daily / 15,
-      # poultry
-      poultry_daily = rowSums(select(., starts_with("p26121") | starts_with("p26069")), na.rm = TRUE) / p20077,
-      poultry_daily_15 = poultry_daily / 15,
-      # fish
-      fish_daily = rowSums(select(., starts_with("p26070") | starts_with("p26109") |
-        starts_with("p26132") | starts_with("p26149")), na.rm = TRUE) / p20077,
-      fish_daily_15 = fish_daily / 15,
-      # alcohol
-      alcohol_daily = rowSums(select(., starts_with("p26030")), na.rm = TRUE) / p20077,
-      # legumes
-      legume_daily = (rowSums(select(., starts_with("p26086") | starts_with("p26101") |
-        starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
-        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
-      legume_daily_15 = legume_daily / 15,
-      # red meats
-      red_meat_daily = rowSums(select(., starts_with("p26066") | starts_with("p26100") |
-        starts_with("p26104") | starts_with("p26117")), na.rm = TRUE) / p20077,
-      red_meat_daily_15 = red_meat_daily / 15,
-      # processed meat
-      proc_meat_daily = rowSums(select(., starts_with("p26122")), na.rm = TRUE) / p20077,
-      proc_meat_daily_15 = proc_meat_daily / 15
-    )
-  return(data)
+    # estimating average daily and weekly intakes of food groups in g
+    data <- data %>%
+        # creating food groups from UKB Aurora Perez
+        mutate(
+            # legumes
+            legume_daily = (rowSums(select(., starts_with("p26086") | starts_with("p26101") |
+                                               starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
+                                rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
+                                rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
+            legume_daily_15 = legume_daily / 15,
+            # red meats
+            red_meat_daily = rowSums(select(., starts_with("p26066") | starts_with("p26100") |
+                                                starts_with("p26104") | starts_with("p26117")), na.rm = TRUE) / p20077,
+            red_meat_daily_15 = red_meat_daily / 15,
+            # processed meat
+            proc_meat_daily = rowSums(select(., starts_with("p26122")), na.rm = TRUE) / p20077,
+            proc_meat_daily_15 = proc_meat_daily / 15,
+            # poultry
+            poultry_daily = rowSums(select(., starts_with("p26069") | starts_with("p26121")), na.rm = TRUE) / p20077,
+            poultry_daily_15 = poultry_daily / 15,
+            # fish
+            fish_daily = rowSums(select(., starts_with("p26070") | starts_with("p26109") |
+                                            starts_with("p26132") | starts_with("p26149")), na.rm = TRUE) / p20077,
+            fish_daily_15 = fish_daily / 15,
+            # dairy
+            dairy_daily = rowSums(select(., starts_with("p26062") | starts_with("p26063") |
+                                             starts_with("p26087") | starts_with("p26096") |
+                                             starts_with("p26099") | starts_with("p26102") |
+                                             starts_with("p26103") | starts_with("p26131") |
+                                             starts_with("p26133") | starts_with("p26150") |
+                                             starts_with("p26154")), na.rm = TRUE) / p20077,
+            dairy_daily_15 = dairy_daily / 15,
+            # eggs
+            egg_daily = rowSums(select(., starts_with("p26088")), na.rm = TRUE) / p20077,
+            egg_daily_15 = egg_daily / 15,
+            # whole-grain cereals
+            whole_grain_daily = rowSums(select(., starts_with("p26071") | starts_with("p26074") |
+                                                   starts_with("p26075") | starts_with("p26076") |
+                                                   starts_with("p26077") | starts_with("p26078") |
+                                                   starts_with("p26105") | starts_with("p26114")), na.rm = TRUE) / p20077,
+            whole_grain_daily_15 = whole_grain_daily / 15,
+            # refined cereals
+            cereal_refined_daily = (rowSums(select(., starts_with("p26068") | starts_with("p26072") |
+                                                       starts_with("p26073") | starts_with("p26079") |
+                                                       starts_with("p26083") | starts_with("p26113")), na.rm = TRUE)) / p20077,
+            cereal_refined_daily_15 = (cereal_refined_daily) / 15,
+            # vegetables
+            veggie_daily = (rowSums(select(., starts_with("p26065") | starts_with("p26098") |
+                                               starts_with("p26118") | starts_with("p26120")
+                                           starts_with("p26123") | starts_with("p26125") |
+                                               starts_with("p26143") | starts_with("p26146") |
+                                               starts_with("p26147")), na.rm = TRUE) +
+                                rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
+                                rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
+            veggie_daily_15 = veggie_daily / 15,
+            # fruit
+            fruit_daily = rowSums(select(., starts_with("p26089") | starts_with("p26090") |
+                                             starts_with("p26091") | starts_with("p26092") |
+                                             starts_with("p26093") | starts_with("p26094")), na.rm = TRUE) / p20077,
+            fruit_daily_15 = fruit_daily / 15,
+            # nuts and seeds
+            nut_daily = rowSums(select(., starts_with("p26106") | starts_with("p26107") |
+                                           starts_with("p26108")), na.rm = TRUE) / p20077,
+            nut_daily_15 = nut_daily / 15,
+            # fats and spread
+            fats_daily = rowSums(select(., starts_with("p26110") | starts_with("p26111") |
+                                            starts_with("p26112")), na.rm = TRUE),
+            fats_daily_15 = fats_daily / 15,
+            # mixed dishes
+            mixed_dish_daily = rowSums(select(., starts_with("p26097") | starts_with("p26116") |
+                                                  starts_with("p26128") | starts_with("p26129") |
+                                                  starts_with("p26130") | starts_with("p26135") |
+                                                  starts_with("p26139") | starts_with("p26145") |
+                                                  starts_with("p26119")), na.rm = TRUE) / p20077,
+            mixed_dish_daily_15 = mixed_dish_daily / 15,
+            # sugar, preserves, cakes & confectionery, snacks
+            snack_daily = rowSums(select(., starts_with("p26064") | starts_with("p26080") |
+                                             starts_with("p26084") | starts_with("p26085") |
+                                             starts_with("p26134") | starts_with("p26140")), na.rm = TRUE) / p20077,
+            snack_daily_15 = snack_daily / 15,
+            # non-alcoholic beverages
+            non_alc_beverage_daily = rowSums(select(., starts_with("p26124") | starts_with("p26141") |
+                                                        starts_with("p26142") | starts_with("p26148") |
+                                                        starts_with("p26081") | starts_with("p26082") |
+                                                        starts_with("p26095") | starts_with("p26126") |
+                                                        starts_with("p26127")), na.rm = TRUE) / p20077,
+            non_alc_beverage_daily_15 = non_alc_beverage_daily / 15,
+            # alcoholic beverages
+            alc_beverage_daily = rowSums(select(., starts_with("p26151") | starts_with("p26152") |
+                                                    starts_with("p26153") | starts_with("p26067") |
+                                                    starts_with("p26138")), na.rm = TRUE) / p20077,
+            alc_beverage_daily_15 = alc_beverage_daily / 15,
+            # alcohol
+            alcohol_daily = rowSums(select(., starts_with("p26030")), na.rm = TRUE) / p20077
+        )
+    return(data)
 }
 data <- calculate_food_intake(data)
 
 food_intake_extra <- function(data) {
-  data <- data %>%
-    mutate(
-      # baked beans and pulses separated from other legumes
-      pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE) / p20077,
-      pulse_daily_15 = pulse_daily / 15,
-      legume_other_daily = (rowSums(select(., starts_with("p26086") |
-        starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
-        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
-        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
-      legume_other_daily_15 = legume_other_daily / 15,
-      # total meat
-      total_meat_daily = red_meat_daily + proc_meat_daily,
-      total_meat_daily_15 = total_meat_daily / 15,
-      # total weight of all foods
-      total_weight_food_daily = legume_daily + red_meat_daily + proc_meat_daily +
-        poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
-        whole_grain_daily + veggie_daily + potato_daily + fruit_daily + nut_daily +
-        meat_sub_daily + snack_daily + mixed_dish_daily + sauce_daily + fats_daily +
-        non_alc_beverage_daily + alc_beverage_daily,
-      # total energy of all foods and beverages
-      total_energy_food_daily = rowSums(select(., starts_with("p26002")), na.rm = TRUE) / p20077,
-      other_foods_daily = poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
-        whole_grain_daily + veggie_daily + potato_daily + fruit_daily + nut_daily +
-        meat_sub_daily + snack_daily + mixed_dish_daily + sauce_daily + fats_daily +
-        non_alc_beverage_daily + alc_beverage_daily,
-      mixed_daily = fats_daily + sauce_daily + mixed_dish_daily + meat_sub_daily,
-      vegetable_daily = veggie_daily + potato_daily,
-
-
-    )
-  return(data)
+    data <- data %>%
+        mutate(
+            # baked beans and pulses separated from other legumes
+            pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE) / p20077,
+            pulse_daily_15 = pulse_daily / 15,
+            legume_other_daily = (rowSums(select(., starts_with("p26086") |
+                                                     starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
+                                      rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
+                                      rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
+            legume_other_daily_15 = legume_other_daily / 15,
+            # total meat
+            total_meat_daily = red_meat_daily + proc_meat_daily,
+            total_meat_daily_15 = total_meat_daily / 15,
+            # total weight of all foods
+            total_weight_food_daily = legume_daily + red_meat_daily + proc_meat_daily +
+                poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
+                whole_grain_daily + veggie_daily + fruit_daily + nut_daily +
+                snack_daily + mixed_dish_daily + fats_daily +
+                non_alc_beverage_daily + alc_beverage_daily,
+            # total energy of all foods and beverages
+            total_energy_food_daily = rowSums(select(., starts_with("p26002")), na.rm = TRUE) / p20077,
+            other_foods_daily = poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
+                whole_grain_daily + veggie_daily + fruit_daily + nut_daily +
+                snack_daily + mixed_dish_daily + fats_daily +
+                non_alc_beverage_daily + alc_beverage_daily
+        )
+    return(data)
 }
 data <- food_intake_extra(data)
 
 legumes_strat <- function(data) {
-  data <- data %>%
-    filter(legume_daily != 0) %>%
-    mutate(
-      legume_quintile = ntile(legume_daily, 4),
-      legume_category = factor(legume_quintile, labels = c("Low", "Medium", "High", "Highest"))
-    ) %>%
-    bind_rows(data %>%
-      filter(legume_daily == 0) %>%
-      mutate(legume_category = "Lowest")) %>%
-    mutate(legume_category = factor(legume_category, levels = c("Lowest", "Low", "Medium", "High", "Highest")))
-  return(data)
+    data <- data %>%
+        filter(legume_daily != 0) %>%
+        mutate(
+            legume_quintile = ntile(legume_daily, 4),
+            legume_category = factor(legume_quintile, labels = c("Low", "Medium", "High", "Highest"))
+        ) %>%
+        bind_rows(data %>%
+                      filter(legume_daily == 0) %>%
+                      mutate(legume_category = "Lowest")) %>%
+        mutate(legume_category = factor(legume_category, levels = c("Lowest", "Low", "Medium", "High", "Highest")))
+    return(data)
 }
 data <- legumes_strat(data)
 
