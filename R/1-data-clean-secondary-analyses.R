@@ -1,3 +1,189 @@
+cancer_register <- function(data) {
+    data_cancer_before <- data %>%
+        select(starts_with("p40006"), starts_with("p40005"), baseline_start_date, id) %>%
+        mutate(
+            cancer_before = if_else(
+                rowSums(across(starts_with("p40006_i"), ~ grepl("C\\d{2}", .x)) &
+                            across(starts_with("p40005_i"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(data_cancer_before %>% select(id, cancer_before), by = "id")
+    return(data)
+}
+data <- cancer_register(data)
+
+cancer_icd10_register <- function(data) {
+    data_cancer_before_icd10 <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            cancer_before_icd10 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("C\\d{2}", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(data_cancer_before_icd10 %>% select(id, cancer_before_icd10), by = "id")
+    return(data)
+}
+data <- cancer_icd10_register(data)
+
+icd10_inflam_liver <- function(data) {
+    inflam_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            inflam_liver_icd10 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K75\\.[0-79]", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(inflam_liver %>% select(id, inflam_liver_icd10), by = "id")
+    return(data)
+}
+data <- icd10_inflam_liver(data)
+
+icd10_alc_liver <- function(data) {
+    alc_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            alc_liver = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K70", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(alc_liver %>% select(id, alc_liver), by = "id")
+    return(data)
+}
+data <- icd10_alc_liver(data)
+
+icd10_cirr_liver <- function(data) {
+    cirr_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            cirr_liver = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K74", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(cirr_liver %>% select(id, cirr_liver), by = "id")
+    return(data)
+}
+data <- icd10_cirr_liver(data)
+
+icd10_viral_hepatitis <- function(data) {
+    viral_hepatitis <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            viral_hepatitis_icd10 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("B18", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(viral_hepatitis %>% select(id, viral_hepatitis_icd10), by = "id")
+    return(data)
+}
+data <- icd10_viral_hepatitis(data)
+
+icd9_viral_hepatitis <- function(data) {
+    viral_hepatitis <- data %>%
+        select(starts_with("p41271"), starts_with("p41281"), baseline_start_date, id) %>%
+        mutate(
+            viral_hepatitis_icd9 = if_else(
+                rowSums(across(starts_with("p41271var_a"), ~ grepl("5733", .x)) &
+                            across(starts_with("p41281_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(viral_hepatitis %>% select(id, viral_hepatitis_icd9), by = "id")
+    return(data)
+}
+data <- icd9_viral_hepatitis(data)
+
+icd10_other_liver <- function(data) {
+    other_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            other_liver_icd10 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K76\\.[1-9]", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(other_liver %>% select(id, other_liver_icd10), by = "id")
+    return(data)
+}
+data <- icd10_other_liver(data)
+
+icd10_tox_liver <- function(data) {
+    tox_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            tox_liver_icd10 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K71", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(tox_liver %>% select(id, tox_liver_icd10), by = "id")
+    return(data)
+}
+data <- icd10_tox_liver(data)
+
+icd10_fail_liver <- function(data) {
+    fail_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            fail_liver_icd10 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K72", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(fail_liver %>% select(id, fail_liver_icd10), by = "id")
+    return(data)
+}
+data <- icd10_fail_liver(data)
+
+icd10_chronic_liver <- function(data) {
+    chronic_liver <- data %>%
+        select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+        mutate(
+            chronic_liver_icd10 = if_else(
+                rowSums(across(starts_with("p41270var_a"), ~ grepl("K73", .x)) &
+                            across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+                "Yes",
+                "No"
+            )
+        )
+    data <- data %>%
+        left_join(chronic_liver %>% select(id, chronic_liver_icd10), by = "id")
+    return(data)
+}
+data <- icd10_chronic_liver(data)
 
 # Variables for secondary analyses ----------------------------------------
 
@@ -14,7 +200,8 @@ data <- data %>%
                                 & fail_liver_icd10 == "No" & chronic_liver_icd10 == "No", "No", "Yes"),
         liver_disease = ifelse(nafld == "Yes", "No", liver_disease),
         cancer_before_baseline = if_else(cancer_before == "No" & cancer_before_icd10 == "No", "No", "Yes"),
-        smoking_ever_never = if_else(smoking == "Never", "No", "Yes")
+        smoking_ever_never = if_else(smoking == "Never", "No", "Yes"),
+        viral_hepatitis = if_else(viral_hepatitis_icd10 == "No" & viral_hepatitis_icd9 == "No", "No", "Yes"),
     )
 
 # Stratified data for sex, waist circumference, and diabetes ----------

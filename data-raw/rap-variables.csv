@@ -10,7 +10,6 @@ p53_i0,Date of attending assessment centre | Instance 0,p53
 p53_i1,Date of attending assessment centre | Instance 1,p53
 p53_i2,Date of attending assessment centre | Instance 2,p53
 p53_i3,Date of attending assessment centre | Instance 3,p53
-p190,Reason lost to follow-up,p190
 p191,Date lost to follow-up,p191
 p709_i0,Number in household | Instance 0,p709
 p709_i1,Number in household | Instance 1,p709
@@ -46,6 +45,8 @@ p21003_i1,Age when attended assessment centre | Instance 1,p21003
 p21003_i2,Age when attended assessment centre | Instance 2,p21003
 p21003_i3,Age when attended assessment centre | Instance 3,p21003
 p21022,Age at recruitment,p21022
+p22035_i0,At or above moderate/vigorous recommendation | Instance 0,p22035
+p22036_i0,At or above moderate/vigorous/walking recommendation | Instance 0,p22036
 p22040_i0,Summed MET minutes per week for all activity | Instance 0,p22040
 p22189,Townsend deprivation index at recruitment,p22189
 p26000_i0,Total weight of all foods and beverages | Instance 0,p26000
