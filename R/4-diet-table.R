@@ -78,4 +78,8 @@ diet_combined_table <- tbl_merge(
   bold_labels() %>%
   modify_caption("**Table 2. Daily dietary intake.**")
 
-diet_combined_table
+diet_combined_table %>%
+  as_gt() %>% # convert to gt table
+  gt::gtsave( # save table as image
+    filename = "table-diet.png", path = "~/legliv/doc/Images"
+  )

@@ -133,4 +133,9 @@ tbl_stack <-
   tbl_stack(list(row1, row2), group_header = c("Model 1", "Model 2")) %>%
   modify_header(label = "**15 g/day substitution**")
 
-tbl_stack
+tbl_stack %>%
+  as_gt() %>% # convert to gt table
+  gt::gtsave( # save table as image
+    filename = "table-main-analysis.png", path = "~/legliv/doc/Images"
+  )
+

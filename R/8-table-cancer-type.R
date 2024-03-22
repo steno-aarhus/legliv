@@ -5,9 +5,9 @@ model1t_hcc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex,
     data = data_hcc
@@ -17,9 +17,9 @@ model2t_hcc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex +
         education + tdi + ethnicity + spouse +
@@ -32,9 +32,9 @@ model1r_hcc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 + proc_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex,
     data = data_hcc
@@ -44,9 +44,9 @@ model2r_hcc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 + proc_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex +
         education + tdi + ethnicity + spouse +
@@ -59,9 +59,9 @@ model1p_hcc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 + red_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex,
     data = data_hcc
@@ -72,9 +72,9 @@ model2p_hcc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 + red_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex +
         education + tdi + ethnicity + spouse +
@@ -88,9 +88,9 @@ model1t_icc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex,
     data = data_icc
@@ -100,9 +100,9 @@ model2t_icc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex +
         education + tdi + ethnicity + spouse +
@@ -115,9 +115,9 @@ model1r_icc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 + proc_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex,
     data = data_icc
@@ -135,9 +135,9 @@ model2r_icc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 + proc_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily + sex +
         education + tdi + ethnicity + spouse +
         bmi_category + exercise + smoking + wc + alcohol_daily +
@@ -149,9 +149,9 @@ model1p_icc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 + red_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex,
     data = data_icc
@@ -161,9 +161,9 @@ model2p_icc <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_daily_15 + red_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex +
         education + tdi + ethnicity + spouse +
@@ -269,4 +269,8 @@ table_cancer_type <-
     bold_labels() %>%
     modify_header(label = "**15 g/day substitution**")
 
-table_cancer_type
+table_cancer_type %>%
+    as_gt() %>% # convert to gt table
+    gt::gtsave( # save table as image
+        filename = "table-cancer-subtype.png", path = "~/legliv/doc/Images"
+    )

@@ -23,7 +23,7 @@ table_all <- table_1_all %>%
       wc ~ "Waist circumference",
       sex ~ "Sex",
       ethnicity ~ "Ethnicity",
-      diabetes ~ "Type 2 diabetes",
+      diabetes ~ "Diabetes",
       nafld ~ "NAFLD",
       cholelith ~ "Cholelithiasis",
       cystectomy ~ "Cholecystectomy"
@@ -46,7 +46,7 @@ table_cancer <- table_1_cancer %>%
       wc ~ "Waist circumference",
       sex ~ "Sex",
       ethnicity ~ "Ethnicity",
-      diabetes ~ "Type 2 diabetes",
+      diabetes ~ "Diabetes",
       nafld ~ "NAFLD",
       cholelith ~ "Cholelithiasis",
       cystectomy ~ "Cholecystectomy"
@@ -60,4 +60,8 @@ table_combined <- tbl_merge(
   modify_caption("**Table 1. Baseline characteristics of the UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
   modify_header(label ~ "**Variable**")
 
-table_combined
+table_combined %>%
+  as_gt() %>% # convert to gt table
+  gt::gtsave( # save table as image
+    filename = "table-1.png", path = "~/legliv/doc/Images"
+  )
