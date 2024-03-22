@@ -2,9 +2,9 @@ model1t <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_category + red_meat_daily + proc_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex,
     data = data
@@ -23,9 +23,9 @@ model2t <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
         legume_category + red_meat_daily + proc_meat_daily +
         whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-        egg_daily + cereal_refined_daily + veggie_daily + potato_daily +
-        fruit_daily + nut_daily + meat_sub_daily + snack_daily +
-        mixed_dish_daily + sauce_daily + fats_daily +
+        egg_daily + cereal_refined_daily + veggie_daily +
+        fruit_daily + nut_daily + snack_daily +
+        mixed_dish_daily + fats_daily +
         non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
         sex +
         education + tdi + ethnicity + spouse +
