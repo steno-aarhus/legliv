@@ -41,7 +41,9 @@ list(
   ),
   tar_target(
     name = readied_data,
-    command = ready_data(base_data)
+    command = base_data |>
+      ready_data() |>
+      remove_timestamp()
   ),
   tar_target(
     name = icd10_subset,
@@ -58,5 +60,10 @@ list(
       left_join(icd10_icc(icd10_subset), by = "id") |>
       left_join(cancer_hcc(cancer_subset), by = "id") |>
       left_join(cancer_icc(cancer_subset), by = "id")
+  ),
+  tar_target(
+    name = data_as_baseline,
+    command = data_with_icd10_cancer |>
+      baseline_data()
   )
 )

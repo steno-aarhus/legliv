@@ -140,7 +140,6 @@ remove_timestamp <- function(data) {
       ), ~ substr(.x, 1, 10)
     ))
 }
-data <- remove_timestamp(data)
 
 baseline_date <- function(data) {
   baseline_start_date <- data %>%
@@ -162,10 +161,6 @@ baseline_date <- function(data) {
     left_join(baseline_start_date %>% select(id, baseline_start_date), by = "id")
   return(data)
 }
-data <- baseline_date(data)
-
-
-
 
 # Diseases before baseline ------------------------------------------------
 
