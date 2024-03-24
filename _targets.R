@@ -24,7 +24,7 @@ tar_option_set(
 # Run the R scripts in the R/ folder with your custom functions:
 # tar_source()
 # Or just some files:
-source(here::here("R/1-data-clean-main-analysis.R"))
+source(here::here("R/functions.R"))
 
 # Things to run in order to work.
 list(
