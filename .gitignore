@@ -3,3 +3,4 @@ data/data.*
 .RData
 .DS_Store
 .Rproj.user
+_targets.yaml
