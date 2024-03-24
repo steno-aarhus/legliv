@@ -40,29 +40,25 @@ ready_data <- function(data) {
 
 # Find liver cancer cases -------------------------------------------------
 
-cancer_longer <- function(data) {
-  icd10_subset <- data %>%
+icd10_longer_subset <- function(data) {
+  data %>%
     select(matches("p41270|p41280|id")) %>%
     pivot_longer(
       cols = matches("_a[0-9]*$"),
       names_to = c(".value", "a"),
       names_sep = "_"
     )
-  cancer_subset <- data %>%
+}
+
+cancer_longer_subset <- function(data) {
+  data %>%
     select(matches("p40006|p40005|id")) %>%
     pivot_longer(
       cols = matches("_i[0-9]*$"),
       names_to = c(".value", "a"),
       names_sep = "_"
     )
-  return(list(
-    icd10_subset = icd10_subset,
-    cancer_subset = cancer_subset
-  ))
 }
-data_list_longer <- cancer_longer(data)
-icd10_subset <- data_list_longer$icd10_subset
-cancer_subset <- data_list_longer$cancer_subset
 
 icd10_hcc <- function(data) {
   icd10_hcc <- icd10_subset %>%
