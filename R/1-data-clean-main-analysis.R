@@ -2,7 +2,7 @@ library(tidyverse)
 library(lubridate) # For creating baseline age
 targets::tar_config_set(store = here::here("_targets"))
 
-data <- read_csv("data/data.csv")
+data <- targets::tar_read(base_data)
 
 # Prepare data ------------------------------------------------------------
 

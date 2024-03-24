@@ -30,9 +30,13 @@ tar_option_set(
 list(
     # TODO: Uncomment this *after* finishing running `data-raw/create-data.R`
      tar_target(
-         name = download_project_data,
+         name = project_data_path,
           # TODO: This will eventually need to be changed to "parquet".
          command = ukbAid::download_data(file_ext = "csv", username = "nielsbock"),
          format = "file"
+     ),
+     tar_target(
+       name = base_data,
+       command = readr::read_csv(project_data_path)
      )
 )
