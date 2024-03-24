@@ -230,7 +230,7 @@ other_variables <- function(data) {
       age_dead = p40007_i0
     )
   data <- data %>%
-    mutate_at(vars(starts_with("p100020_i")), ~ coalesce(., "Yes")) %>%
+    mutate(across(starts_with("p100020_i"), ~ coalesce(., "Yes"))) %>%
     mutate(
       typical_diet = if_else(p100020_i0 == "No" | p100020_i1 == "No" | p100020_i2 == "No" | p100020_i3 == "No" | p100020_i4 == "No", "No", "Yes")
     )
