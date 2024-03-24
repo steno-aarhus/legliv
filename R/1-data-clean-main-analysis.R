@@ -127,18 +127,18 @@ cancer_icc <- function(data) {
 
 # Define baseline date ----------------------------------------------------
 
-
 remove_timestamp <- function(data) {
   # Removing specific time stamp from date of completed questionnaires:
-  data <- data %>%
-    mutate(
-      p105010_i0 = substr(p105010_i0, 1, 10),
-      p105010_i1 = substr(p105010_i1, 1, 10),
-      p105010_i2 = substr(p105010_i2, 1, 10),
-      p105010_i3 = substr(p105010_i3, 1, 10),
-      p105010_i4 = substr(p105010_i4, 1, 10)
-    )
-  return(data)
+  data %>%
+    mutate(across(
+      c(
+        p105010_i0,
+        p105010_i1,
+        p105010_i2,
+        p105010_i3,
+        p105010_i4
+      ), ~ substr(.x, 1, 10)
+    ))
 }
 data <- remove_timestamp(data)
 
