@@ -73,7 +73,7 @@ icd10_hcc <- function(data) {
     group_by(id) %>%
     slice(1) %>%
     ungroup() |>
-    select(id, icd10_hcc_date), by = "id")
+    select(id, icd10_hcc_date)
 }
 
 icd10_icc <- function(data) {
