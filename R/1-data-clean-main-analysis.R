@@ -6,10 +6,11 @@ data <- targets::tar_read(data_as_baseline)
 
 # Diseases before baseline ------------------------------------------------
 
-
+# TODO: Repeat the same pattern used in `functions.R` to the functions below here.
 icd10_diabetes <- function(data) {
   diabetes <- data %>%
     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+    # TODO: This does not do what you think it does.
     mutate(
       diabetes_ins_non = if_else(
         rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
@@ -25,6 +26,7 @@ icd10_diabetes <- function(data) {
       )
     )
   data <- data %>%
+    # TODO: These left_joins aren't necessary.
     left_join(diabetes %>% select(id, diabetes_ins_non, diabetes_ins), by = "id")
   return(data)
 }
@@ -166,6 +168,7 @@ covariates <- function(data) {
       smoking = ifelse(p20116_i0 == "Prefer not to answer", "Never", p20116_i0),
       smoking = factor(smoking, levels = c("Never", "Previous", "Current")),
       smoking_pack = p20162_i0,
+      # TODO: We need to have a bigger discussion about this in the UK Biobank group.
       education = case_when(
         grepl("College", education, ignore.case = TRUE) ~ "High",
         grepl("A levels/AS levels", education, ignore.case = TRUE) ~ "Intermediate",
@@ -178,6 +181,7 @@ covariates <- function(data) {
         TRUE ~ as.character(education)
       ),
       education = factor(education, levels = c("High", "Intermediate", "Low")),
+      # TODO: We'll need to have a bigger discussion about this variable, plus move it over into ukbAid.
       ethnicity = case_when(
         p21000_i0 == "African" ~ "Other", # check the layers to the variable
         p21000_i0 == "Any other Black background" ~ "Other",
@@ -201,6 +205,7 @@ covariates <- function(data) {
         p21000_i0 == "Prefer not to answer" ~ "Other"
       ),
       ethnicity = factor(ethnicity, levels = c("White", "Other")),
+      # TODO: Move this over into ukbAid
       bmi_category = case_when(
         bmi < 25 ~ "Normal weight",
         bmi >= 25 & bmi < 30 ~ "Overweight",
@@ -240,6 +245,7 @@ data <- other_variables(data)
 
 # Function with food group variables:
 # Average dietary intake of food groups -----------------------------------
+# TODO: Redo this to mimic what was done in Fie's repository.
 calculate_food_intake <- function(data) {
   # estimating average daily and weekly intakes of food groups in g
   data <- data %>%

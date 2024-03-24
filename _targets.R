@@ -56,6 +56,7 @@ list(
   tar_target(
     name = data_with_icd10_cancer,
     command = readied_data |>
+      # TODO: All these left_joins aren't necessary, but I will look at that later.
       left_join(icd10_hcc(icd10_subset), by = "id") |>
       left_join(icd10_icc(icd10_subset), by = "id") |>
       left_join(cancer_hcc(cancer_subset), by = "id") |>
