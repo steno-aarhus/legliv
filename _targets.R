@@ -24,15 +24,47 @@ tar_option_set(
 # Run the R scripts in the R/ folder with your custom functions:
 # tar_source()
 # Or just some files:
-# source(here::here("R/functions.R"))
+source(here::here("R/functions.R"))
 
 # Things to run in order to work.
 list(
-    # TODO: Uncomment this *after* finishing running `data-raw/create-data.R`
-     tar_target(
-         name = download_project_data,
-          # TODO: This will eventually need to be changed to "parquet".
-         command = ukbAid::download_data(file_ext = "csv", username = "nielsbock"),
-         format = "file"
-     )
+  # TODO: Uncomment this *after* finishing running `data-raw/create-data.R`
+  tar_target(
+    name = project_data_path,
+    # TODO: This will eventually need to be changed to "parquet".
+    command = ukbAid::download_data(file_ext = "csv", username = "nielsbock"),
+    format = "file"
+  ),
+  tar_target(
+    name = base_data,
+    command = readr::read_csv(project_data_path)
+  ),
+  tar_target(
+    name = readied_data,
+    command = base_data |>
+      ready_data() |>
+      remove_timestamp()
+  ),
+  tar_target(
+    name = icd10_subset,
+    command = icd10_longer_subset(readied_data)
+  ),
+  tar_target(
+    name = cancer_subset,
+    command = cancer_longer_subset(readied_data)
+  ),
+  tar_target(
+    name = data_with_icd10_cancer,
+    command = readied_data |>
+      # TODO: All these left_joins aren't necessary, but I will look at that later.
+      left_join(icd10_hcc(icd10_subset), by = "id") |>
+      left_join(icd10_icc(icd10_subset), by = "id") |>
+      left_join(cancer_hcc(cancer_subset), by = "id") |>
+      left_join(cancer_icc(cancer_subset), by = "id")
+  ),
+  tar_target(
+    name = data_as_baseline,
+    command = data_with_icd10_cancer |>
+      baseline_data()
+  )
 )

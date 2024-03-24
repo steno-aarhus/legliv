@@ -1,204 +1,16 @@
 library(tidyverse)
 library(lubridate) # For creating baseline age
-library(stringr) # for renaming several columns at once
+targets::tar_config_set(store = here::here("_targets"))
 
-data <- read_csv("data/data.csv")
-
-# Prepare data ------------------------------------------------------------
-
-
-ready_data <- function(data) {
-  # Removing participants who did not complete 2 or more diet questionnaires
-  data <- data %>%
-    filter(p20077 >= 2) %>%
-    mutate(id = 1:n(), .before = everything())
-  # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD10 codes)
-  data <- data %>%
-    separate_wider_delim(p41270,
-      delim = "|",
-      names = paste0("p41270var_a", 0:258), too_few = "debug"
-    )
-  # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD9 codes)
-  data <- data %>%
-    separate_wider_delim(p41271,
-      delim = "|",
-      names = paste0("p41271var_a", 0:46), too_few = "debug"
-    )
-  # Split the diagnosis-variable into separate columns based on delimiter "|" (OPCS4 codes)
-  data <- data %>%
-    separate_wider_delim(p41272,
-      delim = "|",
-      names = paste0("p41272var_a", 0:125), too_few = "debug"
-    )
-  # Split the diagnosis-variable into separate columns based on delimiter "|" (OPCS3 codes)
-  data <- data %>%
-    separate_wider_delim(p41273,
-      delim = "|",
-      names = paste0("p41273var_a", 0:15), too_few = "debug"
-    )
-  return(data)
-}
-data <- ready_data(data)
-
-
-
-
-# Find liver cancer cases -------------------------------------------------
-
-
-cancer_longer <- function(data) {
-  icd10_subset <- data %>%
-    select(matches("p41270|p41280|id")) %>%
-    pivot_longer(
-      cols = matches("_a[0-9]*$"),
-      names_to = c(".value", "a"),
-      names_sep = "_"
-    )
-  cancer_subset <- data %>%
-    select(matches("p40006|p40005|id")) %>%
-    pivot_longer(
-      cols = matches("_i[0-9]*$"),
-      names_to = c(".value", "a"),
-      names_sep = "_"
-    )
-  return(list(
-    icd10_subset = icd10_subset,
-    cancer_subset = cancer_subset
-  ))
-}
-data_list_longer <- cancer_longer(data)
-icd10_subset <- data_list_longer$icd10_subset
-cancer_subset <- data_list_longer$cancer_subset
-
-icd10_hcc <- function(data) {
-  icd10_hcc <- icd10_subset %>%
-    mutate(
-      icd10_hcc_date = ifelse(str_detect(p41270var, "C22.0"),
-        as.character(c_across(starts_with("p41280"))),
-        NA
-      ),
-      icd10_hcc_date = as.Date(icd10_hcc_date, format = "%Y-%m-%d")
-    )
-  first_non_na_hcc <- icd10_hcc %>%
-    filter(!is.na(icd10_hcc_date)) %>%
-    group_by(id) %>%
-    slice(1) %>%
-    ungroup()
-  data <- data %>%
-    left_join(first_non_na_hcc %>% select(id, icd10_hcc_date), by = "id")
-  return(data)
-}
-data <- icd10_hcc(data)
-
-icd10_icc <- function(data) {
-  icd10_icc <- icd10_subset %>%
-    mutate(
-      icd10_icc_date = ifelse(str_detect(p41270var, "C22.1"),
-        as.character(c_across(starts_with("p41280"))),
-        NA
-      ),
-      icd10_icc_date = as.Date(icd10_icc_date, format = "%Y-%m-%d")
-    )
-  first_non_na_icc <- icd10_icc %>%
-    filter(!is.na(icd10_icc_date)) %>%
-    group_by(id) %>%
-    slice(1) %>%
-    ungroup()
-  data <- data %>%
-    left_join(first_non_na_icc %>% select(id, icd10_icc_date), by = "id")
-  return(data)
-}
-data <- icd10_icc(data)
-
-cancer_hcc <- function(data) {
-  cancer_hcc <- cancer_subset %>%
-    mutate(
-      cancer_hcc_date = ifelse(str_detect(p40006, "C22.0"),
-        as.character(c_across(starts_with("p40005"))),
-        NA
-      ),
-      cancer_hcc_date = as.Date(cancer_hcc_date, format = "%Y-%m-%d")
-    )
-  first_non_na_hcc_c <- cancer_hcc %>%
-    filter(!is.na(cancer_hcc_date)) %>%
-    group_by(id) %>%
-    slice(1) %>%
-    ungroup()
-  data <- data %>%
-    left_join(first_non_na_hcc_c %>% select(id, cancer_hcc_date), by = "id")
-  return(data)
-}
-data <- cancer_hcc(data)
-
-cancer_icc <- function(data) {
-  cancer_icc <- cancer_subset %>%
-    mutate(
-      cancer_icc_date = ifelse(str_detect(p40006, "C22.1"),
-        as.character(c_across(starts_with("p40005"))),
-        NA
-      ),
-      cancer_icc_date = as.Date(cancer_icc_date, format = "%Y-%m-%d")
-    )
-  first_non_na_icc_c <- cancer_icc %>%
-    filter(!is.na(cancer_icc_date)) %>%
-    group_by(id) %>%
-    slice(1) %>%
-    ungroup()
-  data <- data %>%
-    left_join(first_non_na_icc_c %>% select(id, cancer_icc_date), by = "id")
-  return(data)
-}
-data <- cancer_icc(data)
-
-
-# Define baseline date ----------------------------------------------------
-
-
-remove_timestamp <- function(data) {
-  # Removing specific time stamp from date of completed questionnaires:
-  data <- data %>%
-    mutate(
-      p105010_i0 = substr(p105010_i0, 1, 10),
-      p105010_i1 = substr(p105010_i1, 1, 10),
-      p105010_i2 = substr(p105010_i2, 1, 10),
-      p105010_i3 = substr(p105010_i3, 1, 10),
-      p105010_i4 = substr(p105010_i4, 1, 10)
-    )
-  return(data)
-}
-data <- remove_timestamp(data)
-
-baseline_date <- function(data) {
-  baseline_start_date <- data %>%
-    select(starts_with("p105010_i"), id) %>%
-    pivot_longer(
-      cols = starts_with("p105010_i"),
-      names_to = "questionnaire",
-      values_to = "completion_date"
-    ) %>%
-    filter(!is.na(completion_date)) %>%
-    group_by(id) %>%
-    arrange(completion_date) %>%
-    mutate(last_questionnaire_date = lag(completion_date)) %>%
-    filter(!is.na(last_questionnaire_date)) %>%
-    filter(is.na(lead(completion_date))) %>%
-    rename(baseline_start_date = completion_date) %>%
-    ungroup()
-  data <- data %>%
-    left_join(baseline_start_date %>% select(id, baseline_start_date), by = "id")
-  return(data)
-}
-data <- baseline_date(data)
-
-
-
+data <- targets::tar_read(data_as_baseline)
 
 # Diseases before baseline ------------------------------------------------
 
-
+# TODO: Repeat the same pattern used in `functions.R` to the functions below here.
 icd10_diabetes <- function(data) {
   diabetes <- data %>%
     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+    # TODO: This does not do what you think it does.
     mutate(
       diabetes_ins_non = if_else(
         rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
@@ -214,6 +26,7 @@ icd10_diabetes <- function(data) {
       )
     )
   data <- data %>%
+    # TODO: These left_joins aren't necessary.
     left_join(diabetes %>% select(id, diabetes_ins_non, diabetes_ins), by = "id")
   return(data)
 }
@@ -318,7 +131,6 @@ opcs4_cystectomy <- function(data) {
     )
   data <- data %>%
     left_join(cystect %>% select(id, cystectomy_opcs4), by = "id")
-  remove(cystect)
   return(data)
 }
 data <- opcs4_cystectomy(data)
@@ -336,7 +148,6 @@ opcs3_cystectomy <- function(data) {
     )
   data <- data %>%
     left_join(cystect %>% select(id, cystectomy_opcs3), by = "id")
-  remove(cystect)
   return(data)
 }
 data <- opcs3_cystectomy(data)
@@ -357,6 +168,7 @@ covariates <- function(data) {
       smoking = ifelse(p20116_i0 == "Prefer not to answer", "Never", p20116_i0),
       smoking = factor(smoking, levels = c("Never", "Previous", "Current")),
       smoking_pack = p20162_i0,
+      # TODO: We need to have a bigger discussion about this in the UK Biobank group.
       education = case_when(
         grepl("College", education, ignore.case = TRUE) ~ "High",
         grepl("A levels/AS levels", education, ignore.case = TRUE) ~ "Intermediate",
@@ -369,6 +181,7 @@ covariates <- function(data) {
         TRUE ~ as.character(education)
       ),
       education = factor(education, levels = c("High", "Intermediate", "Low")),
+      # TODO: We'll need to have a bigger discussion about this variable, plus move it over into ukbAid.
       ethnicity = case_when(
         p21000_i0 == "African" ~ "Other", # check the layers to the variable
         p21000_i0 == "Any other Black background" ~ "Other",
@@ -392,6 +205,7 @@ covariates <- function(data) {
         p21000_i0 == "Prefer not to answer" ~ "Other"
       ),
       ethnicity = factor(ethnicity, levels = c("White", "Other")),
+      # TODO: Move this over into ukbAid
       bmi_category = case_when(
         bmi < 25 ~ "Normal weight",
         bmi >= 25 & bmi < 30 ~ "Overweight",
@@ -421,7 +235,7 @@ other_variables <- function(data) {
       age_dead = p40007_i0
     )
   data <- data %>%
-    mutate_at(vars(starts_with("p100020_i")), ~ coalesce(., "Yes")) %>%
+    mutate(across(starts_with("p100020_i"), ~ coalesce(., "Yes"))) %>%
     mutate(
       typical_diet = if_else(p100020_i0 == "No" | p100020_i1 == "No" | p100020_i2 == "No" | p100020_i3 == "No" | p100020_i4 == "No", "No", "Yes")
     )
@@ -431,6 +245,7 @@ data <- other_variables(data)
 
 # Function with food group variables:
 # Average dietary intake of food groups -----------------------------------
+# TODO: Redo this to mimic what was done in Fie's repository.
 calculate_food_intake <- function(data) {
   # estimating average daily and weekly intakes of food groups in g
   data <- data %>%
