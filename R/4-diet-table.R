@@ -74,7 +74,8 @@ diet_liver_table <- diet_liver %>%
 
 diet_combined_table <- tbl_merge(
   tbls = list(diet_all_table, diet_liver_table),
-  tab_spanner = c("**Cohort**", "**Liver cancer**")) %>%
+  tab_spanner = c("**Cohort**", "**Liver cancer**")
+) %>%
   bold_labels() %>%
   modify_caption("**Table 2. Daily dietary intake.**")
 

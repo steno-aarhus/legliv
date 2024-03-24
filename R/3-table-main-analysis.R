@@ -138,4 +138,3 @@ tbl_stack %>%
   gt::gtsave( # save table as image
     filename = "table-main-analysis.png", path = "~/legliv/doc/Images"
   )
-

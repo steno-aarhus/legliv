@@ -55,7 +55,8 @@ table_cancer <- table_1_cancer %>%
 
 table_combined <- tbl_merge(
   tbls = list(table_all, table_cancer),
-  tab_spanner = c("**Cohort**", "**Liver cancer**")) %>%
+  tab_spanner = c("**Cohort**", "**Liver cancer**")
+) %>%
   bold_labels() %>%
   modify_caption("**Table 1. Baseline characteristics of the UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
   modify_header(label ~ "**Variable**")
