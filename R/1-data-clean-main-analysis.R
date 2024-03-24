@@ -6,7 +6,6 @@ data <- targets::tar_read(base_data)
 
 # Prepare data ------------------------------------------------------------
 
-
 ready_data <- function(data) {
   # Removing participants who did not complete 2 or more diet questionnaires
   data <- data %>%
@@ -38,13 +37,8 @@ ready_data <- function(data) {
     )
   return(data)
 }
-data <- ready_data(data)
-
-
-
 
 # Find liver cancer cases -------------------------------------------------
-
 
 cancer_longer <- function(data) {
   icd10_subset <- data %>%

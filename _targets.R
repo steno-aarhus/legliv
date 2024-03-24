@@ -24,7 +24,7 @@ tar_option_set(
 # Run the R scripts in the R/ folder with your custom functions:
 # tar_source()
 # Or just some files:
-# source(here::here("R/functions.R"))
+source(here::here("R/1-data-clean-main-analysis.R"))
 
 # Things to run in order to work.
 list(
@@ -38,5 +38,9 @@ list(
      tar_target(
        name = base_data,
        command = readr::read_csv(project_data_path)
+     ),
+     tar_target(
+       name = readied_data,
+       command = ready_data(base_data)
      )
 )
