@@ -3,7 +3,7 @@ fit <- coxph(Surv(time = study_time, event = status == "Liver cancer") ~ strata(
                  sex + education + spouse + exercise + smoking + bmi_category + ethnicity +
                  diabetes + nafld + cholelith + cystectomy,
              data = data)
-newdata <- expand_grid(=c(), sex="Female", education="High", spouse="Yes", exercise="Yes", smoking="Current",
+newdata <- expand_grid(sex="Female", education="High", spouse="Yes", exercise="Yes", smoking="Current",
                        bmi_category="Overweight", ethnicity="White",
                        diabetes="No", nafld="No", cholelith="No", cystectomy="No")
 survfit(fit, newdata) |>
