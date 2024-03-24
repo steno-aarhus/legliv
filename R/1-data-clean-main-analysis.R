@@ -124,12 +124,6 @@ cancer_icc <- function(data) {
     select(id, cancer_icc_date)
 }
 
-data <- data |>
-  left_join(icd10_hcc(icd10_subset), by = "id") |>
-  left_join(icd10_icc(icd10_subset), by = "id") |>
-  left_join(cancer_hcc(cancer_subset), by = "id") |>
-  left_join(cancer_icc(cancer_subset), by = "id")
-
 # Define baseline date ----------------------------------------------------
 
 

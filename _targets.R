@@ -28,19 +28,35 @@ source(here::here("R/1-data-clean-main-analysis.R"))
 
 # Things to run in order to work.
 list(
-    # TODO: Uncomment this *after* finishing running `data-raw/create-data.R`
-     tar_target(
-         name = project_data_path,
-          # TODO: This will eventually need to be changed to "parquet".
-         command = ukbAid::download_data(file_ext = "csv", username = "nielsbock"),
-         format = "file"
-     ),
-     tar_target(
-       name = base_data,
-       command = readr::read_csv(project_data_path)
-     ),
-     tar_target(
-       name = readied_data,
-       command = ready_data(base_data)
-     )
+  # TODO: Uncomment this *after* finishing running `data-raw/create-data.R`
+  tar_target(
+    name = project_data_path,
+    # TODO: This will eventually need to be changed to "parquet".
+    command = ukbAid::download_data(file_ext = "csv", username = "nielsbock"),
+    format = "file"
+  ),
+  tar_target(
+    name = base_data,
+    command = readr::read_csv(project_data_path)
+  ),
+  tar_target(
+    name = readied_data,
+    command = ready_data(base_data)
+  ),
+  tar_target(
+    name = icd10_subset,
+    command = icd10_longer_subset(readied_data)
+  ),
+  tar_target(
+    name = cancer_subset,
+    command = cancer_longer_subset(readied_data)
+  ),
+  tar_target(
+    name = data_with_icd10_cancer,
+    command = readied_data |>
+      left_join(icd10_hcc(icd10_subset), by = "id") |>
+      left_join(icd10_icc(icd10_subset), by = "id") |>
+      left_join(cancer_hcc(cancer_subset), by = "id") |>
+      left_join(cancer_icc(cancer_subset), by = "id")
+  )
 )
