@@ -129,7 +129,6 @@ opcs4_cystectomy <- function(data) {
     )
   data <- data %>%
     left_join(cystect %>% select(id, cystectomy_opcs4), by = "id")
-  remove(cystect)
   return(data)
 }
 data <- opcs4_cystectomy(data)
@@ -147,7 +146,6 @@ opcs3_cystectomy <- function(data) {
     )
   data <- data %>%
     left_join(cystect %>% select(id, cystectomy_opcs3), by = "id")
-  remove(cystect)
   return(data)
 }
 data <- opcs3_cystectomy(data)
