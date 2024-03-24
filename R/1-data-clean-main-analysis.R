@@ -62,6 +62,7 @@ cancer_longer_subset <- function(data) {
 
 icd10_hcc <- function(data) {
   data %>%
+    # TODO: I don't this does what you think it's doing. Need to assess in RAP
     mutate(
       icd10_hcc_date = ifelse(str_detect(p41270var, "C22.0"),
         as.character(c_across(starts_with("p41280"))),
