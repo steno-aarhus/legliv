@@ -19,6 +19,7 @@ Imports:
     magrittr,
     parameters,
     psych,
+    qs,
     readr,
     remotes,
     rmarkdown,
