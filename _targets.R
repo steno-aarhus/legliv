@@ -65,6 +65,6 @@ list(
   tar_target(
     name = data_as_baseline,
     command = data_with_icd10_cancer |>
-      baseline_data()
+      baseline_date()
   )
 )
