@@ -11,6 +11,10 @@ ready_data <- function(data) {
       delim = "|",
       names = paste0("p41270var_a", 0:258), too_few = "debug"
     )
+  data <- data %>%
+    select(starts_with("p41270"), starts_with("p41280")) %>%
+    select_if(~ !all(is.na(.))) %>%
+    bind_cols(data %>% select(-starts_with("p41270"), -starts_with("p41280")))
   # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD9 codes)
   data <- data %>%
     separate_wider_delim(p41271,
