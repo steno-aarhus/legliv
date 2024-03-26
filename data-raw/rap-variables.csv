@@ -10,15 +10,43 @@ p53_i0,Date of attending assessment centre | Instance 0,p53
 p53_i1,Date of attending assessment centre | Instance 1,p53
 p53_i2,Date of attending assessment centre | Instance 2,p53
 p53_i3,Date of attending assessment centre | Instance 3,p53
+p54_i0,UK Biobank assessment centre | Instance 0,p54
+p54_i1,UK Biobank assessment centre | Instance 1,p54
+p54_i2,UK Biobank assessment centre | Instance 2,p54
+p54_i3,UK Biobank assessment centre | Instance 3,p54
+p93_i0,"Systolic blood pressure, manual reading | Instance 0",p93
+p93_i1,"Systolic blood pressure, manual reading | Instance 1",p93
+p93_i2,"Systolic blood pressure, manual reading | Instance 2",p93
+p93_i3,"Systolic blood pressure, manual reading | Instance 3",p93
+p94_i0,"Diastolic blood pressure, manual reading | Instance 0",p94
+p94_i1,"Diastolic blood pressure, manual reading | Instance 1",p94
+p94_i2,"Diastolic blood pressure, manual reading | Instance 2",p94
+p94_i3,"Diastolic blood pressure, manual reading | Instance 3",p94
 p191,Date lost to follow-up,p191
 p709_i0,Number in household | Instance 0,p709
 p709_i1,Number in household | Instance 1,p709
 p709_i2,Number in household | Instance 2,p709
 p709_i3,Number in household | Instance 3,p709
+p4079_i0,"Diastolic blood pressure, automated reading | Instance 0",p4079
+p4079_i1,"Diastolic blood pressure, automated reading | Instance 1",p4079
+p4079_i2,"Diastolic blood pressure, automated reading | Instance 2",p4079
+p4079_i3,"Diastolic blood pressure, automated reading | Instance 3",p4079
+p4080_i0,"Systolic blood pressure, automated reading | Instance 0",p4080
+p4080_i1,"Systolic blood pressure, automated reading | Instance 1",p4080
+p4080_i2,"Systolic blood pressure, automated reading | Instance 2",p4080
+p4080_i3,"Systolic blood pressure, automated reading | Instance 3",p4080
 p6138_i0,Qualifications | Instance 0,p6138
 p6138_i1,Qualifications | Instance 1,p6138
 p6138_i2,Qualifications | Instance 2,p6138
 p6138_i3,Qualifications | Instance 3,p6138
+p6153_i0,"Medication for cholesterol, blood pressure, diabetes, or take exogenous hormones | Instance 0",p6153
+p6153_i1,"Medication for cholesterol, blood pressure, diabetes, or take exogenous hormones | Instance 1",p6153
+p6153_i2,"Medication for cholesterol, blood pressure, diabetes, or take exogenous hormones | Instance 2",p6153
+p6153_i3,"Medication for cholesterol, blood pressure, diabetes, or take exogenous hormones | Instance 3",p6153
+p6177_i0,"Medication for cholesterol, blood pressure or diabetes | Instance 0",p6177
+p6177_i1,"Medication for cholesterol, blood pressure or diabetes | Instance 1",p6177
+p6177_i2,"Medication for cholesterol, blood pressure or diabetes | Instance 2",p6177
+p6177_i3,"Medication for cholesterol, blood pressure or diabetes | Instance 3",p6177
 p20077,Number of diet questionnaires completed,p20077
 p20116_i0,Smoking status | Instance 0,p20116
 p20116_i1,Smoking status | Instance 1,p20116
@@ -574,6 +602,16 @@ p26154_i1,Cream | Instance 1,p26154
 p26154_i2,Cream | Instance 2,p26154
 p26154_i3,Cream | Instance 3,p26154
 p26154_i4,Cream | Instance 4,p26154
+p30740_i0,Glucose | Instance 0,p30740
+p30740_i1,Glucose | Instance 1,p30740
+p30750_i0,Glycated haemoglobin (HbA1c) | Instance 0,p30750
+p30750_i1,Glycated haemoglobin (HbA1c) | Instance 1,p30750
+p30760_i0,HDL cholesterol | Instance 0,p30760
+p30760_i1,HDL cholesterol | Instance 1,p30760
+p30780_i0,LDL direct | Instance 0,p30780
+p30780_i1,LDL direct | Instance 1,p30780
+p30870_i0,Triglycerides | Instance 0,p30870
+p30870_i1,Triglycerides | Instance 1,p30870
 p40000_i0,Date of death | Instance 0,p40000
 p40000_i1,Date of death | Instance 1,p40000
 p40001_i0,Underlying (primary) cause of death: ICD10 | Instance 0,p40001
