@@ -6,7 +6,7 @@ data <- targets::tar_read(data_as_baseline)
 
 # Diseases before baseline ------------------------------------------------
 
-# TODO: Repeat the same pattern used in `functions.R` to the functions below here.
+# # TODO: Repeat the same pattern used in `functions.R` to the functions below here.
 icd10_diabetes <- function(data) {
   diabetes <- data %>%
     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
@@ -165,8 +165,8 @@ covariates <- function(data) {
       phys_acti = p22040_i0,
       tdi = p22189,
       spouse = if_else(p709_i0 == 1, "Yes", "No"),
-      smoking = ifelse(p20116_i0 == "Prefer not to answer", "Never", p20116_i0),
-      smoking = factor(smoking, levels = c("Never", "Previous", "Current")),
+      smoking = if_else(p20116_i0 == "Prefer not to answer" | p20116_i0 == "Previous" | p20116_i0 == "Never", "Never/previous", "Current"),
+      smoking = factor(smoking, levels = c("Never/previous", "Current")),
       smoking_pack = p20162_i0,
       # TODO: We need to have a bigger discussion about this in the UK Biobank group.
       education = case_when(
@@ -221,6 +221,35 @@ covariates <- function(data) {
   return(data)
 }
 data <- covariates(data)
+
+data <- data %>%
+  mutate(
+    high_trigly = if_else(p30870_i0 >= 1.7, "Yes", "No"),
+    low_hdl = if_else(p30760_i0 <= 1.036 & sex == "Male" | p30760_i0 <= 1.295 & sex == "Female", "Yes", "No"),
+    chol_med_men = ifelse(grepl("Cholesterol lowering medication", p6177_i0), "Yes", "No"),
+    chol_med_women = ifelse(grepl("Cholesterol lowering medication", p6153_i0), "Yes", "No"),
+    chol_med = if_else(chol_med_men == "Yes" | chol_med_women == "Yes", "Yes", "No"),
+    low_hdl_chol_med = if_else(low_hdl == "No" & chol_med == "No", "No", "Yes"),
+    bp_med_men = ifelse(grepl("Blood pressure medication", p6177_i0), "Yes", "No"),
+    bp_med_women = ifelse(grepl("Blood pressure medication", p6153_i0), "Yes", "No"),
+    bp_med = if_else(bp_med_men == "Yes" | bp_med_women == "Yes", "Yes", "No"),
+    high_wc = if_else(sex == "Male" & wc >= 102 | sex == "Female" & wc >= 88, "Yes", "No"),
+    high_bmi = if_else(bmi >= 30, "Yes", "No"),
+    high_bmi_wc = if_else(high_wc == "No" & high_bmi == "No", "No", "Yes"),
+    bs_high = if_else(p30750_i0 >= 39, "Yes", "No"),
+    ins_med_men = ifelse(grepl("Insulin", p6177_i0), "Yes", "No"),
+    ins_med_women = ifelse(grepl("Insulin", p6153_i0), "Yes", "No"),
+    ins_med = if_else(ins_med_men == "Yes" | ins_med_women == "Yes", "Yes", "No"),
+    high_bs = if_else(bs_high == "No" & ins_med == "No", "No", "Yes"),
+    dia_nafld = if_else(diabetes == "No" & nafld == "No", "No", "Yes"),
+    met_synd = ifelse(rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")) == "Yes") >= 3, "Yes", "No")
+  )
+
+data <- data %>%
+  mutate(
+    gall_disease = if_else(cholelith == "No" & cystectomy == "No", "No", "Yes"),
+    high_alcohol = if_else(sex == "Male" & alcohol_daily < 56 | sex == "Female" & alcohol_daily < 42, "No", "Yes")
+  )
 
 other_variables <- function(data) {
   data <- data %>%
