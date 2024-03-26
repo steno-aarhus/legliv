@@ -14,27 +14,11 @@ p54_i0,UK Biobank assessment centre | Instance 0,p54
 p54_i1,UK Biobank assessment centre | Instance 1,p54
 p54_i2,UK Biobank assessment centre | Instance 2,p54
 p54_i3,UK Biobank assessment centre | Instance 3,p54
-p93_i0,"Systolic blood pressure, manual reading | Instance 0",p93
-p93_i1,"Systolic blood pressure, manual reading | Instance 1",p93
-p93_i2,"Systolic blood pressure, manual reading | Instance 2",p93
-p93_i3,"Systolic blood pressure, manual reading | Instance 3",p93
-p94_i0,"Diastolic blood pressure, manual reading | Instance 0",p94
-p94_i1,"Diastolic blood pressure, manual reading | Instance 1",p94
-p94_i2,"Diastolic blood pressure, manual reading | Instance 2",p94
-p94_i3,"Diastolic blood pressure, manual reading | Instance 3",p94
 p191,Date lost to follow-up,p191
 p709_i0,Number in household | Instance 0,p709
 p709_i1,Number in household | Instance 1,p709
 p709_i2,Number in household | Instance 2,p709
 p709_i3,Number in household | Instance 3,p709
-p4079_i0,"Diastolic blood pressure, automated reading | Instance 0",p4079
-p4079_i1,"Diastolic blood pressure, automated reading | Instance 1",p4079
-p4079_i2,"Diastolic blood pressure, automated reading | Instance 2",p4079
-p4079_i3,"Diastolic blood pressure, automated reading | Instance 3",p4079
-p4080_i0,"Systolic blood pressure, automated reading | Instance 0",p4080
-p4080_i1,"Systolic blood pressure, automated reading | Instance 1",p4080
-p4080_i2,"Systolic blood pressure, automated reading | Instance 2",p4080
-p4080_i3,"Systolic blood pressure, automated reading | Instance 3",p4080
 p6138_i0,Qualifications | Instance 0,p6138
 p6138_i1,Qualifications | Instance 1,p6138
 p6138_i2,Qualifications | Instance 2,p6138
