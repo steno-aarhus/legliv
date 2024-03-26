@@ -1,6 +1,19 @@
 library(survival)
 library(gtsummary)
 
+model2t <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    other_foods_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking + alcohol_daily +
+    gall_disease + met_synd,
+  data = data
+)
+
+model2t %>% parameters(exponentiate = T)
+
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
