@@ -1,32 +1,26 @@
 library(gtsummary)
 
 table_1_all <- data %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, bmi_category, wc, ethnicity, diabetes, nafld, cholelith, cystectomy)
+  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, gall_disease, met_synd)
 
 table_1_cancer <- data %>%
   filter(status == "Liver cancer") %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, bmi_category, wc, ethnicity, diabetes, nafld, cholelith, cystectomy)
+  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, gall_disease, met_synd)
 
 table_all <- table_1_all %>%
   tbl_summary(
     missing_text = "Missing",
     label = list(
-      typical_diet ~ "Typical diet yesterday",
       age_at_baseline ~ "Age",
       sex ~ "Sex",
       education ~ "Educational level",
       tdi ~ "Townsend Deprivation Index",
       spouse ~ "Living alone",
-      exercise ~ "Physical activity",
+      exercise ~ "Physically active",
       smoking ~ "Smoking",
-      bmi_category ~ "Body mass index",
-      wc ~ "Waist circumference",
       sex ~ "Sex",
-      ethnicity ~ "Ethnicity",
-      diabetes ~ "Diabetes",
-      nafld ~ "NAFLD",
-      cholelith ~ "Cholelithiasis",
-      cystectomy ~ "Cholecystectomy"
+      gall_disease ~ "Cholelithiasis or cholecystectomy",
+      met_synd ~ "Metabolic Syndrome"
     )
   )
 
@@ -34,22 +28,16 @@ table_cancer <- table_1_cancer %>%
   tbl_summary(
     missing_text = "Missing",
     label = list(
-      typical_diet ~ "Typical diet yesterday",
       age_at_baseline ~ "Age",
       sex ~ "Sex",
       education ~ "Educational level",
       tdi ~ "Townsend Deprivation Index",
       spouse ~ "Living alone",
-      exercise ~ "Physical activity",
+      exercise ~ "Physically active",
       smoking ~ "Smoking",
-      bmi_category ~ "Body mass index",
-      wc ~ "Waist circumference",
       sex ~ "Sex",
-      ethnicity ~ "Ethnicity",
-      diabetes ~ "Diabetes",
-      nafld ~ "NAFLD",
-      cholelith ~ "Cholelithiasis",
-      cystectomy ~ "Cholecystectomy"
+      gall_disease ~ "Cholelithiasis or cholecystectomy",
+      met_synd ~ "Metabolic Syndrome"
     )
   )
 

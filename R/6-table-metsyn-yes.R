@@ -66,7 +66,7 @@ m1t <- model1t %>%
     include = legume_daily_15,
     label = legume_daily_15 ~ " ",
   ) %>%
-  modify_caption("**Participants without metabolic syndrome who completed two or more  24-hour recall diet questionnaires** (N = {N})")
+  modify_caption("**Participants with metabolic syndrome who completed two or more  24-hour recall diet questionnaires** (N = {N})")
 
 m1r <- model1r %>%
   tbl_regression(
