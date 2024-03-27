@@ -167,9 +167,9 @@ covariates <- function(data) {
       wc = p48_i0,
       education = p6138_i0,
       bmi = p21001_i0,
-      phys_acti = p22040_i0,
       tdi = p22189,
       spouse = if_else(p709_i0 == 1, "Yes", "No"),
+      spouse = as.factor(spouse),
       smoking = if_else(p20116_i0 == "Prefer not to answer" | p20116_i0 == "Previous" | p20116_i0 == "Never", "Never/previous", "Current"),
       smoking = factor(smoking, levels = c("Never/previous", "Current")),
       smoking_pack = p20162_i0,
@@ -186,6 +186,7 @@ covariates <- function(data) {
         TRUE ~ as.character(education)
       ),
       education = factor(education, levels = c("High", "Intermediate", "Low")),
+      education = as.factor(education),
       # TODO: We'll need to have a bigger discussion about this variable, plus move it over into ukbAid.
       ethnicity = case_when(
         p21000_i0 == "African" ~ "Other", # check the layers to the variable
@@ -217,7 +218,8 @@ covariates <- function(data) {
         bmi >= 30 ~ "Obese"
       ),
       bmi_category = factor(bmi_category, levels = c("Normal weight", "Overweight", "Obese")),
-      exercise = p22035_i0
+      bmi_category = as.factor(bmi_category),
+      exercise = as.factor(p22035_i0)
     )
   return(data)
 }
@@ -225,24 +227,11 @@ covariates <- function(data) {
 metabolic_syndrome <- function(data) {
   data <- data %>%
     mutate(
-      high_trigly = if_else(p30870_i0 >= 1.7, "Yes", "No"),
-      low_hdl = if_else(p30760_i0 <= 1.036 & sex == "Male" | p30760_i0 <= 1.295 & sex == "Female", "Yes", "No"),
-      chol_med_men = ifelse(grepl("Cholesterol lowering medication", p6177_i0), "Yes", "No"),
-      chol_med_women = ifelse(grepl("Cholesterol lowering medication", p6153_i0), "Yes", "No"),
-      chol_med = if_else(chol_med_men == "Yes" | chol_med_women == "Yes", "Yes", "No"),
-      low_hdl_chol_med = if_else(low_hdl == "No" & chol_med == "No", "No", "Yes"),
-      bp_med_men = ifelse(grepl("Blood pressure medication", p6177_i0), "Yes", "No"),
-      bp_med_women = ifelse(grepl("Blood pressure medication", p6153_i0), "Yes", "No"),
-      bp_med = if_else(bp_med_men == "Yes" | bp_med_women == "Yes", "Yes", "No"),
-      high_wc = if_else(sex == "Male" & wc >= 102 | sex == "Female" & wc >= 88, "Yes", "No"),
-      high_bmi = if_else(bmi >= 30, "Yes", "No"),
-      high_bmi_wc = if_else(high_wc == "No" & high_bmi == "No", "No", "Yes"),
-      bs_high = if_else(p30750_i0 >= 39, "Yes", "No"),
-      ins_med_men = ifelse(grepl("Insulin", p6177_i0), "Yes", "No"),
-      ins_med_women = ifelse(grepl("Insulin", p6153_i0), "Yes", "No"),
-      ins_med = if_else(ins_med_men == "Yes" | ins_med_women == "Yes", "Yes", "No"),
-      high_bs = if_else(bs_high == "No" & ins_med == "No", "No", "Yes"),
-      met_synd = ifelse(rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")) == "Yes") >= 3, "Yes", "No")
+      trigly = p30870_i0,
+      hdl = p30760_i0,
+      med_men = p6177_i0,
+      med_women = p6153_i0,
+      glucose = p30750_i0
     )
 }
 
