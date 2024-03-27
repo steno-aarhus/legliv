@@ -1,5 +1,14 @@
 library(survival)
 library(gtsummary)
+library(parameters)
+
+model1t <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    other_foods_daily + total_weight_food_daily +
+    sex,
+  data = data
+)
 
 model2t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
@@ -12,86 +21,41 @@ model2t <- coxph(
   data = data
 )
 
-model2t %>% parameters(exponentiate = T)
-
-model1t <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-    egg_daily + cereal_refined_daily + veggie_daily +
-    fruit_daily + nut_daily + snack_daily +
-    mixed_dish_daily + fats_daily +
-    non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
-    sex,
-  data = data
-)
-
-model2t <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-    egg_daily + cereal_refined_daily + veggie_daily +
-    fruit_daily + nut_daily + snack_daily +
-    mixed_dish_daily + fats_daily +
-    non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + ethnicity + spouse +
-    bmi_category + exercise + smoking + wc + alcohol_daily +
-    diabetes + cholelith + nafld + cystectomy,
-  data = data
-)
-
 model1r <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily +
-    whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-    egg_daily + cereal_refined_daily + veggie_daily +
-    fruit_daily + nut_daily + snack_daily +
-    mixed_dish_daily + fats_daily +
-    non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
+    legume_daily_15 + proc_meat_daily_15 +
+    other_foods_daily + total_weight_food_daily +
     sex,
   data = data
 )
 
 model2r <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily +
-    whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-    egg_daily + cereal_refined_daily + veggie_daily +
-    fruit_daily + nut_daily + snack_daily +
-    mixed_dish_daily + fats_daily +
-    non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
+    legume_daily_15 + proc_meat_daily_15 +
+    other_foods_daily + total_weight_food_daily +
     sex +
-    education + tdi + ethnicity + spouse +
-    bmi_category + exercise + smoking + wc + alcohol_daily +
-    diabetes + cholelith + nafld + cystectomy,
+    education + tdi + spouse +
+    exercise + smoking + alcohol_daily +
+    gall_disease + met_synd,
   data = data
 )
 
 model1p <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily +
-    whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-    egg_daily + cereal_refined_daily + veggie_daily +
-    fruit_daily + nut_daily + snack_daily +
-    mixed_dish_daily + fats_daily +
-    non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
+    legume_daily_15 + red_meat_daily_15 +
+    other_foods_daily + total_weight_food_daily +
     sex,
   data = data
 )
 
 model2p <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily +
-    whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-    egg_daily + cereal_refined_daily + veggie_daily +
-    fruit_daily + nut_daily + snack_daily +
-    mixed_dish_daily + fats_daily +
-    non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
+    legume_daily_15 + red_meat_daily_15 +
+    other_foods_daily + total_weight_food_daily +
     sex +
-    education + tdi + ethnicity + spouse +
-    bmi_category + exercise + smoking + wc + alcohol_daily +
-    diabetes + cholelith + nafld + cystectomy,
+    education + tdi + spouse +
+    exercise + smoking + alcohol_daily +
+    gall_disease + met_synd,
   data = data
 )
 
