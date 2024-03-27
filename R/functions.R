@@ -159,3 +159,313 @@ baseline_date <- function(data) {
     left_join(baseline_start_date %>% select(id, baseline_start_date), by = "id")
   return(data)
 }
+
+covariates <- function(data) {
+  data <- data %>%
+    mutate(
+      sex = p31,
+      wc = p48_i0,
+      education = p6138_i0,
+      bmi = p21001_i0,
+      phys_acti = p22040_i0,
+      tdi = p22189,
+      spouse = if_else(p709_i0 == 1, "Yes", "No"),
+      smoking = if_else(p20116_i0 == "Prefer not to answer" | p20116_i0 == "Previous" | p20116_i0 == "Never", "Never/previous", "Current"),
+      smoking = factor(smoking, levels = c("Never/previous", "Current")),
+      smoking_pack = p20162_i0,
+      # TODO: We need to have a bigger discussion about this in the UK Biobank group.
+      education = case_when(
+        grepl("College", education, ignore.case = TRUE) ~ "High",
+        grepl("A levels/AS levels", education, ignore.case = TRUE) ~ "Intermediate",
+        grepl("O levels/GCSEs", education, ignore.case = TRUE) ~ "Intermediate",
+        grepl("CSEs", education, ignore.case = TRUE) ~ "Low",
+        grepl("NVQ or HND", education, ignore.case = TRUE) ~ "Low",
+        grepl("Other professional", education, ignore.case = TRUE) ~ "Low",
+        grepl("None of the above", education, ignore.case = TRUE) ~ "Low",
+        grepl("Prefer not to answer", education, ignore.case = TRUE) ~ "Low",
+        TRUE ~ as.character(education)
+      ),
+      education = factor(education, levels = c("High", "Intermediate", "Low")),
+      # TODO: We'll need to have a bigger discussion about this variable, plus move it over into ukbAid.
+      ethnicity = case_when(
+        p21000_i0 == "African" ~ "Other", # check the layers to the variable
+        p21000_i0 == "Any other Black background" ~ "Other",
+        p21000_i0 == "Asian or Asian British" ~ "Other",
+        p21000_i0 == "Bangladeshi" ~ "Other",
+        p21000_i0 == "Chinese" ~ "Other",
+        p21000_i0 == "Indian" ~ "Other",
+        p21000_i0 == "Pakistani" ~ "Other",
+        p21000_i0 == "Any other Asian background" ~ "Other",
+        p21000_i0 == "British" ~ "White",
+        p21000_i0 == "Any other white background" ~ "White",
+        p21000_i0 == "Irish" ~ "White",
+        p21000_i0 == "White" ~ "White",
+        p21000_i0 == "White and Asian" ~ "Other",
+        p21000_i0 == "White and Black African" ~ "Other",
+        p21000_i0 == "White and Black Caribbean" ~ "Other",
+        p21000_i0 == "Any other mixed background" ~ "Other",
+        p21000_i0 == "Caribbean" ~ "Other",
+        p21000_i0 == "Do not know" ~ "Other",
+        p21000_i0 == "Other ethnic group" ~ "Other",
+        p21000_i0 == "Prefer not to answer" ~ "Other"
+      ),
+      ethnicity = factor(ethnicity, levels = c("White", "Other")),
+      # TODO: Move this over into ukbAid
+      bmi_category = case_when(
+        bmi < 25 ~ "Normal weight",
+        bmi >= 25 & bmi < 30 ~ "Overweight",
+        bmi >= 30 ~ "Obese"
+      ),
+      bmi_category = factor(bmi_category, levels = c("Normal weight", "Overweight", "Obese")),
+      exercise = p22035_i0
+    )
+  return(data)
+}
+
+metabolic_syndrome <- function(data) {
+  data <- data %>%
+    mutate(
+      high_trigly = if_else(p30870_i0 >= 1.7, "Yes", "No"),
+      low_hdl = if_else(p30760_i0 <= 1.036 & sex == "Male" | p30760_i0 <= 1.295 & sex == "Female", "Yes", "No"),
+      chol_med_men = ifelse(grepl("Cholesterol lowering medication", p6177_i0), "Yes", "No"),
+      chol_med_women = ifelse(grepl("Cholesterol lowering medication", p6153_i0), "Yes", "No"),
+      chol_med = if_else(chol_med_men == "Yes" | chol_med_women == "Yes", "Yes", "No"),
+      low_hdl_chol_med = if_else(low_hdl == "No" & chol_med == "No", "No", "Yes"),
+      bp_med_men = ifelse(grepl("Blood pressure medication", p6177_i0), "Yes", "No"),
+      bp_med_women = ifelse(grepl("Blood pressure medication", p6153_i0), "Yes", "No"),
+      bp_med = if_else(bp_med_men == "Yes" | bp_med_women == "Yes", "Yes", "No"),
+      high_wc = if_else(sex == "Male" & wc >= 102 | sex == "Female" & wc >= 88, "Yes", "No"),
+      high_bmi = if_else(bmi >= 30, "Yes", "No"),
+      high_bmi_wc = if_else(high_wc == "No" & high_bmi == "No", "No", "Yes"),
+      bs_high = if_else(p30750_i0 >= 39, "Yes", "No"),
+      ins_med_men = ifelse(grepl("Insulin", p6177_i0), "Yes", "No"),
+      ins_med_women = ifelse(grepl("Insulin", p6153_i0), "Yes", "No"),
+      ins_med = if_else(ins_med_men == "Yes" | ins_med_women == "Yes", "Yes", "No"),
+      high_bs = if_else(bs_high == "No" & ins_med == "No", "No", "Yes"),
+      met_synd = ifelse(rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")) == "Yes") >= 3, "Yes", "No")
+    )
+}
+
+other_variables <- function(data) {
+  data <- data %>%
+    mutate(
+      birth_year = p34,
+      month_of_birth = p52,
+      recruit_to_baseline = as.numeric(difftime(baseline_start_date, p53_i0, units = "days")) / 365.25,
+      l2fu_d = p191,
+      age_recruit = p21022,
+      dead_date = p40000_i0,
+      dead_cause = p40001_i0,
+      age_dead = p40007_i0
+    )
+  data <- data %>%
+    mutate(across(starts_with("p100020_i"), ~ coalesce(., "Yes"))) %>%
+    mutate(
+      typical_diet = if_else(p100020_i0 == "No" | p100020_i1 == "No" | p100020_i2 == "No" | p100020_i3 == "No" | p100020_i4 == "No", "No", "Yes")
+    )
+  return(data)
+}
+
+# TODO: Redo this to mimic what was done in Fie's repository.
+calculate_food_intake <- function(data) {
+  # estimating average daily and weekly intakes of food groups in g
+  data <- data %>%
+    # creating food groups from UKB Aurora Perez
+    mutate(
+      # legumes
+      legume_daily = (rowSums(select(., starts_with("p26086") | starts_with("p26101") |
+                                       starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
+                        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
+                        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
+      legume_daily_15 = legume_daily / 15,
+      # red meats
+      red_meat_daily = rowSums(select(., starts_with("p26066") | starts_with("p26100") |
+                                        starts_with("p26104") | starts_with("p26117")), na.rm = TRUE) / p20077,
+      red_meat_daily_15 = red_meat_daily / 15,
+      # processed meat
+      proc_meat_daily = rowSums(select(., starts_with("p26122")), na.rm = TRUE) / p20077,
+      proc_meat_daily_15 = proc_meat_daily / 15,
+      # poultry
+      poultry_daily = rowSums(select(., starts_with("p26069") | starts_with("p26121")), na.rm = TRUE) / p20077,
+      poultry_daily_15 = poultry_daily / 15,
+      # fish
+      fish_daily = rowSums(select(., starts_with("p26070") | starts_with("p26109") |
+                                    starts_with("p26132") | starts_with("p26149")), na.rm = TRUE) / p20077,
+      fish_daily_15 = fish_daily / 15,
+      # dairy
+      dairy_daily = rowSums(select(., starts_with("p26062") | starts_with("p26063") |
+                                     starts_with("p26087") | starts_with("p26096") |
+                                     starts_with("p26099") | starts_with("p26102") |
+                                     starts_with("p26103") | starts_with("p26131") |
+                                     starts_with("p26133") | starts_with("p26150") |
+                                     starts_with("p26154")), na.rm = TRUE) / p20077,
+      dairy_daily_15 = dairy_daily / 15,
+      # eggs
+      egg_daily = rowSums(select(., starts_with("p26088")), na.rm = TRUE) / p20077,
+      egg_daily_15 = egg_daily / 15,
+      # whole-grain cereals
+      whole_grain_daily = rowSums(select(., starts_with("p26071") | starts_with("p26074") |
+                                           starts_with("p26075") | starts_with("p26076") |
+                                           starts_with("p26077") | starts_with("p26078") |
+                                           starts_with("p26105") | starts_with("p26114")), na.rm = TRUE) / p20077,
+      whole_grain_daily_15 = whole_grain_daily / 15,
+      # refined cereals
+      cereal_refined_daily = (rowSums(select(., starts_with("p26068") | starts_with("p26072") |
+                                               starts_with("p26073") | starts_with("p26079") |
+                                               starts_with("p26083") | starts_with("p26113")), na.rm = TRUE)) / p20077,
+      cereal_refined_daily_15 = (cereal_refined_daily) / 15,
+      # vegetables
+      veggie_daily = (rowSums(select(., starts_with("p26065") | starts_with("p26098") |
+                                       starts_with("p26118") | starts_with("p26120") |
+                                       starts_with("p26123") | starts_with("p26125") |
+                                       starts_with("p26143") | starts_with("p26146") |
+                                       starts_with("p26147")), na.rm = TRUE) +
+                        rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
+                        rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
+      veggie_daily_15 = veggie_daily / 15,
+      # fruit
+      fruit_daily = rowSums(select(., starts_with("p26089") | starts_with("p26090") |
+                                     starts_with("p26091") | starts_with("p26092") |
+                                     starts_with("p26093") | starts_with("p26094")), na.rm = TRUE) / p20077,
+      fruit_daily_15 = fruit_daily / 15,
+      # nuts and seeds
+      nut_daily = rowSums(select(., starts_with("p26106") | starts_with("p26107") |
+                                   starts_with("p26108")), na.rm = TRUE) / p20077,
+      nut_daily_15 = nut_daily / 15,
+      # fats and spread
+      fats_daily = rowSums(select(., starts_with("p26110") | starts_with("p26111") |
+                                    starts_with("p26112")), na.rm = TRUE),
+      fats_daily_15 = fats_daily / 15,
+      # mixed dishes
+      mixed_dish_daily = rowSums(select(., starts_with("p26097") | starts_with("p26116") |
+                                          starts_with("p26128") | starts_with("p26129") |
+                                          starts_with("p26130") | starts_with("p26135") |
+                                          starts_with("p26139") | starts_with("p26145") |
+                                          starts_with("p26119")), na.rm = TRUE) / p20077,
+      mixed_dish_daily_15 = mixed_dish_daily / 15,
+      # sugar, preserves, cakes & confectionery, snacks
+      snack_daily = rowSums(select(., starts_with("p26064") | starts_with("p26080") |
+                                     starts_with("p26084") | starts_with("p26085") |
+                                     starts_with("p26134") | starts_with("p26140")), na.rm = TRUE) / p20077,
+      snack_daily_15 = snack_daily / 15,
+      # non-alcoholic beverages
+      non_alc_beverage_daily = rowSums(select(., starts_with("p26124") | starts_with("p26141") |
+                                                starts_with("p26142") | starts_with("p26148") |
+                                                starts_with("p26081") | starts_with("p26082") |
+                                                starts_with("p26095") | starts_with("p26126") |
+                                                starts_with("p26127")), na.rm = TRUE) / p20077,
+      non_alc_beverage_daily_15 = non_alc_beverage_daily / 15,
+      # alcoholic beverages
+      alc_beverage_daily = rowSums(select(., starts_with("p26151") | starts_with("p26152") |
+                                            starts_with("p26153") | starts_with("p26067") |
+                                            starts_with("p26138")), na.rm = TRUE) / p20077,
+      alc_beverage_daily_15 = alc_beverage_daily / 15,
+      # alcohol
+      alcohol_daily = rowSums(select(., starts_with("p26030")), na.rm = TRUE) / p20077
+    )
+  return(data)
+}
+
+food_intake_extra <- function(data) {
+  data <- data %>%
+    mutate(
+      # baked beans and pulses separated from other legumes
+      pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE) / p20077,
+      pulse_daily_15 = pulse_daily / 15,
+      legume_other_daily = (rowSums(select(., starts_with("p26086") |
+                                             starts_with("p26136") | starts_with("p26137")), na.rm = TRUE) +
+                              rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
+                              rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
+      legume_other_daily_15 = legume_other_daily / 15,
+      # total meat
+      total_meat_daily = red_meat_daily + proc_meat_daily,
+      total_meat_daily_15 = total_meat_daily / 15,
+      # total weight of all foods
+      total_weight_food_daily = legume_daily + red_meat_daily + proc_meat_daily +
+        poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
+        whole_grain_daily + veggie_daily + fruit_daily + nut_daily +
+        snack_daily + mixed_dish_daily + fats_daily +
+        non_alc_beverage_daily + alc_beverage_daily,
+      # total energy of all foods and beverages
+      total_energy_food_daily = rowSums(select(., starts_with("p26002")), na.rm = TRUE) / p20077,
+      # all other foods except legumesand meat
+      other_foods_daily = poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
+        whole_grain_daily + veggie_daily + fruit_daily + nut_daily +
+        snack_daily + mixed_dish_daily + fats_daily +
+        non_alc_beverage_daily + alc_beverage_daily
+    )
+  return(data)
+}
+
+legume_strat <- function(data) {
+  data <- data %>%
+    filter(legume_daily != 0) %>%
+    mutate(
+      legume_quintile = ntile(legume_daily, 4),
+      legume_category = factor(legume_quintile, labels = c("Low", "Medium", "High", "Highest"))
+    ) %>%
+    bind_rows(data %>%
+                filter(legume_daily == 0) %>%
+                mutate(legume_category = "Lowest")) %>%
+    mutate(legume_category = factor(legume_category, levels = c("Lowest", "Low", "Medium", "High", "Highest")))
+  return(data)
+}
+
+birth_date <- function(data) {
+  # Merging birth year and month of birth into one column:
+  month_names <- c(
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  )
+  data <- data %>%
+    mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
+  data <- data %>%
+    unite(date_birth, birth_year, month_of_birth_num, sep = "-")
+  # adding 15 as DD for all participants:
+  data$date_birth <- as.Date(paste0(data$date_birth, "-15"))
+  return(data)
+}
+
+baseline_age <- function(data) {
+  # Creating age at baseline:
+  data <- data %>%
+    mutate(age_at_baseline = year(baseline_start_date) - year(date_birth) -
+             ifelse(month(baseline_start_date) < month(date_birth) |
+                      (month(baseline_start_date) == month(date_birth) &
+                         day(baseline_start_date) < day(date_birth)), 1, 0)) |>
+    filter(!(is.na(age_at_baseline))) # 3 participants who lack dates for completed questionnaire.
+  return(data)
+}
+
+follow_up <- function(data) {
+  # Creating age at loss to follow-up:
+  data <- data %>%
+    mutate(age_l2fu = as.numeric(difftime(l2fu_d, date_birth, units = "days")) / 365.25)
+  # Removing participants who were lost to follow-up before baseline:
+  data <- data %>%
+    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date)
+  return(data)
+}
+
+end_of_follow_up <- function(data) {
+  # Creating status, status date and status age:
+  data <- data %>%
+    mutate(
+      earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
+        coalesce(as.Date("2022-12-31")),
+      status = case_when(
+        earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
+        earliest_date == dead_date ~ "Censored",
+        TRUE ~ "Censored"
+      ),
+      status_date = earliest_date,
+      status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
+      status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
+      study_time = status_age - age_at_baseline
+    )
+  return(data)
+}

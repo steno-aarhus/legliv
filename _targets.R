@@ -66,5 +66,55 @@ list(
     name = data_as_baseline,
     command = data_with_icd10_cancer |>
       baseline_date()
+  ),
+  tar_target(
+    name = data_with_covariates,
+    command = data_as_baseline |>
+      covariates()
+  ),
+  tar_target(
+    name = data_with_met_synd,
+    command = data_with_covariates |>
+      metabolic_syndrome()
+  ),
+  tar_target(
+    name = data_with_other_variables,
+    command = data_with_met_synd |>
+      other_variables()
+  ),
+  tar_target(
+    name = data_with_diet,
+    command = data_with_other_variables |>
+      calculate_food_intake()
+  ),
+  tar_target(
+    name = data_with_other_diet,
+    command = data_with_diet |>
+      food_intake_extra()
+  ),
+  tar_target(
+    name = data_with_legume_stratified,
+    command = data_with_other_diet |>
+      legume_strat()
+  ),
+  tar_target(
+    name = data_with_birth_date,
+    command = data_with_legume_stratified |>
+      birth_date()
+  ),
+  tar_target(
+    name = data_with_baseline_age,
+    command = data_with_birth_date |>
+      baseline_age()
+  ),
+  tar_target(
+    name = data_with_l2fu,
+    command = data_with_baseline_age |>
+      follow_up()
+  ),
+  tar_target(
+    name = data_with_eofu,
+    command = data_with_l2fu |>
+      end_of_follow_up()
   )
 )
