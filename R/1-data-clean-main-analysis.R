@@ -212,7 +212,7 @@ data <- data %>%
     bp_med_men = ifelse(grepl("Blood pressure medication", med_men), "Yes", "No"),
     bp_med_women = ifelse(grepl("Blood pressure medication", med_women), "Yes", "No"),
     bp_med = if_else(bp_med_men == "Yes" | bp_med_women == "Yes", "Yes", "No"),
-    high_wc = if_else(sex == "Male" & wc >= 102 | sex == "Female" & wc >= 88, "Yes", "No"),
+    high_wc = if_else(sex == "Male" & wc >= 94 | sex == "Female" & wc >= 80, "Yes", "No"),
     high_bmi = if_else(bmi >= 30, "Yes", "No"),
     high_bmi_wc = if_else(high_wc == "No" & high_bmi == "No", "No", "Yes"),
     bs_high = if_else(glucose >= 39, "Yes", "No"),
@@ -226,7 +226,7 @@ data <- data %>%
 data <- data %>%
   mutate(
     met_synd = case_when(
-      rowSums(is.na(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")))) > 0 ~ NA_character_,
+      rowSums(is.na(select(., c("high_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")))) > 0 ~ NA_character_,
       rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")) == "Yes", na.rm = TRUE) >= 3 ~ "Yes",
       TRUE ~ "No"
   )
