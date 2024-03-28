@@ -187,12 +187,12 @@ data <- data %>%
     high_alcohol = if_else(sex == "Male" & alcohol_daily < 56 | sex == "Female" & alcohol_daily < 42, "No", "Yes")
   )
 data2 <- data
-data <- data %>%
-  select(id, sex, tdi, bmi, spouse, wc, exercise, education, smoking, trigly, glucose, hdl,
-         med_men, med_women, gall_disease, typical_diet,
-         legume_daily_15, red_meat_daily_15, proc_meat_daily_15,
-         other_foods_daily, total_weight_food_daily, alcohol_daily,
-         status, study_time, status_age, age_at_baseline)
+# data <- data %>%
+#   select(id, sex, tdi, bmi, spouse, wc, exercise, education, smoking, trigly, glucose, hdl,
+#          med_men, med_women, gall_disease, typical_diet,
+#          legume_daily_15, red_meat_daily_15, proc_meat_daily_15,
+#          other_foods_daily, total_weight_food_daily, alcohol_daily,
+#          status, study_time, status_age, age_at_baseline)
 
 # Perform imputation with mice
 imputed_data <- mice(data, m = 5, maxit = 5, defaultMethod = c("pmm", "logreg", "polyreg", "polr"))
@@ -219,9 +219,8 @@ data <- data %>%
     ins_med_men = ifelse(grepl("Insulin", med_men), "Yes", "No"),
     ins_med_women = ifelse(grepl("Insulin", med_women), "Yes", "No"),
     ins_med = if_else(ins_med_men == "Yes" | ins_med_women == "Yes", "Yes", "No"),
-    high_bs = if_else(bs_high == "No" & ins_med == "No", "No", "Yes")
+    high_bs = if_else(bs_high == "No" & ins_med == "No", "No", "Yes"),
     )
-  )
 
 data <- data %>%
   mutate(
@@ -229,6 +228,7 @@ data <- data %>%
       rowSums(is.na(select(., c("high_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")))) > 0 ~ NA_character_,
       rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")) == "Yes", na.rm = TRUE) >= 3 ~ "Yes",
       TRUE ~ "No"
+      )
   )
 
 data %>% group_by(met_synd) %>% summarise(n())
