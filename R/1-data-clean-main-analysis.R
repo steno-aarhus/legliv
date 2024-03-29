@@ -6,48 +6,88 @@ data <- targets::tar_read(data_as_baseline)
 
 # Diseases before baseline ------------------------------------------------
 
-# # TODO: Repeat the same pattern used in `functions.R` to the functions below here.
-icd10_diabetes <- function(data) {
-  diabetes <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    # TODO: This does not do what you think it does.
-    mutate(
-      diabetes_ins_non = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
-          across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      ),
-      diabetes_ins = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("E10", .x)) &
-          across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    # TODO: These left_joins aren't necessary.
-    left_join(diabetes %>% select(id, diabetes_ins_non, diabetes_ins), by = "id")
-  return(data)
-}
-data <- icd10_diabetes(data)
+# # # TODO: Repeat the same pattern used in `functions.R` to the functions below here.
+# icd10_diabetes <- function(data) {
+#   diabetes <- data %>%
+#     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+#     # TODO: This does not do what you think it does.
+#     mutate(
+#       diabetes_ins_non = if_else(
+#         rowSums(across(starts_with("p41270var_a"), ~ grepl("E11", .x)) &
+#           across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+#         "Yes",
+#         "No"
+#       ),
+#       diabetes_ins = if_else(
+#         rowSums(across(starts_with("p41270var_a"), ~ grepl("E10", .x)) &
+#           across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+#         "Yes",
+#         "No"
+#       )
+#     )
+#   data <- data %>%
+#     # TODO: These left_joins aren't necessary.
+#     left_join(diabetes %>% select(id, diabetes_ins_non, diabetes_ins), by = "id")
+#   return(data)
+# }
+# data <- icd10_diabetes(data)
+#
+# icd9_diabetes <- function(data) {
+#   diabetes <- data %>%
+#     select(starts_with("p41271"), starts_with("p41281"), baseline_start_date, id) %>%
+#     mutate(
+#       diabetes_icd9 = if_else(
+#         rowSums(across(starts_with("p41271var_a"), ~ grepl("250", .x)) &
+#           across(starts_with("p41281_a"), ~ .x < baseline_start_date)) > 0,
+#         "Yes",
+#         "No"
+#       )
+#     )
+#   data <- data %>%
+#     left_join(diabetes %>% select(id, diabetes_icd9), by = "id")
+#   return(data)
+# }
+# data <- icd9_diabetes(data)
 
-icd9_diabetes <- function(data) {
-  diabetes <- data %>%
-    select(starts_with("p41271"), starts_with("p41281"), baseline_start_date, id) %>%
-    mutate(
-      diabetes_icd9 = if_else(
-        rowSums(across(starts_with("p41271var_a"), ~ grepl("250", .x)) &
-          across(starts_with("p41281_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(diabetes %>% select(id, diabetes_icd9), by = "id")
-  return(data)
-}
-data <- icd9_diabetes(data)
+# icd10_nafl <- function(data) {
+#   nafl <- data %>%
+#     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+#     mutate(
+#       nafl_icd10 = if_else(
+#         rowSums(across(starts_with("p41270var_a"), ~ grepl("K76.0", .x)) &
+#           across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+#         "Yes",
+#         "No"
+#       )
+#     )
+#   data <- data %>%
+#     left_join(nafl %>% select(id, nafl_icd10), by = "id")
+#   return(data)
+# }
+# data <- icd10_nafl(data)
+#
+# icd10_nash <- function(data) {
+#   nash <- data %>%
+#     select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
+#     mutate(
+#       nash_icd10 = if_else(
+#         rowSums(across(starts_with("p41270var_a"), ~ grepl("K75.8", .x)) &
+#           across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
+#         "Yes",
+#         "No"
+#       )
+#     )
+#   data <- data %>%
+#     left_join(nash %>% select(id, nash_icd10), by = "id")
+#   return(data)
+# }
+# data <- icd10_nash(data)
+
+# data <- data |>
+#   mutate(
+#     diabetes = if_else(diabetes_ins_non == "No" & diabetes_ins == "No" & diabetes_icd9 == "No", "No", "Yes"),
+#     nafld = if_else(nafl_icd10 == "No" & nash_icd10 == "No", "No", "Yes")
+#   )
 
 icd10_cholelith <- function(data) {
   cholelith <- data %>%
@@ -83,40 +123,6 @@ icd9_cholelith <- function(data) {
 }
 data <- icd9_cholelith(data)
 
-icd10_nafl <- function(data) {
-  nafl <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      nafl_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K76.0", .x)) &
-          across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(nafl %>% select(id, nafl_icd10), by = "id")
-  return(data)
-}
-data <- icd10_nafl(data)
-
-icd10_nash <- function(data) {
-  nash <- data %>%
-    select(starts_with("p41270"), starts_with("p41280"), baseline_start_date, id) %>%
-    mutate(
-      nash_icd10 = if_else(
-        rowSums(across(starts_with("p41270var_a"), ~ grepl("K75.8", .x)) &
-          across(starts_with("p41280_a"), ~ .x < baseline_start_date)) > 0,
-        "Yes",
-        "No"
-      )
-    )
-  data <- data %>%
-    left_join(nash %>% select(id, nash_icd10), by = "id")
-  return(data)
-}
-data <- icd10_nash(data)
-
 # Cystectomy before baseline ----------------------------------------------
 opcs4_cystectomy <- function(data) {
   cystect <- data %>%
@@ -151,13 +157,6 @@ opcs3_cystectomy <- function(data) {
   return(data)
 }
 data <- opcs3_cystectomy(data)
-
-data <- data |>
-  mutate(
-    diabetes = if_else(diabetes_ins_non == "No" & diabetes_ins == "No" & diabetes_icd9 == "No", "No", "Yes"),
-    nafld = if_else(nafl_icd10 == "No" & nash_icd10 == "No", "No", "Yes")
-  )
-
 
 # Removing liver cancers before baseline date -----------------------------
 remove_liver_before <- function(data) {
@@ -195,11 +194,11 @@ data2 <- data
 #          status, study_time, status_age, age_at_baseline)
 
 # Perform imputation with mice
-imputed_data <- mice(data, m = 5, maxit = 5, defaultMethod = c("pmm", "logreg", "polyreg", "polr"))
-
-data <- complete(imputed_data)
-
-data %>% describe()
+# imputed_data <- mice(data, m = 5, maxit = 5, defaultMethod = c("pmm", "logreg", "polyreg", "polr"))
+#
+# data <- complete(imputed_data)
+#
+# data %>% describe()
 
 data <- data %>%
   mutate(
