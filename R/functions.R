@@ -381,7 +381,8 @@ food_intake_extra <- function(data) {
       other_foods_daily = poultry_daily + fish_daily + dairy_daily + egg_daily + cereal_refined_daily +
         whole_grain_daily + veggie_daily + fruit_daily + nut_daily +
         snack_daily + mixed_dish_daily + fats_daily +
-        non_alc_beverage_daily + alc_beverage_daily
+        non_alc_beverage_daily + alc_beverage_daily,
+      other_foods_legume_daily = other_foods_daily + legume_other_daily
     )
   return(data)
 }
