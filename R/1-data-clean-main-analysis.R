@@ -2,7 +2,7 @@ library(tidyverse)
 library(lubridate) # For creating baseline age
 targets::tar_config_set(store = here::here("_targets"))
 
-data <- targets::tar_read(data_as_baseline)
+data <- targets::tar_read(data_with_eofu)
 
 # Diseases before baseline ------------------------------------------------
 
