@@ -252,6 +252,8 @@ cancer_is_hcc <- function(data) {
         earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
         earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Censored",
         earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
+        earliest_date == dead_date & earliest_date > baseline_start_date & dead_cause == "C22.0 Liver cell carcinoma" ~ "Liver cancer",
+        earliest_date == dead_date & earliest_date > baseline_start_date & dead_cause == "C22.1 Intrahepatic bile duct carcinoma" ~ "Censored",
         earliest_date == dead_date ~ "Censored",
         TRUE ~ "Censored"
       ),
@@ -275,6 +277,8 @@ cancer_is_icc <- function(data) {
         earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
         earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Censored",
         earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == dead_date & earliest_date > baseline_start_date & dead_cause == "C22.0 Liver cell carcinoma" ~ "Censored",
+        earliest_date == dead_date & earliest_date > baseline_start_date & dead_cause == "C22.1 Intrahepatic bile duct carcinoma" ~ "Liver cancer",
         earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
         earliest_date == dead_date ~ "Censored",
         TRUE ~ "Censored"
