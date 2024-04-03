@@ -1,16 +1,17 @@
 library(gtsummary)
 
 table_1_all <- data %>%
-  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, gall_disease, met_synd)
+  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, gall_disease, met_synd)
 
 table_1_cancer <- data %>%
   filter(status == "Liver cancer") %>%
-  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, gall_disease, met_synd)
+  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, gall_disease, met_synd)
 
 table_all <- table_1_all %>%
   tbl_summary(
     missing_text = "Missing",
     label = list(
+      typical_diet ~ "Typical diet yesterday",
       age_at_baseline ~ "Age",
       sex ~ "Sex",
       education ~ "Educational level",
@@ -18,6 +19,7 @@ table_all <- table_1_all %>%
       spouse ~ "Living alone",
       exercise ~ "Physically active",
       smoking ~ "Smoking",
+      alcohol_daily ~ "Alcohol intake (g/day)",
       sex ~ "Sex",
       gall_disease ~ "Cholelithiasis or cholecystectomy",
       met_synd ~ "Metabolic Syndrome"
@@ -28,6 +30,7 @@ table_cancer <- table_1_cancer %>%
   tbl_summary(
     missing_text = "Missing",
     label = list(
+      typical_diet ~ "Typical diet yesterday",
       age_at_baseline ~ "Age",
       sex ~ "Sex",
       education ~ "Educational level",
@@ -35,6 +38,7 @@ table_cancer <- table_1_cancer %>%
       spouse ~ "Living alone",
       exercise ~ "Physically active",
       smoking ~ "Smoking",
+      alcohol_daily ~ "Alcohol intake (g/day)",
       sex ~ "Sex",
       gall_disease ~ "Cholelithiasis or cholecystectomy",
       met_synd ~ "Metabolic Syndrome"
@@ -48,9 +52,9 @@ table_combined <- tbl_merge(
   bold_labels() %>%
   modify_caption("**Table 1. Baseline characteristics of the UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
   modify_header(label ~ "**Variable**")
-
-table_combined %>%
-  as_gt() %>% # convert to gt table
-  gt::gtsave( # save table as image
-    filename = "table-1.png", path = "~/legliv/doc/Images"
-  )
+table_combined
+# table_combined %>%
+#   as_gt() %>% # convert to gt table
+#   gt::gtsave( # save table as image
+#     filename = "table-1.png", path = "~/legliv/doc/Images"
+#   )
