@@ -1,11 +1,7 @@
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
-    whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-    egg_daily + cereal_refined_daily + veggie_daily +
-    fruit_daily + nut_daily + snack_daily +
-    mixed_dish_daily + fats_daily +
-    non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
+    other_foods_daily + total_weight_food_daily +
     sex,
   data = data
 )
@@ -16,21 +12,17 @@ m1t <- model1t %>%
     include = legume_category,
     label = legume_category ~ "Legume category",
   ) %>%
-  modify_caption("**Full cohort** (N = {N})")
+  modify_caption("**No intake of legumes vs. quartiles of daily legume intake** (N = {N})")
 
 
 model2t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
-    whole_grain_daily + poultry_daily + fish_daily + dairy_daily +
-    egg_daily + cereal_refined_daily + veggie_daily +
-    fruit_daily + nut_daily + snack_daily +
-    mixed_dish_daily + fats_daily +
-    non_alc_beverage_daily + alc_beverage_daily + total_weight_food_daily +
+    other_foods_daily + total_weight_food_daily +
     sex +
-    education + tdi + ethnicity + spouse +
-    bmi_category + exercise + smoking + wc + alcohol_daily +
-    diabetes + cholelith + nafld + cystectomy,
+    education + tdi + spouse +
+    exercise + smoking + alcohol_daily +
+    gall_disease + met_synd,
   data = data
 )
 
@@ -42,6 +34,10 @@ m2t <- model2t %>%
   ) %>%
   modify_caption("**Full cohort** (N = {N})")
 
+tbl_stack <-
+  tbl_stack(list(m1t, m2t), group_header = c("Model 1", "Model 2")) %>%
+  modify_header(label = "**15 g/day substitution**")
+tbl_stack
 data_legume_quintile <- data %>%
   select(legume_category, legume_daily)
 
@@ -60,7 +56,15 @@ tbl_merge_sum <- tbl_merge(
   list(tbl_category, tbl_mean_legume)
 )
 tbl_merge_sum
+
 tbl_merge <- tbl_merge(
-  tbls = list(tbl_category, tbl_mean_legume, m1t, m2t)
+  tbls = list(m1t, m2t),
+  tab_spanner = c("**Model 1**", "**Model 2**")
 )
 tbl_merge
+
+# tbl_merge %>%
+#   as_gt() %>% # convert to gt table
+#   gt::gtsave( # save table as image
+#     filename = "table-legume_quintile.png", path = "~/legliv/doc/Images"
+#   )
