@@ -27,7 +27,8 @@ Imports:
     targets,
     tidyverse,
     ukbAid,
-    usethis
+    usethis,
+    webshot2
 Encoding: UTF-8
 Remotes: 
     steno-aarhus/ukbAid
