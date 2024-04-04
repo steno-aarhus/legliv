@@ -267,13 +267,19 @@ calculate_food_intake <- function(data) {
                         rowSums(select(., starts_with("p26144")) * 0.5, na.rm = TRUE) + # assuming half hummus half guacamole
                         rowSums(select(., starts_with("p26115")) * 0.5, na.rm = TRUE)) / p20077, # assuming half peas half corn
       legume_daily_15 = legume_daily / 15,
+      legume_daily_75 = legume_daily / 7.5,
+      legume_daily_30 = legume_daily / 30,
       # red meats
       red_meat_daily = rowSums(select(., starts_with("p26066") | starts_with("p26100") |
                                         starts_with("p26104") | starts_with("p26117")), na.rm = TRUE) / p20077,
       red_meat_daily_15 = red_meat_daily / 15,
+      red_meat_daily_75 = red_meat_daily / 7.5,
+      red_meat_daily_30 = red_meat_daily / 30,
       # processed meat
       proc_meat_daily = rowSums(select(., starts_with("p26122")), na.rm = TRUE) / p20077,
       proc_meat_daily_15 = proc_meat_daily / 15,
+      proc_meat_daily_75 = proc_meat_daily / 7.5,
+      proc_meat_daily_30 = proc_meat_daily / 30,
       # poultry
       poultry_daily = rowSums(select(., starts_with("p26069") | starts_with("p26121")), na.rm = TRUE) / p20077,
       poultry_daily_15 = poultry_daily / 15,
