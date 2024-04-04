@@ -392,12 +392,12 @@ legume_strat <- function(data) {
     filter(legume_daily != 0) %>%
     mutate(
       legume_quintile = ntile(legume_daily, 4),
-      legume_category = factor(legume_quintile, labels = c("Low", "Medium", "High", "Highest"))
+      legume_category = factor(legume_quintile, labels = c("Q1", "Q2", "Q3", "Q4"))
     ) %>%
     bind_rows(data %>%
                 filter(legume_daily == 0) %>%
-                mutate(legume_category = "Lowest")) %>%
-    mutate(legume_category = factor(legume_category, levels = c("Lowest", "Low", "Medium", "High", "Highest")))
+                mutate(legume_category = "No intake")) %>%
+    mutate(legume_category = factor(legume_category, levels = c("No intake", "Q1", "Q2", "Q3", "Q4")))
   return(data)
 }
 
