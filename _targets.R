@@ -124,9 +124,6 @@ list(
   tar_target(
     name = data_cleaned,
     command = data_with_eofu %>%
-      anti_join(icd10_hcc(data_without_liver_cancer_before), by = "id") |>
-      anti_join(icd10_icc(data_without_liver_cancer_before), by = "id") |>
-      anti_join(cancer_hcc(data_without_liver_cancer_before), by = "id") |>
-      anti_join(cancer_icc(data_without_liver_cancer_before), by = "id")
+      anti_join(data_without_liver_cancer_before, by = "id")
   )
 )
