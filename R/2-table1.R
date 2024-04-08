@@ -1,11 +1,11 @@
 library(gtsummary)
 
 table_1_all <- data %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, gall_disease, met_synd)
+  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
 
 table_1_cancer <- data %>%
   filter(status == "Liver cancer") %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, gall_disease, met_synd)
+  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
 
 table_all <- table_1_all %>%
   tbl_summary(
@@ -20,9 +20,7 @@ table_all <- table_1_all %>%
       exercise ~ "Physically active",
       smoking ~ "Smoking",
       alcohol_daily ~ "Alcohol intake (g/day)",
-      sex ~ "Sex",
-      gall_disease ~ "Cholelithiasis or cholecystectomy",
-      met_synd ~ "Metabolic Syndrome"
+      wc ~ "Waist circumference"
     )
   )
 
@@ -39,9 +37,7 @@ table_cancer <- table_1_cancer %>%
       exercise ~ "Physically active",
       smoking ~ "Smoking",
       alcohol_daily ~ "Alcohol intake (g/day)",
-      sex ~ "Sex",
-      gall_disease ~ "Cholelithiasis or cholecystectomy",
-      met_synd ~ "Metabolic Syndrome"
+      wc ~ "Waist circumference"
     )
   )
 
@@ -58,3 +54,4 @@ table_combined
 #   gt::gtsave( # save table as image
 #     filename = "table-1.png", path = "~/legliv/doc/Images"
 #   )
+
