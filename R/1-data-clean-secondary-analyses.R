@@ -390,3 +390,26 @@ data <- data %>%
     status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
     study_time = status_age - age_at_baseline
   )
+
+
+# Liver cancer from death certificates
+data <- data %>%
+  mutate(
+    earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
+      coalesce(as.Date("2022-12-31")),
+    status = case_when(
+      earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+      earliest_date == dead_date & earliest_date > baseline_start_date & dead_cause == "C22.0 Liver cell carcinoma" ~ "Liver cancer",
+      earliest_date == dead_date & earliest_date > baseline_start_date & dead_cause == "C22.1 Intrahepatic bile duct carcinoma" ~ "Liver cancer",
+      earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
+      earliest_date == dead_date ~ "Censored",
+      TRUE ~ "Censored"
+    ),
+    status_date = earliest_date,
+    status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
+    status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
+    study_time = status_age - age_at_baseline
+  )
