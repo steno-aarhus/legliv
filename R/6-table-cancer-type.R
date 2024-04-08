@@ -4,8 +4,7 @@ library(gtsummary)
 model1t_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    other_foods_daily + total_weight_food_daily,
   data = data_hcc
 )
 
@@ -16,15 +15,14 @@ model2t_hcc <- coxph(
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data_hcc
 )
 
 model1r_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    other_foods_daily + total_weight_food_daily,
   data = data_hcc
 )
 
@@ -35,15 +33,14 @@ model2r_hcc <- coxph(
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data_hcc
 )
 
 model1p_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    other_foods_daily + total_weight_food_daily,
   data = data_hcc
 )
 
@@ -55,7 +52,7 @@ model2p_hcc <- coxph(
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data_hcc
 )
 
@@ -63,8 +60,7 @@ model2p_hcc <- coxph(
 model1t_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    other_foods_daily + total_weight_food_daily,
   data = data_icc
 )
 
@@ -75,15 +71,14 @@ model2t_icc <- coxph(
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data_icc
 )
 
 model1r_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    other_foods_daily + total_weight_food_daily,
   data = data_icc
 )
 
@@ -94,15 +89,14 @@ model2r_icc <- coxph(
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data_icc
 )
 
 model1p_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    other_foods_daily + total_weight_food_daily,
   data = data_icc
 )
 
@@ -113,7 +107,7 @@ model2p_icc <- coxph(
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data_icc
 )
 

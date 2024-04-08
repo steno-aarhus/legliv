@@ -103,12 +103,12 @@ m2p <- model2p %>%
 row1 <- tbl_merge(list(m1t, m1r, m1p), tab_spanner = c("Legumes for total meat", "Legumes for red meat", "Legumes for processed meat"))
 row2 <- tbl_merge(list(m2t, m2r, m2p))
 
-tbl_stack <-
+table_main <-
   tbl_stack(list(row1, row2), group_header = c("Model 1", "Model 2")) %>%
   modify_header(label = "**15 g/day substitution**")
 
-# tbl_stack %>%
-#   as_gt() %>% # convert to gt table
-#   gt::gtsave( # save table as image
-#     filename = "table-main-analysis.png", path = "~/legliv/doc/Images"
-#   )
+table_main %>%
+  as_gt() %>% # convert to gt table
+  gt::gtsave( # save table as image
+    filename = "table-main-analysis.png", path = "~/legliv/doc/Images"
+  )
