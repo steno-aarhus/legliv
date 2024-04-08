@@ -285,11 +285,11 @@ calculate_food_intake <- function(data) {
                                       starts_with("p26070") | starts_with("p26109") | # Fish
                                       starts_with("p26132") | starts_with("p26149") |
                                       starts_with("p26062") | starts_with("p26063") | # Dairy & fats
-                                      starts_with("p26087") | starts_with("p26096") |
-                                      starts_with("p26099") | starts_with("p26102") |
-                                      starts_with("p26103") | starts_with("p26131") |
-                                      starts_with("p26133") | starts_with("p26150") |
-                                      starts_with("p26154") | starts_with("p26084") |
+                                      starts_with("p26084") | starts_with("p26087") |
+                                      starts_with("p26096") | starts_with("p26099") |
+                                      starts_with("p26102") | starts_with("p26103") |
+                                      starts_with("p26131") | starts_with("p26133") |
+                                      starts_with("p26150") | starts_with("p26154") |
                                       starts_with("p26088") | # Eggs
                                       starts_with("p26129") | starts_with("p26130") | # Sauces
                                       starts_with("p26116") | starts_with("p26135") | # Mixed dishes
