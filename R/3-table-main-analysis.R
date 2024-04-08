@@ -5,57 +5,54 @@ library(parameters)
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
   data = data
 )
 
 model2t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
-    other_foods_daily + total_weight_food_daily +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data
 )
 
 model1r <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
   data = data
 )
 
 model2r <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
-    other_foods_daily + total_weight_food_daily +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data
 )
 
 model1p <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
   data = data
 )
 
 model2p <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
-    other_foods_daily + total_weight_food_daily +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data
 )
 
