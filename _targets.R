@@ -116,5 +116,17 @@ list(
     name = data_with_eofu,
     command = data_with_l2fu |>
       end_of_follow_up()
+  ),
+  tar_target(
+    name = data_without_liver_cancer_before,
+    command = remove_liver_before(data_with_eofu)
+  ),
+  tar_target(
+    name = data_cleaned,
+    command = data_with_eofu %>%
+      anti_join(icd10_hcc(data_without_liver_cancer_before), by = "id") |>
+      anti_join(icd10_icc(data_without_liver_cancer_before), by = "id") |>
+      anti_join(cancer_hcc(data_without_liver_cancer_before), by = "id") |>
+      anti_join(cancer_icc(data_without_liver_cancer_before), by = "id")
   )
 )
