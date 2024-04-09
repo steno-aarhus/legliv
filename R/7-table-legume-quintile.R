@@ -1,8 +1,7 @@
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
-    other_foods_daily + total_weight_food_daily +
-    sex,
+    animal_foods + hpdi + updi + total_weight_food_daily,
   data = data
 )
 
@@ -12,17 +11,18 @@ m1t <- model1t %>%
     include = legume_category,
     label = legume_category ~ "Legume category",
   ) %>%
-  modify_caption("**No intake of legumes vs. quartiles of daily legume intake** (N = {N})")
+  modify_caption("**Supplementary table 2. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
+  add_nevent()
 
 
 model2t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
-    other_foods_daily + total_weight_food_daily +
+    animal_foods + hpdi + updi + total_weight_food_daily +
     sex +
     education + tdi + spouse +
     exercise + smoking + alcohol_daily +
-    gall_disease + met_synd,
+    wc,
   data = data
 )
 
@@ -32,7 +32,8 @@ m2t <- model2t %>%
     include = legume_category,
     label = legume_category ~ "Legume category",
   ) %>%
-  modify_caption("**Full cohort** (N = {N})")
+  modify_caption("**Full cohort** (N = {N})") %>%
+  add_nevent()
 
 tbl_stack <-
   tbl_stack(list(m1t, m2t), group_header = c("Model 1", "Model 2")) %>%
@@ -63,8 +64,8 @@ tbl_merge <- tbl_merge(
 )
 tbl_merge
 
-# tbl_merge %>%
-#   as_gt() %>% # convert to gt table
-#   gt::gtsave( # save table as image
-#     filename = "table-legume_quintile.png", path = "~/legliv/doc/Images"
-#   )
+tbl_merge %>%
+  as_gt() %>% # convert to gt table
+  gt::gtsave( # save table as image
+    filename = "table-legume_quintile.png", path = "~/legliv/doc/Images"
+  )
