@@ -114,8 +114,8 @@ table_main
 #   gt::gtsave(filename = "table_main.html",
 #              path = "~/legliv/doc")
 
-table_main %>%
-  as_gt() %>% # convert to gt table
-  gt::gtsave( # save table as image
-    filename = "table-main-analysis.png", path = "~/legliv/doc/Images"
-  )
+# table_main %>%
+#   as_gt() %>% # convert to gt table
+#   gt::gtsave( # save table as image
+#     filename = "table-main-analysis.png", path = "~/legliv/doc/Images"
+#   )
