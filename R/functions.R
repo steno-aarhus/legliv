@@ -173,6 +173,7 @@ covariates <- function(data) {
       smoking = if_else(p20116_i0 == "Prefer not to answer" | p20116_i0 == "Never", "Never", "Ever"),
       smoking = factor(smoking, levels = c("Never", "Ever")),
       smoking_pack = p20162_i0,
+      smoking_pack = replace_na(smoking_pack, 0),
       # TODO: We need to have a bigger discussion about this in the UK Biobank group.
       education = case_when(
         grepl("College", education, ignore.case = TRUE) ~ "High",
