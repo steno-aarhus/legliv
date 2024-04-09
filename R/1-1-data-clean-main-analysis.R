@@ -159,21 +159,21 @@ data <- targets::tar_read(data_cleaned)
 # data <- opcs3_cystectomy(data)
 
 # Removing liver cancers before baseline date -----------------------------
-remove_liver_before <- function(data) {
-  data_liver_before <- data %>%
-    filter(
-      cancer_hcc_date <= baseline_start_date |
-        cancer_icc_date <= baseline_start_date |
-        icd10_hcc_date <= baseline_start_date |
-        icd10_icc_date <= baseline_start_date
-    )
-  data <- data %>%
-    anti_join(data_liver_before %>% select(id, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date),
-      by = "id"
-    )
-  return(data)
-}
-data <- remove_liver_before(data)
+# remove_liver_before <- function(data) {
+#   data_liver_before <- data %>%
+#     filter(
+#       cancer_hcc_date <= baseline_start_date |
+#         cancer_icc_date <= baseline_start_date |
+#         icd10_hcc_date <= baseline_start_date |
+#         icd10_icc_date <= baseline_start_date
+#     )
+#   data <- data %>%
+#     anti_join(data_liver_before %>% select(id, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date),
+#       by = "id"
+#     )
+#   return(data)
+# }
+# data <- remove_liver_before(data)
 
 data_liver <- data %>%
   filter(status == "Liver cancer")
@@ -186,17 +186,16 @@ data_liver <- data %>%
 #     high_alcohol = if_else(sex == "Male" & alcohol_daily < 56 | sex == "Female" & alcohol_daily < 42, "No", "Yes")
 #   )
 # data2 <- data
-# # data <- data %>%
-# #   select(id, sex, tdi, bmi, spouse, wc, exercise, education, smoking, trigly, glucose, hdl,
-# #          med_men, med_women, gall_disease, typical_diet,
-# #          legume_daily_15, red_meat_daily_15, proc_meat_daily_15,
-# #          other_foods_daily, total_weight_food_daily, alcohol_daily,
-# #          status, study_time, status_age, age_at_baseline)
+# data_imp <- data %>%
+#   select(id, sex, tdi, spouse, wc, exercise, education, smoking, typical_diet,
+#          legume_daily_15, red_meat_daily_15, proc_meat_daily_15,
+#          animal_foods, hpdi, updi, alc_beverage_daily, total_weight_food_daily, alcohol_daily,
+#          status, study_time, status_age, age_at_baseline)
+
+# Perform imputation with mice
+# imputed_data <- mice(data_imp, m = 5, maxit = 5, defaultMethod = c("pmm", "logreg", "polyreg", "polr"))
 #
-# # Perform imputation with mice
-# # imputed_data <- mice(data, m = 5, maxit = 5, defaultMethod = c("pmm", "logreg", "polyreg", "polr"))
-# #
-# # data <- complete(imputed_data)
+# data_imputed <- complete(imputed_data)
 # #
 # # data %>% describe()
 #
