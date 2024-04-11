@@ -1,0 +1,899 @@
+---
+# Uses Quarto metadata: https://quarto.org/docs/journals/authors.html
+title: ""
+author:
+  - name: "Niels Bock"
+    orcid: ""
+    affiliations: 
+        - name: "Department of Public Health, Aarhus, University"
+date: "`r Sys.Date()`"
+format: html
+bibliography: references.bib
+csl: diabetologia.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r libraries, message=FALSE}
+targets::tar_config_set(store = here::here("_targets"))
+data <- targets::tar_read(data_cleaned)
+library(gtsummary)
+library(tidyverse)
+library(survival)
+library(dplyr)
+```
+
+# Abstract
+
+Objective:
+
+Research Design and Methods:
+
+Results:
+
+Conclusions:
+
+# Introduction
+
+# Research Design and Methods
+
+**Study population**
+
+The UK Biobank, a population-based prospective cohort, were initiated in
+2006. [@sudlow2015] During 2006-2010, more than 500,000 participants,
+aged 40-69, were recruited and assessed at designated assessment centres
+across the UK. Data on sociodemographic factors (education, ethnicity,
+Townsend deprivation Index) and lifestyle factors (smoking, alcohol
+consumption, physical activity) were collected via touch screen
+questionnaires and computer-assisted interviews. Anthropometric data
+(BMI, waist circumference) were collected via physical measurements
+(reference to UKB document here).
+
+**Dietary assessment**
+
+A web-based diet questionnaire was administered at the end of the
+initial assessment visit for the last 70,000 recruited participants
+(reference from UKB document here). 320,000 participants who had
+provided an e-mail address were invited to complete the diet
+questionnaire online. In the annual period February 2011 and April 2012,
+participants were invited on 4 separate occasions to complete the diet
+questionnaire. The questionnaire comprised the Oxford WebQ, an online
+24-hour dietary recall assessment tool covering 206 foods and 32
+beverages commonly consumed in the UK with intake categories ranging
+from 0 to +3 units of measurement (e.g. servings, cups, slices).
+[@piernas2021] The Oxford WebQ has been validated with interviewer-based
+24-hour recalls and biomarkers [@Liu2011; @Greenwood2019].
+
+79 food groups and 14 beverage groups were classified using UK National
+Diet and Nutrition Survey (NDNS) categories [@Liu2011; @Greenwood2019].
+We used this classification to categorise intake of foods groups to
+match our substitution analysis. Legume intake was defined as intake of
+dietary pulses, baked beans, tofu-based products, peas, hummus, soya
+drinks, and soya-based desserts and yoghurt; red meat intake was defined
+as intake of beef, pork, lamb, or other meat, including offal. Processed
+meat intake was defined as sausages, bacon (with and without fat), ham,
+or liver pate. Other food groups included were animal-based foods,
+unhealthy plant-based foods, healthy plant-based foods, and alcoholic
+beverages (supplemental table 1). animal-based and plant-based food
+groups were calculated in line with previous studies that used these
+food categories to construct a healthy plant-based diet index and an
+unhealthy plant-based diet index [@Thompson2023; @Heianza2021;
+@Satija2017; @Satija2016]. An overview of included foods in each food
+group is displayed in supplemental table 1.
+
+Due to the incapability of a single 24-hour dietary recall evaluation to
+properly assess variation in diet over time (reference to nutritional
+epi methods here?), only participants who completed two or more
+questionnaires were eligible for inclusion (reference to nutritional epi
+methods that two 24-hour recall is sufficient to capture variation in
+diet here?).
+
+**Liver cancer assessment**
+
+Liver cancer was defined according to ICD-10 diagnosis codes C22.0
+Hepatocellular carcinoma (HCC) or C22.1 Intrahepatic cholangiocarcinoma
+(ICC). Incident and prevalent cases of liver cancer and corresponding
+diagnosis dates were obtained via linkage to central cancer registers or
+hospital inpatient episodes [@sudlow2015].
+
+**Assessment of confounders**
+
+Confounders were defined *a priori* from a literature review of diet
+components as exposure and liver cancer as the outcome and illustrated
+using directed acyclic graphs (supplemental fig. 1.). The following
+confounding variables were identified: age (years [continuous]), sex
+(male, female categorical), educational level (high (College or
+University degree), intermediate (A levels/AS levels, O levels/GCSEs, or
+equivalent), low (none of the previous mentioned) categorical), Townsend
+Deprivation Index (continuous), Living alone (yes, no categorical),
+waist circumference (cm continuous), physical activity (above/below
+daily MET recommendation for moderate physical activity categorical,
+smoking status (never, ever categorical), and alcohol intake (grams/day
+continuous). Sociodemographic and anthropometric confounders were
+selected from the initial assessment visit before the start of
+follow-up.
+
+**The substitution model**
+
+Substitutions were carried out in an equal-mass manner, i.e.,
+substituting x grams of red meats with x grams of legumes. The size of
+the substitution was set to 15 grams of legumes for 15 grams of red
+meats to keep the substitution size below the mean intake any of the
+substituted food groups in the cohort. Substitutions were modelled using
+the leave-one-out-approach in which variables for every food group along
+with a variable for total food intake are included, except the food
+group that are to be substituted [@Ibsen2021]. To estimate substitution
+of 15 grams of all red meats with 15 grams of legumes, the following
+model was defined:
+
+$$
+log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Total food intake (g) + \beta_3 Other food groups(g) + \beta_4 Covariates
+$$
+
+When substituting red meat with legumes, processed meat was added to the
+model:
+
+$$
+log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Processed meat (15g) + \beta_3 Total food intake (g) + \beta_4 Other food groups(g) + \beta_5 Covariates
+$$
+
+When substituting processed meat with legumes, red meat was added to the
+model:
+
+$$
+log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Red meat (15g) + \beta_3 Total food intake (g) + \beta_4 Other food groups(g) + \beta_5 Covariates
+$$
+
+**Statistical analysis**
+
+Multivariable-adjusted Cox proportional hazards regression models were
+used to estimate hazard ratios (HR) with corresponding 95% confidence
+intervals (CI) with age as the underlying timescale. Participants were
+followed from the date of their last completed diet questionnaire until
+the event of interest occurred or due to right censoring, whichever came
+first. Participants were right censored due to one of the following
+events occurring: death, loss to follow-up, or administrative end of
+follow-up (set to Jan 31, 2022). Two levels of adjustments were added to
+the substitution model. Model 1 were minimally adjusted for age, total
+weight of food intake, and all other foods groups. Model 2 were further
+adjusted for sex, educational level, Townsend Deprivation Index, living
+alone, smoking status, alcohol intake, and waist circumference.
+
+A stratified analysis on each cancer type was performed to test whether
+pooling of HCC and ICC as an outcome was justified. Further, the
+following sensitivity analyses were performed to test the robustness of
+the main analysis:
+
+1.       Due to the events per variable being very low in the fully
+adjusted analysis and thus increasing the risk of biased estimates in
+the cox regression model, a simpler model was defined. To reduce number
+of variables, food groups were polled in fewer groups and only
+confounders hypothesized to have the greatest impact on the estimate
+were included in this model.
+
+2.       Exclusion of high alcohol consumers.
+
+3.       Exclusion of food intake misreporters.
+
+4.       Exclusion of participants with any other liver disease before
+baseline.
+
+5.       Exclusion of participants with any form of cancer before
+baseline.
+
+6.       Exclusion of the first two years of follow-up.
+
+7.       Inclusion criteria for number of completed diet questionnaires
+were set to ≥3 completed questionnaires.
+
+8.       Imputation of missing data.
+
+All analyses were conducted in R with a significance level of 5 %.
+
+# Results
+
+After excluding participants with liver cancer and participants lost to
+follow-up before baseline, 126,744 participants remained who had
+completed two or more diet questionnaires. During a median follow-up
+time of 11.3 years, 173 participants eventually developed liver cancer.
+Baseline characteristics are displayed in table 1. Participants who
+developed liver cancer were older at baseline, had a higher waist
+circumference, were less physically, fewer had never smoked, and more
+were male, compared to the cohort.
+
+# Conclusions
+
+# Acknowledgements
+
+# References
+
+::: {#refs}
+:::
+
+# Tables
+
+```{r baseline table}
+table_1_all <- data %>%
+  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
+
+table_1_cancer <- data %>%
+  filter(status == "Liver cancer") %>%
+  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
+
+table_all <- table_1_all %>%
+  tbl_summary(
+    missing_text = "Missing",
+    label = list(
+      typical_diet ~ "Typical diet yesterday",
+      age_at_baseline ~ "Age",
+      sex ~ "Sex",
+      education ~ "Educational level",
+      tdi ~ "Townsend Deprivation Index",
+      spouse ~ "Living alone",
+      exercise ~ "Physically active",
+      smoking ~ "Smoking",
+      alcohol_daily ~ "Alcohol intake (g/day)",
+      wc ~ "Waist circumference"
+    )
+  )
+
+table_cancer <- table_1_cancer %>%
+  tbl_summary(
+    missing_text = "Missing",
+    label = list(
+      typical_diet ~ "Typical diet yesterday",
+      age_at_baseline ~ "Age",
+      sex ~ "Sex",
+      education ~ "Educational level",
+      tdi ~ "Townsend Deprivation Index",
+      spouse ~ "Living alone",
+      exercise ~ "Physically active",
+      smoking ~ "Smoking",
+      alcohol_daily ~ "Alcohol intake (g/day)",
+      wc ~ "Waist circumference"
+    )
+  )
+
+table_combined <- tbl_merge(
+  tbls = list(table_all, table_cancer),
+  tab_spanner = c("**Cohort**", "**Liver cancer**")
+) %>%
+  bold_labels() %>%
+  modify_caption("**Table 1. Baseline characteristics of the UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
+  modify_header(label ~ "**Variable**")
+table_combined %>% as_gt()
+```
+
+```{r diet table}
+diet_all_mean <- data %>%
+  select(
+    total_energy_food_daily, total_weight_food_daily
+  )
+
+diet_all_median <- data %>%
+  select(
+    legume_daily, total_meat_daily,
+    red_meat_daily, proc_meat_daily, animal_foods, hpdi, updi, alc_beverage_daily
+  )
+
+diet_liver_mean <- data %>%
+  filter(status == "Liver cancer") %>%
+  select(
+    total_energy_food_daily, total_weight_food_daily
+  )
+
+diet_liver_median <- data %>%
+  filter(status == "Liver cancer") %>%
+  select(
+    legume_daily, total_meat_daily,
+    red_meat_daily, proc_meat_daily, animal_foods, hpdi, updi, alc_beverage_daily
+  )
+
+diet_all_table_mean <- diet_all_mean %>%
+  tbl_summary(
+    statistic = all_continuous() ~ "{mean} ({sd})",
+    label = list(
+      total_energy_food_daily ~ "Total energy intake",
+      total_weight_food_daily ~ "Total food intake"
+    )
+  )
+
+diet_all_table_median <- diet_all_median %>%
+  tbl_summary(
+    statistic = all_continuous() ~ "{median} ({p25}, {p75})",
+    label = list(
+      legume_daily ~ "Legumes",
+      total_meat_daily ~ "Red and processed meat",
+      red_meat_daily ~ "Red meat",
+      proc_meat_daily ~ "Processed meat",
+      animal_foods ~ "Other animal-based foods",
+      hpdi ~ "Healthy plant-based foods",
+      updi ~ "Unhealthy plant-based foods",
+      alc_beverage_daily ~ "Alcoholic beverages"
+    )
+  )
+
+diet_liver_table_mean <- diet_liver_mean %>%
+  tbl_summary(
+    statistic = all_continuous() ~ "{mean} ({sd})",
+    label = list(
+      total_energy_food_daily ~ "Total energy intake",
+      total_weight_food_daily ~ "Total food intake"
+    )
+  )
+
+diet_liver_table_median <- diet_liver_median %>%
+  tbl_summary(
+    statistic = all_continuous() ~ "{median} ({p25}, {p75})",
+    label = list(
+      legume_daily ~ "Legumes",
+      total_meat_daily ~ "Red and processed meat",
+      red_meat_daily ~ "Red meat",
+      proc_meat_daily ~ "Processed meat",
+      animal_foods ~ "Other animal-based foods",
+      hpdi ~ "Healthy plant-based foods",
+      updi ~ "Unhealthy plant-based foods",
+      alc_beverage_daily ~ "Alcoholic beverages"
+    )
+  )
+
+row1 <- tbl_merge(list(diet_all_table_mean, diet_liver_table_mean), tab_spanner = c("**Cohort**", "**Liver cancer**")) %>%
+  bold_labels() %>%
+  modify_caption("**Table 2. Daily dietary intake.**") %>%
+  modify_footnote(all_stat_cols() ~ "mean (±SD) for total energy and food intake; median (IQR) for food groups")
+row2 <- tbl_merge(list(diet_all_table_median, diet_liver_table_median)) %>%
+  bold_labels()
+diet_table <-
+  tbl_stack(list(row1, row2),
+            quiet = TRUE)
+diet_table %>% as_gt()
+```
+
+```{r main resuslts table}
+model1t <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data
+)
+
+model2t <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking + alcohol_daily +
+    wc,
+  data = data
+)
+
+model1r <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data
+)
+
+model2r <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking + alcohol_daily +
+    wc,
+  data = data
+)
+
+model1p <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data
+)
+
+model2p <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking + alcohol_daily +
+    wc,
+  data = data
+)
+
+
+m1t <- model1t %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  ) %>%
+  modify_caption("**Table 3. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})")
+
+m1r <- model1r %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  )
+
+m1p <- model1p %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  )
+
+m2t <- model2t %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  )
+
+m2r <- model2r %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  )
+
+m2p <- model2p %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  )
+
+row1 <- tbl_merge(list(m1t, m2t), tab_spanner = c("Model 1", "Model 2"))
+row2 <- tbl_merge(list(m1r, m2r))
+row3 <- tbl_merge(list(m1p, m2p))
+
+table_main <-
+  tbl_stack(list(row1, row2, row3),
+            group_header = c("Legumes for total meat", "Legumes for red meat", "Legumes for processed meat"),
+            quiet = TRUE) %>%
+  modify_header(label = "**15 g/day substitution**")
+
+table_main %>% as_gt()
+```
+
+# Figures
+
+# Supplemental Material
+
++----------------------+----------------------+----------------------+
+| **Food group**       | **Includes**         | UK Bio bank ID nu    |
+|                      |                      | mber                 |
++======================+======================+======================+
+| **Legumes**          |                      |                      |
++----------------------+----------------------+----------------------+
+| Soya-based desserts  | Soya-based desserts  | p 26086              |
+| & yogurt             |                      |                      |
++----------------------+----------------------+----------------------+
+| L egumes/pulses      | Baked beans, pulses  | p 26101              |
++----------------------+----------------------+----------------------+
+| Soy drink            | Soya drinks          | p 26136              |
+|                      | (including calcium   |                      |
+|                      | fortified)           |                      |
++----------------------+----------------------+----------------------+
+| Soy-based meals      | Tofu-based products  | p 26137              |
++----------------------+----------------------+----------------------+
+| Vegetable dips       | Hummus, guacamole    | p 26144              |
+|                      | (assuming 50%        |                      |
+|                      | hummus)              |                      |
++----------------------+----------------------+----------------------+
+| P eas/sweetcorn      | Peas, sweetcorn      | p 26115              |
+|                      | (assuming 50% peas)  |                      |
++----------------------+----------------------+----------------------+
+| **Red meat**         |                      |                      |
++----------------------+----------------------+----------------------+
+| Beef                 | Beef                 | p 26066              |
++----------------------+----------------------+----------------------+
+| Lamb                 | Lamb                 | p 26100              |
++----------------------+----------------------+----------------------+
+| Other meat, offal    | Other meat including | p 26104              |
+|                      | offal                |                      |
++----------------------+----------------------+----------------------+
+| Pork                 | Pork                 | p 26117              |
++----------------------+----------------------+----------------------+
+| **Processed meat**   |                      |                      |
++----------------------+----------------------+----------------------+
+| Processed meat       | Sausages, bacon      | p 26122              |
+|                      | (with and without    |                      |
+|                      | fat), ham, liver     |                      |
+|                      | pate                 |                      |
++----------------------+----------------------+----------------------+
+| -   \*Animal-based   |                      |                      |
+|     foods\*\*        |                      |                      |
++----------------------+----------------------+----------------------+
+| *Poultry*            |                      |                      |
++----------------------+----------------------+----------------------+
+| Bre aded/battered    | Fried poultry with   | p 26069              |
+| Chicken              | batter/breadcrumbs   |                      |
++----------------------+----------------------+----------------------+
+| Poultry              | Poultry              | p 26121              |
+|                      | (with/without skin)  |                      |
++----------------------+----------------------+----------------------+
+| *Fish*               |                      |                      |
++----------------------+----------------------+----------------------+
+| Bre aded/battered    | Fried fish with      | p 26070              |
+| Fish                 | batter/breadcrumbs   |                      |
++----------------------+----------------------+----------------------+
+| Oily fish            | Oily fish, including | p 26109              |
+|                      | salmon,              |                      |
++----------------------+----------------------+----------------------+
+| Shellfish            | Prawns, lobster,     | p 26132              |
+|                      | crab, shellfish      |                      |
++----------------------+----------------------+----------------------+
+| White fish & tinned  | Tinned tuna, white   | p 26149              |
+| tuna                 | fish, other fish     |                      |
++----------------------+----------------------+----------------------+
+| *Dairy*              |                      |                      |
++----------------------+----------------------+----------------------+
+| Dairy fat spread     | Spreadable/lower fat | p 26062              |
+| lower fat            | butter, dairy-based  |                      |
+|                      | very low fat spread  |                      |
++----------------------+----------------------+----------------------+
+| Dairy fat spread     | Spreadable normal    | p 26063              |
+|                      | fat butter,          |                      |
+|                      | dairy-based normal   |                      |
+|                      | fat spread           |                      |
+|                      | (including           |                      |
+|                      | cholesterol lowering |                      |
+|                      | spread)              |                      |
++----------------------+----------------------+----------------------+
+| Milk-dairy desserts  | Ice cream, milk      | p 26084              |
+|                      | puddings, milk-based |                      |
+|                      | desserts, cheesecake |                      |
++----------------------+----------------------+----------------------+
+| Milk-based &         | Dairy-based          | p 26087              |
+| powdered drinks      | smoothies,           |                      |
+|                      | milk-based drinks,   |                      |
+|                      | hot chocolate        |                      |
++----------------------+----------------------+----------------------+
+| Full fat yogurt      | Whole milk yogurt    | p 26096              |
+|                      | (plain)              |                      |
++----------------------+----------------------+----------------------+
+| High fat cheese      | Cheese \>17.5 g fat  | p 26099              |
+|                      | per 100 g, including |                      |
+|                      | hard cheese, soft    |                      |
+|                      | cheese, spreadable,  |                      |
+|                      | Blue, Feta,          |                      |
+|                      | Mozzarella, Goats,   |                      |
+|                      | other)               |                      |
++----------------------+----------------------+----------------------+
+| Low fat yogurt       | Fat free and lower   | p 26102              |
+|                      | fat yogurt, plain or |                      |
+|                      | flavoured            |                      |
++----------------------+----------------------+----------------------+
+| Medium & low fat     | Cheese \<=17.5g fat  | p 26103              |
+| cheese               | per 100 g, including |                      |
+|                      | hard and spreadable  |                      |
+|                      | lower fat cheese,    |                      |
+|                      | Cottage              |                      |
++----------------------+----------------------+----------------------+
+| Semi-skimmed milk    | Semi-skimmed milk    | p 26131              |
+|                      | \>1 g fat per 100 g  |                      |
+|                      | (cow, other)         |                      |
++----------------------+----------------------+----------------------+
+| Skimmed milk         | Skimmed milk \<1 g   | p 26133              |
+|                      | fat per 100 g (cow,  |                      |
+|                      | cholesterol          |                      |
+|                      | lowering, powdered)  |                      |
++----------------------+----------------------+----------------------+
+| Whole milk           | Whole milk \>3.6 g   | p 26150              |
+|                      | fat per 100 g (cow,  |                      |
+|                      | goat, sheep)         |                      |
++----------------------+----------------------+----------------------+
+| Cream                | Cream (cow's milk)   | p 26154              |
++----------------------+----------------------+----------------------+
+| *Eggs*               |                      |                      |
++----------------------+----------------------+----------------------+
+| Egg and egg dishes   | Whole eggs and       | p 26088              |
+|                      | processed (omelette, |                      |
+|                      | scotch eggs, other)  |                      |
++----------------------+----------------------+----------------------+
+| *Sauces*             |                      |                      |
++----------------------+----------------------+----------------------+
+| Sauces (higher fat)  | Mayonnaise, salad    | p 26129              |
+|                      | dressing, pesto,     |                      |
+|                      | cheese sauce, white  |                      |
+|                      | sauce, gravy         |                      |
++----------------------+----------------------+----------------------+
+| Sauces (lower fat)   | Yeast, chutney,      | p 26130              |
+|                      | olives, ketchup,     |                      |
+|                      | brown sauce, tomato  |                      |
+|                      | sauce                |                      |
++----------------------+----------------------+----------------------+
+| *Mixed dishes*       |                      |                      |
++----------------------+----------------------+----------------------+
+| Pizza                | Pizza (including     | p 26116              |
+|                      | gluten free crust)   |                      |
++----------------------+----------------------+----------------------+
+| Savoury snacks       | Crisps, savoury      | p 26134              |
+|                      | biscuits, cheese     |                      |
+|                      | snacks, other        |                      |
+|                      | savoury biscuits     |                      |
++----------------------+----------------------+----------------------+
+| Soups                | Soups, homemade,     | p 26135              |
+|                      | powdered and canned  |                      |
++----------------------+----------------------+----------------------+
+| Sushi                | Sushi                | p 26139              |
++----------------------+----------------------+----------------------+
+| **Healthy            |                      |                      |
+| plant-based foods**  |                      |                      |
++----------------------+----------------------+----------------------+
+| *Whole grains*       |                      |                      |
++----------------------+----------------------+----------------------+
+| Mixed bread, brown & | Mixed, brown or      | p 26071              |
+| seeded               | seeded bread,        |                      |
+|                      | sliced, baguette,    |                      |
+|                      | bap, roll            |                      |
++----------------------+----------------------+----------------------+
+| Wholemeal bread      | Wholemeal bread,     | p 26074              |
+|                      | sliced, baguette,    |                      |
+|                      | bap, roll            |                      |
++----------------------+----------------------+----------------------+
+| Biscuit cereal       | Wholewheat biscuit   | p 26075              |
+|                      | cereal               |                      |
++----------------------+----------------------+----------------------+
+| Bran cereal          | Bran cereal          | p 26076              |
++----------------------+----------------------+----------------------+
+| Oat cereal           | Porridge oats        | p 26077              |
+| (non-sugar)          | (including           |                      |
+|                      | milk/dried fruit     |                      |
+|                      | added)               |                      |
++----------------------+----------------------+----------------------+
+| Oat cereal (sugar)   | Oatcrunch breakfast  | p 26078              |
+|                      | cereal               |                      |
++----------------------+----------------------+----------------------+
+| Muesli               | Muesli (with or      | p 26105              |
+|                      | without dried fruit) |                      |
++----------------------+----------------------+----------------------+
+| Wholemeal pasta,     | Brown and wholemeal  | p 26114              |
+| brown rice & other   | pasta and rice       |                      |
+| wholegrains          |                      |                      |
++----------------------+----------------------+----------------------+
+| *Fruits*             |                      |                      |
++----------------------+----------------------+----------------------+
+| Apples & pears       | Apples and pears     | p 26089              |
++----------------------+----------------------+----------------------+
+| Berries              | Blackberries,        | p 26090              |
+|                      | strawberries,        |                      |
+|                      | blueberries,         |                      |
+|                      | raspberries,         |                      |
+|                      | cherries             |                      |
++----------------------+----------------------+----------------------+
+| Citrus               | Grapefruit, orange,  | p 26091              |
+|                      | satsuma              |                      |
++----------------------+----------------------+----------------------+
+| Dried fruit          | Dried fruit, prunes  | p 26092              |
++----------------------+----------------------+----------------------+
+| Bananas & other      | Bananas, mixed       | p 26093              |
+| fruit                | fruit, grapes,       |                      |
+|                      | mango, melon, peach, |                      |
+|                      | pineapple, kiwi,     |                      |
+|                      | other                |                      |
++----------------------+----------------------+----------------------+
+| Stewed fruit         | Stewed fruit, plums  | p 26094              |
++----------------------+----------------------+----------------------+
+| *Nuts*               |                      |                      |
++----------------------+----------------------+----------------------+
+| Nut-based spreads    | Peanut-butter and    | p 26106              |
+|                      | chocolate-based      |                      |
+|                      | spread               |                      |
++----------------------+----------------------+----------------------+
+| Unsalted nuts &      | Unsalted peanuts and | p 26107              |
+| seeds                | nuts                 |                      |
++----------------------+----------------------+----------------------+
+| Salted nuts & seeds  | Salted peanuts and   | p 26108              |
+|                      | nuts                 |                      |
++----------------------+----------------------+----------------------+
+| *Plant oils*         |                      |                      |
++----------------------+----------------------+----------------------+
+| Olive oil ( drizz    | Olive oil            | p 26110              |
+| ling/dunking)        |                      |                      |
++----------------------+----------------------+----------------------+
+| Vegetable spread     | Olive oil based      | p 26111              |
+| lower fat            | lower fat spread,    |                      |
+|                      | plant-based lower    |                      |
+|                      | fat margarine and    |                      |
+|                      | soya-based lower fat |                      |
+|                      | spread (including    |                      |
+|                      | cholesterol lowering |                      |
+|                      | spread)              |                      |
++----------------------+----------------------+----------------------+
+| Vegetable spread     | Olive oil based      | p 26112              |
+|                      | spread, plant-based  |                      |
+|                      | soft or hard         |                      |
+|                      | margarine and        |                      |
+|                      | soya-based spread    |                      |
+|                      | (including           |                      |
+|                      | cholesterol lowering |                      |
+|                      | spread)              |                      |
++----------------------+----------------------+----------------------+
+| *Tea, coffee &       |                      |                      |
+| water*               |                      |                      |
++----------------------+----------------------+----------------------+
+| Coffee, caffeinated  | Normal instant,      | p 26081              |
+|                      | filter, cappuccino,  |                      |
+|                      | espresso coffee      |                      |
++----------------------+----------------------+----------------------+
+| Coffee,              | Decaffeinated        | p 26082              |
+| decaffeinated        | instant, filter,     |                      |
+|                      | cappuccino, espresso |                      |
+|                      | coffee               |                      |
++----------------------+----------------------+----------------------+
+| Tea                  | Black, green and     | p 26141              |
+|                      | other tea            |                      |
++----------------------+----------------------+----------------------+
+| Tea, decaffeinated   | Decaffeinated black, | p 26142              |
+|                      | herbal tea, rooibos  |                      |
++----------------------+----------------------+----------------------+
+| Wa ter/sparkling     | Plain water,         | p 26148              |
+| water                | sparkling water      |                      |
++----------------------+----------------------+----------------------+
+| *Vegetables*         |                      |                      |
++----------------------+----------------------+----------------------+
+| Allium vegetables    | Garlic, leek, onion  | p 26065              |
++----------------------+----------------------+----------------------+
+| Green l              | Broccoli, cabbage,   | p 26098              |
+| eafy/cabbages        | kale, cauliflower,   |                      |
+|                      | spinach, sprouts     |                      |
++----------------------+----------------------+----------------------+
+| Raw salad            | Mixed side salad,    | p 26123              |
+|                      | lettuce, watercress  |                      |
++----------------------+----------------------+----------------------+
+| Root vegetables      | Beetroot, carrots,   | p 26125              |
+|                      | celery, parsnip,     |                      |
+|                      | turnip               |                      |
++----------------------+----------------------+----------------------+
+| Tomatoes             | Fresh and tinned     | p 26143              |
+|                      | tomatoes             |                      |
++----------------------+----------------------+----------------------+
+| Other vegetables     | Mushrooms, mixed     | p 26146              |
+| (mushrooms,          | vegetables, avocado, |                      |
+| fruiting, mixed)     | broad beans, green   |                      |
+|                      | beans, butternut     |                      |
+|                      | squash, courgettes,  |                      |
+|                      | peppers, other       |                      |
++----------------------+----------------------+----------------------+
+| Vegetable side       | Coleslaw, salad with | p 26147              |
+| dishes               | added fat/mayonnaise |                      |
++----------------------+----------------------+----------------------+
+| Vegetable dips       | Hummus, guacamole    | p 26144              |
+|                      | (assuming 50%        |                      |
+|                      | guacamole)           |                      |
++----------------------+----------------------+----------------------+
+| P eas/sweetcorn      | Peas, sweetcorn      | p 26115              |
+|                      | (assuming 50%        |                      |
+|                      | sweetcorn)           |                      |
++----------------------+----------------------+----------------------+
+| **Unhealthy          |                      |                      |
+| plant-based foods**  |                      |                      |
++----------------------+----------------------+----------------------+
+| *Refined cereals*    |                      |                      |
++----------------------+----------------------+----------------------+
+| Biscuits             | Chocolate biscuits,  | p 26068              |
+|                      | plain biscuits,      |                      |
+|                      | sweet biscuits and   |                      |
+|                      | cookies              |                      |
++----------------------+----------------------+----------------------+
+| Other bread          | Naan, garlic bread,  | p 26072              |
+|                      | other bread          |                      |
+|                      | (including gluten    |                      |
+|                      | free)                |                      |
++----------------------+----------------------+----------------------+
+| White bread          | White bread, sliced, | p 26073              |
+|                      | baguette, bap, roll  |                      |
++----------------------+----------------------+----------------------+
+| Oat cereal (sugar)   | Oatcrunch breakfast  | p 26079              |
+|                      | cereal               |                      |
++----------------------+----------------------+----------------------+
+| Savoury snacks       | Crisps, savoury      | p 26083              |
+|                      | biscuits, cheese     |                      |
+|                      | snacks, other        |                      |
+|                      | savoury biscuits     |                      |
++----------------------+----------------------+----------------------+
+| White pasta & rice   | White pasta, rice,   | p 26113              |
+|                      | couscous, gluten     |                      |
+|                      | free pasta           |                      |
++----------------------+----------------------+----------------------+
+| Potatoes             |                      |                      |
++----------------------+----------------------+----------------------+
+| P otatoes/sweet      | Potatoes, sweet      | p 26118              |
+| potatoes (           | potatoes, boiled or  |                      |
+| baked/boiled)        | baked                |                      |
++----------------------+----------------------+----------------------+
+| Fried/roast potatoes | Potatoes and chips,  | p 26119              |
+|                      | fried or roasted     |                      |
+|                      | with fat             |                      |
++----------------------+----------------------+----------------------+
+| Mashed potatoes      | Potatoes, mashed     | p 26120              |
++----------------------+----------------------+----------------------+
+| Fruit juice          |                      |                      |
++----------------------+----------------------+----------------------+
+| Fruit juice          | Orange, grapefruit   | p 26095              |
+|                      | drink and 100% fruit |                      |
+|                      | juice                |                      |
++----------------------+----------------------+----------------------+
+| *Mixed dishes,       |                      |                      |
+| vegetarian*          |                      |                      |
++----------------------+----------------------+----------------------+
+| Grain dishes - added | Double and single    | p 26097              |
+| fat                  | crust pies, crumble  |                      |
+|                      | pies, Yorkshire      |                      |
+|                      | pudding, snackpot    |                      |
+|                      | noodles              |                      |
++----------------------+----------------------+----------------------+
+| Samosa, pakora       | Indian samosa,       | p 26128              |
+|                      | pakora snacks        |                      |
++----------------------+----------------------+----------------------+
+| Vegetarian meals     | Quorn-based and      | p 26145              |
+|                      | vegetarian burgers   |                      |
+|                      | and products         |                      |
++----------------------+----------------------+----------------------+
+| *Sweets & snacks*    |                      |                      |
++----------------------+----------------------+----------------------+
+| Added sugars &       | Table sugar, honey,  | p 26064              |
+| preserves            | jam and preserves    |                      |
++----------------------+----------------------+----------------------+
+| Chocolate            | Chocolate bar        | p 26080              |
+| confectionery        | (including white,    |                      |
+|                      | milk and dark        |                      |
+|                      | chocolate),          |                      |
+|                      | chocolate-covered    |                      |
+|                      | raisins,             |                      |
+|                      | chocolate-covered    |                      |
+|                      | sweets               |                      |
++----------------------+----------------------+----------------------+
+| Desserts & cakes &   | Pancakes, croissant, | p 26085              |
+| pastries             | Danish pastries,     |                      |
+|                      | scones, fruitcakes,  |                      |
+|                      | cakes, doughnuts,    |                      |
+|                      | sponge puddings,     |                      |
+|                      | other desserts,      |                      |
+|                      | cereal bars, sweet   |                      |
+|                      | snacks               |                      |
++----------------------+----------------------+----------------------+
+| Other sweets         | Hard and soft sweets | p 26140              |
+|                      | (including sugar     |                      |
+|                      | free)                |                      |
++----------------------+----------------------+----------------------+
+| *Sugar sweetened     |                      |                      |
+| beverages*           |                      |                      |
++----------------------+----------------------+----------------------+
+| Rice/oat drink       | Rice and oat         | p 26124              |
+|                      | vegetable drinks     |                      |
++----------------------+----------------------+----------------------+
+| Low/non sugar SSBs   | Low calorie fizzy    | p 26126              |
+|                      | drinks and squash    |                      |
++----------------------+----------------------+----------------------+
+| SSBs & other sugary  | Fizzy sugary drinks, | p 26127              |
+| drinks               | squash, fruit        |                      |
+|                      | smoothies            |                      |
++----------------------+----------------------+----------------------+
+| **Alcoholic          |                      |                      |
+| beverages**          |                      |                      |
++----------------------+----------------------+----------------------+
+| Beer & Cider         | Beer and cider       | p 26067              |
++----------------------+----------------------+----------------------+
+| Spirits              | Spirits and other    | p 26138              |
+|                      | alcoholic drinks     |                      |
++----------------------+----------------------+----------------------+
+| Fortified wine       | Fortified wine       | p 26151              |
++----------------------+----------------------+----------------------+
+| Red wine             | Red and rose wine    | p 26152              |
++----------------------+----------------------+----------------------+
+| White wine           | White wine           | p 26153              |
++----------------------+----------------------+----------------------+
+
+: Supplementary table 1. Summary of included foods for each food group.
+{.striped .hover}
+
