@@ -48,7 +48,7 @@ table_combined <- tbl_merge(
   bold_labels() %>%
   modify_caption("**Table 1. Baseline characteristics of the UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
   modify_header(label ~ "**Variable**")
-table_combined
+table_combined %>% as_gt()
 # table_combined %>%
 #   as_gt() %>% # convert to gt table
 #   gt::gtsave( # save table as image

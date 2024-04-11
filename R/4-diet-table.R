@@ -79,7 +79,7 @@ row2 <- tbl_merge(list(diet_all_table_median, diet_liver_table_median)) %>%
   bold_labels()
 diet_table <-
   tbl_stack(list(row1, row2))
-diet_table
+diet_table %>% as_gt()
 
 # diet_table %>%
 #   as_gt() %>% # convert to gt table
