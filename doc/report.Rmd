@@ -156,39 +156,31 @@ the event of interest occurred or due to right censoring, whichever came
 first. Participants were right censored due to one of the following
 events occurring: death, loss to follow-up, or administrative end of
 follow-up (set to Jan 31, 2022). Two levels of adjustments were added to
-the substitution model. Model 1 were minimally adjusted for age, total
-weight of food intake, and all other foods groups. Model 2 were further
-adjusted for sex, educational level, Townsend Deprivation Index, living
-alone, smoking status, alcohol intake, and waist circumference.
+the substitution model. A crude model was minimally adjusted for age,
+total weight of food intake, and all other foods groups. The adjusted
+model was further adjusted for sex, educational level, Townsend
+Deprivation Index, living alone, physical activity, smoking status,
+alcohol intake, and waist circumference.
 
 A stratified analysis on each cancer type was performed to test whether
 pooling of HCC and ICC as an outcome was justified. Further, the
 following sensitivity analyses were performed to test the robustness of
 the main analysis:
 
-1.       Due to the events per variable being very low in the fully
-adjusted analysis and thus increasing the risk of biased estimates in
-the cox regression model, a simpler model was defined. To reduce number
-of variables, food groups were polled in fewer groups and only
-confounders hypothesized to have the greatest impact on the estimate
-were included in this model.
+1.       Exclusion of high alcohol consumers.
 
-2.       Exclusion of high alcohol consumers.
+2.       Exclusion of food intake misreporters.
 
-3.       Exclusion of food intake misreporters.
-
-4.       Exclusion of participants with any other liver disease before
+3.       Exclusion of participants with any other liver disease before
 baseline.
 
-5.       Exclusion of participants with any form of cancer before
+4.       Exclusion of participants with any type of cancer before
 baseline.
 
-6.       Exclusion of the first two years of follow-up.
+5.       Exclusion of the first two years of follow-up.
 
-7.       Inclusion criteria for number of completed diet questionnaires
+6.       Inclusion criteria for number of completed diet questionnaires
 were set to ≥3 completed questionnaires.
-
-8.       Imputation of missing data.
 
 All analyses were conducted in R with a significance level of 5 %.
 
@@ -202,6 +194,11 @@ Baseline characteristics are displayed in table 1. Participants who
 developed liver cancer were older at baseline, had a higher waist
 circumference, were less physically, fewer had never smoked, and more
 were male, compared to the cohort.
+
+Mean daily energy intake and food intake and median daily intake of all
+specified food groups are presented in table 2.
+
+Main results are presented in table 3.
 
 # Conclusions
 
