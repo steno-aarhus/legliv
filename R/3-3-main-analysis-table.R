@@ -15,7 +15,7 @@ model2t <- coxph(
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
-    exercise + smoking + alcohol_daily +
+    exercise + smoking_pack + alcohol_daily +
     wc,
   data = data
 )
@@ -33,7 +33,7 @@ model2r <- coxph(
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
-    exercise + smoking + alcohol_daily +
+    exercise + smoking_pack + alcohol_daily +
     wc,
   data = data
 )
@@ -51,7 +51,7 @@ model2p <- coxph(
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
-    exercise + smoking + alcohol_daily +
+    exercise + smoking_pack + alcohol_daily +
     wc,
   data = data
 )
