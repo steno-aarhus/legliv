@@ -103,7 +103,7 @@ hospital inpatient episodes [@sudlow2015].
 Confounders were defined *a priori* from a literature review of diet
 components as exposure and liver cancer as the outcome and illustrated
 using directed acyclic graphs (supplemental fig. 1.). The following
-confounding variables were identified: age (years \[continuous\]), sex
+confounding variables were identified: age (years $$continuous$$), sex
 (male, female categorical), educational level (high (College or
 University degree), intermediate (A levels/AS levels, O levels/GCSEs, or
 equivalent), low (none of the previous mentioned) categorical), Townsend
@@ -349,6 +349,8 @@ diet_table %>% as_gt()
 ```
 
 ```{r main resuslts table}
+library(survival)
+library(gtsummary)
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
@@ -362,7 +364,7 @@ model2t <- coxph(
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
-    exercise + smoking + alcohol_daily +
+    exercise + smoking_pack + alcohol_daily +
     wc,
   data = data
 )
@@ -380,7 +382,7 @@ model2r <- coxph(
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
-    exercise + smoking + alcohol_daily +
+    exercise + smoking_pack + alcohol_daily +
     wc,
   data = data
 )
@@ -398,7 +400,7 @@ model2p <- coxph(
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
     sex +
     education + tdi + spouse +
-    exercise + smoking + alcohol_daily +
+    exercise + smoking_pack + alcohol_daily +
     wc,
   data = data
 )
@@ -465,7 +467,7 @@ table_main %>% as_gt()
 # Supplemental Material
 
 | **Food group**                                  | **Includes**                                                                                                                              | UK Bio bank ID number |
-|------------------------|------------------------|------------------------|
+|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
 | **Legumes**                                     |                                                                                                                                           |                       |
 | Soya-based desserts & yogurt                    | Soya-based desserts                                                                                                                       | p26086                |
 | Legumes/pulses                                  | Baked beans, pulses                                                                                                                       | p26101                |

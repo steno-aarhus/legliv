@@ -1,7 +1,5 @@
 library(survival)
 library(gtsummary)
-library(parameters)
-
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
@@ -105,17 +103,9 @@ row2 <- tbl_merge(list(m1r, m2r))
 row3 <- tbl_merge(list(m1p, m2p))
 
 table_main <-
-  tbl_stack(list(row1, row2, row3), group_header = c("Legumes for total meat", "Legumes for red meat", "Legumes for processed meat")) %>%
+  tbl_stack(list(row1, row2, row3),
+            group_header = c("Legumes for total meat", "Legumes for red meat", "Legumes for processed meat"),
+            quiet = TRUE) %>%
   modify_header(label = "**15 g/day substitution**")
-table_main
 
-# table_main %>%
-#   as_gt() %>%
-#   gt::gtsave(filename = "table_main.html",
-#              path = "~/legliv/doc")
-
-# table_main %>%
-#   as_gt() %>% # convert to gt table
-#   gt::gtsave( # save table as image
-#     filename = "table-main-analysis.png", path = "~/legliv/doc/Images"
-#   )
+table_main %>% as_gt()
