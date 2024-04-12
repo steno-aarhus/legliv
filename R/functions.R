@@ -220,7 +220,12 @@ covariates <- function(data) {
       ),
       bmi_category = factor(bmi_category, levels = c("Normal weight", "Overweight", "Obese")),
       bmi_category = as.factor(bmi_category),
-      exercise = as.factor(p22035_i0)
+      exercise = as.factor(p22035_i0),
+      exercise = case_when(
+        exercise == "Yes" ~ "Yes",
+        exercise == "No" ~ "No",
+        is.na(exercise) ~ "Missing"
+      )
     )
   return(data)
 }
