@@ -1,28 +1,25 @@
 ---
 # Uses Quarto metadata: https://quarto.org/docs/journals/authors.html
-title: ""
+title: "Substitution of red meat with legumes and risk of primary liver cancer in 126,744 UK Biobank participants: a prospective cohort study"
 author:
-  - name: "Niels Bock"
-    orcid: ""
-    affiliations: 
-        - name: "Department of Public Health, Aarhus, University"
+- name: Niels Bock
+  orcid: 0009-0005-7373-1589
+  affiliations:
+  - name: Department of Public Health, Aarhus University, Aarhus, Denmark
 date: "`r Sys.Date()`"
-format: html
 bibliography: references.bib
 csl: diabetologia.csl
+format: html
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-```
-
-```{r libraries, message=FALSE}
 targets::tar_config_set(store = here::here("_targets"))
 data <- targets::tar_read(data_cleaned)
+library(gt)
 library(gtsummary)
 library(tidyverse)
 library(survival)
-library(dplyr)
 ```
 
 # Abstract
@@ -103,7 +100,7 @@ hospital inpatient episodes [@sudlow2015].
 Confounders were defined *a priori* from a literature review of diet
 components as exposure and liver cancer as the outcome and illustrated
 using directed acyclic graphs (supplemental fig. 1.). The following
-confounding variables were identified: age (years $$continuous$$), sex
+confounding variables were identified: age (years continuous), sex
 (male, female categorical), educational level (high (College or
 University degree), intermediate (A levels/AS levels, O levels/GCSEs, or
 equivalent), low (none of the previous mentioned) categorical), Townsend
@@ -349,8 +346,6 @@ diet_table %>% as_gt()
 ```
 
 ```{r main resuslts table}
-library(survival)
-library(gtsummary)
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
@@ -410,56 +405,72 @@ m1t <- model1t %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ " ",
-  ) %>%
-  modify_caption("**Table 3. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})")
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
 
 m1r <- model1r %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ " ",
+    label = legume_daily_15 ~ "Legumes for red meat",
   )
 
 m1p <- model1p %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ " ",
+    label = legume_daily_15 ~ "Legumes for processed meat",
   )
 
 m2t <- model2t %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ " ",
+    label = legume_daily_15 ~ "Legumes for total meat",
   )
 
 m2r <- model2r %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ " ",
+    label = legume_daily_15 ~ "Legumes for red meat",
   )
 
 m2p <- model2p %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ " ",
+    label = legume_daily_15 ~ "Legumes for processed meat",
   )
 
-row1 <- tbl_merge(list(m1t, m2t), tab_spanner = c("Model 1", "Model 2"))
+row1 <- tbl_merge(list(m1t, m2t)) %>%
+  modify_spanning_header(everything() ~ NA_character_)
 row2 <- tbl_merge(list(m1r, m2r))
 row3 <- tbl_merge(list(m1p, m2p))
 
 table_main <-
-  tbl_stack(list(row1, row2, row3),
-            group_header = c("Legumes for total meat", "Legumes for red meat", "Legumes for processed meat"),
-            quiet = TRUE) %>%
-  modify_header(label = "**15 g/day substitution**")
-
-table_main %>% as_gt()
+  tbl_stack(list(row1, row2, row3)) %>%
+  modify_caption("**Table 3. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
+  modify_header(label = "**15 g/day substitution**") %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  as_gt() %>%
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
+    locations = cells_column_spanners(spanners = "Adjusted")
+  )
+table_main
 ```
 
 # Figures
