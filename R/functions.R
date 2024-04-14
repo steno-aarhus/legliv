@@ -226,7 +226,7 @@ covariates <- function(data) {
         exercise == "No" ~ "No",
         is.na(exercise) ~ "Missing"
       ),
-      exercise = factor(exercise, levels = C("Missing", "No", "Yes"))
+      exercise = factor(exercise, levels = c("Missing", "No", "Yes"))
     )
   return(data)
 }
