@@ -98,7 +98,8 @@ m2p <- model2p %>%
     label = legume_daily_15 ~ " ",
   )
 
-row1 <- tbl_merge(list(m1t, m2t), tab_spanner = c("Model 1", "Model 2"))
+row1 <- tbl_merge(list(m1t, m2t)) %>%
+  modify_spanning_header(everything() ~ NA_character_)
 row2 <- tbl_merge(list(m1r, m2r))
 row3 <- tbl_merge(list(m1p, m2p))
 
@@ -106,6 +107,22 @@ table_main <-
   tbl_stack(list(row1, row2, row3),
             group_header = c("Legumes for total meat", "Legumes for red meat", "Legumes for processed meat"),
             quiet = TRUE) %>%
-  modify_header(label = "**15 g/day substitution**")
-
-table_main %>% as_gt()
+  modify_header(label = "**15 g/day substitution**") %>%
+  as_gt() %>%
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "123",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "456",
+    locations = cells_column_spanners(spanners = "Adjusted")
+  )
+table_main
