@@ -141,5 +141,9 @@ list(
   tar_target(
     name = data_with_misreporter,
     command = remove_misreporter(data_cleaned)
+  ),
+  tar_target(
+    name = data_with_3_ques_comp,
+    command = filter_ques_comp(data_cleaned)
   )
 )

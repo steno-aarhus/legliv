@@ -522,3 +522,8 @@ remove_misreporter <- function(data) {
   return(data)
 }
 
+filter_ques_comp <- function(data) {
+  data <- data %>%
+    filter(p20077 >= 3)
+  return(data)
+}
