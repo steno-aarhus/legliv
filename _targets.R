@@ -125,5 +125,21 @@ list(
     name = data_cleaned,
     command = data_with_eofu %>%
       anti_join(data_without_liver_cancer_before, by = "id")
+  ),
+  tar_target(
+    name = data_with_hcc,
+    command = cancer_is_hcc(data_cleaned)
+  ),
+  tar_target(
+    name = data_with_icc,
+    command = cancer_is_icc(data_cleaned)
+  ),
+  tar_target(
+    name = data_with_alc,
+    command = remove_high_alcohol(data_cleaned)
+  ),
+  tar_target(
+    name = data_with_misreporter,
+    command = remove_misreporter(data_cleaned)
   )
 )
