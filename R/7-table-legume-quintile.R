@@ -10,10 +10,7 @@ m1t <- model1t %>%
     exponentiate = T,
     include = legume_category,
     label = legume_category ~ "Legume category",
-  ) %>%
-  modify_caption("**Supplementary table 2. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
-  add_nevent()
-
+  )
 
 model2t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
@@ -21,7 +18,7 @@ model2t <- coxph(
     animal_foods + hpdi + updi + total_weight_food_daily +
     sex +
     education + tdi + spouse +
-    exercise + smoking + alcohol_daily +
+    exercise + smoking_pack + alcohol_daily +
     wc,
   data = data
 )
@@ -31,41 +28,30 @@ m2t <- model2t %>%
     exponentiate = T,
     include = legume_category,
     label = legume_category ~ "Legume category",
+  ) %>% bold_p(t = 0.05)
+
+table_legume <- tbl_merge(
+  tbls = list(m1t, m2t)
   ) %>%
-  modify_caption("**Full cohort** (N = {N})") %>%
-  add_nevent()
-
-tbl_stack <-
-  tbl_stack(list(m1t, m2t), group_header = c("Model 1", "Model 2")) %>%
-  modify_header(label = "**15 g/day substitution**")
-tbl_stack
-data_legume_quintile <- data %>%
-  select(legume_category, legume_daily)
-
-mean_legume <- data_legume_quintile %>%
-  group_by(legume_category) %>%
-  summarise(mean_legume_daily = mean(legume_daily, na.rm = TRUE))
-
-tbl_mean_legume <- mean_legume %>%
-  tbl_summary()
-tbl_category <- data_legume_quintile %>%
-  select(-legume_daily) %>%
-  tbl_summary()
-tbl_mean_legume
-tbl_category
-tbl_merge_sum <- tbl_merge(
-  list(tbl_category, tbl_mean_legume)
-)
-tbl_merge_sum
-
-tbl_merge <- tbl_merge(
-  tbls = list(m1t, m2t),
-  tab_spanner = c("**Model 1**", "**Model 2**")
-)
-tbl_merge
-
-tbl_merge %>%
-  as_gt() %>% # convert to gt table
-  gt::gtsave( # save table as image
-    filename = "table-legume_quintile.png", path = "~/legliv/doc/Images"
+  modify_spanning_header(everything() ~ NA_character_) %>%
+  modify_caption("**Supplementary table 2. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  as_gt() %>%
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "Minimally adjusted to fit the substitution model: adjusted for age (as underlying timescale), other food groups and total food intake.",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
+    locations = cells_column_spanners(spanners = "Adjusted")
   )
+table_legume
+
