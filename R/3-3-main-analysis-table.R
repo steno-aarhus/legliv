@@ -118,7 +118,7 @@ table_main <-
     columns = c(estimate_2, ci_2, p.value_2)
   ) %>%
   tab_footnote(
-    footnote = "Minimally adjusted to fit the substitution model: adjusted for age (as underlying timescale), other food groups and total food intake.",
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
     locations = cells_column_spanners(spanners = "Crude")
   ) %>%
   tab_footnote(
