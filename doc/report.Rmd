@@ -20,6 +20,7 @@ data_hcc <- targets::tar_read(data_with_hcc)
 data_icc <- targets::tar_read(data_with_icc)
 data_alc <- targets::tar_read(data_with_alc)
 data_misreporter <- targets::tar_read(data_with_misreporter)
+data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
 library(gt)
 library(gtsummary)
 library(tidyverse)
@@ -104,17 +105,20 @@ hospital inpatient episodes [@sudlow2015].
 Confounders were defined *a priori* from a literature review of diet
 components as exposure and liver cancer as the outcome and illustrated
 using directed acyclic graphs (supplemental fig. 1.). The following
-confounding variables were identified: age (years continuous), sex
-(male, female categorical), educational level (high (College or
-University degree), intermediate (A levels/AS levels, O levels/GCSEs, or
-equivalent), low (none of the previous mentioned) categorical), Townsend
-Deprivation Index (continuous), Living alone (yes, no categorical),
-waist circumference (cm continuous), physical activity (above/below
-daily MET recommendation for moderate physical activity categorical,
-smoking status (never, ever categorical), and alcohol intake (grams/day
-continuous). Sociodemographic and anthropometric confounders were
-selected from the initial assessment visit before the start of
-follow-up.
+confounding variables were identified: age (years [continuous]), sex
+(male, female [categorical]), educational level (high: College or
+University degree, intermediate: A levels/AS levels, O levels/GCSEs, or
+equivalent, low: none of the previous mentioned [categorical]), Townsend
+Deprivation Index [continuous], Living alone (yes, no [categorical]),
+waist circumference (cm [continuous]), physical activity (Above/below
+the 2017 UK Physical activity guidelines of 150 minutes of moderate
+activity per week or 75 minutes of vigorous activity, or missing data
+[categorical]), and smoking (pack years as a proportion of lifespan
+exposed to smoking [continous])
+
+categorical), and alcohol intake (grams/day continuous).
+Sociodemographic and anthropometric confounders were selected from the
+initial assessment visit before the start of follow-up.
 
 **The substitution model**
 
@@ -158,30 +162,30 @@ first. Participants were right censored due to one of the following
 events occurring: death, loss to follow-up, or administrative end of
 follow-up (set to Jan 31, 2022). Two levels of adjustments were added to
 the substitution model. A crude model was minimally adjusted for age,
-total weight of food intake, and all other foods groups. The adjusted
-model was further adjusted for sex, educational level, Townsend
-Deprivation Index, living alone, physical activity, smoking status,
-alcohol intake, and waist circumference.
+total weight of food intake, and all other foods groups to fit the
+substitution model. The adjusted model was further adjusted for sex,
+educational level, Townsend Deprivation Index, living alone, physical
+activity, smoking, alcohol intake, and waist circumference.
 
 A stratified analysis on each cancer type was performed to test whether
 pooling of HCC and ICC as an outcome was justified. Further, the
 following sensitivity analyses were performed to test the robustness of
 the main analysis:
 
-1.       Exclusion of high alcohol consumers.
+1.       Exclusion of high alcohol consumers (more than 32 grams per day
+for men and 24 grams per day for women), exclusion of food intake
+misreporters (≤ 3200 or ≥ 16800 kJ/day for men and ≤ 2000 or ≥ 14000
+kJ/day for women), exclusion of participants with any other liver
+disease before baseline, exclusion of participants with any type of
+cancer before baseline, and exclusion of the first two years of
+follow-up.
 
-2.       Exclusion of food intake misreporters.
-
-3.       Exclusion of participants with any other liver disease before
-baseline.
-
-4.       Exclusion of participants with any type of cancer before
-baseline.
-
-5.       Exclusion of the first two years of follow-up.
-
-6.       Inclusion criteria for number of completed diet questionnaires
+2.       Inclusion criteria for number of completed diet questionnaires
 were set to ≥3 completed questionnaires.
+
+To estimate the effect of legume intake regardless of other dietary
+components, legume consumers (divided into quartiles) were compared to
+non-consumers.
 
 All analyses were conducted in R with a significance level of 5 %.
 
@@ -199,7 +203,28 @@ were male, compared to the cohort.
 Mean daily energy intake and food intake and median daily intake of all
 specified food groups are presented in table 2.
 
-Main results are presented in table 3.
+Main results are presented in table 3. In the crude model, no
+association was found for substituting 15 grams of legumes per day with
+15 grams of total meat, red meat, or processed meat per day (legumes for
+total meat: 0.98 (0.93, 1.04), legumes for red meat: 0.97 (0.91-1.03),
+legumes for processed meat: 1.02 (0.93, 1.13). the results did not
+change when with further adjustments (legumes for total meat: 1.02
+(0.96, 1.08), legumes for red meat: 1.00 (0.94-1.07), legumes for
+processed meat: 1.09 (0.98, 1.20).
+
+Estimates seemed to go in opposite directions when substituting total
+meat or red meat with legumes for risk of Liver cell carcinoma (total
+meat: 1.08 (0.99, 1.19), red meat: 1,07 (0.97, 1.18)) and intrahepatic
+bile duct carcinoma (total meat: 0.97 (0.90, 1.05), red meat: 0.95
+(0.87, 1.03), but these trends were not statistically significant
+(supplementary table 1). Further, excluding high alcohol consumers or
+food intake misreporters or setting inclusion criteria to ≥ 3 completed
+diet questionnaires did not alter the estimates in any statistically
+significant way (supplementary tables 3 to 5). In an adjusted no
+substitution model, a mean intake of 6.3 grams of legumes per day was
+associated with a reduced risk of liver cancer, compared to no intake
+(0.59 (0.35, 0.98)); however, no associations were observed with further
+increase in legume intake (supplementary table 6).
 
 # Conclusions
 
@@ -230,11 +255,12 @@ table_all <- table_1_all %>%
       education ~ "Educational level",
       tdi ~ "Townsend Deprivation Index",
       spouse ~ "Living alone",
-      exercise ~ "Physically active",
+      exercise ~ "Physical activity",
       smoking ~ "Smoking",
       alcohol_daily ~ "Alcohol intake (g/day)",
-      wc ~ "Waist circumference"
-    )
+      wc ~ "Waist circumference (cm)"
+    ),
+    digits = tdi ~ 1
   )
 
 table_cancer <- table_1_cancer %>%
@@ -247,20 +273,31 @@ table_cancer <- table_1_cancer %>%
       education ~ "Educational level",
       tdi ~ "Townsend Deprivation Index",
       spouse ~ "Living alone",
-      exercise ~ "Physically active",
+      exercise ~ "Physical activity",
       smoking ~ "Smoking",
       alcohol_daily ~ "Alcohol intake (g/day)",
-      wc ~ "Waist circumference"
-    )
+      wc ~ "Waist circumference (cm)"
+    ),
+    digits = tdi ~ 1
   )
 
 table_combined <- tbl_merge(
   tbls = list(table_all, table_cancer),
-  tab_spanner = c("**Cohort**", "**Liver cancer**")
+  tab_spanner = c("**All participants**", "**Participants who developed liver cancer**")
 ) %>%
   bold_labels() %>%
-  modify_caption("**Table 1. Baseline characteristics of the UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
-  modify_header(label ~ "**Variable**")
+  modify_caption("**Table 1. Baseline characteristics of UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
+  modify_header(label ~ "**Variable**") %>%
+    modify_table_styling(
+    columns = label,
+    rows = label == "Typical diet yesterday",
+    footnote = "Participants who reported eating a typical diet yesterday for all completed diet questionnaires."
+  ) %>% 
+    modify_table_styling(
+    columns = label,
+    rows = label == "Physical activity",
+    footnote = "Above or below the 2017 UK Physical activity guidelines of 150 minutes of moderate activity per week or 75 minutes of vigorous activity."
+  )
 table_combined %>% as_gt()
 ```
 
@@ -293,8 +330,8 @@ diet_all_table_mean <- diet_all_mean %>%
   tbl_summary(
     statistic = all_continuous() ~ "{mean} ({sd})",
     label = list(
-      total_energy_food_daily ~ "Total energy intake",
-      total_weight_food_daily ~ "Total food intake"
+      total_energy_food_daily ~ "Energy [kJ]",
+      total_weight_food_daily ~ "Weight [g]"
     )
   )
 
@@ -317,8 +354,8 @@ diet_liver_table_mean <- diet_liver_mean %>%
   tbl_summary(
     statistic = all_continuous() ~ "{mean} ({sd})",
     label = list(
-      total_energy_food_daily ~ "Total energy intake",
-      total_weight_food_daily ~ "Total food intake"
+      total_energy_food_daily ~ "Energy [kJ]",
+      total_weight_food_daily ~ "Weight [g]"
     )
   )
 
@@ -343,10 +380,14 @@ row1 <- tbl_merge(list(diet_all_table_mean, diet_liver_table_mean), tab_spanner 
   modify_footnote(all_stat_cols() ~ "mean (±SD) for total energy and food intake; median (IQR) for food groups")
 row2 <- tbl_merge(list(diet_all_table_median, diet_liver_table_median)) %>%
   bold_labels()
+
 diet_table <-
   tbl_stack(list(row1, row2),
-            quiet = TRUE)
-diet_table %>% as_gt()
+            quiet = TRUE,
+            group_header = c("Total food intake [kJ/day] or [g/day]", "Food groups [g/day]")) %>%
+  modify_header(label ~ "**Daily food intake**") %>% 
+  as_gt() 
+diet_table
 ```
 
 ```{r main resuslts table}
@@ -480,6 +521,13 @@ table_main
 # Figures
 
 # Supplemental Material
+
+![Figure 1. Directed acyclic graph visualizing the relationship between
+the exposure, replacing meat with legumes, and the outcome, liver
+cancer. Red circles indicate ancestors of exposure and outcome with red
+arrows being biasing paths. The NAFLD circle is blue to indicate that it
+is an ancestor of the outcome. The green arrows are causal
+paths.](Images/DAG.png)
 
 ```{r sup table 1}
 id <- data.frame(id = 1:120)
@@ -824,7 +872,7 @@ row6 <- tbl_merge(list(m1p_icc, m2p_icc))
 table_cancer_type <-
   tbl_stack(list(row1, row2, row3, row4, row5, row6),
             group_header = c("Hepatocellular carcinoma", "Hepatocellular carcinoma", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma")) %>%
-  modify_caption("**Suppelementary table 2. Hazard ratios for substitution of legumes for total meat, red meat and processed meat for each cancer type.** (N = {N})") %>%
+  modify_caption("**Supplementary table 2. Hazard ratios for substitution of legumes for total meat, red meat and processed meat for each cancer type.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   as_gt() %>%
@@ -1100,4 +1148,195 @@ table_misreporter <-
     locations = cells_column_spanners(spanners = "Adjusted")
   )
 table_misreporter
+```
+
+```{r 3 or more compled diet questionnaires}
+model1t_3_ques_comp <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_3_ques_comp
+)
+
+model2t_3_ques_comp <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_3_ques_comp
+)
+
+model1r_3_ques_comp <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_3_ques_comp
+)
+
+model2r_3_ques_comp <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_3_ques_comp
+)
+
+model1p_3_ques_comp <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_3_ques_comp
+)
+
+model2p_3_ques_comp <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_3_ques_comp
+)
+
+m1t_3_ques_comp <- model1t_3_ques_comp %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m1r_3_ques_comp <- model1r_3_ques_comp %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m1p_3_ques_comp <- model1p_3_ques_comp %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+m2t_3_ques_comp <- model2t_3_ques_comp %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m2r_3_ques_comp <- model2r_3_ques_comp %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m2p_3_ques_comp <- model2p_3_ques_comp %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+row1 <- tbl_merge(list(m1t_3_ques_comp, m2t_3_ques_comp)) %>%
+  modify_spanning_header(everything() ~ NA_character_)
+row2 <- tbl_merge(list(m1r_3_ques_comp, m2r_3_ques_comp))
+row3 <- tbl_merge(list(m1p_3_ques_comp, m2p_3_ques_comp))
+
+table_3_ques_comp <-
+  tbl_stack(list(row1, row2, row3)) %>%
+  modify_caption("**Supplementary table 5. Participant who completed three or more diet questionnaires. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
+  modify_header(label = "**15 g/day substitution**") %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  as_gt() %>%
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
+    locations = cells_column_spanners(spanners = "Adjusted")
+  )
+table_3_ques_comp
+```
+
+```{r}
+model1t <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_category + red_meat_daily + proc_meat_daily +
+    animal_foods + hpdi + updi + total_weight_food_daily,
+  data = data
+)
+
+m1t <- model1t %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_category,
+    label = legume_category ~ "Legume category",
+  ) %>% bold_p(t = 0.05)
+
+model2t <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_category + red_meat_daily + proc_meat_daily +
+    animal_foods + hpdi + updi + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data
+)
+
+m2t <- model2t %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_category,
+    label = legume_category ~ "Legume category",
+  ) %>% bold_p(t = 0.05)
+
+table_legume <- tbl_merge(
+  tbls = list(m1t, m2t)
+  ) %>% 
+  modify_spanning_header(everything() ~ NA_character_) %>% 
+  modify_caption("**Supplementary table 6. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+    modify_table_styling(
+    columns = label,
+    rows = label == "Legume category",
+    footnote = "mean daily intake of legumes in grams for each quartile: Q1: 6.3, Q2: 15.7, Q3: 34.3, Q4 109."
+  ) %>% 
+  as_gt() %>% 
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
+    locations = cells_column_spanners(spanners = "Adjusted")
+  )
+table_legume
 ```
