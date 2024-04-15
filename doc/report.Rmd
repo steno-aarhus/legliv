@@ -16,6 +16,10 @@ format: html
 knitr::opts_chunk$set(echo = FALSE)
 targets::tar_config_set(store = here::here("_targets"))
 data <- targets::tar_read(data_cleaned)
+data_hcc <- targets::tar_read(data_with_hcc)
+data_icc <- targets::tar_read(data_with_icc)
+data_alc <- targets::tar_read(data_with_alc)
+data_misreporter <- targets::tar_read(data_with_misreporter)
 library(gt)
 library(gtsummary)
 library(tidyverse)
@@ -463,7 +467,7 @@ table_main <-
     columns = c(estimate_2, ci_2, p.value_2)
   ) %>%
   tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model",
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
     locations = cells_column_spanners(spanners = "Crude")
   ) %>%
   tab_footnote(
@@ -476,132 +480,6 @@ table_main
 # Figures
 
 # Supplemental Material
-
-| **Food group**                                  | **Includes**                                                                                                                              | UK Bio bank ID number |
-|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
-| **Legumes**                                     |                                                                                                                                           |                       |
-| Soya-based desserts & yogurt                    | Soya-based desserts                                                                                                                       | p26086                |
-| Legumes/pulses                                  | Baked beans, pulses                                                                                                                       | p26101                |
-| Soy drink                                       | Soya drinks (including calcium fortified)                                                                                                 | p26136                |
-| Soy-based meals                                 | Tofu-based products                                                                                                                       | p26137                |
-| Vegetable dips                                  | Hummus, guacamole (assuming 50% hummus)                                                                                                   | p26144                |
-| Peas/sweetcorn                                  | Peas, sweetcorn (assuming 50% peas)                                                                                                       | p26115                |
-| **Red meat**                                    |                                                                                                                                           |                       |
-| Beef                                            | Beef                                                                                                                                      | p26066                |
-| Lamb                                            | Lamb                                                                                                                                      | p26100                |
-| Other meat, offal                               | Other meat including offal                                                                                                                | p26104                |
-| Pork                                            | Pork                                                                                                                                      | p26117                |
-| **Processed meat**                              |                                                                                                                                           |                       |
-| Processed meat                                  | Sausages, bacon (with and without fat), ham, liver pate                                                                                   | p26122                |
-| **Animal-based foods**                          |                                                                                                                                           |                       |
-| *Poultry*                                       |                                                                                                                                           |                       |
-| Breaded/battered Chicken                        | Fried poultry with batter/breadcrumbs                                                                                                     | p26069                |
-| Poultry                                         | Poultry (with/without skin)                                                                                                               | p26121                |
-| *Fish*                                          |                                                                                                                                           |                       |
-| Bre aded/battered Fish                          | Fried fish with batter/breadcrumbs                                                                                                        | p26070                |
-| Oily fish                                       | Oily fish, including salmon,                                                                                                              | p26109                |
-| Shellfish                                       | Prawns, lobster, crab, shellfish                                                                                                          | p26132                |
-| White fish & tinned tuna                        | Tinned tuna, white fish, other fish                                                                                                       | p26149                |
-| *Dairy*                                         |                                                                                                                                           |                       |
-| Dairy fat spread lower fat                      | Spreadable/lower fat butter, dairy-based very low fat spread                                                                              | p26062                |
-| Dairy fat spread                                | Spreadable normal fat butter, dairy-based normal fat spread (including cholesterol lowering spread)                                       | p26063                |
-| Milk-dairy desserts                             | Ice cream, milk puddings, milk-based desserts, cheesecake                                                                                 | p26084                |
-| Milk-based & powdered drinks                    | Dairy-based smoothies, milk-based drinks, hot chocolate                                                                                   | p26087                |
-| Full fat yogurt                                 | Whole milk yogurt (plain)                                                                                                                 | p26096                |
-| High fat cheese                                 | Cheese \>17.5 g fat per 100 g, including hard cheese, soft cheese, spreadable, Blue, Feta, Mozzarella, Goats, other)                      | p26099                |
-| Low fat yogurt                                  | Fat free and lower fat yogurt, plain or flavoured                                                                                         | p26102                |
-| Medium & low fat cheese                         | Cheese \<=17.5g fat per 100 g, including hard and spreadable lower fat cheese, Cottage                                                    | p26103                |
-| Semi-skimmed milk                               | Semi-skimmed milk \>1 g fat per 100 g (cow, other)                                                                                        | p26131                |
-| Skimmed milk                                    | Skimmed milk \<1 g fat per 100 g (cow, cholesterol lowering, powdered)                                                                    | p26133                |
-| Whole milk                                      | Whole milk \>3.6 g fat per 100 g (cow, goat, sheep)                                                                                       | p26150                |
-| Cream                                           | Cream (cow's milk)                                                                                                                        | p26154                |
-| *Eggs*                                          |                                                                                                                                           |                       |
-| Egg and egg dishes                              | Whole eggs and processed (omelette, scotch eggs, other)                                                                                   | p26088                |
-| *Sauces*                                        |                                                                                                                                           |                       |
-| Sauces (higher fat)                             | Mayonnaise, salad dressing, pesto, cheese sauce, white sauce, gravy                                                                       | p26129                |
-| Sauces (lower fat)                              | Yeast, chutney, olives, ketchup, brown sauce, tomato sauce                                                                                | p26130                |
-| *Mixed dishes*                                  |                                                                                                                                           |                       |
-| Pizza                                           | Pizza (including gluten free crust)                                                                                                       | p26116                |
-| Savoury snacks                                  | Crisps, savoury biscuits, cheese snacks, other savoury biscuits                                                                           | p26134                |
-| Soups                                           | Soups, homemade, powdered and canned                                                                                                      | p26135                |
-| Sushi                                           | Sushi                                                                                                                                     | p26139                |
-| **Healthy plant-based foods**                   |                                                                                                                                           |                       |
-| *Whole grains*                                  |                                                                                                                                           |                       |
-| Mixed bread, brown & seeded                     | Mixed, brown or seeded bread, sliced, baguette, bap, roll                                                                                 | p26071                |
-| Wholemeal bread                                 | Wholemeal bread, sliced, baguette, bap, roll                                                                                              | p26074                |
-| Biscuit cereal                                  | Wholewheat biscuit cereal                                                                                                                 | p26075                |
-| Bran cereal                                     | Bran cereal                                                                                                                               | p26076                |
-| Oat cereal (non-sugar)                          | Porridge oats (including milk/dried fruit added)                                                                                          | p26077                |
-| Oat cereal (sugar)                              | Oatcrunch breakfast cereal                                                                                                                | p26078                |
-| Muesli                                          | Muesli (with or without dried fruit)                                                                                                      | p26105                |
-| Wholemeal pasta, brown rice & other wholegrains | Brown and wholemeal pasta and rice                                                                                                        | p26114                |
-| *Fruits*                                        |                                                                                                                                           |                       |
-| Apples & pears                                  | Apples and pears                                                                                                                          | p26089                |
-| Berries                                         | Blackberries, strawberries, blueberries, raspberries, cherries                                                                            | p26090                |
-| Citrus                                          | Grapefruit, orange, satsuma                                                                                                               | p26091                |
-| Dried fruit                                     | Dried fruit, prunes                                                                                                                       | p26092                |
-| Bananas & other fruit                           | Bananas, mixed fruit, grapes, mango, melon, peach, pineapple, kiwi, other                                                                 | p26093                |
-| Stewed fruit                                    | Stewed fruit, plums                                                                                                                       | p26094                |
-| *Nuts*                                          |                                                                                                                                           |                       |
-| Nut-based spreads                               | Peanut-butter and chocolate-based spread                                                                                                  | p26106                |
-| Unsalted nuts & seeds                           | Unsalted peanuts and nuts                                                                                                                 | p26107                |
-| Salted nuts & seeds                             | Salted peanuts and nuts                                                                                                                   | p26108                |
-| *Plant oils*                                    |                                                                                                                                           |                       |
-| Olive oil ( drizz ling/dunking)                 | Olive oil                                                                                                                                 | p26110                |
-| Vegetable spread lower fat                      | Olive oil based lower fat spread, plant-based lower fat margarine and soya-based lower fat spread (including cholesterol lowering spread) | p26111                |
-| Vegetable spread                                | Olive oil based spread, plant-based soft or hard margarine and soya-based spread (including cholesterol lowering spread)                  | p26112                |
-| *Tea, coffee & water*                           |                                                                                                                                           |                       |
-| Coffee, caffeinated                             | Normal instant, filter, cappuccino, espresso coffee                                                                                       | p26081                |
-| Coffee, decaffeinated                           | Decaffeinated instant, filter, cappuccino, espresso coffee                                                                                | p26082                |
-| Tea                                             | Black, green and other tea                                                                                                                | p26141                |
-| Tea, decaffeinated                              | Decaffeinated black, herbal tea, rooibos                                                                                                  | p26142                |
-| Water/sparkling water                           | Plain water, sparkling water                                                                                                              | p26148                |
-| *Vegetables*                                    |                                                                                                                                           |                       |
-| Allium vegetables                               | Garlic, leek, onion                                                                                                                       | p26065                |
-| Green l eafy/cabbages                           | Broccoli, cabbage, kale, cauliflower, spinach, sprouts                                                                                    | p26098                |
-| Raw salad                                       | Mixed side salad, lettuce, watercress                                                                                                     | p26123                |
-| Root vegetables                                 | Beetroot, carrots, celery, parsnip, turnip                                                                                                | p26125                |
-| Tomatoes                                        | Fresh and tinned tomatoes                                                                                                                 | p26143                |
-| Other vegetables (mushrooms, fruiting, mixed)   | Mushrooms, mixed vegetables, avocado, broad beans, green beans, butternut squash, courgettes, peppers, other                              | p26146                |
-| Vegetable side dishes                           | Coleslaw, salad with added fat/mayonnaise                                                                                                 | p26147                |
-| Vegetable dips                                  | Hummus, guacamole (assuming 50% guacamole)                                                                                                | p26144                |
-| Peas/sweetcorn                                  | Peas, sweetcorn (assuming 50% sweetcorn)                                                                                                  | p26115                |
-| **Unhealthy plant-based foods**                 |                                                                                                                                           |                       |
-| *Refined cereals*                               |                                                                                                                                           |                       |
-| Biscuits                                        | Chocolate biscuits, plain biscuits, sweet biscuits and cookies                                                                            | p26068                |
-| Other bread                                     | Naan, garlic bread, other bread (including gluten free)                                                                                   | p26072                |
-| White bread                                     | White bread, sliced, baguette, bap, roll                                                                                                  | p26073                |
-| Oat cereal (sugar)                              | Oatcrunch breakfast cereal                                                                                                                | p26079                |
-| Savoury snacks                                  | Crisps, savoury biscuits, cheese snacks, other savoury biscuits                                                                           | p26083                |
-| White pasta & rice                              | White pasta, rice, couscous, gluten free pasta                                                                                            | p26113                |
-| *Potatoes*                                      |                                                                                                                                           |                       |
-| Potatoes/sweet potatoes ( baked/boiled)         | Potatoes, sweet potatoes, boiled or baked                                                                                                 | p26118                |
-| Fried/roast potatoes                            | Potatoes and chips, fried or roasted with fat                                                                                             | p26119                |
-| Mashed potatoes                                 | Potatoes, mashed                                                                                                                          | p26120                |
-| Fruit juice                                     |                                                                                                                                           |                       |
-| Fruit juice                                     | Orange, grapefruit drink and 100% fruit juice                                                                                             | p26095                |
-| *Mixed dishes, vegetarian*                      |                                                                                                                                           |                       |
-| Grain dishes - added fat                        | Double and single crust pies, crumble pies, Yorkshire pudding, snackpot noodles                                                           | p26097                |
-| Samosa, pakora                                  | Indian samosa, pakora snacks                                                                                                              | p26128                |
-| Vegetarian meals                                | Quorn-based and vegetarian burgers and products                                                                                           | p26145                |
-| *Sweets & snacks*                               |                                                                                                                                           |                       |
-| Added sugars & preserves                        | Table sugar, honey, jam and preserves                                                                                                     | p26064                |
-| Chocolate confectionery                         | Chocolate bar (including white, milk and dark chocolate), chocolate-covered raisins, chocolate-covered sweets                             | p26080                |
-| Desserts & cakes & pastries                     | Pancakes, croissant, Danish pastries, scones, fruitcakes, cakes, doughnuts, sponge puddings, other desserts, cereal bars, sweet snacks    | p26085                |
-| Other sweets                                    | Hard and soft sweets (including sugar free)                                                                                               | p26140                |
-| *Sugar sweetened beverages*                     |                                                                                                                                           |                       |
-| Rice/oat drink                                  | Rice and oat vegetable drinks                                                                                                             | p26124                |
-| Low/non sugar SSBs                              | Low calorie fizzy drinks and squash                                                                                                       | p26126                |
-| SSBs & other sugary drinks                      | Fizzy sugary drinks, squash, fruit smoothies                                                                                              | p26127                |
-| **Alcoholic beverages**                         |                                                                                                                                           |                       |
-| Beer & Cider                                    | Beer and cider                                                                                                                            | p26067                |
-| Spirits                                         | Spirits and other alcoholic drinks                                                                                                        | p26138                |
-| Fortified wine                                  | Fortified wine                                                                                                                            | p26151                |
-| Red wine                                        | Red and rose wine                                                                                                                         | p26152                |
-| White wine                                      | White wine                                                                                                                                | p26153                |
-
-: Supplementary table 1. Summary of included foods for each food group.
-{.striped .hover}
 
 ```{r sup table 1}
 id <- data.frame(id = 1:120)
@@ -710,21 +588,516 @@ uk_bio_bank_id <- c(
 )
 ukb_id_number_df <- data.frame(uk_bio_bank_id)
 
-df <- data.frame(id = id,
-                 food_group = food_group_df,
+df <- data.frame(food_group = food_group_df,
                  includes = includes,
                  ukb_biobank_id = ukb_id_number_df)
 
 bold_text <- c(1, 8, 13, 15, 47, 88)
-gt_table <- df %>%
+italic_text <- c(16, 19, 24, 37, 39, 42, 48, 57, 64, 68, 72, 78, 89, 96, 100, 102, 106, 111, 115)
+food_group_table <- df %>%
   gt() %>% 
   tab_caption(caption = md("**Supplementary table 1. Summary of included foods for each food group.**")) %>% 
+  cols_label(
+    food_group = md("**Food group**"),
+    includes = md("**Includes**"),
+    uk_bio_bank_id = md("**UK Biobank ID**")
+  ) %>% 
   tab_style(
     style = cell_text(weight = "bold"),
-    locations = 
-        cells_body(
-          columns = food_group,
-          rows = bold_text
-        ))
-gt_table
+    locations = cells_body(
+      columns = food_group,
+      rows = bold_text
+      )
+    ) %>% 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_body(
+      columns = food_group,
+      rows = italic_text
+    )
+  )
+  
+food_group_table
+```
+
+```{r stratified on cancer type}
+model1t_hcc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_hcc
+)
+
+model2t_hcc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_hcc
+)
+
+model1r_hcc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_hcc
+)
+
+model2r_hcc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_hcc
+)
+
+model1p_hcc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_hcc
+)
+
+model2p_hcc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_hcc
+)
+
+m1t_hcc  <- model1t_hcc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m1r_hcc  <- model1r_hcc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m1p_hcc  <- model1p_hcc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+m2t_hcc  <- model2t_hcc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m2r_hcc  <- model2r_hcc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m2p_hcc  <- model2p_hcc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+model1t_icc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_icc
+)
+
+model2t_icc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_icc
+)
+
+model1r_icc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_icc
+)
+
+model2r_icc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_icc
+)
+
+model1p_icc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_icc
+)
+
+model2p_icc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_icc
+)
+
+m1t_icc  <- model1t_icc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m1r_icc  <- model1r_icc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m1p_icc  <- model1p_icc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+m2t_icc  <- model2t_icc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m2r_icc  <- model2r_icc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m2p_icc  <- model2p_icc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+row1 <- tbl_merge(list(m1t_hcc, m2t_hcc)) %>%
+  modify_spanning_header(everything() ~ NA_character_)
+row2 <- tbl_merge(list(m1r_hcc, m2r_hcc))
+row3 <- tbl_merge(list(m1p_hcc, m2p_hcc))
+row4 <- tbl_merge(list(m1t_icc, m2t_icc))
+row5 <- tbl_merge(list(m1r_icc, m2r_icc))
+row6 <- tbl_merge(list(m1p_icc, m2p_icc))
+
+table_cancer_type <-
+  tbl_stack(list(row1, row2, row3, row4, row5, row6),
+            group_header = c("Hepatocellular carcinoma", "Hepatocellular carcinoma", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma")) %>%
+  modify_caption("**Suppelementary table 2. Hazard ratios for substitution of legumes for total meat, red meat and processed meat for each cancer type.** (N = {N})") %>%
+  modify_header(label = "**15 g/day substitution**") %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  as_gt() %>%
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
+    locations = cells_column_spanners(spanners = "Adjusted")
+  )
+table_cancer_type
+```
+
+```{r exclusion of high alcohol consumers}
+model1t_alc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_alc
+)
+
+model2t_alc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_alc
+)
+
+model1r_alc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_alc
+)
+
+model2r_alc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_alc
+)
+
+model1p_alc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_alc
+)
+
+model2p_alc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_alc
+)
+
+
+m1t_alc <- model1t_alc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m1r_alc <- model1r_alc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m1p_alc <- model1p_alc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+m2t_alc <- model2t_alc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m2r_alc <- model2r_alc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m2p_alc <- model2p_alc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+row1 <- tbl_merge(list(m1t_alc, m2t_alc)) %>%
+  modify_spanning_header(everything() ~ NA_character_)
+row2 <- tbl_merge(list(m1r_alc, m2r_alc))
+row3 <- tbl_merge(list(m1p_alc, m2p_alc))
+
+table_alc <-
+  tbl_stack(list(row1, row2, row3)) %>%
+  modify_caption("**Supplementary table 3. Exclusion of high alcohol consumers. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
+  modify_header(label = "**15 g/day substitution**") %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  as_gt() %>%
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
+    locations = cells_column_spanners(spanners = "Adjusted")
+  )
+table_alc
+```
+
+```{r exclusion of energy misreporters}
+model1t_misreporter <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_misreporter
+)
+
+model2t_misreporter <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_misreporter
+)
+
+model1r_misreporter <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_misreporter
+)
+
+model2r_misreporter <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_misreporter
+)
+
+model1p_misreporter <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data_misreporter
+)
+
+model2p_misreporter <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_misreporter
+)
+
+m1t_misreporter <- model1t_misreporter %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m1r_misreporter <- model1r_misreporter %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m1p_misreporter <- model1p_misreporter %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+m2t_misreporter <- model2t_misreporter %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m2r_misreporter <- model2r_misreporter %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m2p_misreporter <- model2p_misreporter %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+row1 <- tbl_merge(list(m1t_misreporter, m2t_misreporter)) %>%
+  modify_spanning_header(everything() ~ NA_character_)
+row2 <- tbl_merge(list(m1r_misreporter, m2r_misreporter))
+row3 <- tbl_merge(list(m1p_misreporter, m2p_misreporter))
+
+table_misreporter <-
+  tbl_stack(list(row1, row2, row3)) %>%
+  modify_caption("**Supplementary table 4. Exclusion of food intake misreporters. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
+  modify_header(label = "**15 g/day substitution**") %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  as_gt() %>%
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
+    locations = cells_column_spanners(spanners = "Adjusted")
+  )
+table_misreporter
 ```
