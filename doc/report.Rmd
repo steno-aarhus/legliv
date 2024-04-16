@@ -1,5 +1,4 @@
 ---
-# Uses Quarto metadata: https://quarto.org/docs/journals/authors.html
 title: "Substitution of red meat with legumes and risk of primary liver cancer in 126,744 UK Biobank participants: a prospective cohort study"
 author:
 - name: Niels Bock
@@ -7,9 +6,10 @@ author:
   affiliations:
   - name: Department of Public Health, Aarhus University, Aarhus, Denmark
 date: "`r Sys.Date()`"
-bibliography: references.bib
+output: word_document
 csl: diabetologia.csl
 format: html
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -106,18 +106,18 @@ hospital inpatient episodes [@sudlow2015].
 Confounders were defined *a priori* from a literature review of diet
 components as exposure and liver cancer as the outcome and illustrated
 using directed acyclic graphs (supplemental fig. 1.). The following
-confounding variables were selected: age (years \[continuous\]), sex
-(male, female \[categorical\]), educational level (high: College or
+confounding variables were selected: age (years [continuous]), sex
+(male, female [categorical]), educational level (high: College or
 University degree, intermediate: A levels/AS levels, O levels/GCSEs, or
-equivalent, low: none of the previous mentioned \[categorical\]),
-Townsend Deprivation Index \[continuous\], Living alone (yes, no
-\[categorical\]), waist circumference (cm \[continuous\]), physical
-activity (above/below the 2017 UK Physical activity guidelines of 150
-minutes of moderate activity per week or 75 minutes of vigorous
-activity, or missing data \[categorical\]), smoking (pack years as a
-proportion of lifespan exposed to smoking \[continous\]), and alcohol
-intake (grams/day continuous). All confounders except age were selected
-from the initial assessment visit before the start of follow-up.
+equivalent, low: none of the previous mentioned [categorical]), Townsend
+Deprivation Index [continuous], Living alone (yes, no [categorical]),
+waist circumference (cm [continuous]), physical activity (above/below
+the 2017 UK Physical activity guidelines of 150 minutes of moderate
+activity per week or 75 minutes of vigorous activity, or missing data
+[categorical]), smoking (pack years as a proportion of lifespan exposed
+to smoking [continous]), and alcohol intake (grams/day continuous). All
+confounders except age were selected from the initial assessment visit
+before the start of follow-up.
 
 **The substitution model**
 
@@ -182,6 +182,8 @@ follow-up.
 2.       Inclusion criteria for number of completed diet questionnaires
 were set to ≥3 completed questionnaires.
 
+3.       (Mangler)
+
 To estimate the effect of legume intake regardless of other dietary
 components, legume consumers (divided into quartiles) were compared to
 non-consumers.
@@ -197,7 +199,7 @@ time of 11.3 years, 173 participants developed liver cancer. Baseline
 characteristics are displayed in table 1. Participants who developed
 liver cancer were older at baseline, had a higher waist circumference,
 were less physically active, fewer had never smoked, and more were male,
-compared to the cohort.
+compared to all included participants.
 
 Mean daily energy intake and food intake and median daily intake of all
 specified food groups are presented in table 2.
@@ -222,10 +224,10 @@ statistically significant (supplementary table 2). Further, excluding
 high alcohol consumers or food intake misreporters or setting inclusion
 criteria to ≥ 3 completed diet questionnaires did not alter the
 estimates in any statistically significant way (supplementary tables 3
-to 5). In an adjusted no substitution model, a mean intake of 6.3 grams
-of legumes per day was associated with a reduced risk of liver cancer,
-compared to no intake (HR: 0.59 (95% CI: 0.35, 0.98)); however, no
-associations were observed with further increase in legume intake
+to 5). In the adjusted no substitution analysis, a mean intake of 6.3
+grams of legumes per day was associated with a reduced risk of liver
+cancer, compared to no intake (HR: 0.59 (95% CI: 0.35, 0.98)); however,
+no associations were observed with further increase in legume intake
 (supplementary table 6).
 
 # Conclusions
@@ -259,8 +261,8 @@ table_all <- table_1_all %>%
       spouse ~ "Living alone",
       exercise ~ "Physical activity",
       smoking ~ "Smoking",
-      alcohol_daily ~ "Alcohol intake (g/day)",
-      wc ~ "Waist circumference (cm)"
+      alcohol_daily ~ "Alcohol intake [g/day]",
+      wc ~ "Waist circumference [cm]"
     ),
     digits = tdi ~ 1
   )
@@ -277,8 +279,8 @@ table_cancer <- table_1_cancer %>%
       spouse ~ "Living alone",
       exercise ~ "Physical activity",
       smoking ~ "Smoking",
-      alcohol_daily ~ "Alcohol intake (g/day)",
-      wc ~ "Waist circumference (cm)"
+      alcohol_daily ~ "Alcohol intake [g/day]",
+      wc ~ "Waist circumference [cm]"
     ),
     digits = tdi ~ 1
   )
@@ -554,7 +556,7 @@ food_group <- c(
   "Bananas & other fruit", "Stewed fruit", "Nuts", "Nut-based spreads",
   "Unsalted nuts & seeds", "Salted nuts & seeds", "Plant oils",
   "Olive oil ( drizz ling/dunking)", "Vegetable spread lower fat",
-  "Vegetable spread", "Tea, coffee & water", "Coffee, caffeinated",
+  "Vegetable spread", "Beverages", "Coffee, caffeinated",
   "Coffee, decaffeinated", "Tea", "Tea, decaffeinated", "Water/sparkling water",
   "Vegetables", "Allium vegetables", "Green l eafy/cabbages", "Raw salad",
   "Root vegetables", "Tomatoes", "Other vegetables (mushrooms, fruiting, mixed)",
