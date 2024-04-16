@@ -21,6 +21,7 @@ data_icc <- targets::tar_read(data_with_icc)
 data_alc <- targets::tar_read(data_with_alc)
 data_misreporter <- targets::tar_read(data_with_misreporter)
 data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
+library(flextable)
 library(gt)
 library(gtsummary)
 library(tidyverse)
@@ -287,7 +288,7 @@ table_cancer <- table_1_cancer %>%
 
 table_combined <- tbl_merge(
   tbls = list(table_all, table_cancer),
-  tab_spanner = c("**All participants**", "**Participants who developed liver cancer**")
+  tab_spanner = c("**Cohort**", "**Liver cancer**")
 ) %>%
   bold_labels() %>%
   modify_caption("**Table 1. Baseline characteristics of UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
@@ -381,7 +382,7 @@ diet_liver_table_median <- diet_liver_median %>%
 row1 <- tbl_merge(list(diet_all_table_mean, diet_liver_table_mean), tab_spanner = c("**Cohort**", "**Liver cancer**")) %>%
   bold_labels() %>%
   modify_caption("**Table 2. Daily dietary intake.**") %>%
-  modify_footnote(all_stat_cols() ~ "mean (±SD) for total energy and food intake; median (IQR) for food groups")
+  modify_footnote(all_stat_cols() ~ "mean (±SD) for total food intake; median (IQR) for food groups")
 row2 <- tbl_merge(list(diet_all_table_median, diet_liver_table_median)) %>%
   bold_labels()
 
@@ -394,7 +395,7 @@ diet_table <-
 diet_table
 ```
 
-```{r main resuslts table}
+```{r main results table}
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
@@ -502,6 +503,10 @@ table_main <-
   modify_caption("**Table 3. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
+  ) %>% 
   as_gt() %>%
   tab_spanner(
     label = "Crude",
@@ -641,8 +646,7 @@ uk_bio_bank_id <- c(
 ukb_id_number_df <- data.frame(uk_bio_bank_id)
 
 df <- data.frame(food_group = food_group_df,
-                 includes = includes,
-                 ukb_biobank_id = ukb_id_number_df)
+                 includes = includes)
 
 bold_text <- c(1, 8, 13, 15, 47, 88)
 italic_text <- c(16, 19, 24, 37, 39, 42, 48, 57, 64, 68, 72, 78, 89, 96, 100, 102, 106, 111, 115)
@@ -651,8 +655,7 @@ food_group_table <- df %>%
   tab_caption(caption = md("**Supplementary table 1. Summary of included foods for each food group.**")) %>% 
   cols_label(
     food_group = md("**Food group**"),
-    includes = md("**Includes**"),
-    uk_bio_bank_id = md("**UK Biobank ID**")
+    includes = md("**Includes**")
   ) %>% 
   tab_style(
     style = cell_text(weight = "bold"),
@@ -879,15 +882,19 @@ table_cancer_type <-
   modify_caption("**Supplementary table 2. Hazard ratios for substitution of legumes for total meat, red meat and processed meat for hepatocellular carcinoma (Hcc) and intrahepatic cholangiocarcinoma (ICC).** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
+    ) %>% 
   as_gt() %>%
   tab_spanner(
     label = "Crude",
     columns = c(estimate_1, ci_1, p.value_1)
-  ) %>%
+    ) %>%
   tab_spanner(
     label = "Adjusted",
     columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
+    ) %>%
   tab_footnote(
     footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
     locations = cells_column_spanners(spanners = "Crude")
@@ -1007,6 +1014,10 @@ table_alc <-
   modify_caption("**Supplementary table 3. Exclusion of high alcohol consumers. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
+    ) %>% 
   as_gt() %>%
   tab_spanner(
     label = "Crude",
@@ -1134,6 +1145,10 @@ table_misreporter <-
   modify_caption("**Supplementary table 4. Exclusion of food intake misreporters. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
+    ) %>% 
   as_gt() %>%
   tab_spanner(
     label = "Crude",
@@ -1261,6 +1276,10 @@ table_3_ques_comp <-
   modify_caption("**Supplementary table 5. Participant who completed three or more diet questionnaires. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
+    ) %>% 
   as_gt() %>%
   tab_spanner(
     label = "Crude",
@@ -1325,6 +1344,10 @@ table_legume <- tbl_merge(
     rows = label == "Legume category",
     footnote = "mean daily intake of legumes in grams for each quartile: Q1: 6.3, Q2: 15.7, Q3: 34.3, Q4 109."
   ) %>% 
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
+    ) %>% 
   as_gt() %>% 
   tab_spanner(
     label = "Crude",
