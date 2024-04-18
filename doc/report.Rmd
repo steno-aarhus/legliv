@@ -6,7 +6,6 @@ author:
   affiliations:
   - name: Department of Public Health, Aarhus University, Aarhus, Denmark
 date: "`r Sys.Date()`"
-output: word_document
 csl: diabetologia.csl
 format: html
 bibliography: references.bib
@@ -44,108 +43,103 @@ Conclusions:
 
 **Study population**
 
-The UK Biobank, a population-based prospective cohort, were initiated in
+The UK Biobank, a population-based prospective cohort, wasinitiated in
 2006. [@sudlow2015] During 2006-2010, more than 500,000 participants,
-aged 40-69, were recruited and assessed at designated assessment centres
-across the UK. Data on sociodemographic factors (education, ethnicity,
-Townsend deprivation Index) and lifestyle factors (smoking, alcohol
-consumption, physical activity) were collected via touch screen
-questionnaires and computer-assisted interviews. Anthropometric data
-(BMI, waist circumference) were collected via physical measurements
-(reference to UKB document here).
+aged 40-69, were recruited and visited designated assessment centres
+across the UK Participants provided information about age, sex,
+sociodemographic factors (education, Townsend deprivation index, living
+alone) and lifestyle factors (smoking, alcohol consumption, physical
+activity) via touch screen questionnaires and computer-assisted
+interviews. Anthropometric data (BMI, waist circumference) were
+collected via physical measurements (reference to UKB document here).
 
 **Dietary assessment**
 
-A web-based diet questionnaire was administered at the end of the
+A web-based 24-hour dietary recall was administered at the end of the
 initial assessment visit for the last 70,000 recruited participants
-(reference from UKB document here). In the period February 2011 to April
-2012, 320,000 participants who had provided an e-mail address were
-invited on four separate occasions to complete the diet questionnaire,
-of which 210,947 participants completed at least one. The questionnaire
-comprised the Oxford WebQ, an online 24-hour dietary recall assessment
-tool covering 206 foods and 32 beverages commonly consumed in the UK
-with intake categories ranging from 0 to +3 units of measurement (e.g.
-servings, cups, slices). [@piernas2021] The Oxford WebQ has been
-validated with interviewer-based 24-hour recalls and biomarkers
-[@Liu2011; @Greenwood2019].
+(reference from UKB document here). From February 2011 to April 2012,
+320,000 participants who had provided an e-mail address were invited on
+four separate occasions to complete the 24-hour dietary recall, the
+Oxford WebQ, of which 210,947 participants completed at least one. The
+Oxford WebQ covered 206 food items and 32 beverage items commonly
+consumed in the UK. Intakes were reported in standard units of
+measurements, e.g., servings, cups, slices, etc. with intake categories
+ranging from 0 to 3+ units [@piernas2021]. The Oxford WebQ has been
+validated againts interviewer-based 24-hour dietary recalls and
+biomarkers [@Liu2011; @Greenwood2019].
 
-Researchers classified 79 food groups and 14 beverage groups from the
-Oxford WebQ food groups using UK National Diet and Nutrition Survey
-(NDNS) categories [@Liu2011; @Greenwood2019]. We used this
-classification to categorise intake of foods groups to match our
-substitution analysis. Legume intake was defined as intake of dietary
-pulses, baked beans, tofu-based products, peas, hummus, soy drinks, and
-soy-based desserts and yoghurt; red meat intake was defined as intake of
-beef, pork, lamb, or other meat, including offal. Processed meat intake
-was defined as sausages, bacon (with and without fat), ham, or liver
-pate. Other food groups included were animal-based foods, unhealthy
-plant-based foods, healthy plant-based foods, and alcoholic beverages
-(supplemental table 1). animal-based and plant-based food groups were
-calculated in line with previous studies that used these food categories
-to construct a healthy plant-based diet index and an unhealthy
-plant-based diet index [@Thompson2023; @Heianza2021; @Satija2017;
-@Satija2016]. An overview of included foods in each food group is
-displayed in supplemental table 1.
+Researchers defined79 food groups and 14 beverage groups from the Oxford
+WebQ using the UK National Diet and Nutrition Survey categories
+[@piernas2021]. These food and beverage groups were used when defining
+the food groups used in the substitution analyses (Supplementary Table
+1). Legumes were defined as dietary pulses, baked beans, tofu-based
+products, peas, hummus, soy drinks, and soy-based desserts and yogurt.
+Red meat intake was defined as intake of beef, pork, lamb, or other
+meat, including offal. Processed meat intake was defined as sausages,
+bacon (with and without fat), ham, or liver pate. Other food groups
+included were animal-based foods, unhealthy plant-based foods, healthy
+plant-based foods, and alcoholic beverages (Supplementary Table 1).
+Animal-based and healthy and unhealthy plant-based food foods were
+grouped based on plant-based diet indices from previous studies
+[@Thompson2023; @Heianza2021; @Satija2017; @Satija2016]. An overview of
+included foods in each food group is displayed in Supplementary Table 1.
 
-Due to the incapability of a single 24-hour dietary recall evaluation to
-properly assess variation in diet over time (reference to nutritional
-epi methods here?), only participants who completed two or more
-questionnaires were eligible for inclusion in our study (reference to
-nutritional epi methods that two 24-hour recall is sufficient to capture
-variation in diet here?).
+Due to the incapability of a single 24-hour dietary recall to properly
+assess habitual dietary intake and variation in diet over time
+[@thompson2013; @gurinovic2017], only participants who completed two or
+more Oxford WebQs were eligible for inclusion in this study.
 
 **Liver cancer assessment**
 
-Liver cancer was defined according to ICD-10 diagnosis codes C22.0
-Hepatocellular carcinoma (HCC) or C22.1 Intrahepatic cholangiocarcinoma
-(ICC). Incident and prevalent cases of liver cancer and corresponding
-diagnosis dates were obtained via linkage to central cancer registers or
-hospital inpatient episodes [@sudlow2015].
+Liver cancer was defined according to ICD-10 diagnosis codes C22.0 for
+Hepatocellular carcinoma (HCC) or C22.1 for Intrahepatic
+cholangiocarcinoma (ICC). Incident and prevalent cases of liver cancer
+and corresponding diagnosis dates were obtained via linkage to central
+cancer registries or hospital inpatient episodes [@sudlow2015].
 
 **Assessment of confounders**
 
-Confounders were defined *a priori* from a literature review of diet
-components as exposure and liver cancer as the outcome and illustrated
-using directed acyclic graphs (supplemental fig. 1.). The following
-confounding variables were selected: age (years [continuous]), sex
-(male, female [categorical]), educational level (high: College or
-University degree, intermediate: A levels/AS levels, O levels/GCSEs, or
-equivalent, low: none of the previous mentioned [categorical]), Townsend
-Deprivation Index [continuous], Living alone (yes, no [categorical]),
-waist circumference (cm [continuous]), physical activity (above/below
-the 2017 UK Physical activity guidelines of 150 minutes of moderate
-activity per week or 75 minutes of vigorous activity, or missing data
-[categorical]), smoking (pack years as a proportion of lifespan exposed
-to smoking [continous]), and alcohol intake (grams/day continuous). All
+Confounders were defined *a priori* from a literature review of the
+background literature and illustrated using directed acyclic graphs
+(Supplementary Figure 1). The following confounding variables were
+selected: age at baseline (years, continuous), sex (male, female),
+educational level (high: College or University degree, intermediate: A
+levels/AS levels, O levels/GCSEs, or equivalent, low: none of the
+previous mentioned), Townsend Deprivation Index (continuous), Living
+alone (yes, no), waist circumference (cm, continuous), physical activity
+(above/below the 2017 UK Physical activity guidelines of 150 minutes of
+moderate activity per week or 75 minutes of vigorous activity, or
+unknown), smoking (pack years as a proportion of lifespan exposed to
+smoking, continous), and alcohol intake (g/day, continuous). All
 confounders except age were selected from the initial assessment visit
 before the start of follow-up.
 
 **The substitution model**
 
-Substitutions were carried out in an equal-mass manner, i.e.,
-substituting x grams of red meats with x grams of legumes. The size of
-the substitution was set to 15 grams of legumes for 15 grams of red
-meats to keep the substitution size below the mean intake any of the
-substituted food groups in the cohort. Substitutions were modelled using
-the leave-one-out-approach in which variables for every food group along
-with a variable for total food intake are included, except the food
-group that are to be substituted [@Ibsen2021]. To estimate substitution
-of 15 grams of all red meats with 15 grams of legumes, the following
-model was defined:
+The substitution analyses were conducted by replacing an equal mass of
+meat with legumes. The size of the substitution was set to 15 g of
+legumes for 15 g of meat to keep the substitution size below the mean
+intake of any of the substituted food groups in the cohort. The
+substitutions were modelled using the leave-one-out-approach in which
+variables for every food group along with a variable for total food
+intake are included, except the food group that are to be substituted
+[@Ibsen2021]. To estimate substitution of 15 grams of all red meats (red
+and processed) with 15 grams of legumes, the following model was
+defined:
 
 $$
 log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Total food intake (g) + \beta_3 Other food groups(g) + \beta_4 Covariates
 $$
 
-When substituting red meat with legumes, processed meat was added to the
-model:
+When substituting only red meat with legumes, processed meat was added
+to the model:
 
 $$
 log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Processed meat (15g) + \beta_3 Total food intake (g) + \beta_4 Other food groups(g) + \beta_5 Covariates
 $$
 
-When substituting processed meat with legumes, red meat was added to the
-model:
+When substituting only processed meat with legumes, red meat was added
+to the model:
 
 $$
 log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Red meat (15g) + \beta_3 Total food intake (g) + \beta_4 Other food groups(g) + \beta_5 Covariates
