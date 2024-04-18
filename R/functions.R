@@ -3,8 +3,8 @@
 ready_data <- function(data) {
   # Removing participants who did not complete 2 or more diet questionnaires
   data <- data %>%
-    filter(p20077 >= 2) %>%
-    mutate(id = 1:n(), .before = everything())
+    dplyr::mutate(id = dplyr::row_number()) %>%
+    filter(p20077 >= 2)
   # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD10 codes)
   data <- data %>%
     separate_wider_delim(p41270,
