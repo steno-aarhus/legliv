@@ -74,8 +74,13 @@ list(
       left_join(cancer_icc(cancer_subset), by = "id")
   ),
   tar_target(
-    name = data_with_covariates,
+    name = data_liver_cancer_before_defined,
     command = data_with_icd10_cancer |>
+      define_liver_cancer_before()
+  ),
+  tar_target(
+    name = data_with_covariates,
+    command = data_liver_cancer_before_defined |>
       covariates()
   ),
   tar_target(
@@ -130,7 +135,7 @@ list(
   tar_target(
     name = data_cleaned,
     command = data_with_eofu %>%
-      anti_join(data_without_liver_cancer_before, by = "id")
+      remove_liver_before()
   ),
   tar_target(
     name = data_with_hcc,
@@ -151,5 +156,18 @@ list(
   tar_target(
     name = data_with_3_ques_comp,
     command = filter_ques_comp(data_cleaned)
+  ),
+  tar_target(
+    name = data_full_reduced,
+    command = reduce_full_data(data_with_id)
+  ),
+  tar_target(
+    name = data_baseline_reduced,
+    command = reduce_baseline_data(data_liver_cancer_before_defined)
+  ),
+  tar_target(
+    name = data_flowchart,
+    command = data_full_reduced %>%
+      left_join(data_baseline_reduced)
   )
 )

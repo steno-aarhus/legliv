@@ -167,7 +167,24 @@ cancer_icc <- function(data) {
     select(id, cancer_icc_date)
 }
 
-# Define baseline date ----------------------------------------------------
+define_liver_cancer_before <- function(data) {
+  data <- data %>%
+    mutate(
+      cancer_before = if_else(
+        cancer_hcc_date <= baseline_start_date |
+          cancer_icc_date <= baseline_start_date |
+          icd10_hcc_date <= baseline_start_date |
+          icd10_icc_date <= baseline_start_date, "Yes", "No"
+      )
+    )
+  return(data)
+}
+
+remove_liver_before <- function(data) {
+  data <- data %>%
+    filter(is.na(cancer_before))
+  return(data)
+}
 
 covariates <- function(data) {
   data <- data %>%
@@ -457,17 +474,6 @@ end_of_follow_up <- function(data) {
   return(data)
 }
 
-remove_liver_before <- function(data) {
-  data <- data %>%
-    filter(
-      cancer_hcc_date <= baseline_start_date |
-        cancer_icc_date <= baseline_start_date |
-        icd10_hcc_date <= baseline_start_date |
-        icd10_icc_date <= baseline_start_date
-    )
-  return(data)
-}
-
 cancer_is_hcc <- function(data) {
   data <- data %>%
     mutate(
@@ -534,5 +540,17 @@ remove_misreporter <- function(data) {
 filter_ques_comp <- function(data) {
   data <- data %>%
     filter(p20077 >= 3)
+  return(data)
+}
+
+reduce_full_data <- function(data) {
+  data <- data %>%
+    select(id, p20077, p191)
+  return(data)
+}
+
+reduce_baseline_data <- function(data) {
+  data <- data %>%
+    select(id, p20077, cancer_before, baseline_start_date)
   return(data)
 }
