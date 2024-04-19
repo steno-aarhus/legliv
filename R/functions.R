@@ -6,10 +6,49 @@ data_id <- function(data) {
   return(data)
 }
 
-ready_data <- function(data) {
+two_ques_only <- function(data) {
   # Removing participants who did not complete 2 or more diet questionnaires
   data <- data %>%
     filter(p20077 >= 2)
+  return(data)
+}
+
+remove_timestamp <- function(data) { # Removing specific time stamp from date of completed questionnaires:
+    data %>%
+      mutate(across(
+        c(
+          p105010_i0,
+          p105010_i1,
+          p105010_i2,
+          p105010_i3,
+          p105010_i4
+        ), ~ substr(.x, 1, 10)
+      ))
+    return(data)
+}
+
+baseline_date <- function(data) { # Defining baseline date
+  baseline_start_date <- data %>%
+    select(starts_with("p105010_i"), id) %>%
+    pivot_longer(
+      cols = starts_with("p105010_i"),
+      names_to = "questionnaire",
+      values_to = "completion_date"
+    ) %>%
+    filter(!is.na(completion_date)) %>%
+    group_by(id) %>%
+    arrange(completion_date) %>%
+    mutate(last_questionnaire_date = lag(completion_date)) %>%
+    filter(!is.na(last_questionnaire_date)) %>%
+    filter(is.na(lead(completion_date))) %>%
+    rename(baseline_start_date = completion_date) %>%
+    ungroup()
+  data <- data %>%
+    left_join(baseline_start_date %>% select(id, baseline_start_date), by = "id")
+  return(data)
+}
+
+cancer_longer <- function(data) {
   # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD10 codes)
   data <- data %>%
     separate_wider_delim(p41270,
@@ -39,20 +78,6 @@ ready_data <- function(data) {
       names = paste0("p41273var_a", 0:15), too_few = "debug"
     )
   return(data)
-}
-
-remove_timestamp <- function(data) {
-  # Removing specific time stamp from date of completed questionnaires:
-  data %>%
-    mutate(across(
-      c(
-        p105010_i0,
-        p105010_i1,
-        p105010_i2,
-        p105010_i3,
-        p105010_i4
-      ), ~ substr(.x, 1, 10)
-    ))
 }
 
 # Find liver cancer cases -------------------------------------------------
@@ -143,27 +168,6 @@ cancer_icc <- function(data) {
 }
 
 # Define baseline date ----------------------------------------------------
-
-baseline_date <- function(data) {
-  baseline_start_date <- data %>%
-    select(starts_with("p105010_i"), id) %>%
-    pivot_longer(
-      cols = starts_with("p105010_i"),
-      names_to = "questionnaire",
-      values_to = "completion_date"
-    ) %>%
-    filter(!is.na(completion_date)) %>%
-    group_by(id) %>%
-    arrange(completion_date) %>%
-    mutate(last_questionnaire_date = lag(completion_date)) %>%
-    filter(!is.na(last_questionnaire_date)) %>%
-    filter(is.na(lead(completion_date))) %>%
-    rename(baseline_start_date = completion_date) %>%
-    ungroup()
-  data <- data %>%
-    left_join(baseline_start_date %>% select(id, baseline_start_date), by = "id")
-  return(data)
-}
 
 covariates <- function(data) {
   data <- data %>%

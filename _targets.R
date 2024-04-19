@@ -47,20 +47,26 @@ list(
   tar_target(
     name = readied_data,
     command = data_with_id |>
-      ready_data() |>
-      remove_timestamp()
+      two_ques_only() |>
+      remove_timestamp() |>
+      baseline_date()
+  ),
+  tar_target(
+    name = data_with_cancer_longer,
+    command = readied_data |>
+      cancer_longer()
   ),
   tar_target(
     name = icd10_subset,
-    command = icd10_longer_subset(readied_data)
+    command = icd10_longer_subset(data_with_cancer_longer)
   ),
   tar_target(
     name = cancer_subset,
-    command = cancer_longer_subset(readied_data)
+    command = cancer_longer_subset(data_with_cancer_longer)
   ),
   tar_target(
     name = data_with_icd10_cancer,
-    command = readied_data |>
+    command = data_with_cancer_longer |>
       # TODO: All these left_joins aren't necessary, but I will look at that later.
       left_join(icd10_hcc(icd10_subset), by = "id") |>
       left_join(icd10_icc(icd10_subset), by = "id") |>
@@ -68,13 +74,8 @@ list(
       left_join(cancer_icc(cancer_subset), by = "id")
   ),
   tar_target(
-    name = data_as_baseline,
-    command = data_with_icd10_cancer |>
-      baseline_date()
-  ),
-  tar_target(
     name = data_with_covariates,
-    command = data_as_baseline |>
+    command = data_with_icd10_cancer |>
       covariates()
   ),
   tar_target(
