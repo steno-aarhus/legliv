@@ -40,8 +40,13 @@ list(
     command = readr::read_csv(project_data_path)
   ),
   tar_target(
-    name = readied_data,
+    name = data_with_id,
     command = base_data |>
+      data_id()
+  ),
+  tar_target(
+    name = readied_data,
+    command = data_with_id |>
       ready_data() |>
       remove_timestamp()
   ),

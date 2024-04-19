@@ -1,9 +1,14 @@
 # Prepare data ------------------------------------------------------------
 
+data_id <- function(data) {
+  data <- data %>%
+    dplyr::mutate(id = dplyr::row_number())
+  return(data)
+}
+
 ready_data <- function(data) {
   # Removing participants who did not complete 2 or more diet questionnaires
   data <- data %>%
-    dplyr::mutate(id = dplyr::row_number()) %>%
     filter(p20077 >= 2)
   # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD10 codes)
   data <- data %>%
@@ -34,6 +39,20 @@ ready_data <- function(data) {
       names = paste0("p41273var_a", 0:15), too_few = "debug"
     )
   return(data)
+}
+
+remove_timestamp <- function(data) {
+  # Removing specific time stamp from date of completed questionnaires:
+  data %>%
+    mutate(across(
+      c(
+        p105010_i0,
+        p105010_i1,
+        p105010_i2,
+        p105010_i3,
+        p105010_i4
+      ), ~ substr(.x, 1, 10)
+    ))
 }
 
 # Find liver cancer cases -------------------------------------------------
@@ -124,20 +143,6 @@ cancer_icc <- function(data) {
 }
 
 # Define baseline date ----------------------------------------------------
-
-remove_timestamp <- function(data) {
-  # Removing specific time stamp from date of completed questionnaires:
-  data %>%
-    mutate(across(
-      c(
-        p105010_i0,
-        p105010_i1,
-        p105010_i2,
-        p105010_i3,
-        p105010_i4
-      ), ~ substr(.x, 1, 10)
-    ))
-}
 
 baseline_date <- function(data) {
   baseline_start_date <- data %>%
