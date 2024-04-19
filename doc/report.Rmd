@@ -123,9 +123,8 @@ intake of any of the substituted food groups in the cohort. The
 substitutions were modelled using the leave-one-out-approach in which
 variables for every food group along with a variable for total food
 intake are included, except the food group that are to be substituted
-[@Ibsen2021]. To estimate substitution of 15 grams of all red meats (red
-and processed) with 15 grams of legumes, the following model was
-defined:
+[@Ibsen2021]. To estimate substitution of 15 g of all red meats (red and
+processed) with 15 g of legumes, the following model was defined:
 
 $$
 log(h(t;x)) = log(h(0;t)) + \beta_1 Legumes (15g) + \beta_2 Total food intake (g) + \beta_3 Other food groups(g) + \beta_4 Covariates
@@ -150,80 +149,87 @@ $$
 Multivariable-adjusted Cox proportional hazards regression models were
 used to estimate hazard ratios (HR) with corresponding 95% confidence
 intervals (CI) with age as the underlying timescale. Participants were
-followed from the date of their last completed diet questionnaire until
-the event of interest occurred or due to right censoring, whichever came
-first. Participants were right censored due to one of the following
-events occurring: death, loss to follow-up, or administrative end of
-follow-up (set to Jan 31, 2022). Two levels of adjustments were added to
-the substitution model. A crude model was minimally adjusted for age,
-total weight of food intake, and all other foods groups to fit the
-substitution model. The adjusted model was further adjusted for sex,
-educational level, Townsend Deprivation Index, living alone, physical
-activity, smoking, alcohol intake, and waist circumference.
+followed from the date of their last completed Oxford WebQ until the
+occurrence of the event of interest or due to right censoring, whichever
+came first. Participants were right censored in the event of death, loss
+to follow-up, or administrative end of follow-up (January 31, 2022). Two
+levels of adjustments were added to the substitution model. Model 1 was
+minimally adjusted for age, total weight of food intake, and all other
+food groups to fit the substitution model. Model was further adjusted
+for sex, educational level, Townsend Deprivation Index, living alone,
+physical activity, smoking, alcohol intake, and waist circumference.
 
-A stratified analysis on each cancer type was performed to test whether
-pooling of HCC and ICC as an outcome was justified. Further, the
-following sensitivity analyses were performed to test the robustness of
-the main analysis:
+In secondary analyses, each cancer type was analysed separately to
+evaluate if the pooling of HCC and ICC as one outcome in the main
+analysis was justified. Furthermore, to estimate the effect of legume
+intake regardsless of other dietary components, legume consumers
+(divided into quartiles) were compared to non-consumers in secondary
+analyses.
 
-1.       Exclusion of high alcohol consumers (more than 32 grams per day
-for men and 24 grams per day for women), exclusion of food intake
-misreporters (≤ 3200 or ≥ 16800 kJ/day for men and ≤ 2000 or ≥ 14000
-kJ/day for women), exclusion of participants with any other liver
-disease before baseline, exclusion of participants with any type of
-cancer before baseline, and exclusion of the first two years of
-follow-up.
+To evaluate the robustness of the main analyses, sensitivity analyses
+were performed on subsamples of participants by excluding those with
+high alcohol intake (more than 32 grams per day for men and 24 grams per
+day for women), participants with plausible energy intake misreporting
+(≤ 3200 or ≥ 16800 kJ/day for men and ≤ 2000 or ≥ 14000 kJ/day for
+women), participants with any other liver disease before baseline, and
+participants with any type of cancer before baseline.
 
-2.       Inclusion criteria for number of completed diet questionnaires
-were set to ≥3 completed questionnaires.
+Furthermore, sensitivity analyses were conducted by including only those
+with ≥3 completed Oxford WebQs.
 
 3.       (Mangler)
 
-To estimate the effect of legume intake regardless of other dietary
-components, legume consumers (divided into quartiles) were compared to
-non-consumers.
+Sensitivity analyses were modelled like the main analyses.
 
-All analyses were conducted in R with a significance level of 5 %.
+All analyses were conducted in R (version) with a significance level of
+5 %.
 
 # Results
 
 After excluding participants with liver cancer and participants lost to
 follow-up before baseline, 126,744 participants remained who had
 completed two or more diet questionnaires. During a median follow-up
-time of 11.3 years, 173 participants developed liver cancer. Baseline
-characteristics are displayed in table 1. Participants who developed
-liver cancer were older at baseline, had a higher waist circumference,
-were less physically active, fewer had never smoked, and more were male,
-compared to all included participants.
+time of 11.3 years, 173 participants developed liver cancer.
+Participants who developed liver cancer were older at baseline, had a
+higher waist circumference, were less physically active, fewer had never
+smoked, and more were male, compared to all included participants (Table
+1).
 
 Mean daily energy intake and food intake and median daily intake of all
 specified food groups are presented in table 2.
 
-Main results are presented in table 3. In the crude model, no
-association was found for substituting 15 grams of legumes per day with
-15 grams of total meat, red meat, or processed meat per day and risk of
-primary liver cancer (total meat: HR: 0.98 (95% CI: 0.93, 1.04), red
-meat: HR: 0.97 (95% CI: 0.91-1.03) and processed meat: HR 1.02 (95%
-CI:0.93, 1.13)). the results did not change when with further
-adjustments (total meat: HR: 1.02 (95% CI: 0.96, 1.08), red meat: HR:
-1.00 (95% CI: 0.94-1.07) and processed meat: HR: 1.09 (95% CI: 0.98,
-1.20).
+No association was found for substituting 15 g/day of legumes with 15
+g/day of total meat, red meat, or processed meat and risk of primary
+liver cancer in model 1 (Table 3: total meat: HR: 0.98, 95% CI: 0.93,
+1.04; red meat: HR: 0.97, 95% CI: 0.91-1.03; processed meat: HR 1.02,
+95% CI: 0.93, 1.13). The estimated associations changed minimally but
+remained non-significant with further adjustments (Table 3: total meat:
+HR: 1.02, 95% CI: 0.96, 1.08; red meat: HR: 1.00, 95% CI: 0.94-1.07);
+processed meat: HR: 1.09, 95% CI: 0.98, 1.20).
 
-Estimates seemed to go in opposite directions when substituting total
-meat or red meat with legumes for risk of HCC (total meat: HR: 1.08 (95%
-CI: 0.99, 1.19), red meat: HR: 1,07 (95% CI: 0.97, 1.18) and processed
-meat: HR: 1.12 (95% CI: 0.97, 1.30)) and ICC (total meat: HR: 0.97 (95%
-CI: 0.90, 1.05), red meat: HR: 0.95 (95% CI: 0.87, 1.03) and processed
-meat: HR: 1.06 (95% CI: 0.92, 1.22)) , but these trends were not
-statistically significant (supplementary table 2). Further, excluding
-high alcohol consumers or food intake misreporters or setting inclusion
-criteria to ≥ 3 completed diet questionnaires did not alter the
-estimates in any statistically significant way (supplementary tables 3
-to 5). In the adjusted no substitution analysis, a mean intake of 6.3
-grams of legumes per day was associated with a reduced risk of liver
-cancer, compared to no intake (HR: 0.59 (95% CI: 0.35, 0.98)); however,
-no associations were observed with further increase in legume intake
+In secondary analyses, when analyzing the substitution association for
+HCC and ICC separately, the risk of HCC was positively associated with
+substituting total, red, or processed meat with legumes (Supplementary
+Table 2, total meat: HR: 1.08, 95% CI: 0.99, 1.19; red meat: HR: 1.07,
+95% CI: 0.97, 1.18; processed meat: HR: 1.12, 95% CI: 0.97, 1.30). The
+association between substituting total, red, or processed meat with
+legumes and ICC indicated inverse associations (Supplementary Table 2,
+total meat: HR: 0.97, 95% CI: 0.90, 1.05; red meat: HR: 0.95, 95% CI:
+0.87, 1.03; processed meat: HR: 1.06, 95% CI: 0.92, 1.22). The magnitude
+or direction of associations were not significantly different across
+strata of liver cancer types.
+
+In the adjusted non-substitution analysis, a mean intake of 6.3 grams of
+legumes per day was associated with a reduced risk of liver cancer,
+compared to no intake (HR: 0.59 (95% CI: 0.35, 0.98)); however, no
+associations were observed with further increase in legume intake
 (supplementary table 6).
+
+In sensitivity analyses, excluding participants with high alcohol intake
+or participants with plausible energy intake misreporting or setting
+inclusion criteria to ≥ 3 completed diet questionnaires did not alter
+the estimates in any statistically significant way (supplementary tables
+3 to 5).
 
 # Conclusions
 
@@ -494,7 +500,7 @@ row3 <- tbl_merge(list(m1p, m2p))
 
 table_main <-
   tbl_stack(list(row1, row2, row3)) %>%
-  modify_caption("**Table 3. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
+  modify_caption("**Table 3. Hazard ratios and 95% confidence intervals for substitution of total meat, red meat and processed meat with legumes.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   modify_table_styling(
@@ -985,7 +991,7 @@ row6 <- tbl_merge(list(m1p_icc, m2p_icc))
 table_cancer_type <-
   tbl_stack(list(row1, row2, row3, row4, row5, row6),
             group_header = c("Hepatocellular carcinoma", "Hepatocellular carcinoma", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma")) %>%
-  modify_caption("**Supplementary table 2. Hazard ratios for substitution of legumes for total meat, red meat and processed meat for hepatocellular carcinoma (Hcc) and intrahepatic cholangiocarcinoma (ICC).** (N = {N})") %>%
+  modify_caption("**Supplementary table 2. substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   modify_table_styling(
