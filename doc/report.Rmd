@@ -15,16 +15,152 @@ bibliography: references.bib
 knitr::opts_chunk$set(echo = FALSE)
 targets::tar_config_set(store = here::here("_targets"))
 data <- targets::tar_read(data_cleaned)
+data_flowchart <- targets::tar_read(data_flowchart)
 data_hcc <- targets::tar_read(data_with_hcc)
 data_icc <- targets::tar_read(data_with_icc)
 data_alc <- targets::tar_read(data_with_alc)
 data_misreporter <- targets::tar_read(data_with_misreporter)
 data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
-library(flextable)
 library(gt)
 library(gtsummary)
 library(tidyverse)
 library(survival)
+library(ggconsort)
+```
+
+```{r, include=FALSE}
+set_gtsummary_theme(theme_gtsummary_journal("jama"),
+                    quiet = TRUE)
+model1t <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data
+)
+
+model2t <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data
+)
+
+model1r <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data
+)
+
+model2r <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data
+)
+
+model1p <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+  data = data
+)
+
+model2p <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data
+)
+
+
+m1t <- model1t %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m1r <- model1r %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m1p <- model1p %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+m2t <- model2t %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m2r <- model2r %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m2p <- model2p %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+```
+
+```{r, include=FALSE}
+model1t_leg <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_category + red_meat_daily + proc_meat_daily +
+    animal_foods + hpdi + updi + total_weight_food_daily,
+  data = data
+)
+
+m1t_leg <- model1t_leg %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_category,
+    label = legume_category ~ "Legume category",
+  ) %>% bold_p(t = 0.05)
+
+model2t_leg <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_category + red_meat_daily + proc_meat_daily +
+    animal_foods + hpdi + updi + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data
+)
+
+m2t_leg <- model2t_leg %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_category,
+    label = legume_category ~ "Legume category",
+  ) %>% bold_p(t = 0.05)
 ```
 
 # Abstract
@@ -200,12 +336,19 @@ specified food groups are presented in table 2.
 
 No association was found for substituting 15 g/day of legumes with 15
 g/day of total meat, red meat, or processed meat and risk of primary
-liver cancer in model 1 (Table 3: total meat: HR: 0.98, 95% CI: 0.93,
-1.04; red meat: HR: 0.97, 95% CI: 0.91-1.03; processed meat: HR 1.02,
-95% CI: 0.93, 1.13). The estimated associations changed minimally but
-remained non-significant with further adjustments (Table 3: total meat:
-HR: 1.02, 95% CI: 0.96, 1.08; red meat: HR: 1.00, 95% CI: 0.94-1.07);
-processed meat: HR: 1.09, 95% CI: 0.98, 1.20).
+liver cancer in model 1 (Table 3: total meat:
+`r inline_text(m1t, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+red meat:
+`r inline_text(m1r, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+processed meat:
+`r inline_text(m1p, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+The estimated associations changed minimally but remained
+non-significant with further adjustments (Table 3: total meat:
+`r inline_text(m2t, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+red meat:
+`r inline_text(m2r, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+processed meat:
+`r inline_text(m2p, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
 
 In secondary analyses, when analyzing the substitution association for
 HCC and ICC separately, the risk of HCC was positively associated with
@@ -221,9 +364,10 @@ strata of liver cancer types.
 
 In the adjusted non-substitution analysis, a mean intake of 6.3 grams of
 legumes per day was associated with a reduced risk of liver cancer,
-compared to no intake (HR: 0.59 (95% CI: 0.35, 0.98)); however, no
-associations were observed with further increase in legume intake
-(supplementary table 6).
+compared to no intake
+(`r inline_text(m2t_leg, variable = legume_category, level = "Q1", pattern = '{estimate} (95% {ci})')`);
+however, no associations were observed with further increase in legume
+intake (supplementary table 6).
 
 In sensitivity analyses, excluding participants with high alcohol intake
 or participants with plausible energy intake misreporting or setting
@@ -305,6 +449,8 @@ table_combined <- tbl_merge(
   )
 table_combined %>% as_gt()
 ```
+
+\newpage
 
 ```{r diet table}
 diet_all_mean <- data %>%
@@ -395,103 +541,9 @@ diet_table <-
 diet_table
 ```
 
-```{r main results table}
-model1t <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data
-)
-
-model2t <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data
-)
-
-model1r <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data
-)
-
-model2r <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data
-)
-
-model1p <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data
-)
-
-model2p <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data
-)
-
-
-m1t <- model1t %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m1r <- model1r %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m1p <- model1p %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-m2t <- model2t %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m2r <- model2r %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m2p <- model2p %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
+```{r main results table, echo=FALSE}
+set_gtsummary_theme(theme_gtsummary_journal("jama"),
+                    quiet = TRUE)
 
 row1 <- tbl_merge(list(m1t, m2t)) %>%
   modify_spanning_header(everything() ~ NA_character_)
@@ -528,6 +580,80 @@ table_main
 ```
 
 # Figures
+
+```{r, fig.cap = "Figure 1. Flowchart of included participants"}
+ready_flowchart <-
+  data_flowchart %>%
+  cohort_start("Whole UK Biobank") %>%
+  cohort_define(
+    one_ques = .full %>% filter(p20077 >= 1),
+    two_ques = one_ques %>% filter(p20077 >= 2),
+    liver = two_ques %>% filter(is.na(cancer_before)),
+    l2fu = two_ques %>% filter(is.na(p191) | p191 >= baseline_start_date),
+    both = two_ques %>% filter(is.na(cancer_before)) %>% filter(is.na(p191) | p191 >= baseline_start_date) %>% filter(!is.na(baseline_start_date)),
+    miss = two_ques %>% filter(!is.na(baseline_start_date)),
+    one_ques_excluded = anti_join(.full, one_ques, by = "id"),
+    two_ques_excluded = anti_join(one_ques, two_ques, by = "id"),
+    liver_excluded = anti_join(two_ques, liver, by = "id"),
+    l2fu_excluded = anti_join(two_ques, l2fu, by = "id"),
+    miss_excluded = anti_join(two_ques, miss, by = "id")
+  ) %>%
+  cohort_label(
+    one_ques = "One or more 24-hour recall",
+    one_ques_excluded = "No Oxford WebQ",
+    two_ques = "Two or more Oxford WebQ",
+    two_ques_excluded = "One Oxford WebQ",
+    liver_excluded = "Liver cancer diagnosis before start of follow-up",
+    l2fu_excluded = "Lost to follow-up before baseline",
+    both = "Included in study",
+    miss_excluded = "Missing diet data"
+  )
+
+flowchart <- ready_flowchart %>%
+  consort_box_add(
+    "full", 0, 50, cohort_count_adorn(ready_flowchart, .full)
+  ) %>%
+  consort_box_add(
+    "first_exclusion", 10, 40, glue::glue(
+      '
+      {cohort_count_adorn(ready_flowchart, one_ques_excluded)}<br>
+      {cohort_count_adorn(ready_flowchart, two_ques_excluded)}<br>
+      ')
+  ) %>%
+  consort_box_add(
+    "two_ques_box", 0, 30, cohort_count_adorn(ready_flowchart, two_ques)
+  ) %>%
+  consort_arrow_add(
+    end = "first_exclusion", end_side = "left", start_x = 0, start_y = 40
+  ) %>%
+  consort_arrow_add(
+    "full", "bottom", "two_ques_box", "top"
+  ) %>%
+  consort_box_add(
+    "second_exclusion", 10, 20, glue::glue(
+      '{cohort_count_adorn(ready_flowchart, liver_excluded)}<br>
+      {cohort_count_adorn(ready_flowchart, l2fu_excluded)}<br>
+      {cohort_count_adorn(ready_flowchart, miss_excluded)}<br>
+      ')
+  ) %>%
+  consort_arrow_add(
+    end = "second_exclusion", end_side = "left", start_x = 0, start_y = 20
+  ) %>%
+  consort_box_add(
+    "included_cohort", 0, 10, cohort_count_adorn(ready_flowchart, both)
+  ) %>%
+  consort_arrow_add(
+    "two_ques_box", "bottom", "included_cohort", "top"
+  )
+
+flowchart %>%
+  ggplot() +
+  geom_consort() +
+  theme_consort(margin_h = 20, margin_v = 1)
+  # ggtext::geom_richtext(
+  #   aes(x = -40, y = 40, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail")
+  # )
+```
 
 # Supplemental Material
 
@@ -650,141 +776,42 @@ food_group_table <- df %>%
 food_group_table
 ```
 
-```{r sup table 1}
-id <- data.frame(id = 1:120)
+\newpage
 
-food_group <- c(
-  "Legumes", "Soya-based desserts & yogurt", "Legumes/pulses", "Soy drink",
-  "Soy-based meals", "Vegetable dips", "Peas/sweetcorn", "Red meat", "Beef",
-  "Lamb", "Other meat, offal", "Pork", "Processed meat", "Processed meat",
-  "Animal-based foods", "Poultry", "Breaded/battered Chicken", "Poultry",
-  "Fish", "Bre aded/battered Fish", "Oily fish", "Shellfish",
-  "White fish & tinned tuna", "Dairy", "Dairy fat spread lower fat",
-  "Dairy fat spread", "Milk-dairy desserts", "Milk-based & powdered drinks",
-  "Full fat yogurt", "High fat cheese", "Low fat yogurt",
-  "Medium & low fat cheese", "Semi-skimmed milk", "Skimmed milk",
-  "Whole milk", "Cream", "Eggs", "Egg and egg dishes", "Sauces",
-  "Sauces (higher fat)", "Sauces (lower fat)", "Mixed dishes", "Pizza",
-  "Savoury snacks", "Soups", "Sushi", "Healthy plant-based foods",
-  "Whole grains", "Mixed bread, brown & seeded", "Wholemeal bread",
-  "Biscuit cereal", "Bran cereal", "Oat cereal (non-sugar)",
-  "Oat cereal (sugar)", "Muesli", "Wholemeal pasta, brown rice & other wholegrains",
-  "Fruits", "Apples & pears", "Berries", "Citrus", "Dried fruit",
-  "Bananas & other fruit", "Stewed fruit", "Nuts", "Nut-based spreads",
-  "Unsalted nuts & seeds", "Salted nuts & seeds", "Plant oils",
-  "Olive oil ( drizz ling/dunking)", "Vegetable spread lower fat",
-  "Vegetable spread", "Beverages", "Coffee, caffeinated",
-  "Coffee, decaffeinated", "Tea", "Tea, decaffeinated", "Water/sparkling water",
-  "Vegetables", "Allium vegetables", "Green l eafy/cabbages", "Raw salad",
-  "Root vegetables", "Tomatoes", "Other vegetables (mushrooms, fruiting, mixed)",
-  "Vegetable side dishes", "Vegetable dips", "Peas/sweetcorn",
-  "Unhealthy plant-based foods", "Refined cereals", "Biscuits", "Other bread",
-  "White bread", "Oat cereal (sugar)", "Savoury snacks", "White pasta & rice",
-  "Potatoes", "Potatoes/sweet potatoes ( baked/boiled)",
-  "Fried/roast potatoes", "Mashed potatoes", "Fruit juice", "Fruit juice",
-  "Mixed dishes, vegetarian", "Grain dishes - added fat", "Samosa, pakora",
-  "Vegetarian meals", "Sweets & snacks", "Added sugars & preserves",
-  "Chocolate confectionery", "Desserts & cakes & pastries", "Other sweets",
-  "Sugar sweetened beverages", "Rice/oat drink", "Low/non sugar SSBs",
-  "SSBs & other sugary drinks", "Alcoholic beverages", "Beer & Cider", "Spirits",
-  "Fortified wine", "Red wine", "White wine"
-)
-food_group_df <- data.frame(food_group)
-
-includes <- c(
-  " ", "Soya-based desserts", "Baked beans, pulses", "Soya drinks (including calcium fortified)",
-  "Tofu-based products", "Hummus, guacamole (assuming 50% hummus)", "Peas, sweetcorn (assuming 50% peas)",
-  " ", "Beef", "Lamb", "Other meat including offal", "Pork", " ",
-  "Sausages, bacon (with and without fat), ham, liver pate", " ", " ",
-  "Fried poultry with batter/breadcrumbs", "Poultry (with/without skin)", " ",
-  "Fried fish with batter/breadcrumbs", "Oily fish, including salmon", "Prawns, lobster, crab, shellfish",
-  "Tinned tuna, white fish, other fish", " ", "Spreadable/lower fat butter, dairy-based very low fat spread",
-  "Spreadable normal fat butter, dairy-based normal fat spread (including cholesterol lowering spread)",
-  "Ice cream, milk puddings, milk-based desserts, cheesecake", "Dairy-based smoothies, milk-based drinks, hot chocolate",
-  "Whole milk yogurt (plain)", "Cheese >17.5 g fat per 100 g, including hard cheese, soft cheese, spreadable, Blue, Feta, Mozzarella, Goats, other)",
-  "Fat free and lower fat yogurt, plain or flavoured", "Cheese <=17.5g fat per 100 g, including hard and spreadable lower fat cheese, Cottage",
-  "Semi-skimmed milk >1 g fat per 100 g (cow, other)", "Skimmed milk <1 g fat per 100 g (cow, cholesterol lowering, powdered)",
-  "Whole milk >3.6 g fat per 100 g (cow, goat, sheep)", "Cream (cow's milk)", " ",
-  "Whole eggs and processed (omelette, scotch eggs, other)", " ", "Mayonnaise, salad dressing, pesto, cheese sauce, white sauce, gravy",
-  "Yeast, chutney, olives, ketchup, brown sauce, tomato sauce", " ",
-  "Pizza (including gluten free crust)", "Crisps, savoury biscuits, cheese snacks, other savoury biscuits",
-  "Soups, homemade, powdered and canned", "Sushi", " ", " ",
-  "Mixed, brown or seeded bread, sliced, baguette, bap, roll", "Wholemeal bread, sliced, baguette, bap, roll",
-  "Wholewheat biscuit cereal", "Bran cereal", "Porridge oats (including milk/dried fruit added)",
-  "Oatcrunch breakfast cereal", "Muesli (with or without dried fruit)", "Brown and wholemeal pasta and rice", " ",
-  "Apples and pears", "Blackberries, strawberries, blueberries, raspberries, cherries", "Grapefruit, orange, satsuma",
-  "Dried fruit, prunes", "Bananas, mixed fruit, grapes, mango, melon, peach, pineapple, kiwi, other", "Stewed fruit, plums", " ",
-  "Peanut-butter and chocolate-based spread", "Unsalted peanuts and nuts", "Salted peanuts and nuts", " ",
-  "Olive oil", "Olive oil based lower fat spread, plant-based lower fat margarine and soya-based lower fat spread (including cholesterol lowering spread)",
-  "Olive oil based spread, plant-based soft or hard margarine and soya-based spread (including cholesterol lowering spread)", " ",
-  "Normal instant, filter, cappuccino, espresso coffee", "Decaffeinated instant, filter, cappuccino, espresso coffee",
-  "Black, green and other tea", "Decaffeinated black, herbal tea, rooibos", "Plain water, sparkling water", " ",
-  "Garlic, leek, onion", "Broccoli, cabbage, kale, cauliflower, spinach, sprouts", "Mixed side salad, lettuce, watercress",
-  "Beetroot, carrots, celery, parsnip, turnip", "Fresh and tinned tomatoes",
-  "Mushrooms, mixed vegetables, avocado, broad beans, green beans, butternut squash, courgettes, peppers, other",
-  "Coleslaw, salad with added fat/mayonnaise", "Hummus, guacamole (assuming 50% guacamole)", "Peas, sweetcorn (assuming 50% sweetcorn)", " ", " ",
-  "Chocolate biscuits, plain biscuits, sweet biscuits and cookies", "Naan, garlic bread, other bread (including gluten free)",
-  "White bread, sliced, baguette, bap, roll", "Oatcrunch breakfast cereal", "Crisps, savoury biscuits, cheese snacks, other savoury biscuits",
-  "White pasta, rice, couscous, gluten free pasta", " ",
-  "Potatoes, sweet potatoes, boiled or baked", "Potatoes and chips, fried or roasted with fat", "Potatoes, mashed", " ",
-  "Orange, grapefruit drink and 100% fruit juice", " ",
-  "Double and single crust pies, crumble pies, Yorkshire pudding, snackpot noodles",
-  "Indian samosa, pakora snacks", "Quorn-based and vegetarian burgers and products", " ",
-  "Table sugar, honey, jam and preserves",
-  "Chocolate bar (including white, milk and dark chocolate), chocolate-covered raisins, chocolate-covered sweets",
-  "Pancakes, croissant, Danish pastries, scones, fruitcakes, cakes, doughnuts, sponge puddings, other desserts, cereal bars, sweet snacks",
-  "Hard and soft sweets (including sugar free)", " ",
-  "Rice and oat vegetable drinks", "Low calorie fizzy drinks and squash", "Fizzy sugary drinks, squash, fruit smoothies", " ",
-  "Beer and cider", "Spirits and other alcoholic drinks", "Fortified wine", "Red and rose wine", "White wine"
-)
-
-includes_df <- data.frame(includes)
-
-uk_bio_bank_id <- c(
-  " ", "p26086", "p26101", "p26136", "p26137", "p26144", "p26115", " ", "p26066",
-  "p26100", "p26104", "p26117", " ", "p26122", " ", " ", "p26069", "p26121", " ",
-  "p26070", "p26109", "p26132", "p26149", " ", "p26062", "p26063", "p26084", "p26087",
-  "p26096", "p26099", "p26102", "p26103", "p26131", "p26133", "p26150", "p26154",
-  " ", "p26088", " ", "p26129", "p26130", " ", "p26116", "p26134", "p26135", "p26139",
-  " ", " ", "p26071", "p26074", "p26075", "p26076", "p26077", "p26078", "p26105",
-  "p26114", " ", "p26089", "p26090", "p26091", "p26092", "p26093", "p26094", " ",
-  "p26106", "p26107", "p26108", " ", "p26110", "p26111", "p26112", " ", "p26081",
-  "p26082", "p26141", "p26142", "p26148", " ", "p26065", "p26098", "p26123", "p26125",
-  "p26143", "p26146", "p26147", "p26144", "p26115", " ", " ", "p26068", "p26072",
-  "p26073", "p26079", "p26083", "p26113", " ", "p26118", "p26119", "p26120", " ",
-  "p26095", " ", "p26097", "p26128", "p26145", " ", "p26064", "p26080", "p26085", "p26140",
-  " ", "p26124", "p26126", "p26127", " ", "p26067", "p26138", "p26151", "p26152", "p26153"
-)
-ukb_id_number_df <- data.frame(uk_bio_bank_id)
-
-df <- data.frame(food_group = food_group_df,
-                 includes = includes)
-
-bold_text <- c(1, 8, 13, 15, 47, 88)
-italic_text <- c(16, 19, 24, 37, 39, 42, 48, 57, 64, 68, 72, 78, 89, 96, 100, 102, 106, 111, 115)
-food_group_table <- df %>%
-  gt() %>% 
-  tab_caption(caption = md("**Supplementary table 1. Summary of included foods for each food group.**")) %>% 
-  cols_label(
-    food_group = md("**Food group**"),
-    includes = md("**Includes**")
+```{r table legume quartiles}
+table_legume <- tbl_merge(
+  tbls = list(m1t_leg, m2t_leg)
   ) %>% 
-  tab_style(
-    style = cell_text(weight = "bold"),
-    locations = cells_body(
-      columns = food_group,
-      rows = bold_text
-      )
+  modify_spanning_header(everything() ~ NA_character_) %>% 
+  modify_caption("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+    modify_table_styling(
+    columns = label,
+    rows = label == "Legume category",
+    footnote = "mean daily intake of legumes in grams for each quartile: Q1: 6.3, Q2: 15.7, Q3: 34.3, Q4 109."
+  ) %>% 
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
     ) %>% 
-  tab_style(
-    style = cell_text(style = "italic"),
-    locations = cells_body(
-      columns = food_group,
-      rows = italic_text
-    )
+  as_gt() %>% 
+  tab_spanner(
+    label = "Crude",
+    columns = c(estimate_1, ci_1, p.value_1)
+  ) %>%
+  tab_spanner(
+    label = "Adjusted",
+    columns = c(estimate_2, ci_2, p.value_2)
+  ) %>%
+  tab_footnote(
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
+    locations = cells_column_spanners(spanners = "Crude")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
+    locations = cells_column_spanners(spanners = "Adjusted")
   )
-  
-food_group_table
+table_legume
 ```
 
 ```{r stratified on cancer type}
@@ -1410,72 +1437,4 @@ table_3_ques_comp <-
     locations = cells_column_spanners(spanners = "Adjusted")
   )
 table_3_ques_comp
-```
-
-```{r}
-model1t <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_category + red_meat_daily + proc_meat_daily +
-    animal_foods + hpdi + updi + total_weight_food_daily,
-  data = data
-)
-
-m1t <- model1t %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_category,
-    label = legume_category ~ "Legume category",
-  ) %>% bold_p(t = 0.05)
-
-model2t <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_category + red_meat_daily + proc_meat_daily +
-    animal_foods + hpdi + updi + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data
-)
-
-m2t <- model2t %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_category,
-    label = legume_category ~ "Legume category",
-  ) %>% bold_p(t = 0.05)
-
-table_legume <- tbl_merge(
-  tbls = list(m1t, m2t)
-  ) %>% 
-  modify_spanning_header(everything() ~ NA_character_) %>% 
-  modify_caption("**Supplementary table 6. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
-  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-    modify_table_styling(
-    columns = label,
-    rows = label == "Legume category",
-    footnote = "mean daily intake of legumes in grams for each quartile: Q1: 6.3, Q2: 15.7, Q3: 34.3, Q4 109."
-  ) %>% 
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-    ) %>% 
-  as_gt() %>% 
-  tab_spanner(
-    label = "Crude",
-    columns = c(estimate_1, ci_1, p.value_1)
-  ) %>%
-  tab_spanner(
-    label = "Adjusted",
-    columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
-  tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
-    locations = cells_column_spanners(spanners = "Crude")
-  ) %>%
-  tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
-    locations = cells_column_spanners(spanners = "Adjusted")
-  )
-table_legume
 ```
