@@ -1,12 +1,9 @@
 library(ggconsort)
 library(tidyverse)
 
-targets::tar_config_set(store = here::here("_targets"))
-data_flowchart <- targets::tar_read(data_flowchart)
-
 ready_flowchart <-
   data_flowchart %>%
-  cohort_start("Whole UK Biobank") %>%
+  cohort_start("UK Biobank") %>%
   cohort_define(
     one_ques = .full %>% filter(p20077 >= 1),
     two_ques = one_ques %>% filter(p20077 >= 2),
@@ -23,16 +20,13 @@ ready_flowchart <-
   cohort_label(
     one_ques = "One or more 24-hour recall",
     one_ques_excluded = "No Oxford WebQ",
-    two_ques = "Two or more 24-hour recall",
+    two_ques = "Two or more Oxford WebQs",
     two_ques_excluded = "One Oxford WebQ",
-    liver_excluded = "Liver cancer diagnosis before start of follow-up",
+    liver_excluded = "Liver cancer before baseline",
     l2fu_excluded = "Lost to follow-up before baseline",
     both = "Included in study",
     miss_excluded = "Missing diet data"
   )
-
-study_cohorts
-summary(study_cohorts)
 
 flowchart <- ready_flowchart %>%
   consort_box_add(
@@ -55,14 +49,14 @@ flowchart <- ready_flowchart %>%
     "full", "bottom", "two_ques_box", "top"
   ) %>%
   consort_box_add(
-    "second_exclusion", 10, 20, glue::glue(
+    "second_exclusion", 10, 18, glue::glue(
       '{cohort_count_adorn(ready_flowchart, liver_excluded)}<br>
       {cohort_count_adorn(ready_flowchart, l2fu_excluded)}<br>
       {cohort_count_adorn(ready_flowchart, miss_excluded)}<br>
       ')
   ) %>%
   consort_arrow_add(
-    end = "second_exclusion", end_side = "left", start_x = 0, start_y = 20
+    end = "second_exclusion", end_side = "left", start_x = 0, start_y = 18
   ) %>%
   consort_box_add(
     "included_cohort", 0, 10, cohort_count_adorn(ready_flowchart, both)
@@ -71,10 +65,10 @@ flowchart <- ready_flowchart %>%
     "two_ques_box", "bottom", "included_cohort", "top"
   )
 
-flowchart %>%
+flowchart <- flowchart %>%
   ggplot() +
   geom_consort() +
-  theme_consort(margin_h = 20, margin_v = 1)
+  theme_consort(margin_h = 16.4, margin_v = 1)
   # ggtext::geom_richtext(
   #   aes(x = -40, y = 40, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail")
   # )
