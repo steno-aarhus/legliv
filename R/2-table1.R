@@ -1,4 +1,6 @@
+library(gt)
 library(gtsummary)
+library(tidyverse)
 
 table_1_all <- data %>%
   select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
@@ -17,11 +19,12 @@ table_all <- table_1_all %>%
       education ~ "Educational level",
       tdi ~ "Townsend Deprivation Index",
       spouse ~ "Living alone",
-      exercise ~ "Physically active",
+      exercise ~ "Physical activity",
       smoking ~ "Smoking",
-      alcohol_daily ~ "Alcohol intake (g/day)",
-      wc ~ "Waist circumference"
-    )
+      alcohol_daily ~ "Alcohol intake [g/day]",
+      wc ~ "Waist circumference [cm]"
+    ),
+    digits = tdi ~ 1
   )
 
 table_cancer <- table_1_cancer %>%
@@ -34,24 +37,29 @@ table_cancer <- table_1_cancer %>%
       education ~ "Educational level",
       tdi ~ "Townsend Deprivation Index",
       spouse ~ "Living alone",
-      exercise ~ "Physically active",
+      exercise ~ "Physical activity",
       smoking ~ "Smoking",
-      alcohol_daily ~ "Alcohol intake (g/day)",
-      wc ~ "Waist circumference"
-    )
+      alcohol_daily ~ "Alcohol intake [g/day]",
+      wc ~ "Waist circumference [cm]"
+    ),
+    digits = tdi ~ 1
   )
 
-table_combined <- tbl_merge(
+table_one <- tbl_merge(
   tbls = list(table_all, table_cancer),
   tab_spanner = c("**Cohort**", "**Liver cancer**")
 ) %>%
   bold_labels() %>%
-  modify_caption("**Table 1. Baseline characteristics of the UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
-  modify_header(label ~ "**Variable**")
-table_combined %>% as_gt()
-# table_combined %>%
-#   as_gt() %>% # convert to gt table
-#   gt::gtsave( # save table as image
-#     filename = "table-1.png", path = "~/legliv/doc/Images"
-#   )
-
+  modify_caption("**Table 1. Baseline characteristics of UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
+  modify_header(label ~ "**Variable**") %>%
+  modify_table_styling(
+    columns = label,
+    rows = label == "Typical diet yesterday",
+    footnote = "Participants who reported eating a typical diet yesterday for all completed diet questionnaires."
+  ) %>%
+  modify_table_styling(
+    columns = label,
+    rows = label == "Physical activity",
+    footnote = "Above or below the 2017 UK Physical activity guidelines of 150 minutes of moderate activity per week or 75 minutes of vigorous activity."
+  )
+table_one %>% as_gt()

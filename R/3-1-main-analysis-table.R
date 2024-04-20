@@ -1,6 +1,10 @@
-library(survival)
 library(gt)
 library(gtsummary)
+library(tidyverse)
+library(survival)
+
+set_gtsummary_theme(theme_gtsummary_journal("jama"),
+                    quiet = TRUE)
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
@@ -105,9 +109,13 @@ row3 <- tbl_merge(list(m1p, m2p))
 
 table_main <-
   tbl_stack(list(row1, row2, row3)) %>%
-  modify_caption("**Table 3. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
+  modify_caption("**Table 3. Hazard ratios and 95% confidence intervals for substitution of total meat, red meat and processed meat with legumes.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
+  ) %>%
   as_gt() %>%
   tab_spanner(
     label = "Crude",
@@ -125,4 +133,3 @@ table_main <-
     footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
     locations = cells_column_spanners(spanners = "Adjusted")
   )
-table_main
