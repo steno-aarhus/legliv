@@ -1,7 +1,8 @@
 library(tidyverse)
 library(ggdag)
 
-legliv <- dagitty::dagitty('dag {
+legliv <- dagitty::dagitty(
+'dag {
 bb="-7.026,-4.028,6.224,4.491"
 "Intake of other foods (g)" [pos="-5.742,-1.085"]
 "Legume intake (g)" [pos="-5.691,3.519"]
@@ -53,8 +54,8 @@ Sex -> "Liver cancer"
 Sex -> "Replacing meat with legumes (g)"
 Smoking -> Lifestyle
 tdi -> "Socioeconomic status"
-}
-')
+}'
+)
 
 legliv_tidy <- tidy_dagitty(legliv) %>% dag_adjustment_sets(exposure = "Replacing meat with legumes (g)", outcome = "Liver cancer") %>%
   mutate(colour = case_when(
@@ -67,11 +68,8 @@ legliv_tidy <- tidy_dagitty(legliv) %>% dag_adjustment_sets(exposure = "Replacin
 legliv_tidy |>
   ggdag(text = FALSE) +
   geom_dag_point(aes(colour = colour)) +
-  theme_dag() + theme(legend.position = "none") +
+  theme_dag() +
+  theme(legend.position = "none") +
   geom_dag_label(color="black", size = 2.5) +
   scale_adjusted()
-
-tidy_dagitty(legliv)
-ggdag_adjustment_set(legliv)
-?theme_dag
 
