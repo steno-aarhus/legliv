@@ -21,112 +21,15 @@ data_icc <- targets::tar_read(data_with_icc)
 data_alc <- targets::tar_read(data_with_alc)
 data_misreporter <- targets::tar_read(data_with_misreporter)
 data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
+library(here)
 library(gt)
 library(gtsummary)
 library(tidyverse)
 library(survival)
 library(ggconsort)
-```
-
-```{r, include=FALSE}
-set_gtsummary_theme(theme_gtsummary_journal("jama"),
-                    quiet = TRUE)
-model1t <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data
-)
-
-model2t <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data
-)
-
-model1r <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data
-)
-
-model2r <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data
-)
-
-model1p <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data
-)
-
-model2p <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data
-)
-
-
-m1t <- model1t %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m1r <- model1r %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m1p <- model1p %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-m2t <- model2t %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m2r <- model2r %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m2p <- model2p %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
+source(here("R","2-table1.R"))
+source(here("R","4-diet-table.R"))
+source(here("R","3-1-main-analysis-table"))
 ```
 
 ```{r, include=FALSE}
@@ -387,195 +290,18 @@ the estimates in any statistically significant way (supplementary tables
 # Tables
 
 ```{r baseline table}
-table_1_all <- data %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
-
-table_1_cancer <- data %>%
-  filter(status == "Liver cancer") %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
-
-table_all <- table_1_all %>%
-  tbl_summary(
-    missing_text = "Missing",
-    label = list(
-      typical_diet ~ "Typical diet yesterday",
-      age_at_baseline ~ "Age",
-      sex ~ "Sex",
-      education ~ "Educational level",
-      tdi ~ "Townsend Deprivation Index",
-      spouse ~ "Living alone",
-      exercise ~ "Physical activity",
-      smoking ~ "Smoking",
-      alcohol_daily ~ "Alcohol intake [g/day]",
-      wc ~ "Waist circumference [cm]"
-    ),
-    digits = tdi ~ 1
-  )
-
-table_cancer <- table_1_cancer %>%
-  tbl_summary(
-    missing_text = "Missing",
-    label = list(
-      typical_diet ~ "Typical diet yesterday",
-      age_at_baseline ~ "Age",
-      sex ~ "Sex",
-      education ~ "Educational level",
-      tdi ~ "Townsend Deprivation Index",
-      spouse ~ "Living alone",
-      exercise ~ "Physical activity",
-      smoking ~ "Smoking",
-      alcohol_daily ~ "Alcohol intake [g/day]",
-      wc ~ "Waist circumference [cm]"
-    ),
-    digits = tdi ~ 1
-  )
-
-table_combined <- tbl_merge(
-  tbls = list(table_all, table_cancer),
-  tab_spanner = c("**Cohort**", "**Liver cancer**")
-) %>%
-  bold_labels() %>%
-  modify_caption("**Table 1. Baseline characteristics of UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
-  modify_header(label ~ "**Variable**") %>%
-    modify_table_styling(
-    columns = label,
-    rows = label == "Typical diet yesterday",
-    footnote = "Participants who reported eating a typical diet yesterday for all completed diet questionnaires."
-  ) %>% 
-    modify_table_styling(
-    columns = label,
-    rows = label == "Physical activity",
-    footnote = "Above or below the 2017 UK Physical activity guidelines of 150 minutes of moderate activity per week or 75 minutes of vigorous activity."
-  )
-table_combined %>% as_gt()
+table_one
 ```
 
 \newpage
 
 ```{r diet table}
-diet_all_mean <- data %>%
-  select(
-    total_energy_food_daily, total_weight_food_daily
-  )
-
-diet_all_median <- data %>%
-  select(
-    legume_daily, total_meat_daily,
-    red_meat_daily, proc_meat_daily, animal_foods, hpdi, updi, alc_beverage_daily
-  )
-
-diet_liver_mean <- data %>%
-  filter(status == "Liver cancer") %>%
-  select(
-    total_energy_food_daily, total_weight_food_daily
-  )
-
-diet_liver_median <- data %>%
-  filter(status == "Liver cancer") %>%
-  select(
-    legume_daily, total_meat_daily,
-    red_meat_daily, proc_meat_daily, animal_foods, hpdi, updi, alc_beverage_daily
-  )
-
-diet_all_table_mean <- diet_all_mean %>%
-  tbl_summary(
-    statistic = all_continuous() ~ "{mean} ({sd})",
-    label = list(
-      total_energy_food_daily ~ "Energy [kJ]",
-      total_weight_food_daily ~ "Weight [g]"
-    )
-  )
-
-diet_all_table_median <- diet_all_median %>%
-  tbl_summary(
-    statistic = all_continuous() ~ "{median} ({p25}, {p75})",
-    label = list(
-      legume_daily ~ "Legumes",
-      total_meat_daily ~ "Red and processed meat",
-      red_meat_daily ~ "Red meat",
-      proc_meat_daily ~ "Processed meat",
-      animal_foods ~ "Other animal-based foods",
-      hpdi ~ "Healthy plant-based foods",
-      updi ~ "Unhealthy plant-based foods",
-      alc_beverage_daily ~ "Alcoholic beverages"
-    )
-  )
-
-diet_liver_table_mean <- diet_liver_mean %>%
-  tbl_summary(
-    statistic = all_continuous() ~ "{mean} ({sd})",
-    label = list(
-      total_energy_food_daily ~ "Energy [kJ]",
-      total_weight_food_daily ~ "Weight [g]"
-    )
-  )
-
-diet_liver_table_median <- diet_liver_median %>%
-  tbl_summary(
-    statistic = all_continuous() ~ "{median} ({p25}, {p75})",
-    label = list(
-      legume_daily ~ "Legumes",
-      total_meat_daily ~ "Red and processed meat",
-      red_meat_daily ~ "Red meat",
-      proc_meat_daily ~ "Processed meat",
-      animal_foods ~ "Other animal-based foods",
-      hpdi ~ "Healthy plant-based foods",
-      updi ~ "Unhealthy plant-based foods",
-      alc_beverage_daily ~ "Alcoholic beverages"
-    )
-  )
-
-row1 <- tbl_merge(list(diet_all_table_mean, diet_liver_table_mean), tab_spanner = c("**Cohort**", "**Liver cancer**")) %>%
-  bold_labels() %>%
-  modify_caption("**Table 2. Daily dietary intake.**") %>%
-  modify_footnote(all_stat_cols() ~ "mean (±SD) for total food intake; median (IQR) for food groups")
-row2 <- tbl_merge(list(diet_all_table_median, diet_liver_table_median)) %>%
-  bold_labels()
-
-diet_table <-
-  tbl_stack(list(row1, row2),
-            quiet = TRUE,
-            group_header = c("Total food intake [kJ/day] or [g/day]", "Food groups [g/day]")) %>%
-  modify_header(label ~ "**Daily food intake**") %>% 
-  as_gt() 
 diet_table
 ```
 
 ```{r main results table, echo=FALSE}
 set_gtsummary_theme(theme_gtsummary_journal("jama"),
                     quiet = TRUE)
-
-row1 <- tbl_merge(list(m1t, m2t)) %>%
-  modify_spanning_header(everything() ~ NA_character_)
-row2 <- tbl_merge(list(m1r, m2r))
-row3 <- tbl_merge(list(m1p, m2p))
-
-table_main <-
-  tbl_stack(list(row1, row2, row3)) %>%
-  modify_caption("**Table 3. Hazard ratios and 95% confidence intervals for substitution of total meat, red meat and processed meat with legumes.** (N = {N})") %>%
-  modify_header(label = "**15 g/day substitution**") %>%
-  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-  ) %>% 
-  as_gt() %>%
-  tab_spanner(
-    label = "Crude",
-    columns = c(estimate_1, ci_1, p.value_1)
-  ) %>%
-  tab_spanner(
-    label = "Adjusted",
-    columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
-  tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
-    locations = cells_column_spanners(spanners = "Crude")
-  ) %>%
-  tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
-    locations = cells_column_spanners(spanners = "Adjusted")
-  )
 table_main
 ```
 
