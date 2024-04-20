@@ -18,52 +18,20 @@ data <- targets::tar_read(data_cleaned)
 data_flowchart <- targets::tar_read(data_flowchart)
 data_hcc <- targets::tar_read(data_with_hcc)
 data_icc <- targets::tar_read(data_with_icc)
-data_alc <- targets::tar_read(data_with_alc)
-data_misreporter <- targets::tar_read(data_with_misreporter)
-data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
+# data_alc <- targets::tar_read(data_with_alc)
+# data_misreporter <- targets::tar_read(data_with_misreporter)
+# data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
 library(here)
 library(gt)
 library(gtsummary)
 library(tidyverse)
 library(survival)
 library(ggconsort)
+library(ggdag)
 source(here("R","2-table1.R"))
 source(here("R","4-diet-table.R"))
-source(here("R","3-1-main-analysis-table"))
-```
-
-```{r, include=FALSE}
-model1t_leg <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_category + red_meat_daily + proc_meat_daily +
-    animal_foods + hpdi + updi + total_weight_food_daily,
-  data = data
-)
-
-m1t_leg <- model1t_leg %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_category,
-    label = legume_category ~ "Legume category",
-  ) %>% bold_p(t = 0.05)
-
-model2t_leg <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_category + red_meat_daily + proc_meat_daily +
-    animal_foods + hpdi + updi + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data
-)
-
-m2t_leg <- model2t_leg %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_category,
-    label = legume_category ~ "Legume category",
-  ) %>% bold_p(t = 0.05)
+source(here("R","3-1-main-analysis-table.R"))
+source(here("R","7-table-legume-quintile.R"))
 ```
 
 # Abstract
@@ -308,77 +276,8 @@ table_main
 # Figures
 
 ```{r, fig.cap = "Figure 1. Flowchart of included participants"}
-ready_flowchart <-
-  data_flowchart %>%
-  cohort_start("Whole UK Biobank") %>%
-  cohort_define(
-    one_ques = .full %>% filter(p20077 >= 1),
-    two_ques = one_ques %>% filter(p20077 >= 2),
-    liver = two_ques %>% filter(is.na(cancer_before)),
-    l2fu = two_ques %>% filter(is.na(p191) | p191 >= baseline_start_date),
-    both = two_ques %>% filter(is.na(cancer_before)) %>% filter(is.na(p191) | p191 >= baseline_start_date) %>% filter(!is.na(baseline_start_date)),
-    miss = two_ques %>% filter(!is.na(baseline_start_date)),
-    one_ques_excluded = anti_join(.full, one_ques, by = "id"),
-    two_ques_excluded = anti_join(one_ques, two_ques, by = "id"),
-    liver_excluded = anti_join(two_ques, liver, by = "id"),
-    l2fu_excluded = anti_join(two_ques, l2fu, by = "id"),
-    miss_excluded = anti_join(two_ques, miss, by = "id")
-  ) %>%
-  cohort_label(
-    one_ques = "One or more 24-hour recall",
-    one_ques_excluded = "No Oxford WebQ",
-    two_ques = "Two or more Oxford WebQ",
-    two_ques_excluded = "One Oxford WebQ",
-    liver_excluded = "Liver cancer diagnosis before start of follow-up",
-    l2fu_excluded = "Lost to follow-up before baseline",
-    both = "Included in study",
-    miss_excluded = "Missing diet data"
-  )
-
-flowchart <- ready_flowchart %>%
-  consort_box_add(
-    "full", 0, 50, cohort_count_adorn(ready_flowchart, .full)
-  ) %>%
-  consort_box_add(
-    "first_exclusion", 10, 40, glue::glue(
-      '
-      {cohort_count_adorn(ready_flowchart, one_ques_excluded)}<br>
-      {cohort_count_adorn(ready_flowchart, two_ques_excluded)}<br>
-      ')
-  ) %>%
-  consort_box_add(
-    "two_ques_box", 0, 30, cohort_count_adorn(ready_flowchart, two_ques)
-  ) %>%
-  consort_arrow_add(
-    end = "first_exclusion", end_side = "left", start_x = 0, start_y = 40
-  ) %>%
-  consort_arrow_add(
-    "full", "bottom", "two_ques_box", "top"
-  ) %>%
-  consort_box_add(
-    "second_exclusion", 10, 20, glue::glue(
-      '{cohort_count_adorn(ready_flowchart, liver_excluded)}<br>
-      {cohort_count_adorn(ready_flowchart, l2fu_excluded)}<br>
-      {cohort_count_adorn(ready_flowchart, miss_excluded)}<br>
-      ')
-  ) %>%
-  consort_arrow_add(
-    end = "second_exclusion", end_side = "left", start_x = 0, start_y = 20
-  ) %>%
-  consort_box_add(
-    "included_cohort", 0, 10, cohort_count_adorn(ready_flowchart, both)
-  ) %>%
-  consort_arrow_add(
-    "two_ques_box", "bottom", "included_cohort", "top"
-  )
-
-flowchart %>%
-  ggplot() +
-  geom_consort() +
-  theme_consort(margin_h = 20, margin_v = 1)
-  # ggtext::geom_richtext(
-  #   aes(x = -40, y = 40, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail")
-  # )
+source(here("R", "flowchart.R"))
+flowchart
 ```
 
 # Supplemental Material
@@ -389,6 +288,70 @@ cancer. Red circles indicate ancestors of exposure and outcome with red
 arrows being biasing paths. The NAFLD circle is blue to indicate that it
 is an ancestor of the outcome. The green arrows are causal
 paths.](Images/DAG.png)
+
+```{r}
+legliv <- dagitty::dagitty('dag {
+bb="-7.026,-4.028,6.224,4.491"
+"Intake of other foods (g)" [pos="-5.742,-1.085"]
+"Legume intake (g)" [pos="-5.691,3.519"]
+"Liver cancer" [outcome,pos="5.094,1.535"]
+"Living alone" [pos="0.921,-3.639"]
+"Metabolic syndrome" [pos="-2.327,3.117"]
+"Physical activity" [pos="2.141,-3.406"]
+"Replacing meat with legumes (g)" [exposure,pos="-5.023,1.535"]
+"Socioeconomic status" [pos="0.703,-1.850"]
+"Total food intake" [pos="-6.076,0.147"]
+"Waist circumference" [pos="-4.689,-3.457"]
+"red meat intake (g)" [pos="-6.063,2.287"]
+Adiposity [pos="-4.689,-2.070"]
+Age [pos="-1.479,-1.940"]
+Alcohol [pos="4.606,-3.341"]
+Diabetes [pos="2.924,2.468"]
+Education [pos="-0.709,-3.756"]
+Lifestyle [pos="3.361,-1.979"]
+NAFLD [pos="2.937,3.700"]
+Sex [pos="-3.315,-2.239"]
+Smoking [pos="3.451,-3.354"]
+tdi [pos="-1.967,-3.730"]
+"Intake of other foods (g)" -> "Liver cancer"
+"Intake of other foods (g)" -> "Replacing meat with legumes (g)"
+"Legume intake (g)" -> "Replacing meat with legumes (g)"
+"Living alone" -> "Socioeconomic status"
+"Metabolic syndrome" -> Diabetes
+"Metabolic syndrome" -> NAFLD
+"Physical activity" -> Lifestyle
+"Replacing meat with legumes (g)" -> "Liver cancer"
+"Replacing meat with legumes (g)" -> "Metabolic syndrome"
+"Socioeconomic status" -> "Liver cancer"
+"Socioeconomic status" -> "Replacing meat with legumes (g)"
+"Total food intake" -> "Liver cancer"
+"Total food intake" -> "Replacing meat with legumes (g)"
+"Waist circumference" -> Adiposity
+"red meat intake (g)" -> "Replacing meat with legumes (g)"
+Adiposity -> "Liver cancer"
+Adiposity -> "Replacing meat with legumes (g)"
+Age -> "Liver cancer"
+Age -> "Replacing meat with legumes (g)"
+Alcohol -> Lifestyle
+Diabetes -> "Liver cancer"
+Education -> "Socioeconomic status"
+Lifestyle -> "Liver cancer"
+Lifestyle -> "Replacing meat with legumes (g)"
+NAFLD -> "Liver cancer"
+Sex -> "Liver cancer"
+Sex -> "Replacing meat with legumes (g)"
+Smoking -> Lifestyle
+tdi -> "Socioeconomic status"
+}
+')
+
+legliv |>
+  ggdag(text = FALSE) +
+  geom_dag_node(color="darkgreen") +
+  theme_dag() + theme(legend.position = "none") +
+  geom_dag_label(color="black", size = 2.5) +
+  scale_adjusted()
+```
 
 ```{r food table new}
 id <- data.frame(id = 1:25)
@@ -503,42 +466,6 @@ food_group_table
 ```
 
 \newpage
-
-```{r table legume quartiles}
-table_legume <- tbl_merge(
-  tbls = list(m1t_leg, m2t_leg)
-  ) %>% 
-  modify_spanning_header(everything() ~ NA_character_) %>% 
-  modify_caption("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
-  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-    modify_table_styling(
-    columns = label,
-    rows = label == "Legume category",
-    footnote = "mean daily intake of legumes in grams for each quartile: Q1: 6.3, Q2: 15.7, Q3: 34.3, Q4 109."
-  ) %>% 
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-    ) %>% 
-  as_gt() %>% 
-  tab_spanner(
-    label = "Crude",
-    columns = c(estimate_1, ci_1, p.value_1)
-  ) %>%
-  tab_spanner(
-    label = "Adjusted",
-    columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
-  tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
-    locations = cells_column_spanners(spanners = "Crude")
-  ) %>%
-  tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
-    locations = cells_column_spanners(spanners = "Adjusted")
-  )
-table_legume
-```
 
 ```{r stratified on cancer type}
 model1t_hcc <- coxph(
@@ -771,396 +698,6 @@ table_cancer_type <-
 table_cancer_type
 ```
 
-```{r exclusion of high alcohol consumers}
-model1t_alc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_alc
-)
-
-model2t_alc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_alc
-)
-
-model1r_alc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_alc
-)
-
-model2r_alc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_alc
-)
-
-model1p_alc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_alc
-)
-
-model2p_alc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_alc
-)
-
-
-m1t_alc <- model1t_alc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m1r_alc <- model1r_alc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m1p_alc <- model1p_alc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-m2t_alc <- model2t_alc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m2r_alc <- model2r_alc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m2p_alc <- model2p_alc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-row1 <- tbl_merge(list(m1t_alc, m2t_alc)) %>%
-  modify_spanning_header(everything() ~ NA_character_)
-row2 <- tbl_merge(list(m1r_alc, m2r_alc))
-row3 <- tbl_merge(list(m1p_alc, m2p_alc))
-
-table_alc <-
-  tbl_stack(list(row1, row2, row3)) %>%
-  modify_caption("**Supplementary table 3. Exclusion of high alcohol consumers. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
-  modify_header(label = "**15 g/day substitution**") %>%
-  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-    ) %>% 
-  as_gt() %>%
-  tab_spanner(
-    label = "Crude",
-    columns = c(estimate_1, ci_1, p.value_1)
-  ) %>%
-  tab_spanner(
-    label = "Adjusted",
-    columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
-  tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
-    locations = cells_column_spanners(spanners = "Crude")
-  ) %>%
-  tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
-    locations = cells_column_spanners(spanners = "Adjusted")
-  )
-table_alc
-```
-
-```{r exclusion of energy misreporters}
-model1t_misreporter <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_misreporter
-)
-
-model2t_misreporter <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_misreporter
-)
-
-model1r_misreporter <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_misreporter
-)
-
-model2r_misreporter <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_misreporter
-)
-
-model1p_misreporter <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_misreporter
-)
-
-model2p_misreporter <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_misreporter
-)
-
-m1t_misreporter <- model1t_misreporter %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m1r_misreporter <- model1r_misreporter %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m1p_misreporter <- model1p_misreporter %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-m2t_misreporter <- model2t_misreporter %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m2r_misreporter <- model2r_misreporter %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m2p_misreporter <- model2p_misreporter %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-row1 <- tbl_merge(list(m1t_misreporter, m2t_misreporter)) %>%
-  modify_spanning_header(everything() ~ NA_character_)
-row2 <- tbl_merge(list(m1r_misreporter, m2r_misreporter))
-row3 <- tbl_merge(list(m1p_misreporter, m2p_misreporter))
-
-table_misreporter <-
-  tbl_stack(list(row1, row2, row3)) %>%
-  modify_caption("**Supplementary table 4. Exclusion of food intake misreporters. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
-  modify_header(label = "**15 g/day substitution**") %>%
-  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-    ) %>% 
-  as_gt() %>%
-  tab_spanner(
-    label = "Crude",
-    columns = c(estimate_1, ci_1, p.value_1)
-  ) %>%
-  tab_spanner(
-    label = "Adjusted",
-    columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
-  tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
-    locations = cells_column_spanners(spanners = "Crude")
-  ) %>%
-  tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
-    locations = cells_column_spanners(spanners = "Adjusted")
-  )
-table_misreporter
-```
-
-```{r 3 or more compled diet questionnaires}
-model1t_3_ques_comp <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_3_ques_comp
-)
-
-model2t_3_ques_comp <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_3_ques_comp
-)
-
-model1r_3_ques_comp <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_3_ques_comp
-)
-
-model2r_3_ques_comp <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_3_ques_comp
-)
-
-model1p_3_ques_comp <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_3_ques_comp
-)
-
-model2p_3_ques_comp <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_3_ques_comp
-)
-
-m1t_3_ques_comp <- model1t_3_ques_comp %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m1r_3_ques_comp <- model1r_3_ques_comp %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m1p_3_ques_comp <- model1p_3_ques_comp %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-m2t_3_ques_comp <- model2t_3_ques_comp %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m2r_3_ques_comp <- model2r_3_ques_comp %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m2p_3_ques_comp <- model2p_3_ques_comp %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-row1 <- tbl_merge(list(m1t_3_ques_comp, m2t_3_ques_comp)) %>%
-  modify_spanning_header(everything() ~ NA_character_)
-row2 <- tbl_merge(list(m1r_3_ques_comp, m2r_3_ques_comp))
-row3 <- tbl_merge(list(m1p_3_ques_comp, m2p_3_ques_comp))
-
-table_3_ques_comp <-
-  tbl_stack(list(row1, row2, row3)) %>%
-  modify_caption("**Supplementary table 5. Participant who completed three or more diet questionnaires. Hazard ratios for substitution of legumes for total meat, red meat and processed meat.** (N = {N})") %>%
-  modify_header(label = "**15 g/day substitution**") %>%
-  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-    ) %>% 
-  as_gt() %>%
-  tab_spanner(
-    label = "Crude",
-    columns = c(estimate_1, ci_1, p.value_1)
-  ) %>%
-  tab_spanner(
-    label = "Adjusted",
-    columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
-  tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
-    locations = cells_column_spanners(spanners = "Crude")
-  ) %>%
-  tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
-    locations = cells_column_spanners(spanners = "Adjusted")
-  )
-table_3_ques_comp
+```{r table legume quartiles}
+table_legume
 ```
