@@ -1,7 +1,3 @@
-library(gt)
-library(gtsummary)
-library(tidyverse)
-
 table_1_all <- data %>%
   select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
 

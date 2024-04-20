@@ -1,18 +1,18 @@
-model1t <- coxph(
+model1t_leg <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
     animal_foods + hpdi + updi + total_weight_food_daily,
   data = data
 )
 
-m1t <- model1t %>%
+m1t_leg <- model1t_leg %>%
   tbl_regression(
     exponentiate = T,
     include = legume_category,
     label = legume_category ~ "Legume category",
-  )
+  ) %>% bold_p(t = 0.05)
 
-model2t <- coxph(
+model2t_leg <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
     animal_foods + hpdi + updi + total_weight_food_daily +
@@ -23,7 +23,7 @@ model2t <- coxph(
   data = data
 )
 
-m2t <- model2t %>%
+m2t_leg <- model2t_leg %>%
   tbl_regression(
     exponentiate = T,
     include = legume_category,
@@ -31,11 +31,20 @@ m2t <- model2t %>%
   ) %>% bold_p(t = 0.05)
 
 table_legume <- tbl_merge(
-  tbls = list(m1t, m2t)
-  ) %>%
+  tbls = list(m1t_leg, m2t_leg)
+) %>%
   modify_spanning_header(everything() ~ NA_character_) %>%
-  modify_caption("**Supplementary table 2. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
+  modify_caption("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  modify_table_styling(
+    columns = label,
+    rows = label == "Legume category",
+    footnote = "mean daily intake of legumes in grams for each quartile: Q1: 6.3, Q2: 15.7, Q3: 34.3, Q4 109."
+  ) %>%
+  modify_table_styling(
+    column = c(p.value_1, p.value_2),
+    hide = TRUE
+  ) %>%
   as_gt() %>%
   tab_spanner(
     label = "Crude",
@@ -46,12 +55,10 @@ table_legume <- tbl_merge(
     columns = c(estimate_2, ci_2, p.value_2)
   ) %>%
   tab_footnote(
-    footnote = "Minimally adjusted to fit the substitution model: adjusted for age (as underlying timescale), other food groups and total food intake.",
+    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
     locations = cells_column_spanners(spanners = "Crude")
   ) %>%
   tab_footnote(
     footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
     locations = cells_column_spanners(spanners = "Adjusted")
   )
-table_legume
-
