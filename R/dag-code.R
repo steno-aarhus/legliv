@@ -87,7 +87,7 @@ dag <- legliv_tidy |>
   ) +
   geom_dag_node(aes(colour = colour)) + # se under node_size. "size =" argument får nodes'ene til at se mærkelige ud.
   scale_color_manual(values = c("black", "darkred", "darkgreen", "darkblue", "black")) + # "black" er plot fill-in fordi default farvekoden er defineret ud fra "adjusted" og "unadjusted" i adjusted-kolonnen.
-  theme_dag(base_size = 0) + # Fjerner grim title der ellers ville komme med i plottet. den fjernes ikke helt i selve plots-outputtet, men hvis man gemmer som pdf eller laver render den i r-markdown eller quarto, så forsvinder den.
+  theme_dag(base_size = 0) + # Fjerner grim title der ellers ville komme med i plottet. den fjernes ikke helt i selve plots-outputtet, men hvis man gemmer som pdf eller render den i r-markdown eller quarto, så forsvinder den.
   theme(legend.position = "none") + # f.eks "right" hvis du vil se legend (kan give et overblik ift. farvningen af nodes).
   geom_dag_label(color="black", size = 2) +
   scale_adjusted() # tror ikke det gør nogen forskel om den er her eller ej, i hvert fald ikke for min DAG.
