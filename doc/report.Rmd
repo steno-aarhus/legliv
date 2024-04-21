@@ -32,6 +32,7 @@ source(here("R","2-table1.R"))
 source(here("R","4-diet-table.R"))
 source(here("R","3-1-main-analysis-table.R"))
 source(here("R","7-table-legume-quintile.R"))
+source(here("R","6-table-cancer-type.R"))
 ```
 
 # Abstract
@@ -224,14 +225,22 @@ processed meat:
 In secondary analyses, when analyzing the substitution association for
 HCC and ICC separately, the risk of HCC was positively associated with
 substituting total, red, or processed meat with legumes (Supplementary
-Table 2, total meat: HR: 1.08, 95% CI: 0.99, 1.19; red meat: HR: 1.07,
-95% CI: 0.97, 1.18; processed meat: HR: 1.12, 95% CI: 0.97, 1.30). The
-association between substituting total, red, or processed meat with
+Table 2, total meat:
+`r inline_text(m2t_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+red meat:
+`r inline_text(m2r_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+processed meat:
+`r inline_text(m2p_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+The association between substituting total, red, or processed meat with
 legumes and ICC indicated inverse associations (Supplementary Table 2,
-total meat: HR: 0.97, 95% CI: 0.90, 1.05; red meat: HR: 0.95, 95% CI:
-0.87, 1.03; processed meat: HR: 1.06, 95% CI: 0.92, 1.22). The magnitude
-or direction of associations were not significantly different across
-strata of liver cancer types.
+total meat:
+`r inline_text(m2t_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+red meat:
+`r inline_text(m2r_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+processed meat:
+`r inline_text(m2p_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+The magnitude or direction of associations were not significantly
+different across strata of liver cancer types.
 
 In the adjusted non-substitution analysis, a mean intake of 6.3 grams of
 legumes per day was associated with a reduced risk of liver cancer,
@@ -258,7 +267,7 @@ the estimates in any statistically significant way (supplementary tables
 # Tables
 
 ```{r baseline table}
-table_one
+table_one %>% as_gt()
 ```
 
 \newpage
@@ -268,28 +277,17 @@ diet_table
 ```
 
 ```{r main results table, echo=FALSE}
-set_gtsummary_theme(theme_gtsummary_journal("jama"),
-                    quiet = TRUE)
 table_main
 ```
 
-# Figures
-
-```{r, fig.cap = "Figure 1. Flowchart of included participants"}
+```{r, fig.cap = "Figure 1. Flowchart of included participants."}
 source(here("R", "flowchart.R"))
 flowchart
 ```
 
 # Supplemental Material
 
-![Figure 1. Directed acyclic graph visualizing the relationship between
-the exposure, replacing meat with legumes, and the outcome, liver
-cancer. Red circles indicate ancestors of exposure and outcome with red
-arrows being biasing paths. The NAFLD circle is blue to indicate that it
-is an ancestor of the outcome. The green arrows are causal
-paths.](Images/DAG.png)
-
-```{r}
+```{r dag, fig.cap = "Supplementary figure 1. Directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing meat with legumes on liver cancer. Shadowed arrows represent biasing paths."}
 source(here("R", "dag-code.R"))
 dag
 ```
@@ -409,233 +407,6 @@ food_group_table
 \newpage
 
 ```{r stratified on cancer type}
-model1t_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_hcc
-)
-
-model2t_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_hcc
-)
-
-model1r_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_hcc
-)
-
-model2r_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_hcc
-)
-
-model1p_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_hcc
-)
-
-model2p_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_hcc
-)
-
-m1t_hcc  <- model1t_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m1r_hcc  <- model1r_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m1p_hcc  <- model1p_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-m2t_hcc  <- model2t_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m2r_hcc  <- model2r_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m2p_hcc  <- model2p_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-model1t_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_icc
-)
-
-model2t_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_icc
-)
-
-model1r_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_icc
-)
-
-model2r_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_icc
-)
-
-model1p_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
-  data = data_icc
-)
-
-model2p_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_icc
-)
-
-m1t_icc  <- model1t_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m1r_icc  <- model1r_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m1p_icc  <- model1p_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-m2t_icc  <- model2t_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
-  )
-
-m2r_icc  <- model2r_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
-  )
-
-m2p_icc  <- model2p_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
-  )
-
-row1 <- tbl_merge(list(m1t_hcc, m2t_hcc)) %>%
-  modify_spanning_header(everything() ~ NA_character_)
-row2 <- tbl_merge(list(m1r_hcc, m2r_hcc))
-row3 <- tbl_merge(list(m1p_hcc, m2p_hcc))
-row4 <- tbl_merge(list(m1t_icc, m2t_icc))
-row5 <- tbl_merge(list(m1r_icc, m2r_icc))
-row6 <- tbl_merge(list(m1p_icc, m2p_icc))
-
-table_cancer_type <-
-  tbl_stack(list(row1, row2, row3, row4, row5, row6),
-            group_header = c("Hepatocellular carcinoma", "Hepatocellular carcinoma", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma")) %>%
-  modify_caption("**Supplementary table 2. substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.** (N = {N})") %>%
-  modify_header(label = "**15 g/day substitution**") %>%
-  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-    ) %>% 
-  as_gt() %>%
-  tab_spanner(
-    label = "Crude",
-    columns = c(estimate_1, ci_1, p.value_1)
-    ) %>%
-  tab_spanner(
-    label = "Adjusted",
-    columns = c(estimate_2, ci_2, p.value_2)
-    ) %>%
-  tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
-    locations = cells_column_spanners(spanners = "Crude")
-  ) %>%
-  tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
-    locations = cells_column_spanners(spanners = "Adjusted")
-  )
 table_cancer_type
 ```
 
