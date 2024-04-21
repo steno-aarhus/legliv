@@ -2,7 +2,7 @@ library(tidyverse)
 library(ggdag)
 library(dagitty)
 
-legliv <- dagitty(
+legliv <- dagitty( # Har først lavet grafen i dagitty og så kopieret koden ind her. Her er det relativt let at justere koordinaterne så det står helt skarpt.
   'dag {
 bb="-8,-5,6,5"
 "Intake of other foods (g)" [pos="4.000,0.000"]
@@ -61,29 +61,33 @@ tdi -> "Replacing meat with legumes (g)"
 )
 
 legliv_tidy <- tidy_dagitty(legliv) %>%
-  dag_adjustment_sets(type = "minimal",
-                      effect = "total") %>%
-  mutate(colour = case_when(
+  dag_adjustment_sets(type = "minimal", # Dette er default settings, men de kan ændres, f.eks. hvis jeg skriver "canonical" i stedet for "minimal" vil ancestors til confoundere også blive square nodes.
+                      effect = "total") %>% # Brug "direct" hvis du også har mediatorer og vil justere for disse.
+  mutate(colour = case_when( # Her laver jeg en ny kolonne som jeg bruger til at farve nodes'ene med. Kategorierne er baseret på koordinaterne, men kan i princippet baseres på navn eller retning (brug print som nedenfor at at se kolonnerne).
     x == "1" | x == "-1" ~ "exposure",
     x == "0" & y == "2" ~ "exposure",
     x == "4" | x == "-6" | x == "-3.5" ~ "confounders",
     x == "0" & y == "-4" ~ "liver cancer",
   ))
 
+# legliv_tidy %>% print() # Tjek kolonner
+
 dag <- legliv_tidy |>
-  ggdag_adjustment_set(text = FALSE,
-                       exposure = "Replacing meat with legumes (g)",
-                       outcome = "Liver cancer",
-                       shadow = TRUE,
-                       stylized = TRUE,
-                       type = "minimal",
-                       effect = "total",
-                       node_size = 12,
-                       expand_x = expansion(c(0.1, 0.1)),
-                       expand_y = expansion(c(0.1, 0.1))) +
-  geom_dag_node(aes(colour = colour)) +
-  scale_color_manual(values = c("black", "darkred", "darkgreen", "darkblue", "black")) +
-  theme_dag(base_size = 0) +
-  theme(legend.position = "none") +
+  ggdag_adjustment_set( # ggdag_adjustment_set og dag_adjustment_sets gør egentlig det samme, så det meste her er egentlig dobbeltkonfekt. Jeg bruger begge, fordi jeg kan definere grupper til farvekodning med dag_adjustment_sets og manipulere udseendet af plottet med ggdag_adjustment_set.
+    text = FALSE, # vigtigt, da grafen ellers bliver grim
+    exposure = "Replacing meat with legumes (g)",
+    outcome = "Liver cancer", # Egentlig irrelevant, da tidy_dagitty() selv definerer exposure og outcome.
+    shadow = TRUE, # For at vise pile for biasing paths
+    stylized = TRUE, # Formentlig irrelevant
+    type = "minimal",
+    effect = "total",
+    node_size = 12, # bliver overruled a geom_dag_node() nedenunder, så man kan ikke både ændre størrelsen på nodes og selv definere farverne...
+    expand_x = expansion(c(0.1, 0.1)),
+    expand_y = expansion(c(0.1, 0.1)) # Udnytter hele griddet
+  ) +
+  geom_dag_node(aes(colour = colour)) + # se under node_size. "size =" argument får nodes'ene til at se mærkelige ud.
+  scale_color_manual(values = c("black", "darkred", "darkgreen", "darkblue", "black")) + # "black" er plot fill-in fordi default farvekoden er defineret ud fra "adjusted" og "unadjusted" i adjusted-kolonnen.
+  theme_dag(base_size = 0) + # Fjerner grim title der ellers ville komme med i plottet. den fjernes ikke helt i selve plots-outputtet, men hvis man gemmer som pdf eller laver render den i r-markdown eller quarto, så forsvinder den.
+  theme(legend.position = "none") + # f.eks "right" hvis du vil se legend (kan give et overblik ift. farvningen af nodes).
   geom_dag_label(color="black", size = 2) +
-  scale_adjusted()
+  scale_adjusted() # tror ikke det gør nogen forskel om den er her eller ej, i hvert fald ikke for min DAG.
