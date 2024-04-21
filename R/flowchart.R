@@ -11,6 +11,10 @@ ready_flowchart <-
     l2fu = two_ques %>% filter(is.na(p191) | p191 >= baseline_start_date),
     both = two_ques %>% filter(is.na(cancer_before)) %>% filter(is.na(p191) | p191 >= baseline_start_date) %>% filter(!is.na(baseline_start_date)),
     miss = two_ques %>% filter(!is.na(baseline_start_date)),
+    two = two_ques %>% filter(p20077 == 2),
+    three = two_ques %>% filter(p20077 == 3),
+    four = two_ques %>% filter(p20077 == 4),
+    five = two_ques %>% filter(p20077 == 5),
     one_ques_excluded = anti_join(.full, one_ques, by = "id"),
     two_ques_excluded = anti_join(one_ques, two_ques, by = "id"),
     liver_excluded = anti_join(two_ques, liver, by = "id"),
@@ -25,7 +29,11 @@ ready_flowchart <-
     liver_excluded = "Liver cancer before baseline",
     l2fu_excluded = "Lost to follow-up before baseline",
     both = "Included in study",
-    miss_excluded = "Missing diet data"
+    miss_excluded = "Missing diet data",
+    two = "2 Oxford WebQs",
+    three = "3 Oxford WebQs",
+    four = "4 Oxford WebQs",
+    five = "5 Oxford WebQs"
   )
 
 flowchart <- ready_flowchart %>%
@@ -33,36 +41,48 @@ flowchart <- ready_flowchart %>%
     "full", 0, 50, cohort_count_adorn(ready_flowchart, .full)
   ) %>%
   consort_box_add(
-    "first_exclusion", 10, 40, glue::glue(
+    "first_inclusion", 0, 35, glue::glue(
       '
-      {cohort_count_adorn(ready_flowchart, one_ques_excluded)}<br>
-      {cohort_count_adorn(ready_flowchart, two_ques_excluded)}<br>
-      ')
+      {cohort_count_adorn(ready_flowchart, two_ques)}<br>
+      <br>
+      {cohort_count_adorn(ready_flowchart, two)}<br>
+      {cohort_count_adorn(ready_flowchart, three)}<br>
+      {cohort_count_adorn(ready_flowchart, four)}<br>
+      {cohort_count_adorn(ready_flowchart, five)}
+      '
+    )
   ) %>%
   consort_box_add(
-    "two_ques_box", 0, 30, cohort_count_adorn(ready_flowchart, two_ques)
+    "second_inclusion", 0, 10, cohort_count_adorn(ready_flowchart, both)
   ) %>%
-  consort_arrow_add(
-    end = "first_exclusion", end_side = "left", start_x = 0, start_y = 40
-  ) %>%
-  consort_arrow_add(
-    "full", "bottom", "two_ques_box", "top"
+  consort_box_add(
+    "first_exclusion", 10, 42.5, glue::glue(
+      '
+      {cohort_count_adorn(ready_flowchart, one_ques_excluded)}<br>
+      {cohort_count_adorn(ready_flowchart, two_ques_excluded)}
+      '
+      )
   ) %>%
   consort_box_add(
     "second_exclusion", 10, 18, glue::glue(
-      '{cohort_count_adorn(ready_flowchart, liver_excluded)}<br>
+      '
+      {cohort_count_adorn(ready_flowchart, liver_excluded)}<br>
       {cohort_count_adorn(ready_flowchart, l2fu_excluded)}<br>
-      {cohort_count_adorn(ready_flowchart, miss_excluded)}<br>
-      ')
+      {cohort_count_adorn(ready_flowchart, miss_excluded)}
+      '
+      )
+  ) %>%
+  consort_arrow_add(
+    "full", "bottom", "first_inclusion", "top"
+  ) %>%
+  consort_arrow_add(
+    "first_inclusion", "bottom", "second_inclusion", "top"
+  ) %>%
+  consort_arrow_add(
+    end = "first_exclusion", end_side = "left", start_x = 0, start_y = 42.5
   ) %>%
   consort_arrow_add(
     end = "second_exclusion", end_side = "left", start_x = 0, start_y = 18
-  ) %>%
-  consort_box_add(
-    "included_cohort", 0, 10, cohort_count_adorn(ready_flowchart, both)
-  ) %>%
-  consort_arrow_add(
-    "two_ques_box", "bottom", "included_cohort", "top"
   )
 
 flowchart <- flowchart %>%
@@ -72,3 +92,4 @@ flowchart <- flowchart %>%
   # ggtext::geom_richtext(
   #   aes(x = -40, y = 40, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail")
   # )
+flowchart

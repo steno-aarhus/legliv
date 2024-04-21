@@ -34,7 +34,7 @@ table_legume <- tbl_merge(
   tbls = list(m1t_leg, m2t_leg)
 ) %>%
   modify_spanning_header(everything() ~ NA_character_) %>%
-  modify_caption("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake** (N = {N})") %>%
+  modify_caption("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95% confidence intervals for primary liver cancer.** (N = {N})") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   modify_table_styling(
     columns = label,
@@ -47,18 +47,18 @@ table_legume <- tbl_merge(
   ) %>%
   as_gt() %>%
   tab_spanner(
-    label = "Crude",
+    label = "Model 1",
     columns = c(estimate_1, ci_1, p.value_1)
   ) %>%
   tab_spanner(
-    label = "Adjusted",
+    label = "Model 2",
     columns = c(estimate_2, ci_2, p.value_2)
   ) %>%
   tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups and total food intake to fit the substitution model.",
-    locations = cells_column_spanners(spanners = "Crude")
+    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    locations = cells_column_spanners(spanners = "Model 1")
   ) %>%
   tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend Deprivation Index, living alone, physical activity, smoking, alcohol intake and waist circumference.",
-    locations = cells_column_spanners(spanners = "Adjusted")
+    footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
+    locations = cells_column_spanners(spanners = "Model 2")
   )
