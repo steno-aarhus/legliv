@@ -164,10 +164,64 @@ m2p_3_ques_comp <- model2p_3_ques_comp %>%
     label = legume_daily_15 ~ "Legumes for processed meat",
   )
 
-row1 <- tbl_merge(list(m2t_alc, m2t_misreporter, m2t_3_ques_comp)) %>%
+model2t_liver_disease <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_liver_disease
+)
+
+model2r_liver_disease <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_liver_disease
+)
+
+model2p_liver_disease <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_liver_disease
+)
+
+m2t_liver_disease <- model2t_liver_disease %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m2r_liver_disease <- model2r_liver_disease %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m2p_liver_disease <- model2p_liver_disease %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+row1 <- tbl_merge(list(m2t_alc, m2t_misreporter, m2t_3_ques_comp, m2t_liver_disease)) %>%
   modify_spanning_header(everything() ~ NA_character_)
-row2 <- tbl_merge(list(m2r_alc, m2r_misreporter, m2r_3_ques_comp))
-row3 <- tbl_merge(list(m2p_alc, m2p_misreporter, m2p_3_ques_comp))
+row2 <- tbl_merge(list(m2r_alc, m2r_misreporter, m2r_3_ques_comp, m2r_liver_disease))
+row3 <- tbl_merge(list(m2p_alc, m2p_misreporter, m2p_3_ques_comp, m2p_liver_disease))
 
 table_sens <-
   tbl_stack(list(row1, row2, row3)) %>%
@@ -190,5 +244,9 @@ table_sens <-
   tab_spanner(
     label = "< 3 Oxfords WebQs",
     columns = c(estimate_3, ci_3, p.value_3)
+  ) |>
+  tab_spanner(
+    label = "Liver diseases",
+    columns = c(estimate_4, ci_4, p.value_4)
   )
 table_sens
