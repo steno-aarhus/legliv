@@ -48,7 +48,7 @@ baseline_date <- function(data) { # Defining baseline date
   return(data)
 }
 
-cancer_longer <- function(data) {
+split_column <- function(data) {
   # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD10 codes)
   data <- data %>%
     separate_wider_delim(p41270,
@@ -104,66 +104,45 @@ cancer_longer_subset <- function(data) {
 
 icd10_hcc <- function(data) {
   data %>%
-    # TODO: I don't this does what you think it's doing. Need to assess in RAP
-    mutate(
-      icd10_hcc_date = ifelse(str_detect(p41270var, "C22.0"),
-        as.character(c_across(starts_with("p41280"))),
-        NA
-      ),
-      icd10_hcc_date = as.Date(icd10_hcc_date, format = "%Y-%m-%d")
-    ) |>
-    filter(!is.na(icd10_hcc_date)) %>%
+    filter(str_detect(p41270var, "C22.0")) %>%
     group_by(id) %>%
-    slice(1) %>%
-    ungroup() |>
+    arrange(p41280, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(icd10_hcc_date = p41280) %>%
     select(id, icd10_hcc_date)
 }
 
 icd10_icc <- function(data) {
   data %>%
-    mutate(
-      icd10_icc_date = ifelse(str_detect(p41270var, "C22.1"),
-        as.character(c_across(starts_with("p41280"))),
-        NA
-      ),
-      icd10_icc_date = as.Date(icd10_icc_date, format = "%Y-%m-%d")
-    ) |>
-    filter(!is.na(icd10_icc_date)) %>%
+    filter(str_detect(p41270var, "C22.1")) %>%
     group_by(id) %>%
-    slice(1) %>%
-    ungroup() |>
+    arrange(p41280, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(icd10_icc_date = p41280) %>%
     select(id, icd10_icc_date)
 }
 
 cancer_hcc <- function(data) {
   data %>%
-    mutate(
-      cancer_hcc_date = ifelse(str_detect(p40006, "C22.0"),
-        as.character(c_across(starts_with("p40005"))),
-        NA
-      ),
-      cancer_hcc_date = as.Date(cancer_hcc_date, format = "%Y-%m-%d")
-    ) |>
-    filter(!is.na(cancer_hcc_date)) %>%
+    filter(str_detect(p40006, "C22.0")) %>%
     group_by(id) %>%
-    slice(1) %>%
-    ungroup() |>
+    arrange(p40005, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(cancer_hcc_date = p40005) %>%
     select(id, cancer_hcc_date)
 }
 
 cancer_icc <- function(data) {
   data %>%
-    mutate(
-      cancer_icc_date = ifelse(str_detect(p40006, "C22.1"),
-        as.character(c_across(starts_with("p40005"))),
-        NA
-      ),
-      cancer_icc_date = as.Date(cancer_icc_date, format = "%Y-%m-%d")
-    ) |>
-    filter(!is.na(cancer_icc_date)) %>%
+    filter(str_detect(p40006, "C22.1")) %>%
     group_by(id) %>%
-    slice(1) %>%
-    ungroup() |>
+    arrange(p40005, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(cancer_icc_date = p40005) %>%
     select(id, cancer_icc_date)
 }
 
@@ -171,10 +150,14 @@ define_liver_cancer_before <- function(data) {
   data <- data %>%
     mutate(
       cancer_before = if_else(
-        cancer_hcc_date <= baseline_start_date |
-          cancer_icc_date <= baseline_start_date |
-          icd10_hcc_date <= baseline_start_date |
-          icd10_icc_date <= baseline_start_date, "Yes", "No"
+        cancer_hcc_date >= baseline_start_date |
+          is.na(cancer_hcc_date) |
+          cancer_icc_date >= baseline_start_date |
+          is.na(cancer_icc_date) |
+          icd10_hcc_date >= baseline_start_date |
+          is.na(icd10_hcc_date) |
+          icd10_icc_date >= baseline_start_date |
+          is.na(icd10_icc_date), "No", "Yes"
       )
     )
   return(data)
@@ -182,7 +165,7 @@ define_liver_cancer_before <- function(data) {
 
 remove_liver_before <- function(data) {
   data <- data %>%
-    filter(is.na(cancer_before))
+    filter(cancer_before == "No")
   return(data)
 }
 
@@ -553,4 +536,21 @@ reduce_baseline_data <- function(data) {
   data <- data %>%
     select(id, p20077, cancer_before, baseline_start_date)
   return(data)
+}
+
+icd10_liver_disease <- function(data) {
+  data %>%
+    filter(str_detect(p41270var, "K7")) %>%
+    group_by(id) %>%
+    arrange(p41280, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(liver_disease_date = p41280) %>%
+    select(id, liver_disease_date)
+}
+
+remove_liver_disease_before <- function(data) {
+  data %>%
+    mutate(liver_disease = if_else(liver_disease_date >= baseline_start_date | is.na(liver_disease_date), "No", "Yes")) %>%
+    filter(liver_disease == "No")
 }

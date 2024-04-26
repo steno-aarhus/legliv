@@ -52,21 +52,21 @@ list(
       baseline_date()
   ),
   tar_target(
-    name = data_with_cancer_longer,
+    name = data_with_split_column,
     command = readied_data |>
-      cancer_longer()
+      split_column()
   ),
   tar_target(
     name = icd10_subset,
-    command = icd10_longer_subset(data_with_cancer_longer)
+    command = icd10_longer_subset(data_with_split_column)
   ),
   tar_target(
     name = cancer_subset,
-    command = cancer_longer_subset(data_with_cancer_longer)
+    command = cancer_longer_subset(data_with_split_column)
   ),
   tar_target(
-    name = data_with_icd10_cancer,
-    command = data_with_cancer_longer |>
+    name = data_with_liver_cancer,
+    command = data_with_split_column |>
       # TODO: All these left_joins aren't necessary, but I will look at that later.
       left_join(icd10_hcc(icd10_subset), by = "id") |>
       left_join(icd10_icc(icd10_subset), by = "id") |>
@@ -75,7 +75,7 @@ list(
   ),
   tar_target(
     name = data_liver_cancer_before_defined,
-    command = data_with_icd10_cancer |>
+    command = data_with_liver_cancer |>
       define_liver_cancer_before()
   ),
   tar_target(
@@ -169,5 +169,15 @@ list(
     name = data_flowchart,
     command = data_full_reduced %>%
       left_join(data_baseline_reduced)
+  ),
+  tar_target(
+    name = data_liver_disease,
+    command = data_cleaned %>%
+      left_join(icd10_liver_disease(icd10_subset), by = "id")
+  ),
+  tar_target(
+    name = data_without_liver_disease,
+    command = data_liver_disease %>%
+      remove_liver_disease_before()
   )
 )
