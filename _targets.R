@@ -68,8 +68,10 @@ list(
     name = data_with_liver_cancer,
     command = data_with_split_column |>
       # TODO: All these left_joins aren't necessary, but I will look at that later.
+      left_join(liver_cancer_main_icd10(icd10_subset), by = "id") |>
       left_join(icd10_hcc(icd10_subset), by = "id") |>
       left_join(icd10_icc(icd10_subset), by = "id") |>
+      left_join(liver_cancer_main_cancer(cancer_subset), by = "id") |>
       left_join(cancer_hcc(cancer_subset), by = "id") |>
       left_join(cancer_icc(cancer_subset), by = "id")
   ),

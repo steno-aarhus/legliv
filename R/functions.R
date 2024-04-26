@@ -102,6 +102,28 @@ cancer_longer_subset <- function(data) {
     )
 }
 
+liver_cancer_main_icd10 <- function(data){
+  data %>%
+    filter(str_detect(p41270var, "C22.0|C22.1")) %>%
+    group_by(id) %>%
+    arrange(p41280, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(icd10_liver_cancer = p41280) %>%
+    select(id, icd10_liver_cancer)
+}
+
+liver_cancer_main_cancer <- function(data){
+  data %>%
+    filter(str_detect(p40006, "C22.0|C22.1")) %>%
+    group_by(id) %>%
+    arrange(p40005, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(cancer_liver_cancer = p40005) %>%
+    select(id, cancer_liver_cancer)
+}
+
 icd10_hcc <- function(data) {
   data %>%
     filter(str_detect(p41270var, "C22.0")) %>%
@@ -147,15 +169,23 @@ cancer_icc <- function(data) {
 }
 
 define_liver_cancer_before <- function(data) {
-  data <- data %>%
+  data %>%
     mutate(
       cancer_before = if_else(
+        icd10_liver_cancer >= baseline_start_date |
+          is.na(icd10_liver_cancer) |
+          cancer_liver_cancer >= baseline_start_date |
+          is.na(cancer_liver_cancer), "No", "Yes"
+      ),
+      hcc_before = if_else(
         cancer_hcc_date >= baseline_start_date |
           is.na(cancer_hcc_date) |
-          cancer_icc_date >= baseline_start_date |
-          is.na(cancer_icc_date) |
           icd10_hcc_date >= baseline_start_date |
-          is.na(icd10_hcc_date) |
+          is.na(icd10_hcc_date), "No", "Yes"
+      ),
+      icc_before = if_else(
+        cancer_icc_date >= baseline_start_date |
+          is.na(cancer_icc_date) |
           icd10_icc_date >= baseline_start_date |
           is.na(icd10_icc_date), "No", "Yes"
       )
@@ -438,13 +468,11 @@ end_of_follow_up <- function(data) {
   # Creating status, status date and status age:
   data <- data %>%
     mutate(
-      earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
+      earliest_date = pmin(dead_date, cancer_liver_cancer, icd10_liver_cancer, l2fu_d, na.rm = TRUE) %>%
         coalesce(as.Date("2022-12-31")),
       status = case_when(
-        earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == cancer_liver_cancer & earliest_date > baseline_start_date ~ "Liver cancer",
+        earliest_date == icd10_liver_cancer & earliest_date > baseline_start_date ~ "Liver cancer",
         earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
         earliest_date == dead_date ~ "Censored",
         TRUE ~ "Censored"
