@@ -38,21 +38,21 @@ m2t_alc <- model2t_alc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "high alcohol consumption",
   )
 
 m2r_alc <- model2r_alc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "high alcohol consumption",
   )
 
 m2p_alc <- model2p_alc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "high alcohol consumption",
   )
 
 model2t_misreporter <- coxph(
@@ -92,21 +92,21 @@ m2t_misreporter <- model2t_misreporter %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "Food intak outlier",
   )
 
 m2r_misreporter <- model2r_misreporter %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "Food intak outlier",
   )
 
 m2p_misreporter <- model2p_misreporter %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "Food intak outlier",
   )
 
 
@@ -147,21 +147,21 @@ m2t_3_ques_comp <- model2t_3_ques_comp %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "< 3 Oxford WebQs",
   )
 
 m2r_3_ques_comp <- model2r_3_ques_comp %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "< 3 Oxford WebQs",
   )
 
 m2p_3_ques_comp <- model2p_3_ques_comp %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "< 3 Oxford WebQs",
   )
 
 model2t_liver_disease <- coxph(
@@ -201,31 +201,32 @@ m2t_liver_disease <- model2t_liver_disease %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "Liver diseases",
   )
 
 m2r_liver_disease <- model2r_liver_disease %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "Liver diseases",
   )
 
 m2p_liver_disease <- model2p_liver_disease %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "Liver diseases",
   )
 
-row1 <- tbl_merge(list(m2t_alc, m2t_misreporter, m2t_3_ques_comp, m2t_liver_disease)) %>%
+row1 <- tbl_merge(list(m2t_alc, m2r_alc, m2p_alc)) %>%
   modify_spanning_header(everything() ~ NA_character_)
-row2 <- tbl_merge(list(m2r_alc, m2r_misreporter, m2r_3_ques_comp, m2r_liver_disease))
-row3 <- tbl_merge(list(m2p_alc, m2p_misreporter, m2p_3_ques_comp, m2p_liver_disease))
+row2 <- tbl_merge(list(m2t_misreporter, m2r_misreporter, m2p_misreporter))
+row3 <- tbl_merge(list(m2t_3_ques_comp, m2r_3_ques_comp, m2p_3_ques_comp))
+row4 <- tbl_merge(list(m2t_liver_disease, m2r_liver_disease, m2p_liver_disease))
 
 table_sens <-
-  tbl_stack(list(row1, row2, row3)) %>%
-  modify_caption("**Supplementary table 3. Exclusion of participants** (N = {N})") %>%
+  tbl_stack(list(row1, row2, row3, row4)) %>%
+  modify_caption("**Supplementary table 3. Exclusion of participants**") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   modify_table_styling(
@@ -234,19 +235,15 @@ table_sens <-
   ) %>%
   as_gt() %>%
   tab_spanner(
-    label = "High alchol consumption",
+    label = "Legumes for total meat",
     columns = c(estimate_1, ci_1, p.value_1)
   ) %>%
   tab_spanner(
-    label = "Food intake outliers",
+    label = "Legumes for red meat",
     columns = c(estimate_2, ci_2, p.value_2)
   ) %>%
   tab_spanner(
-    label = "< 3 Oxfords WebQs",
+    label = "Legumes for processed meat",
     columns = c(estimate_3, ci_3, p.value_3)
-  ) |>
-  tab_spanner(
-    label = "Liver diseases",
-    columns = c(estimate_4, ci_4, p.value_4)
   )
 table_sens
