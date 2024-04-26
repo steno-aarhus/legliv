@@ -540,7 +540,7 @@ reduce_baseline_data <- function(data) {
 
 icd10_liver_disease <- function(data) {
   data %>%
-    filter(str_detect(p41270var, "K7")) %>%
+    filter(str_detect(p41270var, "K7|B18")) %>%
     group_by(id) %>%
     arrange(p41280, .by_group = TRUE) %>%
     slice_head() %>%
