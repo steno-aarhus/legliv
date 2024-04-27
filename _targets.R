@@ -91,7 +91,7 @@ list(
     name = data_with_diet,
     command = data_with_covariates |>
       calculate_food_intake() |>
-      food_inta_extra() |>
+      food_intake_extra() |>
       legume_strat()
   ),
   tar_target(
