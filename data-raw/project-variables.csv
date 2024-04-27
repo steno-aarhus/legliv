@@ -151,4 +151,7 @@ p41281,Date of first in-patient diagnosis - ICD9,20390,https://biobank.ndph.ox.a
 p41282,Date of first operative procedure - OPCS4,446544,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=41282
 p41283,Date of first operative procedure - OPCS3,10699,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=41283
 p100020,Typical diet yesterday,210945,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=100020
+p104900,Time spent doing vigorous physical activity,210945,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=104900
+p104910,Time spent doing moderate physical activity,210945,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=104910
+p104920,Time spent doing light physical activity,210945,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=104920
 p105010,When diet questionnaire completed,210948,https://biobank.ndph.ox.ac.uk/ukb/field.cgi?id=105010
