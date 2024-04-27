@@ -456,10 +456,10 @@ baseline_age <- function(data) {
 
 follow_up <- function(data) {
   # Creating age at loss to follow-up:
-  data <- data %>%
+  data %>%
     mutate(age_l2fu = as.numeric(difftime(l2fu_d, date_birth, units = "days")) / 365.25)
   # Removing participants who were lost to follow-up before baseline:
-  data <- data %>%
+  data %>%
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date)
   return(data)
 }
