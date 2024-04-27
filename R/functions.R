@@ -27,24 +27,24 @@ remove_timestamp <- function(data) { # Removing specific time stamp from date of
     return(data)
 }
 
-baseline_date <- function(data) { # Defining baseline date
-  baseline_start_date <- data %>%
-    select(starts_with("p105010_i"), id) %>%
-    pivot_longer(
-      cols = starts_with("p105010_i"),
-      names_to = "questionnaire",
-      values_to = "completion_date"
-    ) %>%
-    filter(!is.na(completion_date)) %>%
-    group_by(id) %>%
-    arrange(completion_date) %>%
-    mutate(last_questionnaire_date = lag(completion_date)) %>%
-    filter(!is.na(last_questionnaire_date)) %>%
-    filter(is.na(lead(completion_date))) %>%
-    rename(baseline_start_date = completion_date) %>%
-    ungroup()
-  data <- data %>%
-    left_join(baseline_start_date %>% select(id, baseline_start_date), by = "id")
+baseline_date <- function(data) {
+baseline_start_date <- data %>%
+  select(p20077, starts_with("p105010_i"), id) %>%
+  pivot_longer(
+    cols = starts_with("p105010_i"),
+    names_to = "instance",
+    values_to = "completion_date"
+  ) %>%
+  filter(!is.na(completion_date)) %>%
+  filter(id != 287216) %>% # error in data, p20077 > 2 but only 1 completion date
+  group_by(id) %>%
+  arrange(completion_date, .by_group = TRUE) %>%
+  slice_tail() %>%
+  rename(baseline_start_date = completion_date) %>%
+  ungroup() %>%
+  select(id, baseline_start_date)
+data <- data %>%
+    left_join(baseline_start_date, by = "id")
   return(data)
 }
 
@@ -169,7 +169,7 @@ cancer_icc <- function(data) {
 }
 
 define_liver_cancer_before <- function(data) {
-  data %>%
+  data <- data %>%
     mutate(
       cancer_before = if_else(
         icd10_liver_cancer >= baseline_start_date |
