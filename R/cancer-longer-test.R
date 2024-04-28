@@ -36,16 +36,20 @@ data <- data %>%
 
 
 
-data2 <- data %>%
-  select(id, baseline_start_date, liver_cancer_date, p40000_i0, p191) %>%
-  mutate(cens_date = if_else(is.na(liver_cancer_date) & is.na(p40000_i0) & is.na(p191), as.Date("2022-12-31"), NA)) %>%
+data %>%
+  select(id, liver_cancer_date, dead_date, l2fu_d) %>%
   pivot_longer(
-    cols = matches("liver_cancer_date|p40000_i0|p191|cens_date"),
+    cols = matches("liver_cancer_date|dead_date|l2fu_d|cens_date"),
     names_to = "status",
-    values_to = "date"
+    values_to = "status_date"
   ) %>%
-  filter(date > baseline_start_date) %>%
   group_by(id) %>%
   arrange(date, .by_group = TRUE) %>%
-  slice_head() %>%
-  filter(date > baseline_start_date)
+  slice_head() |>
+  mutate(status = case_when(
+    status == "liver_cancer_date" ~ "Liver cancer",
+    status == "dead_date" ~ "Censored",
+    status == "l2fu_d" ~ "Censored",
+    status == "cens_date" ~ "Censored"
+  )) |>
+  select(id, status, status_date)

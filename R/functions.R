@@ -1,203 +1,10 @@
-# Prepare data ------------------------------------------------------------
-
 data_id <- function(data) {
   data <- data %>%
     dplyr::mutate(id = dplyr::row_number())
   return(data)
 }
 
-two_ques_only <- function(data) {
-  # Removing participants who did not complete 2 or more diet questionnaires
-  data <- data %>%
-    filter(p20077 >= 2)
-  return(data)
-}
-
-remove_timestamp <- function(data) { # Removing specific time stamp from date of completed questionnaires:
-    data %>%
-      mutate(across(
-        c(
-          p105010_i0,
-          p105010_i1,
-          p105010_i2,
-          p105010_i3,
-          p105010_i4
-        ), ~ substr(.x, 1, 10)
-      ))
-    return(data)
-}
-
-baseline_date <- function(data) {
-baseline_start_date <- data %>%
-  select(p20077, starts_with("p105010_i"), id) %>%
-  pivot_longer(
-    cols = starts_with("p105010_i"),
-    names_to = "instance",
-    values_to = "completion_date"
-  ) %>%
-  filter(!is.na(completion_date)) %>%
-  filter(id != 287216) %>% # error in data, p20077 > 2 but only 1 completion date
-  group_by(id) %>%
-  arrange(completion_date, .by_group = TRUE) %>%
-  slice_tail() %>%
-  rename(baseline_start_date = completion_date) %>%
-  ungroup() %>%
-  select(id, baseline_start_date)
-data <- data %>%
-    left_join(baseline_start_date, by = "id")
-  return(data)
-}
-
-split_column <- function(data) {
-  # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD10 codes)
-  data <- data %>%
-    separate_wider_delim(p41270,
-      delim = "|",
-      names = paste0("p41270var_a", 0:258), too_few = "debug"
-    )
-  data <- data %>%
-    select(starts_with("p41270"), starts_with("p41280")) %>%
-    select_if(~ !all(is.na(.))) %>%
-    bind_cols(data %>% select(-starts_with("p41270"), -starts_with("p41280")))
-  # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD9 codes)
-  data <- data %>%
-    separate_wider_delim(p41271,
-      delim = "|",
-      names = paste0("p41271var_a", 0:46), too_few = "debug"
-    )
-  # Split the diagnosis-variable into separate columns based on delimiter "|" (OPCS4 codes)
-  data <- data %>%
-    separate_wider_delim(p41272,
-      delim = "|",
-      names = paste0("p41272var_a", 0:125), too_few = "debug"
-    )
-  # Split the diagnosis-variable into separate columns based on delimiter "|" (OPCS3 codes)
-  data <- data %>%
-    separate_wider_delim(p41273,
-      delim = "|",
-      names = paste0("p41273var_a", 0:15), too_few = "debug"
-    )
-  return(data)
-}
-
-# Find liver cancer cases -------------------------------------------------
-
-icd10_longer_subset <- function(data) {
-  data %>%
-    select(matches("p41270|p41280|id")) %>%
-    pivot_longer(
-      cols = matches("_a[0-9]*$"),
-      names_to = c(".value", "a"),
-      names_sep = "_"
-    )
-}
-
-cancer_longer_subset <- function(data) {
-  data %>%
-    select(matches("p40006|p40005|id")) %>%
-    pivot_longer(
-      cols = matches("_i[0-9]*$"),
-      names_to = c(".value", "a"),
-      names_sep = "_"
-    )
-}
-
-liver_cancer_main_icd10 <- function(data){
-  data %>%
-    filter(str_detect(p41270var, "C22.0|C22.1")) %>%
-    group_by(id) %>%
-    arrange(p41280, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    mutate(icd10_liver_cancer = p41280) %>%
-    select(id, icd10_liver_cancer)
-}
-
-liver_cancer_main_cancer <- function(data){
-  data %>%
-    filter(str_detect(p40006, "C22.0|C22.1")) %>%
-    group_by(id) %>%
-    arrange(p40005, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    mutate(cancer_liver_cancer = p40005) %>%
-    select(id, cancer_liver_cancer)
-}
-
-icd10_hcc <- function(data) {
-  data %>%
-    filter(str_detect(p41270var, "C22.0")) %>%
-    group_by(id) %>%
-    arrange(p41280, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    mutate(icd10_hcc_date = p41280) %>%
-    select(id, icd10_hcc_date)
-}
-
-icd10_icc <- function(data) {
-  data %>%
-    filter(str_detect(p41270var, "C22.1")) %>%
-    group_by(id) %>%
-    arrange(p41280, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    mutate(icd10_icc_date = p41280) %>%
-    select(id, icd10_icc_date)
-}
-
-cancer_hcc <- function(data) {
-  data %>%
-    filter(str_detect(p40006, "C22.0")) %>%
-    group_by(id) %>%
-    arrange(p40005, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    mutate(cancer_hcc_date = p40005) %>%
-    select(id, cancer_hcc_date)
-}
-
-cancer_icc <- function(data) {
-  data %>%
-    filter(str_detect(p40006, "C22.1")) %>%
-    group_by(id) %>%
-    arrange(p40005, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    mutate(cancer_icc_date = p40005) %>%
-    select(id, cancer_icc_date)
-}
-
-define_liver_cancer_before <- function(data) {
-  data <- data %>%
-    mutate(
-      cancer_before = if_else(
-        icd10_liver_cancer >= baseline_start_date |
-          is.na(icd10_liver_cancer) |
-          cancer_liver_cancer >= baseline_start_date |
-          is.na(cancer_liver_cancer), "No", "Yes"
-      ),
-      hcc_before = if_else(
-        cancer_hcc_date >= baseline_start_date |
-          is.na(cancer_hcc_date) |
-          icd10_hcc_date >= baseline_start_date |
-          is.na(icd10_hcc_date), "No", "Yes"
-      ),
-      icc_before = if_else(
-        cancer_icc_date >= baseline_start_date |
-          is.na(cancer_icc_date) |
-          icd10_icc_date >= baseline_start_date |
-          is.na(icd10_icc_date), "No", "Yes"
-      )
-    )
-  return(data)
-}
-
-remove_liver_before <- function(data) {
-  data <- data %>%
-    filter(cancer_before == "No")
-  return(data)
-}
+# Covariates and die ------------------------------------------------------
 
 covariates <- function(data) {
   data <- data %>%
@@ -228,37 +35,6 @@ covariates <- function(data) {
       education = factor(education, levels = c("High", "Intermediate", "Low")),
       education = as.factor(education),
       # TODO: We'll need to have a bigger discussion about this variable, plus move it over into ukbAid.
-      ethnicity = case_when(
-        p21000_i0 == "African" ~ "Other", # check the layers to the variable
-        p21000_i0 == "Any other Black background" ~ "Other",
-        p21000_i0 == "Asian or Asian British" ~ "Other",
-        p21000_i0 == "Bangladeshi" ~ "Other",
-        p21000_i0 == "Chinese" ~ "Other",
-        p21000_i0 == "Indian" ~ "Other",
-        p21000_i0 == "Pakistani" ~ "Other",
-        p21000_i0 == "Any other Asian background" ~ "Other",
-        p21000_i0 == "British" ~ "White",
-        p21000_i0 == "Any other white background" ~ "White",
-        p21000_i0 == "Irish" ~ "White",
-        p21000_i0 == "White" ~ "White",
-        p21000_i0 == "White and Asian" ~ "Other",
-        p21000_i0 == "White and Black African" ~ "Other",
-        p21000_i0 == "White and Black Caribbean" ~ "Other",
-        p21000_i0 == "Any other mixed background" ~ "Other",
-        p21000_i0 == "Caribbean" ~ "Other",
-        p21000_i0 == "Do not know" ~ "Other",
-        p21000_i0 == "Other ethnic group" ~ "Other",
-        p21000_i0 == "Prefer not to answer" ~ "Other"
-      ),
-      ethnicity = factor(ethnicity, levels = c("White", "Other")),
-      # TODO: Move this over into ukbAid
-      bmi_category = case_when(
-        bmi < 25 ~ "Normal weight",
-        bmi >= 25 & bmi < 30 ~ "Overweight",
-        bmi >= 30 ~ "Obese"
-      ),
-      bmi_category = factor(bmi_category, levels = c("Normal weight", "Overweight", "Obese")),
-      bmi_category = as.factor(bmi_category),
       exercise = as.factor(p22035_i0),
       exercise = case_when(
         exercise == "Yes" ~ "Above",
@@ -428,6 +204,50 @@ legume_strat <- function(data) {
   return(data)
 }
 
+# Prepare data ------------------------------------------------------------
+
+two_ques_only <- function(data) {
+  # Removing participants who did not complete 2 or more diet questionnaires
+  data <- data %>%
+    filter(p20077 >= 2)
+  return(data)
+}
+
+remove_timestamp <- function(data) { # Removing specific time stamp from date of completed questionnaires:
+  data <- data %>%
+    mutate(across(
+      c(
+        p105010_i0,
+        p105010_i1,
+        p105010_i2,
+        p105010_i3,
+        p105010_i4
+      ), ~ substr(.x, 1, 10)
+    ))
+  return(data)
+}
+
+baseline_date <- function(data) {
+baseline_start_date <- data %>%
+  select(p20077, starts_with("p105010_i"), id) %>%
+  pivot_longer(
+    cols = starts_with("p105010_i"),
+    names_to = "instance",
+    values_to = "completion_date"
+  ) %>%
+  filter(!is.na(completion_date)) %>%
+  filter(id != 287216) %>% # error in data, p20077 > 2 but only 1 completion date
+  group_by(id) %>%
+  arrange(completion_date, .by_group = TRUE) %>%
+  slice_tail() %>%
+  rename(baseline_start_date = completion_date) %>%
+  ungroup() %>%
+  select(id, baseline_start_date)
+data <- data %>%
+    left_join(baseline_start_date, by = "id")
+  return(data)
+}
+
 birth_date <- function(data) {
   # Merging birth year and month of birth into one column:
   month_names <- c(
@@ -454,32 +274,136 @@ baseline_age <- function(data) {
   return(data)
 }
 
-follow_up <- function(data) {
-  # Creating age at loss to follow-up:
+# Split ICD and OPCS columns ---------------------------------------------------------------
+
+split_column <- function(data) {
+  # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD10 codes)
+  data <- data %>%
+    separate_wider_delim(p41270,
+      delim = "|",
+      names = paste0("p41270var_a", 0:258), too_few = "debug"
+    )
+  data <- data %>%
+    select(starts_with("p41270"), starts_with("p41280")) %>%
+    select_if(~ !all(is.na(.))) %>%
+    bind_cols(data %>% select(-starts_with("p41270"), -starts_with("p41280")))
+  # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD9 codes)
+  data <- data %>%
+    separate_wider_delim(p41271,
+      delim = "|",
+      names = paste0("p41271var_a", 0:46), too_few = "debug"
+    )
+  # Split the diagnosis-variable into separate columns based on delimiter "|" (OPCS4 codes)
+  data <- data %>%
+    separate_wider_delim(p41272,
+      delim = "|",
+      names = paste0("p41272var_a", 0:125), too_few = "debug"
+    )
+  # Split the diagnosis-variable into separate columns based on delimiter "|" (OPCS3 codes)
+  data <- data %>%
+    separate_wider_delim(p41273,
+      delim = "|",
+      names = paste0("p41273var_a", 0:15), too_few = "debug"
+    )
+  return(data)
+}
+
+# Find liver cancer cases -------------------------------------------------
+
+icd10_longer_subset <- function(data) {
   data %>%
-    mutate(age_l2fu = as.numeric(difftime(l2fu_d, date_birth, units = "days")) / 365.25)
-  # Removing participants who were lost to follow-up before baseline:
+    select(matches("p41270|p41280|id")) %>%
+    pivot_longer(
+      cols = matches("_a[0-9]*$"),
+      names_to = c(".value", "a"),
+      names_sep = "_"
+    )
+}
+
+cancer_longer_subset <- function(data) {
   data %>%
-    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date)
+    select(matches("p41270|p41280|p40006|p40005|id|baseline_start_date|p40001|p40000|p191")) %>%
+    pivot_longer(
+      cols = matches("_a[0-9]*$|_i[0-9]*$"),
+      names_to = c(".value", "a"),
+      names_sep = "_"
+    ) %>%
+    select(id, p41270var, p40006, p41280, p40005, baseline_start_date, p40001, p40000, p191) %>%
+    pivot_longer(
+      cols = matches("p41280|p40005"),
+      names_to = "cancer",
+      values_to = "date"
+    )
+}
+
+liver_cancer_main <- function(data){
+  data %>%
+    filter(str_detect(p41270var, "C22.0|C22.1")|str_detect(p40006, "C22.0|C22.1")) %>%
+    filter(!is.na(date)) %>%
+    group_by(id) %>%
+    arrange(date, .by_group = TRUE) %>%
+    slice_head() %>%
+    rename(liver_cancer_date = date) %>%
+    select(id, liver_cancer_date)
+}
+
+liver_cancer_hcc <- function(data) {
+  data %>%
+    filter(str_detect(p41270var, "C22.0")|str_detect(p40006, "C22.0")) %>%
+    filter(!is.na(date)) %>%
+    group_by(id) %>%
+    arrange(date, .by_group = TRUE) %>%
+    slice_head() %>%
+    rename(cancer_hcc_date = date) %>%
+    select(id, cancer_hcc_date)
+}
+
+liver_cancer_icc <- function(data) {
+  data %>%
+    filter(str_detect(p41270var, "C22.1")|str_detect(p40006, "C22.1")) %>%
+    filter(!is.na(date)) %>%
+    group_by(id) %>%
+    arrange(date, .by_group = TRUE) %>%
+    slice_head() %>%
+    rename(cancer_icc_date = date) %>%
+    select(id, cancer_icc_date)
+}
+
+remove_before_baseline <- function(data) {
+  data <- data %>%
+    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) |>
+    filter(is.na(liver_cancer_date) | liver_cancer_date >= baseline_start_date) |>
+    filter(is.na(dead_date) | dead_date >= baseline_start_date) |>
+    mutate(cens_date = if_else(is.na(liver_cancer_date) & is.na(dead_date) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
   return(data)
 }
 
 end_of_follow_up <- function(data) {
   # Creating status, status date and status age:
-  data <- data %>%
+  data %>%
+    select(id, liver_cancer_date, dead_date, l2fu_d) %>%
+    pivot_longer(
+      cols = matches("liver_cancer_date|dead_date|l2fu_d|cens_date"),
+      names_to = "status",
+      values_to = "status_date"
+    ) %>%
+    group_by(id) %>%
+    arrange(date, .by_group = TRUE) %>%
+    slice_head() |>
+    mutate(status = case_when(
+      status == "liver_cancer_date" ~ "Liver cancer",
+      status == "dead_date" ~ "Censored",
+      status == "l2fu_d" ~ "Censored",
+      status == "cens_date" ~ "Censored"
+    )) |>
+    select(id, status, status_date)
+  return(data)
+}
+
+make_status_age <- function(data) {
+  data <- data |>
     mutate(
-      earliest_date = pmin(dead_date, cancer_liver_cancer, icd10_liver_cancer, l2fu_d, na.rm = TRUE) %>%
-        coalesce(as.Date("2022-12-31")),
-      status = case_when(
-        earliest_date == cancer_liver_cancer & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == icd10_liver_cancer & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == dead_date ~ "Censored",
-        TRUE ~ "Censored"
-      ),
-      status_date = earliest_date,
-      status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
-      status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
+      status_age = as.numeric(difftime(status_date, date_birth, units = "days")) / 365.25, # Calculating age in years
       study_time = status_age - age_at_baseline
     )
   return(data)

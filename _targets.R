@@ -45,11 +45,27 @@ list(
       data_id()
   ),
   tar_target(
+    name = data_with_covariates,
+    command = readied_with_id |>
+      covariates() |>
+      metabolic_syndrome() |>
+      other_variables()
+  ),
+  tar_target(
+    name = data_with_diet,
+    command = data_with_covariates |>
+      calculate_food_intake() |>
+      food_intake_extra() |>
+      legume_strat()
+  ),
+  tar_target(
     name = readied_data,
-    command = data_with_id |>
+    command = data_with_diet |>
       two_ques_only() |>
       remove_timestamp() |>
-      baseline_date()
+      baseline_date() |>
+      birth_date() |>
+      baseline_age()
   ),
   tar_target(
     name = data_with_split_column,
@@ -68,101 +84,73 @@ list(
     name = data_with_liver_cancer,
     command = data_with_split_column |>
       # TODO: All these left_joins aren't necessary, but I will look at that later.
-      left_join(liver_cancer_main_icd10(icd10_subset), by = "id") |>
-      left_join(icd10_hcc(icd10_subset), by = "id") |>
-      left_join(icd10_icc(icd10_subset), by = "id") |>
-      left_join(liver_cancer_main_cancer(cancer_subset), by = "id") |>
-      left_join(cancer_hcc(cancer_subset), by = "id") |>
-      left_join(cancer_icc(cancer_subset), by = "id")
+      left_join(liver_cancer_main(cancer_subset), by = "id") |>
+      left_join(liver_cancer_hcc(cancer_subset), by = "id") |>
+      left_join(liver_cancer_icc(cancer_subset), by = "id")
   ),
   tar_target(
-    name = data_liver_cancer_before_defined,
+    name = data_prepare_t2e,
     command = data_with_liver_cancer |>
-      define_liver_cancer_before()
-  ),
-  tar_target(
-    name = data_with_covariates,
-    command = data_liver_cancer_before_defined |>
-      covariates() |>
-      metabolic_syndrome() |>
-      other_variables()
-  ),
-  tar_target(
-    name = data_with_diet,
-    command = data_with_covariates |>
-      calculate_food_intake() |>
-      food_intake_extra() |>
-      legume_strat()
-  ),
-  tar_target(
-    name = data_with_date,
-    command = data_with_diet |>
-      birth_date() |>
-      baseline_age() |>
-      follow_up()
+      remove_before_baseline()
   ),
   tar_target(
     name = data_with_eofu,
-    command = data_with_date |>
-      end_of_follow_up()
-  ),
-  tar_target(
-    name = data_without_liver_cancer_before,
-    command = remove_liver_before(data_with_eofu)
+    command = data_prepare_t2e |>
+      left_join(end_of_follow_up(data_prepare_t2e), by = "id")
   ),
   tar_target(
     name = data_cleaned,
-    command = data_with_eofu %>%
-      remove_liver_before()
-  ),
-  tar_target(
-    name = data_with_hcc,
-    command = data_cleaned |>
-      cancer_is_hcc()
-  ),
-  tar_target(
-    name = data_with_icc,
-    command = data_cleaned |>
-      cancer_is_icc()
-  ),
-  tar_target(
-    name = data_with_alc,
-    command = data_cleaned |>
-      remove_high_alcohol()
-  ),
-  tar_target(
-    name = data_with_misreporter,
-    command = data_cleaned |>
-      remove_misreporter()
-  ),
-  tar_target(
-    name = data_with_3_ques_comp,
-    command = data_cleaned |>
-      filter_ques_comp()
-  ),
-  tar_target(
-    name = data_full_reduced,
-    command = data_with_id |>
-      reduce_full_data()
-  ),
-  tar_target(
-    name = data_baseline_reduced,
-    command = data_liver_cancer_before_defined |>
-      reduce_baseline_data()
-  ),
-  tar_target(
-    name = data_flowchart,
-    command = data_full_reduced |>
-      left_join(data_baseline_reduced)
-  ),
-  tar_target(
-    name = data_liver_disease,
-    command = data_cleaned |>
-      left_join(icd10_liver_disease(icd10_subset), by = "id")
-  ),
-  tar_target(
-    name = data_without_liver_disease,
-    command = data_liver_disease |>
-      remove_liver_disease_before()
+    command = data_with_eofu |>
+      make_status_age()
   )
+  # tar_target(
+  #   name = data_with_hcc,
+  #   command = data_cleaned |>
+  #     cancer_is_hcc()
+  # ),
+  # tar_target(
+  #   name = data_with_icc,
+  #   command = data_cleaned |>
+  #     cancer_is_icc()
+  # ),
+  # tar_target(
+  #   name = data_with_alc,
+  #   command = data_cleaned |>
+  #     remove_high_alcohol()
+  # ),
+  # tar_target(
+  #   name = data_with_misreporter,
+  #   command = data_cleaned |>
+  #     remove_misreporter()
+  # ),
+  # tar_target(
+  #   name = data_with_3_ques_comp,
+  #   command = data_cleaned |>
+  #     filter_ques_comp()
+  # ),
+  # tar_target(
+  #   name = data_full_reduced,
+  #   command = data_with_id |>
+  #     reduce_full_data()
+  # ),
+  # tar_target(
+  #   name = data_baseline_reduced,
+  #   command = data_liver_cancer_before_defined |>
+  #     reduce_baseline_data()
+  # ),
+  # tar_target(
+  #   name = data_flowchart,
+  #   command = data_full_reduced |>
+  #     left_join(data_baseline_reduced)
+  # ),
+  # tar_target(
+  #   name = data_liver_disease,
+  #   command = data_cleaned |>
+  #     left_join(icd10_liver_disease(icd10_subset), by = "id")
+  # ),
+  # tar_target(
+  #   name = data_without_liver_disease,
+  #   command = data_liver_disease |>
+  #     remove_liver_disease_before()
+  # )
 )
