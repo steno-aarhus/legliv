@@ -4,7 +4,7 @@ data_id <- function(data) {
   return(data)
 }
 
-# Covariates and die ------------------------------------------------------
+# Covariates and diet ------------------------------------------------------
 
 covariates <- function(data) {
   data <- data %>%
@@ -62,7 +62,6 @@ other_variables <- function(data) {
     mutate(
       birth_year = p34,
       month_of_birth = p52,
-      recruit_to_baseline = as.numeric(difftime(baseline_start_date, p53_i0, units = "days")) / 365.25,
       l2fu_d = p191,
       age_recruit = p21022,
       dead_date = p40000_i0,
@@ -354,8 +353,8 @@ liver_cancer_hcc <- function(data) {
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
-    rename(cancer_hcc_date = date) %>%
-    select(id, cancer_hcc_date)
+    rename(hcc_date = date) %>%
+    select(id, hcc_date)
 }
 
 liver_cancer_icc <- function(data) {
@@ -365,11 +364,11 @@ liver_cancer_icc <- function(data) {
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
-    rename(cancer_icc_date = date) %>%
-    select(id, cancer_icc_date)
+    rename(icc_date = date) %>%
+    select(id, icc_date)
 }
 
-remove_before_baseline <- function(data) {
+remove_before_baseline_main <- function(data) {
   data <- data %>%
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) |>
     filter(is.na(liver_cancer_date) | liver_cancer_date >= baseline_start_date) |>
@@ -378,17 +377,18 @@ remove_before_baseline <- function(data) {
   return(data)
 }
 
-end_of_follow_up <- function(data) {
+end_of_follow_up_main <- function(data) {
   # Creating status, status date and status age:
-  data %>%
-    select(id, liver_cancer_date, dead_date, l2fu_d) %>%
+  data <- data %>%
+    select(id, liver_cancer_date, dead_date, l2fu_d, cens_date) %>%
     pivot_longer(
       cols = matches("liver_cancer_date|dead_date|l2fu_d|cens_date"),
       names_to = "status",
       values_to = "status_date"
     ) %>%
+    filter(!is.na(status_date)) %>%
     group_by(id) %>%
-    arrange(date, .by_group = TRUE) %>%
+    arrange(status_date, .by_group = TRUE) %>%
     slice_head() |>
     mutate(status = case_when(
       status == "liver_cancer_date" ~ "Liver cancer",
@@ -409,49 +409,67 @@ make_status_age <- function(data) {
   return(data)
 }
 
-cancer_is_hcc <- function(data) {
+remove_before_baseline_hcc <- function(data) {
   data <- data %>%
-    mutate(
-      earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
-        coalesce(as.Date("2022-12-31")),
-      status = case_when(
-        earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == dead_date ~ "Censored",
-        TRUE ~ "Censored"
-      ),
-      status_date = earliest_date,
-      status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
-      status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
-      time = status_age - age_at_baseline
-    ) %>%
-    select(-earliest_date)
+    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) |>
+    filter(is.na(hcc_date) | hcc_date >= baseline_start_date) |>
+    filter(is.na(dead_date) | dead_date >= baseline_start_date) |>
+    mutate(cens_date = if_else(is.na(hcc_date) & is.na(dead_date) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
   return(data)
 }
 
-cancer_is_icc <- function(data) {
+end_of_follow_up_hcc <- function(data) {
+  # Creating status, status date and status age:
   data <- data %>%
-    mutate(
-      earliest_date = pmin(dead_date, cancer_hcc_date, cancer_icc_date, icd10_hcc_date, icd10_icc_date, l2fu_d, na.rm = TRUE) %>%
-        coalesce(as.Date("2022-12-31")),
-      status = case_when(
-        earliest_date == cancer_hcc_date & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == cancer_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == icd10_hcc_date & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == icd10_icc_date & earliest_date > baseline_start_date ~ "Liver cancer",
-        earliest_date == l2fu_d & earliest_date > baseline_start_date ~ "Censored",
-        earliest_date == dead_date ~ "Censored",
-        TRUE ~ "Censored"
-      ),
-      status_date = earliest_date,
-      status_date = if_else(is.na(status_date), as.Date("2022-12-31"), status_date),
-      status_age = as.numeric(difftime(earliest_date, date_birth, units = "days")) / 365.25, # Calculating age in years
-      time = status_age - age_at_baseline
+    select(id, hcc_date, dead_date, l2fu_d, cens_date) %>%
+    pivot_longer(
+      cols = matches("hcc_date|dead_date|l2fu_d|cens_date"),
+      names_to = "status",
+      values_to = "status_date"
     ) %>%
-    select(-earliest_date)
+    filter(!is.na(status_date)) %>%
+    group_by(id) %>%
+    arrange(status_date, .by_group = TRUE) %>%
+    slice_head() |>
+    mutate(status = case_when(
+      status == "hcc_date" ~ "Liver cancer",
+      status == "dead_date" ~ "Censored",
+      status == "l2fu_d" ~ "Censored",
+      status == "cens_date" ~ "Censored"
+    )) |>
+    select(id, status, status_date)
+  return(data)
+}
+
+remove_before_baseline_icc <- function(data) {
+  data <- data %>%
+    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) |>
+    filter(is.na(icc_date) | icc_date >= baseline_start_date) |>
+    filter(is.na(dead_date) | dead_date >= baseline_start_date) |>
+    mutate(cens_date = if_else(is.na(icc_date) & is.na(dead_date) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
+  return(data)
+}
+
+end_of_follow_up_icc <- function(data) {
+  # Creating status, status date and status age:
+  data <- data %>%
+    select(id, icc_date, dead_date, l2fu_d, cens_date) %>%
+    pivot_longer(
+      cols = matches("icc_date|dead_date|l2fu_d|cens_date"),
+      names_to = "status",
+      values_to = "status_date"
+    ) %>%
+    filter(!is.na(status_date)) %>%
+    group_by(id) %>%
+    arrange(status_date, .by_group = TRUE) %>%
+    slice_head() |>
+    mutate(status = case_when(
+      status == "icc_date" ~ "Liver cancer",
+      status == "dead_date" ~ "Censored",
+      status == "l2fu_d" ~ "Censored",
+      status == "cens_date" ~ "Censored"
+    )) |>
+    select(id, status, status_date)
   return(data)
 }
 
@@ -486,7 +504,7 @@ reduce_full_data <- function(data) {
 
 reduce_baseline_data <- function(data) {
   data <- data %>%
-    select(id, p20077, cancer_before, baseline_start_date)
+    select(id, liver_cancer_date, baseline_start_date)
   return(data)
 }
 

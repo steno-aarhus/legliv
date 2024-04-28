@@ -14,7 +14,7 @@ bibliography: references.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 targets::tar_config_set(store = here::here("_targets"))
-data <- targets::tar_read(data_cleaned)
+data <- targets::tar_read(data_main)
 data_flowchart <- targets::tar_read(data_flowchart)
 data_hcc <- targets::tar_read(data_with_hcc)
 data_icc <- targets::tar_read(data_with_icc)
