@@ -81,12 +81,17 @@ list(
     command = cancer_longer_subset(data_with_split_column)
   ),
   tar_target(
+    name = cancer_subset_death,
+    command = cancer_longer_subset_death(data_with_split_column)
+  ),
+  tar_target(
     name = data_with_liver_cancer,
     command = data_with_split_column |>
       # TODO: All these left_joins aren't necessary, but I will look at that later.
       left_join(liver_cancer_main(cancer_subset), by = "id") |>
       left_join(liver_cancer_hcc(cancer_subset), by = "id") |>
-      left_join(liver_cancer_icc(cancer_subset), by = "id")
+      left_join(liver_cancer_icc(cancer_subset), by = "id") |>
+      left_join(liver_cancer_main_death(cancer_subset_death), by = "id")
   ),
   tar_target(
     name = data_prepare_main,
@@ -104,6 +109,11 @@ list(
       remove_before_baseline_icc()
   ),
   tar_target(
+    name = data_prepare_death,
+    command = data_with_liver_cancer |>
+      remove_before_baseline_death()
+  ),
+  tar_target(
     name = data_main,
     command = data_prepare_main |>
       left_join(end_of_follow_up_main(data_prepare_main), by = "id") |>
@@ -119,6 +129,12 @@ list(
     name = data_with_icc,
     command = data_prepare_icc |>
       left_join(end_of_follow_up_icc(data_prepare_icc), by = "id") |>
+      make_status_age()
+  ),
+  tar_target(
+    name = data_with_death,
+    command = data_prepare_death |>
+      left_join(end_of_follow_up_death(data_prepare_death), by = "id") |>
       make_status_age()
   ),
   tar_target(
