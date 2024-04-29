@@ -333,15 +333,21 @@ cancer_longer_subset <- function(data) {
     select(id, p41270var, p41271var, p40006, p41280, p41281, p40005) %>%
     pivot_longer(
       cols = matches("p41280|p41281|p40005"),
-      names_to = "cancer",
+      names_to = "date_name",
       values_to = "date"
-    )
+    ) %>%
+    filter(!is.na(date)) %>%
+    pivot_longer(
+      cols = matches("p41270var|p41271var|p40006"),
+      names_to = "register",
+      values_to = "diagnosis"
+    ) %>%
+    filter(!is.na(diagnosis))
 }
 
 liver_cancer_main <- function(data){
   data %>%
-    filter(str_detect(p41270var, "C22.0|C22.1")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22.0|C22.1")) %>%
-    filter(!is.na(date)) %>%
+    filter(str_detect(diagnosis, "C22.0|C22.1")|str_detect(diagnosis, "^155[0-9]")) %>%
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
@@ -352,8 +358,7 @@ liver_cancer_main <- function(data){
 
 liver_cancer_hcc <- function(data) {
   data %>%
-    filter(str_detect(p41270var, "C22.0")|str_detect(p40006, "C22.0")) %>%
-    filter(!is.na(date)) %>%
+    filter(str_detect(diagnosis, "C22.0")|str_detect(diagnosis, "^155[0-9]")) %>%
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
@@ -364,7 +369,7 @@ liver_cancer_hcc <- function(data) {
 
 liver_cancer_icc <- function(data) {
   data %>%
-    filter(str_detect(p41270var, "C22.1")|str_detect(p40006, "C22.1")) %>%
+    filter(str_detect(diagnosis, "C22.1")|str_detect(diagnosis, "^155[0-9]")) %>%
     filter(!is.na(date)) %>%
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
