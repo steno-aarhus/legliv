@@ -73,8 +73,8 @@ list(
       split_column()
   ),
   tar_target(
-    name = icd10_subset,
-    command = icd10_longer_subset(data_with_split_column)
+    name = icd_subset,
+    command = icd_longer_subset(data_with_split_column)
   ),
   tar_target(
     name = cancer_subset,
@@ -154,7 +154,7 @@ list(
   tar_target(
     name = data_liver_disease,
     command = data_main |>
-      left_join(icd10_liver_disease(icd10_subset), by = "id")
+      left_join(icd_liver_disease(icd_subset), by = "id")
   ),
   tar_target(
     name = data_without_liver_disease,
