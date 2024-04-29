@@ -1,5 +1,5 @@
 data_id <- function(data) {
-  data <- data %>%
+  data <- data |>
     dplyr::mutate(id = dplyr::row_number())
   return(data)
 }
@@ -7,7 +7,7 @@ data_id <- function(data) {
 # Covariates and diet ------------------------------------------------------
 
 covariates <- function(data) {
-  data <- data %>%
+  data <- data |>
     mutate(
       sex = p31,
       wc = p48_i0,
@@ -47,7 +47,7 @@ covariates <- function(data) {
 }
 
 metabolic_syndrome <- function(data) {
-  data <- data %>%
+  data <- data |>
     mutate(
       trigly = p30870_i0,
       hdl = p30760_i0,
@@ -58,7 +58,7 @@ metabolic_syndrome <- function(data) {
 }
 
 other_variables <- function(data) {
-  data <- data %>%
+  data <- data |>
     mutate(
       birth_year = p34,
       month_of_birth = p52,
@@ -68,8 +68,8 @@ other_variables <- function(data) {
       dead_cause = p40001_i0,
       age_dead = p40007_i0
     )
-  data <- data %>%
-    mutate(across(starts_with("p100020_i"), ~ coalesce(., "Yes"))) %>%
+  data <- data |>
+    mutate(across(starts_with("p100020_i"), ~ coalesce(., "Yes"))) |>
     mutate(
       typical_diet = if_else(p100020_i0 == "No" | p100020_i1 == "No" | p100020_i2 == "No" | p100020_i3 == "No" | p100020_i4 == "No", "No", "Yes")
     )
@@ -79,7 +79,7 @@ other_variables <- function(data) {
 # TODO: Redo this to mimic what was done in Fie's repository.
 calculate_food_intake <- function(data) {
   # estimating average daily and weekly intakes of food groups in g
-  data <- data %>%
+  data <- data |>
     # creating food groups from UKB Aurora Perez
     mutate(
       # legumes
@@ -164,7 +164,7 @@ calculate_food_intake <- function(data) {
 }
 
 food_intake_extra <- function(data) {
-  data <- data %>%
+  data <- data |>
     mutate(
       # baked beans and pulses separated from other legumes
       pulse_daily = rowSums(select(., starts_with("p26101")), na.rm = TRUE) / p20077,
@@ -190,15 +190,15 @@ food_intake_extra <- function(data) {
 }
 
 legume_strat <- function(data) {
-  data <- data %>%
-    filter(legume_daily != 0) %>%
+  data <- data |>
+    filter(legume_daily != 0) |>
     mutate(
       legume_quintile = ntile(legume_daily, 4),
       legume_category = factor(legume_quintile, labels = c("Q1", "Q2", "Q3", "Q4"))
-    ) %>%
-    bind_rows(data %>%
-                filter(legume_daily == 0) %>%
-                mutate(legume_category = "No intake")) %>%
+    ) |>
+    bind_rows(data |>
+                filter(legume_daily == 0) |>
+                mutate(legume_category = "No intake")) |>
     mutate(legume_category = factor(legume_category, levels = c("No intake", "Q1", "Q2", "Q3", "Q4")))
   return(data)
 }
@@ -207,13 +207,13 @@ legume_strat <- function(data) {
 
 two_ques_only <- function(data) {
   # Removing participants who did not complete 2 or more diet questionnaires
-  data <- data %>%
+  data <- data |>
     filter(p20077 >= 2)
   return(data)
 }
 
 remove_timestamp <- function(data) { # Removing specific time stamp from date of completed questionnaires:
-  data <- data %>%
+  data <- data |>
     mutate(across(
       c(
         p105010_i0,
@@ -227,22 +227,22 @@ remove_timestamp <- function(data) { # Removing specific time stamp from date of
 }
 
 baseline_date <- function(data) {
-baseline_start_date <- data %>%
-  select(p20077, starts_with("p105010_i"), id) %>%
+baseline_start_date <- data |>
+  select(p20077, starts_with("p105010_i"), id) |>
   pivot_longer(
     cols = starts_with("p105010_i"),
     names_to = "instance",
     values_to = "completion_date"
-  ) %>%
-  filter(!is.na(completion_date)) %>%
-  filter(id != 287216) %>% # error in data, p20077 > 2 but only 1 completion date
-  group_by(id) %>%
-  arrange(completion_date, .by_group = TRUE) %>%
-  slice_tail() %>%
-  rename(baseline_start_date = completion_date) %>%
-  ungroup() %>%
+  ) |>
+  filter(!is.na(completion_date)) |>
+  filter(id != 287216) |> # error in data, p20077 > 2 but only 1 completion date
+  group_by(id) |>
+  arrange(completion_date, .by_group = TRUE) |>
+  slice_tail() |>
+  rename(baseline_start_date = completion_date) |>
+  ungroup() |>
   select(id, baseline_start_date)
-data <- data %>%
+data <- data |>
     left_join(baseline_start_date, by = "id")
   return(data)
 }
@@ -253,9 +253,9 @@ birth_date <- function(data) {
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   )
-  data <- data %>%
+  data <- data |>
     mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
-  data <- data %>%
+  data <- data |>
     unite(date_birth, birth_year, month_of_birth_num, sep = "-")
   # adding 15 as DD for all participants:
   data$date_birth <- as.Date(paste0(data$date_birth, "-15"))
@@ -264,7 +264,7 @@ birth_date <- function(data) {
 
 baseline_age <- function(data) {
   # Creating age at baseline:
-  data <- data %>%
+  data <- data |>
     mutate(age_at_baseline = year(baseline_start_date) - year(date_birth) -
              ifelse(month(baseline_start_date) < month(date_birth) |
                       (month(baseline_start_date) == month(date_birth) &
@@ -277,29 +277,29 @@ baseline_age <- function(data) {
 
 split_column <- function(data) {
   # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD10 codes)
-  data <- data %>%
+  data <- data |>
     separate_wider_delim(p41270,
       delim = "|",
       names = paste0("p41270var_a", 0:258), too_few = "debug"
     )
-  data <- data %>%
-    select(starts_with("p41270"), starts_with("p41280")) %>%
-    select_if(~ !all(is.na(.))) %>%
-    bind_cols(data %>% select(-starts_with("p41270"), -starts_with("p41280")))
+  data <- data |>
+    select(starts_with("p41270"), starts_with("p41280")) |>
+    select_if(~ !all(is.na(.))) |>
+    bind_cols(data |> select(-starts_with("p41270"), -starts_with("p41280")))
   # Split the diagnosis-variable into separate columns based on delimiter "|" (ICD9 codes)
-  data <- data %>%
+  data <- data |>
     separate_wider_delim(p41271,
       delim = "|",
       names = paste0("p41271var_a", 0:46), too_few = "debug"
     )
   # Split the diagnosis-variable into separate columns based on delimiter "|" (OPCS4 codes)
-  data <- data %>%
+  data <- data |>
     separate_wider_delim(p41272,
       delim = "|",
       names = paste0("p41272var_a", 0:125), too_few = "debug"
     )
   # Split the diagnosis-variable into separate columns based on delimiter "|" (OPCS3 codes)
-  data <- data %>%
+  data <- data |>
     separate_wider_delim(p41273,
       delim = "|",
       names = paste0("p41273var_a", 0:15), too_few = "debug"
@@ -310,8 +310,8 @@ split_column <- function(data) {
 # Find liver cancer cases -------------------------------------------------
 
 icd10_longer_subset <- function(data) {
-  data %>%
-    select(matches("p41270|p41280|id")) %>%
+  data |>
+    select(matches("p41270|p41280|id")) |>
     pivot_longer(
       cols = matches("_a[0-9]*$"),
       names_to = c(".value", "a"),
@@ -320,14 +320,14 @@ icd10_longer_subset <- function(data) {
 }
 
 cancer_longer_subset <- function(data) {
-  data %>%
-    select(matches("p41270|p41280|p40006|p40005|id|baseline_start_date|p40001|p40000|p191")) %>%
+  data |>
+    select(matches("p41270|p41280|p40006|p40005|id|baseline_start_date|p40001|p40000|p191")) |>
     pivot_longer(
       cols = matches("_a[0-9]*$|_i[0-9]*$"),
       names_to = c(".value", "a"),
       names_sep = "_"
-    ) %>%
-    select(id, p41270var, p40006, p41280, p40005, baseline_start_date, p40001, p40000, p191) %>%
+    ) |>
+    select(id, p41270var, p40006, p41280, p40005, baseline_start_date, p40001, p40000, p191) |>
     pivot_longer(
       cols = matches("p41280|p40005"),
       names_to = "cancer",
@@ -336,40 +336,43 @@ cancer_longer_subset <- function(data) {
 }
 
 liver_cancer_main <- function(data){
-  data %>%
-    filter(str_detect(p41270var, "C22.0|C22.1")|str_detect(p40006, "C22.0|C22.1")) %>%
-    filter(!is.na(date)) %>%
-    group_by(id) %>%
-    arrange(date, .by_group = TRUE) %>%
-    slice_head() %>%
-    rename(liver_cancer_date = date) %>%
+  data |>
+    filter(str_detect(p41270var, "C22.0|C22.1")|str_detect(p40006, "C22.0|C22.1")) |>
+    filter(!is.na(date)) |>
+    group_by(id) |>
+    arrange(date, .by_group = TRUE) |>
+    slice_head() |>
+    ungroup() |>
+    rename(liver_cancer_date = date) |>
     select(id, liver_cancer_date)
 }
 
 liver_cancer_hcc <- function(data) {
-  data %>%
-    filter(str_detect(p41270var, "C22.0")|str_detect(p40006, "C22.0")) %>%
-    filter(!is.na(date)) %>%
-    group_by(id) %>%
-    arrange(date, .by_group = TRUE) %>%
-    slice_head() %>%
-    rename(hcc_date = date) %>%
+  data |>
+    filter(str_detect(p41270var, "C22.0")|str_detect(p40006, "C22.0")) |>
+    filter(!is.na(date)) |>
+    group_by(id) |>
+    arrange(date, .by_group = TRUE) |>
+    slice_head() |>
+    ungroup() |>
+    rename(hcc_date = date) |>
     select(id, hcc_date)
 }
 
 liver_cancer_icc <- function(data) {
-  data %>%
-    filter(str_detect(p41270var, "C22.1")|str_detect(p40006, "C22.1")) %>%
-    filter(!is.na(date)) %>%
-    group_by(id) %>%
-    arrange(date, .by_group = TRUE) %>%
-    slice_head() %>%
-    rename(icc_date = date) %>%
+  data |>
+    filter(str_detect(p41270var, "C22.1")|str_detect(p40006, "C22.1")) |>
+    filter(!is.na(date)) |>
+    group_by(id) |>
+    arrange(date, .by_group = TRUE) |>
+    slice_head() |>
+    ungroup() |>
+    rename(icc_date = date) |>
     select(id, icc_date)
 }
 
 remove_before_baseline_main <- function(data) {
-  data <- data %>%
+  data <- data |>
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) |>
     filter(is.na(liver_cancer_date) | liver_cancer_date >= baseline_start_date) |>
     filter(is.na(dead_date) | dead_date >= baseline_start_date) |>
@@ -379,17 +382,18 @@ remove_before_baseline_main <- function(data) {
 
 end_of_follow_up_main <- function(data) {
   # Creating status, status date and status age:
-  data <- data %>%
-    select(id, liver_cancer_date, dead_date, l2fu_d, cens_date) %>%
+  data <- data |>
+    select(id, liver_cancer_date, dead_date, l2fu_d, cens_date) |>
     pivot_longer(
       cols = matches("liver_cancer_date|dead_date|l2fu_d|cens_date"),
       names_to = "status",
       values_to = "status_date"
-    ) %>%
-    filter(!is.na(status_date)) %>%
-    group_by(id) %>%
-    arrange(status_date, .by_group = TRUE) %>%
+    ) |>
+    filter(!is.na(status_date)) |>
+    group_by(id) |>
+    arrange(status_date, .by_group = TRUE) |>
     slice_head() |>
+    ungroup() |>
     mutate(status = case_when(
       status == "liver_cancer_date" ~ "Liver cancer",
       status == "dead_date" ~ "Censored",
@@ -410,7 +414,7 @@ make_status_age <- function(data) {
 }
 
 remove_before_baseline_hcc <- function(data) {
-  data <- data %>%
+  data <- data |>
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) |>
     filter(is.na(hcc_date) | hcc_date >= baseline_start_date) |>
     filter(is.na(dead_date) | dead_date >= baseline_start_date) |>
@@ -420,17 +424,18 @@ remove_before_baseline_hcc <- function(data) {
 
 end_of_follow_up_hcc <- function(data) {
   # Creating status, status date and status age:
-  data <- data %>%
-    select(id, hcc_date, dead_date, l2fu_d, cens_date) %>%
+  data <- data |>
+    select(id, hcc_date, dead_date, l2fu_d, cens_date) |>
     pivot_longer(
       cols = matches("hcc_date|dead_date|l2fu_d|cens_date"),
       names_to = "status",
       values_to = "status_date"
-    ) %>%
-    filter(!is.na(status_date)) %>%
-    group_by(id) %>%
-    arrange(status_date, .by_group = TRUE) %>%
+    ) |>
+    filter(!is.na(status_date)) |>
+    group_by(id) |>
+    arrange(status_date, .by_group = TRUE) |>
     slice_head() |>
+    ungroup() |>
     mutate(status = case_when(
       status == "hcc_date" ~ "Liver cancer",
       status == "dead_date" ~ "Censored",
@@ -442,7 +447,7 @@ end_of_follow_up_hcc <- function(data) {
 }
 
 remove_before_baseline_icc <- function(data) {
-  data <- data %>%
+  data <- data |>
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) |>
     filter(is.na(icc_date) | icc_date >= baseline_start_date) |>
     filter(is.na(dead_date) | dead_date >= baseline_start_date) |>
@@ -452,17 +457,18 @@ remove_before_baseline_icc <- function(data) {
 
 end_of_follow_up_icc <- function(data) {
   # Creating status, status date and status age:
-  data <- data %>%
-    select(id, icc_date, dead_date, l2fu_d, cens_date) %>%
+  data <- data |>
+    select(id, icc_date, dead_date, l2fu_d, cens_date) |>
     pivot_longer(
       cols = matches("icc_date|dead_date|l2fu_d|cens_date"),
       names_to = "status",
       values_to = "status_date"
-    ) %>%
-    filter(!is.na(status_date)) %>%
-    group_by(id) %>%
-    arrange(status_date, .by_group = TRUE) %>%
+    ) |>
+    filter(!is.na(status_date)) |>
+    group_by(id) |>
+    arrange(status_date, .by_group = TRUE) |>
     slice_head() |>
+    ungroup() |>
     mutate(status = case_when(
       status == "icc_date" ~ "Liver cancer",
       status == "dead_date" ~ "Censored",
@@ -474,7 +480,7 @@ end_of_follow_up_icc <- function(data) {
 }
 
 remove_high_alcohol <- function(data) {
-  data <- data %>%
+  data <- data |>
     filter(
       sex == "Male" & alcohol_daily < 32 | sex == "Female" & alcohol_daily < 24
     )
@@ -482,7 +488,7 @@ remove_high_alcohol <- function(data) {
 }
 
 remove_misreporter <- function(data) {
-  data <- data %>%
+  data <- data |>
     filter(
       sex == "Male" & total_energy_food_daily > 3200 & total_energy_food_daily < 16800 |
         sex == "Female" & total_energy_food_daily > 2000 & total_energy_food_daily < 14000
@@ -491,36 +497,36 @@ remove_misreporter <- function(data) {
 }
 
 filter_ques_comp <- function(data) {
-  data <- data %>%
+  data <- data |>
     filter(p20077 >= 3)
   return(data)
 }
 
 reduce_full_data <- function(data) {
-  data <- data %>%
+  data <- data |>
     select(id, p20077, p191)
   return(data)
 }
 
 reduce_baseline_data <- function(data) {
-  data <- data %>%
+  data <- data |>
     select(id, liver_cancer_date, baseline_start_date)
   return(data)
 }
 
 icd10_liver_disease <- function(data) {
-  data %>%
-    filter(str_detect(p41270var, "K7|B18")) %>%
-    group_by(id) %>%
-    arrange(p41280, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    mutate(liver_disease_date = p41280) %>%
+  data |>
+    filter(str_detect(p41270var, "K7|B18")) |>
+    group_by(id) |>
+    arrange(p41280, .by_group = TRUE) |>
+    slice_head() |>
+    ungroup() |>
+    mutate(liver_disease_date = p41280) |>
     select(id, liver_disease_date)
 }
 
 remove_liver_disease_before <- function(data) {
-  data %>%
-    mutate(liver_disease = if_else(liver_disease_date >= baseline_start_date | is.na(liver_disease_date), "No", "Yes")) %>%
+  data |>
+    mutate(liver_disease = if_else(liver_disease_date >= baseline_start_date | is.na(liver_disease_date), "No", "Yes")) |>
     filter(liver_disease == "No")
 }
