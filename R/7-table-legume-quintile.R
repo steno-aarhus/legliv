@@ -1,3 +1,11 @@
+library(gt)
+library(gtsummary)
+library(tidyverse)
+library(survival)
+
+set_gtsummary_theme(theme_gtsummary_journal("jama"),
+                    quiet = TRUE)
+
 model1t_leg <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +

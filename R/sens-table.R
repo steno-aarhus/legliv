@@ -272,8 +272,7 @@ m2p_death <- model2p_death %>%
     label = legume_daily_15 ~ " ",
   )
 
-row1 <- tbl_merge(list(m2t_alc, m2r_alc, m2p_alc)) %>%
-  modify_spanning_header(everything() ~ NA_character_)
+row1 <- tbl_merge(list(m2t_alc, m2r_alc, m2p_alc))
 row2 <- tbl_merge(list(m2t_misreporter, m2r_misreporter, m2p_misreporter))
 row3 <- tbl_merge(list(m2t_3_ques_comp, m2r_3_ques_comp, m2p_3_ques_comp))
 row4 <- tbl_merge(list(m2t_liver_disease, m2r_liver_disease, m2p_liver_disease))
@@ -287,23 +286,13 @@ table_sens <-
                              "Exclusion of participants with any liver disease before baseline:",
                              "Liver cancer as primary cause of death counts as an event:")) %>%
   modify_caption("**Supplementary table 3. Sensitivity analyses**") %>%
+  modify_caption("<div style='text-align: left; font-weight: bold; color: grey'> Supplementary table 3. Sensitivity analyses</div>") %>%
+  modify_spanning_header(
+    update = estimate_1 ~ "**Legumes for total meat**", estimate_2 ~ "**Legumes for red meat**", estimate_3 ~ "**Legumes for processed meat**"
+  ) %>%
   modify_header(label = "**15 g/day substitution**") %>%
-  modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  modify_footnote(update = everything() ~ NA, abbreviation = TRUE) %>%
   modify_table_styling(
-    column = c(p.value_1, p.value_2, p.value_3),
+    columns = c(p.value_1, p.value_2, p.value_3),
     hide = TRUE
-  ) %>%
-  as_gt() %>%
-  tab_spanner(
-    label = "Legumes for total meat",
-    columns = c(estimate_1, ci_1, p.value_1)
-  ) %>%
-  tab_spanner(
-    label = "Legumes for red meat",
-    columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
-  tab_spanner(
-    label = "Legumes for processed meat",
-    columns = c(estimate_3, ci_3, p.value_3)
   )
-table_sens

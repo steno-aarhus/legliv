@@ -132,5 +132,10 @@ table_main <-
   tab_footnote(
     footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
     locations = cells_column_spanners(spanners = "Model 2")
+  ) %>%
+  tab_spanner(
+    label = md("**Table 3. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**"),
+    columns = everything(),
+    level = 2
   )
 
