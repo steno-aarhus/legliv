@@ -1,3 +1,8 @@
+library(gt)
+library(gtsummary)
+library(tidyverse)
+library(survival)
+
 set_gtsummary_theme(theme_gtsummary_journal("jama"),
                     quiet = TRUE)
 
