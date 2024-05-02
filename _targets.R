@@ -45,15 +45,9 @@ list(
       data_id()
   ),
   tar_target(
-    name = data_with_covariates,
-    command = data_with_id |>
-      covariates() |>
-      metabolic_syndrome() |>
-      other_variables()
-  ),
-  tar_target(
     name = readied_data,
-    command = data_with_covariates |>
+    command = data_with_id |>
+      other_variables() |>
       two_ques_only() |>
       remove_timestamp() |>
       baseline_date() |>
@@ -61,8 +55,14 @@ list(
       baseline_age()
   ),
   tar_target(
-    name = data_with_diet,
+    name = data_with_covariates,
     command = readied_data |>
+      covariates() |>
+      metabolic_syndrome()
+  ),
+  tar_target(
+    name = data_with_diet,
+    command = readied_with_covariates |>
       calculate_food_intake() |>
       food_intake_extra() |>
       legume_strat()

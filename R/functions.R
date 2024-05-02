@@ -1,6 +1,98 @@
+
+# Data with ID ------------------------------------------------------------
+
 data_id <- function(data) {
   data <- data %>%
     dplyr::mutate(id = dplyr::row_number())
+  return(data)
+}
+
+# Prepare data ------------------------------------------------------------
+
+other_variables <- function(data) {
+  data <- data %>%
+    mutate(
+      birth_year = p34,
+      birth_month = p52,
+      l2fu_d = p191,
+      age_recruit = p21022,
+      p40000_d0 = p40000_i0,
+      p40001_d0 = p40001_i0,
+      age_dead = p40007_i0
+    )
+  data <- data %>%
+    mutate(across(starts_with("p100020_i"), ~ coalesce(., "Yes"))) %>%
+    mutate(
+      typical_diet = if_else(p100020_i0 == "No" | p100020_i1 == "No" | p100020_i2 == "No" | p100020_i3 == "No" | p100020_i4 == "No", "No", "Yes")
+    )
+  return(data)
+}
+
+two_ques_only <- function(data) {
+  # Removing participants who did not complete 2 or more diet questionnaires
+  data <- data %>%
+    filter(p20077 >= 2)
+  return(data)
+}
+
+remove_timestamp <- function(data) { # Removing specific time stamp from date of completed questionnaires:
+  data <- data %>%
+    mutate(across(
+      c(
+        p105010_i0,
+        p105010_i1,
+        p105010_i2,
+        p105010_i3,
+        p105010_i4
+      ), ~ substr(.x, 1, 10)
+    ))
+  return(data)
+}
+
+baseline_date <- function(data) {
+  baseline_start_date <- data %>%
+    select(p20077, starts_with("p105010_i"), id) %>%
+    pivot_longer(
+      cols = starts_with("p105010_i"),
+      names_to = "instance",
+      values_to = "completion_date"
+    ) %>%
+    filter(!is.na(completion_date)) %>%
+    filter(id != 287216) %>% # error in data, p20077 > 2 but only 1 completion date
+    group_by(id) %>%
+    arrange(completion_date, .by_group = TRUE) %>%
+    slice_tail() %>%
+    rename(baseline_start_date = completion_date) %>%
+    ungroup() %>%
+    select(id, baseline_start_date)
+  data <- data %>%
+    left_join(baseline_start_date, by = "id")
+  return(data)
+}
+
+birth_date <- function(data) {
+  # Merging birth year and month of birth into one column:
+  month_names <- c(
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  )
+  data <- data %>%
+    mutate(birth_month_num = sprintf("%02d", match(birth_month, month_names)))
+  data <- data %>%
+    unite(birth_date, birth_year, birth_month_num, sep = "-")
+  # adding 15 as DD for all participants:
+  data$birth_date <- as.Date(paste0(data$birth_date, "-15"))
+  return(data)
+}
+
+baseline_age <- function(data) {
+  # Creating age at baseline:
+  data <- data %>%
+    mutate(age_at_baseline = year(baseline_start_date) - year(birth_date) -
+             ifelse(month(baseline_start_date) < month(birth_date) |
+                      (month(baseline_start_date) == month(birth_date) &
+                         day(baseline_start_date) < day(birth_date)), 1, 0)) %>%
+    filter(!(is.na(age_at_baseline))) # 3 participants who lack dates for completed questionnaire.
   return(data)
 }
 
@@ -53,28 +145,33 @@ metabolic_syndrome <- function(data) {
       hdl = p30760_i0,
       med_men = p6177_i0,
       med_women = p6153_i0,
-      glucose = p30750_i0
+      glucose = p30750_i0,
+      high_trigly = if_else(trigly >= 1.7, "Yes", "No"),
+      low_hdl = if_else(hdl <= 1.036 & sex == "Male" | hdl <= 1.295 & sex == "Female", "Yes", "No"),
+      chol_med_men = ifelse(grepl("Cholesterol lowering medication", med_men), "Yes", "No"),
+      chol_med_women = ifelse(grepl("Cholesterol lowering medication", med_women), "Yes", "No"),
+      chol_med = if_else(chol_med_men == "Yes" | chol_med_women == "Yes", "Yes", "No"),
+      low_hdl_chol_med = if_else(low_hdl == "No" & chol_med == "No", "No", "Yes"),
+      bp_med_men = ifelse(grepl("Blood pressure medication", med_men), "Yes", "No"),
+      bp_med_women = ifelse(grepl("Blood pressure medication", med_women), "Yes", "No"),
+      bp_med = if_else(bp_med_men == "Yes" | bp_med_women == "Yes", "Yes", "No"),
+      high_wc = if_else(sex == "Male" & wc >= 94 | sex == "Female" & wc >= 80, "Yes", "No"),
+      high_bmi = if_else(bmi >= 30, "Yes", "No"),
+      high_bmi_wc = if_else(high_wc == "No" & high_bmi == "No", "No", "Yes"),
+      bs_high = if_else(glucose >= 39, "Yes", "No"),
+      ins_med_men = ifelse(grepl("Insulin", med_men), "Yes", "No"),
+      ins_med_women = ifelse(grepl("Insulin", med_women), "Yes", "No"),
+      ins_med = if_else(ins_med_men == "Yes" | ins_med_women == "Yes", "Yes", "No"),
+      high_bs = if_else(bs_high == "No" & ins_med == "No", "No", "Yes")
+      # met_synd = case_when(
+      #   rowSums(is.na(select(., c("high_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")))) > 0 ~ NA_character_,
+      #   rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")) == "Yes", na.rm = TRUE) >= 3 ~ "Yes",
+      #   TRUE ~ "No"
+      # )
     )
 }
 
-other_variables <- function(data) {
-  data <- data %>%
-    mutate(
-      birth_year = p34,
-      month_of_birth = p52,
-      l2fu_d = p191,
-      age_recruit = p21022,
-      p40000_d0 = p40000_i0,
-      p40001_d0 = p40001_i0,
-      age_dead = p40007_i0
-    )
-  data <- data %>%
-    mutate(across(starts_with("p100020_i"), ~ coalesce(., "Yes"))) %>%
-    mutate(
-      typical_diet = if_else(p100020_i0 == "No" | p100020_i1 == "No" | p100020_i2 == "No" | p100020_i3 == "No" | p100020_i4 == "No", "No", "Yes")
-    )
-  return(data)
-}
+# Diet --------------------------------------------------------------------
 
 # TODO: Redo this to mimic what was done in Fie's repository.
 calculate_food_intake <- function(data) {
@@ -203,76 +300,6 @@ legume_strat <- function(data) {
   return(data)
 }
 
-# Prepare data ------------------------------------------------------------
-
-two_ques_only <- function(data) {
-  # Removing participants who did not complete 2 or more diet questionnaires
-  data <- data %>%
-    filter(p20077 >= 2)
-  return(data)
-}
-
-remove_timestamp <- function(data) { # Removing specific time stamp from date of completed questionnaires:
-  data <- data %>%
-    mutate(across(
-      c(
-        p105010_i0,
-        p105010_i1,
-        p105010_i2,
-        p105010_i3,
-        p105010_i4
-      ), ~ substr(.x, 1, 10)
-    ))
-  return(data)
-}
-
-baseline_date <- function(data) {
-baseline_start_date <- data %>%
-  select(p20077, starts_with("p105010_i"), id) %>%
-  pivot_longer(
-    cols = starts_with("p105010_i"),
-    names_to = "instance",
-    values_to = "completion_date"
-  ) %>%
-  filter(!is.na(completion_date)) %>%
-  filter(id != 287216) %>% # error in data, p20077 > 2 but only 1 completion date
-  group_by(id) %>%
-  arrange(completion_date, .by_group = TRUE) %>%
-  slice_tail() %>%
-  rename(baseline_start_date = completion_date) %>%
-  ungroup() %>%
-  select(id, baseline_start_date)
-data <- data %>%
-    left_join(baseline_start_date, by = "id")
-  return(data)
-}
-
-birth_date <- function(data) {
-  # Merging birth year and month of birth into one column:
-  month_names <- c(
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  )
-  data <- data %>%
-    mutate(month_of_birth_num = sprintf("%02d", match(month_of_birth, month_names)))
-  data <- data %>%
-    unite(date_birth, birth_year, month_of_birth_num, sep = "-")
-  # adding 15 as DD for all participants:
-  data$date_birth <- as.Date(paste0(data$date_birth, "-15"))
-  return(data)
-}
-
-baseline_age <- function(data) {
-  # Creating age at baseline:
-  data <- data %>%
-    mutate(age_at_baseline = year(baseline_start_date) - year(date_birth) -
-             ifelse(month(baseline_start_date) < month(date_birth) |
-                      (month(baseline_start_date) == month(date_birth) &
-                         day(baseline_start_date) < day(date_birth)), 1, 0)) %>%
-    filter(!(is.na(age_at_baseline))) # 3 participants who lack dates for completed questionnaire.
-  return(data)
-}
-
 # Split ICD and OPCS columns ---------------------------------------------------------------
 
 split_column <- function(data) {
@@ -308,7 +335,7 @@ split_column <- function(data) {
   return(data)
 }
 
-# Find liver cancer cases -------------------------------------------------
+# ICD and Cancer long format -------------------------------------------------
 
 icd_longer_subset <- function(data) {
   data %>%
@@ -332,6 +359,23 @@ cancer_longer_subset <- function(data) {
     filter(!is.na(p41270var) | !is.na(p41271var) | !is.na(p40006)) %>%
     pivot_longer(
       cols = matches("p41280|p41281|p40005"),
+      names_to = "date_name",
+      values_to = "date"
+    ) %>%
+    filter(!is.na(date))
+}
+
+cancer_longer_subset_death <- function(data) {
+  data %>%
+    select(matches("id|p41270var|p41280|p41271var|p41281|p40006|p40005|p40001_d0|p40000_d0")) %>%
+    pivot_longer(
+      cols = matches("_a|_b|_i|_d"),
+      names_to = c(".value", "number"),
+      names_sep = "_"
+    ) %>%
+    filter(!is.na(p41270var) | !is.na(p41271var) | !is.na(p40006) | !is.na(p40001)) %>%
+    pivot_longer(
+      cols = matches("p41280|p41281|p40005|p40000"),
       names_to = "date_name",
       values_to = "date"
     ) %>%
@@ -408,7 +452,7 @@ end_of_follow_up_main <- function(data) {
 make_status_age <- function(data) {
   data <- data %>%
     mutate(
-      status_age = as.numeric(difftime(status_date, date_birth, units = "days")) / 365.25, # Calculating age in years
+      status_age = as.numeric(difftime(status_date, birth_date, units = "days")) / 365.25, # Calculating age in years
       study_time = status_age - age_at_baseline
     )
   return(data)
