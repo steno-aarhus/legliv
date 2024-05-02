@@ -153,28 +153,15 @@ list(
       filter_ques_comp()
   ),
   tar_target(
-    name = data_full_reduced,
-    command = data_with_id |>
-      reduce_full_data()
-  ),
-  tar_target(
-    name = data_baseline_reduced,
-    command = data_with_liver_cancer |>
-      reduce_baseline_data()
-  ),
-  tar_target(
     name = data_flowchart,
-    command = data_full_reduced |>
-      left_join(data_baseline_reduced, by = "id")
-  ),
-  tar_target(
-    name = data_liver_disease,
-    command = data_main |>
-      left_join(icd_liver_disease(icd_subset), by = "id")
+    command = data_with_id |>
+      reduce_full_data() |>
+      left_join(reduce_baseline_data(data_with_liver_cancer), by = "id")
   ),
   tar_target(
     name = data_without_liver_disease,
-    command = data_liver_disease |>
+    command = data_main |>
+      left_join(icd_liver_disease(icd_subset), by = "id") |>
       remove_liver_disease_before()
   )
 )

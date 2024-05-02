@@ -416,6 +416,19 @@ liver_cancer_icc <- function(data) {
     select(id, icc_date)
 }
 
+liver_cancer_main_death <- function(data){
+  data %>%
+    filter(str_detect(p41270var, "C22.0|C22.1")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22.0|C22.1")|str_detect(p40001, "C22.0|C22.1")) %>%
+    group_by(id) %>%
+    arrange(date, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    rename(liver_cancer_date_death = date) %>%
+    select(id, liver_cancer_date_death)
+}
+
+# Remove before baseline --------------------------------------------------
+
 remove_before_baseline_main <- function(data) {
   data <- data %>%
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
@@ -424,6 +437,35 @@ remove_before_baseline_main <- function(data) {
     mutate(cens_date = if_else(is.na(liver_cancer_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
   return(data)
 }
+
+remove_before_baseline_hcc <- function(data) {
+  data <- data %>%
+    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
+    filter(is.na(hcc_date) | hcc_date >= baseline_start_date) %>%
+    filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
+    mutate(cens_date = if_else(is.na(hcc_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
+  return(data)
+}
+
+remove_before_baseline_icc <- function(data) {
+  data <- data %>%
+    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
+    filter(is.na(icc_date) | icc_date >= baseline_start_date) %>%
+    filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
+    mutate(cens_date = if_else(is.na(icc_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
+  return(data)
+}
+
+remove_before_baseline_death <- function(data) {
+  data <- data %>%
+    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
+    filter(is.na(liver_cancer_date_death) | liver_cancer_date_death >= baseline_start_date) %>%
+    filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
+    mutate(cens_date = if_else(is.na(liver_cancer_date_death) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
+  return(data)
+}
+
+# Define end of follow-up -------------------------------------------------
 
 end_of_follow_up_main <- function(data) {
   # Creating status, status date and status age:
@@ -446,24 +488,6 @@ end_of_follow_up_main <- function(data) {
       status == "cens_date" ~ "Censored"
     )) %>%
     select(id, status, status_date)
-  return(data)
-}
-
-make_status_age <- function(data) {
-  data <- data %>%
-    mutate(
-      status_age = as.numeric(difftime(status_date, birth_date, units = "days")) / 365.25, # Calculating age in years
-      study_time = status_age - age_at_baseline
-    )
-  return(data)
-}
-
-remove_before_baseline_hcc <- function(data) {
-  data <- data %>%
-    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
-    filter(is.na(hcc_date) | hcc_date >= baseline_start_date) %>%
-    filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
-    mutate(cens_date = if_else(is.na(hcc_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
   return(data)
 }
 
@@ -491,15 +515,6 @@ end_of_follow_up_hcc <- function(data) {
   return(data)
 }
 
-remove_before_baseline_icc <- function(data) {
-  data <- data %>%
-    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
-    filter(is.na(icc_date) | icc_date >= baseline_start_date) %>%
-    filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
-    mutate(cens_date = if_else(is.na(icc_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
-  return(data)
-}
-
 end_of_follow_up_icc <- function(data) {
   # Creating status, status date and status age:
   data <- data %>%
@@ -523,6 +538,41 @@ end_of_follow_up_icc <- function(data) {
     select(id, status, status_date)
   return(data)
 }
+
+end_of_follow_up_death <- function(data) {
+  # Creating status, status date and status age:
+  data <- data %>%
+    select(id, liver_cancer_date_death, p40000_i0, l2fu_d, cens_date) %>%
+    pivot_longer(
+      cols = matches("liver_cancer_date_death|p40000_i0|l2fu_d|cens_date"),
+      names_to = "status",
+      values_to = "status_date"
+    ) %>%
+    filter(!is.na(status_date)) %>%
+    group_by(id) %>%
+    arrange(status_date, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(status = case_when(
+      status == "liver_cancer_date_death" ~ "Liver cancer",
+      status == "p40000_i0" ~ "Censored",
+      status == "l2fu_d" ~ "Censored",
+      status == "cens_date" ~ "Censored"
+    )) %>%
+    select(id, status, status_date)
+  return(data)
+}
+
+make_status_age <- function(data) {
+  data <- data %>%
+    mutate(
+      status_age = as.numeric(difftime(status_date, birth_date, units = "days")) / 365.25, # Calculating age in years
+      study_time = status_age - age_at_baseline
+    )
+  return(data)
+}
+
+# Prepare sensitivity analyses --------------------------------------------
 
 remove_high_alcohol <- function(data) {
   data <- data %>%
@@ -576,63 +626,3 @@ remove_liver_disease_before <- function(data) {
     filter(liver_disease == "No")
 }
 
-cancer_longer_subset_death <- function(data) {
-  data %>%
-    select(matches("id|p41270var|p41280|p41271var|p41281|p40006|p40005|p40001_d0|p40000_d0")) %>%
-    pivot_longer(
-      cols = matches("_a|_b|_i|_d"),
-      names_to = c(".value", "number"),
-      names_sep = "_"
-    ) %>%
-    filter(!is.na(p41270var) | !is.na(p41271var) | !is.na(p40006) | !is.na(p40001)) %>%
-    pivot_longer(
-      cols = matches("p41280|p41281|p40005|p40000"),
-      names_to = "date_name",
-      values_to = "date"
-    ) %>%
-    filter(!is.na(date))
-}
-
-liver_cancer_main_death <- function(data){
-  data %>%
-    filter(str_detect(p41270var, "C22.0|C22.1")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22.0|C22.1")|str_detect(p40001, "C22.0|C22.1")) %>%
-    group_by(id) %>%
-    arrange(date, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    rename(liver_cancer_date_death = date) %>%
-    select(id, liver_cancer_date_death)
-}
-
-remove_before_baseline_death <- function(data) {
-  data <- data %>%
-    filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
-    filter(is.na(liver_cancer_date_death) | liver_cancer_date_death >= baseline_start_date) %>%
-    filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
-    mutate(cens_date = if_else(is.na(liver_cancer_date_death) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
-  return(data)
-}
-
-end_of_follow_up_death <- function(data) {
-  # Creating status, status date and status age:
-  data <- data %>%
-    select(id, liver_cancer_date_death, p40000_i0, l2fu_d, cens_date) %>%
-    pivot_longer(
-      cols = matches("liver_cancer_date_death|p40000_i0|l2fu_d|cens_date"),
-      names_to = "status",
-      values_to = "status_date"
-    ) %>%
-    filter(!is.na(status_date)) %>%
-    group_by(id) %>%
-    arrange(status_date, .by_group = TRUE) %>%
-    slice_head() %>%
-    ungroup() %>%
-    mutate(status = case_when(
-      status == "liver_cancer_date_death" ~ "Liver cancer",
-      status == "p40000_i0" ~ "Censored",
-      status == "l2fu_d" ~ "Censored",
-      status == "cens_date" ~ "Censored"
-    )) %>%
-    select(id, status, status_date)
-  return(data)
-}
