@@ -109,7 +109,6 @@ row3 <- tbl_merge(list(m1p, m2p))
 
 table_main <-
   tbl_stack(list(row1, row2, row3)) %>%
-  modify_caption("**Table 3. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.** (N = {N})") %>%
   modify_header(label = "**15 g/day substitution**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   modify_table_styling(
@@ -118,24 +117,37 @@ table_main <-
   ) %>%
   as_gt() %>%
   tab_spanner(
-    label = "Model 1",
-    columns = c(estimate_1, ci_1, p.value_1)
+    label = md("**Model 1**"),
+    columns = c(estimate_1, ci_1, p.value_1),
+    id = "model1"
   ) %>%
   tab_spanner(
-    label = "Model 2",
-    columns = c(estimate_2, ci_2, p.value_2)
-  ) %>%
-  tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
-    locations = cells_column_spanners(spanners = "Model 1")
-  ) %>%
-  tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
-    locations = cells_column_spanners(spanners = "Model 2")
+    label = md("**Model 2**"),
+    columns = c(estimate_2, ci_2, p.value_2),
+    id = "model2"
   ) %>%
   tab_spanner(
     label = md("**Table 3. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**"),
     columns = everything(),
-    level = 2
+    level = 2,
+    id = "title"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(color = "dimgrey", align = "left"),
+      cell_borders(sides = c("top","left","right"), style = "hidden")
+    ),
+    locations = cells_column_spanners(spanners = "title")
+  ) %>%
+  tab_footnote(
+    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    locations = cells_column_spanners(spanners = "model1")
+  ) %>%
+  tab_footnote(
+    footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
+    locations = cells_column_spanners(spanners = "model2")
+  ) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_spanners()
   )
-
