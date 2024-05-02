@@ -62,7 +62,7 @@ list(
   ),
   tar_target(
     name = data_with_diet,
-    command = readied_with_covariates |>
+    command = data_with_covariates |>
       calculate_food_intake() |>
       food_intake_extra() |>
       legume_strat()
