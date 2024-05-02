@@ -48,8 +48,10 @@ library(tidyverse)
 targets::tar_config_set(store = here::here("_targets"))
 data <- targets::tar_read(data_with_covariates)
 
-data <- data |>
-  rowwise() |>
-  dplyr::mutate(
-    meat_total = sum(dplyr::across(matches("p26066|p26100|p26104|p26117")), na.rm = TRUE)
+sampled_data <- data %>%
+  sample_n(1000, replace = FALSE)
+
+data1 <- data |>
+  mutate(
+    meat_total = rowSums(pick(matches("p26066|p26100|p26104|p26117")), na.rm = TRUE)
   )
