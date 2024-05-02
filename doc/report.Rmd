@@ -6,10 +6,9 @@ author:
   affiliations:
   - name: Department of Public Health, Aarhus University, Aarhus, Denmark
 date: "`r Sys.Date()`"
-output: word_document
-format: html
 bibliography: references.bib
 csl: diabetologia.csl
+format: html
 ---
 
 ```{r setup, include=FALSE}
@@ -340,7 +339,7 @@ table_legume
 
 \newpage
 
-```{r sup table 4 table sensitivity analyses}
+```{r sup table 4 table sensitivity analyses, echo=FALSE}
 source(here("R", "sens-table.R"))
 table_sens %>% as_gt()
 ```
