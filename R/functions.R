@@ -434,7 +434,10 @@ remove_before_baseline_main <- function(data) {
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
     filter(is.na(liver_cancer_date) | liver_cancer_date >= baseline_start_date) %>%
     filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
-    mutate(cens_date = if_else(is.na(liver_cancer_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
+    mutate(
+      cens_date = if_else(is.na(liver_cancer_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-10-31"), NA),
+      p40000_i0 = if_else(p40000_i0 >= as.Date("2022-10-31"), as.Date("2022-10-31"), p40000_i0)
+      )
   return(data)
 }
 
@@ -482,11 +485,14 @@ end_of_follow_up_main <- function(data) {
     slice_head() %>%
     ungroup() %>%
     mutate(status = case_when(
-      status == "liver_cancer_date" ~ "Liver cancer",
+      status == "liver_cancer_date" & status_date < as.Date("2020-12-31") ~ "Liver cancer",
+      status == "liver_cancer_date" & status_date >= as.Date("2020-12-31") ~ "Censored",
       status == "p40000_i0" ~ "Censored",
       status == "l2fu_d" ~ "Censored",
       status == "cens_date" ~ "Censored"
-    )) %>%
+    ),
+    status_date = if_else(status_date >= as.Date("2020-12-31"), as.Date("2020-12-31"), status_date)
+    ) %>%
     select(id, status, status_date)
   return(data)
 }
