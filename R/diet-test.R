@@ -46,12 +46,14 @@ data <- data %>%
 # test
 library(tidyverse)
 targets::tar_config_set(store = here::here("_targets"))
-data <- targets::tar_read(data_with_covariates)
+data <- targets::tar_read(data_main)
 
 sampled_data <- data %>%
   sample_n(1000, replace = FALSE)
 
-data <- data |>
+data_covariates <- targets::tar_read(data_with_covariates)
+
+data1 <- data |>
   mutate(
     hummus_guac = rowSums(pick(matches("p26144")), na.rm = TRUE) / 2,
     peas_corn = rowSums(pick(matches("p26115")), na.rm = TRUE) / 2,
@@ -62,35 +64,34 @@ data <- data |>
     proc_meat_daily = rowSums(pick(matches("p26122")), na.rm = TRUE) / p20077,
     proc_meat_daily_15 = proc_meat_daily / 15,
     animal_foods = rowSums(pick(matches(
-      "p26069|p26121|
-      p26070|p26109|p26132|p26149|
-      p26062|p26063|p26084|p26087|p26096|p26099|p26102|p26103|p26131|p26133|p26150|p26154|
-      p26088|
-      p26129|p26130|
-      p26116|p26135|p26139|p26134"
+      "p26069|p26121|p26070|p26109|p26132|p26149|p26062|p26063|p26084|p26087|p26096|p26099|p26102|p26103|p26131|p26133|p26150|p26154|p26088|p26129|p26130|p26116|p26135|p26139|p26134"
       )), na.rm = TRUE) / p20077,
     hpdi = rowSums(pick(matches(
-      "p26071|p26074|p26075|p26076|p26077|p26078|p26105|p26114|
-      p26089|p26090|p26091|p26092|p26093|p26094|
-      p26106|p26107|p26108|
-      p26110|p26111|p26112|
-      p26081|p26082|p26141|p26142|p26148|
-      p26065|p26098|p26123|p26125|p26143|p26146|p26147|
-      hummus_guac|peas_corn"
+      "p26071|p26074|p26075|p26076|p26077|p26078|p26105|p26114|p26089|p26090|p26091|p26092|p26093|p26094|p26106|p26107|p26108|p26110|p26111|p26112|p26081|p26082|p26141|p26142|p26148|p26065|p26098|p26123|p26125|p26143|p26146|p26147|hummus_guac|peas_corn"
       )), na.rm = TRUE) / p20077,
     updi = rowSums(pick(matches(
-      "p26068|p26072|p26073|p26079|p26083|p26113|
-      p26118|p26119|p26120|
-      p26095|
-      p26097|p26128|p26145|
-      p26064|p26080|p26085|p26140|
-      p26124|p26126|p26127
-      "
+      "p26068|p26072|p26073|p26079|p26083|p26113|p26118|p26119|p26120|p26095|p26097|p26128|p26145|p26064|p26080|p26085|p26140|p26124|p26126|p26127"
       )), na.rm = TRUE) / p20077,
     alc_beverage_daily = rowSums(pick(matches(
       "p26067|p26138|p26151|p26152|p26153"
       )), na.rm = TRUE) / p20077,
     alcohol_daily = rowSums(pick(matches("p26030")), na.rm = TRUE) / p20077,
+    total_food = rowSums(pick(matches("p26000")), na.rm = TRUE) / p20077,
     total_weight_food_daily = legume_daily + red_meat_daily + proc_meat_daily +
       animal_foods + hpdi + updi + alc_beverage_daily
   )
+data2 <- data1 %>%
+  select(matches("id|_daily|pdi|animal|p26000"))
+
+data3 <- data %>%
+  select(matches("id|_daily|pdi|animal|p26000"))
+
+data4 <- data3 %>%
+  left_join(data2, by = "id")
+
+data4 %>% summary()
+
+data1 %>%
+  select(total_weight_food_daily, total_food) %>% summary()
+
+data %>% select(total_weight_food_daily) %>% summary()
