@@ -27,10 +27,22 @@ p6153_i0,"Medication for cholesterol, blood pressure, diabetes, or take exogenou
 p6153_i1,"Medication for cholesterol, blood pressure, diabetes, or take exogenous hormones | Instance 1",p6153
 p6153_i2,"Medication for cholesterol, blood pressure, diabetes, or take exogenous hormones | Instance 2",p6153
 p6153_i3,"Medication for cholesterol, blood pressure, diabetes, or take exogenous hormones | Instance 3",p6153
+p6154_i0,"Medication for pain relief, constipation, heartburn | Instance 0",p6154
+p6154_i1,"Medication for pain relief, constipation, heartburn | Instance 1",p6154
+p6154_i2,"Medication for pain relief, constipation, heartburn | Instance 2",p6154
+p6154_i3,"Medication for pain relief, constipation, heartburn | Instance 3",p6154
 p6177_i0,"Medication for cholesterol, blood pressure or diabetes | Instance 0",p6177
 p6177_i1,"Medication for cholesterol, blood pressure or diabetes | Instance 1",p6177
 p6177_i2,"Medication for cholesterol, blood pressure or diabetes | Instance 2",p6177
 p6177_i3,"Medication for cholesterol, blood pressure or diabetes | Instance 3",p6177
+p20001_i0,"Cancer code, self-reported | Instance 0",p20001
+p20001_i1,"Cancer code, self-reported | Instance 1",p20001
+p20001_i2,"Cancer code, self-reported | Instance 2",p20001
+p20001_i3,"Cancer code, self-reported | Instance 3",p20001
+p20002_i0,"Non-cancer illness code, self-reported | Instance 0",p20002
+p20002_i1,"Non-cancer illness code, self-reported | Instance 1",p20002
+p20002_i2,"Non-cancer illness code, self-reported | Instance 2",p20002
+p20002_i3,"Non-cancer illness code, self-reported | Instance 3",p20002
 p20077,Number of diet questionnaires completed,p20077
 p20116_i0,Smoking status | Instance 0,p20116
 p20116_i1,Smoking status | Instance 1,p20116
@@ -668,6 +680,88 @@ p40008_i18,Age at cancer diagnosis | Instance 18,p40008
 p40008_i19,Age at cancer diagnosis | Instance 19,p40008
 p40008_i20,Age at cancer diagnosis | Instance 20,p40008
 p40008_i21,Age at cancer diagnosis | Instance 21,p40008
+p40011_i0,Histology of cancer tumour | Instance 0,p40011
+p40011_i1,Histology of cancer tumour | Instance 1,p40011
+p40011_i2,Histology of cancer tumour | Instance 2,p40011
+p40011_i3,Histology of cancer tumour | Instance 3,p40011
+p40011_i4,Histology of cancer tumour | Instance 4,p40011
+p40011_i5,Histology of cancer tumour | Instance 5,p40011
+p40011_i6,Histology of cancer tumour | Instance 6,p40011
+p40011_i7,Histology of cancer tumour | Instance 7,p40011
+p40011_i8,Histology of cancer tumour | Instance 8,p40011
+p40011_i9,Histology of cancer tumour | Instance 9,p40011
+p40011_i10,Histology of cancer tumour | Instance 10,p40011
+p40011_i11,Histology of cancer tumour | Instance 11,p40011
+p40011_i12,Histology of cancer tumour | Instance 12,p40011
+p40011_i13,Histology of cancer tumour | Instance 13,p40011
+p40011_i14,Histology of cancer tumour | Instance 14,p40011
+p40011_i15,Histology of cancer tumour | Instance 15,p40011
+p40011_i16,Histology of cancer tumour | Instance 16,p40011
+p40011_i17,Histology of cancer tumour | Instance 17,p40011
+p40011_i18,Histology of cancer tumour | Instance 18,p40011
+p40011_i19,Histology of cancer tumour | Instance 19,p40011
+p40011_i20,Histology of cancer tumour | Instance 20,p40011
+p40011_i21,Histology of cancer tumour | Instance 21,p40011
+p40012_i0,Behaviour of cancer tumour | Instance 0,p40012
+p40012_i1,Behaviour of cancer tumour | Instance 1,p40012
+p40012_i2,Behaviour of cancer tumour | Instance 2,p40012
+p40012_i3,Behaviour of cancer tumour | Instance 3,p40012
+p40012_i4,Behaviour of cancer tumour | Instance 4,p40012
+p40012_i5,Behaviour of cancer tumour | Instance 5,p40012
+p40012_i6,Behaviour of cancer tumour | Instance 6,p40012
+p40012_i7,Behaviour of cancer tumour | Instance 7,p40012
+p40012_i8,Behaviour of cancer tumour | Instance 8,p40012
+p40012_i9,Behaviour of cancer tumour | Instance 9,p40012
+p40012_i10,Behaviour of cancer tumour | Instance 10,p40012
+p40012_i11,Behaviour of cancer tumour | Instance 11,p40012
+p40012_i12,Behaviour of cancer tumour | Instance 12,p40012
+p40012_i13,Behaviour of cancer tumour | Instance 13,p40012
+p40012_i14,Behaviour of cancer tumour | Instance 14,p40012
+p40012_i15,Behaviour of cancer tumour | Instance 15,p40012
+p40012_i16,Behaviour of cancer tumour | Instance 16,p40012
+p40012_i17,Behaviour of cancer tumour | Instance 17,p40012
+p40012_i18,Behaviour of cancer tumour | Instance 18,p40012
+p40012_i19,Behaviour of cancer tumour | Instance 19,p40012
+p40012_i20,Behaviour of cancer tumour | Instance 20,p40012
+p40012_i21,Behaviour of cancer tumour | Instance 21,p40012
+p40013_i0,Type of cancer: ICD9 | Instance 0,p40013
+p40013_i1,Type of cancer: ICD9 | Instance 1,p40013
+p40013_i2,Type of cancer: ICD9 | Instance 2,p40013
+p40013_i3,Type of cancer: ICD9 | Instance 3,p40013
+p40013_i4,Type of cancer: ICD9 | Instance 4,p40013
+p40013_i5,Type of cancer: ICD9 | Instance 5,p40013
+p40013_i6,Type of cancer: ICD9 | Instance 6,p40013
+p40013_i7,Type of cancer: ICD9 | Instance 7,p40013
+p40013_i8,Type of cancer: ICD9 | Instance 8,p40013
+p40013_i9,Type of cancer: ICD9 | Instance 9,p40013
+p40013_i10,Type of cancer: ICD9 | Instance 10,p40013
+p40013_i11,Type of cancer: ICD9 | Instance 11,p40013
+p40013_i12,Type of cancer: ICD9 | Instance 12,p40013
+p40013_i13,Type of cancer: ICD9 | Instance 13,p40013
+p40013_i14,Type of cancer: ICD9 | Instance 14,p40013
+p40021_i0,Cancer record origin | Instance 0,p40021
+p40021_i1,Cancer record origin | Instance 1,p40021
+p40021_i2,Cancer record origin | Instance 2,p40021
+p40021_i3,Cancer record origin | Instance 3,p40021
+p40021_i4,Cancer record origin | Instance 4,p40021
+p40021_i5,Cancer record origin | Instance 5,p40021
+p40021_i6,Cancer record origin | Instance 6,p40021
+p40021_i7,Cancer record origin | Instance 7,p40021
+p40021_i8,Cancer record origin | Instance 8,p40021
+p40021_i9,Cancer record origin | Instance 9,p40021
+p40021_i10,Cancer record origin | Instance 10,p40021
+p40021_i11,Cancer record origin | Instance 11,p40021
+p40021_i12,Cancer record origin | Instance 12,p40021
+p40021_i13,Cancer record origin | Instance 13,p40021
+p40021_i14,Cancer record origin | Instance 14,p40021
+p40021_i15,Cancer record origin | Instance 15,p40021
+p40021_i16,Cancer record origin | Instance 16,p40021
+p40021_i17,Cancer record origin | Instance 17,p40021
+p40021_i18,Cancer record origin | Instance 18,p40021
+p40021_i19,Cancer record origin | Instance 19,p40021
+p40021_i20,Cancer record origin | Instance 20,p40021
+p40021_i21,Cancer record origin | Instance 21,p40021
+p40022,Inpatient record origin,p40022
 p41270,Diagnoses - ICD10,p41270
 p41271,Diagnoses - ICD9,p41271
 p41272,Operative procedures - OPCS4,p41272
