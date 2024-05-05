@@ -261,6 +261,23 @@ the estimates in any statistically significant way (supplementary tables
 
 ## Summary of results
 
+## Information bias
+
+Underreporting of unhealthy habits? Non-differentiated
+misclassification. Participants with unhealthy habits are
+underreporting? differentiated misclassification.
+
+## Selection bias
+
+Incomplete registries regarding cancer. Participants who completed \>= 2
+diet questionnaires are healthier than the those who didn't?
+
+## Confounding
+
+residual confounding: broad food groups erase effect of specific foods.
+Are processed meat eaten with legumes in the UK? (baked beans and
+bacon). Aflatoxins
+
 ## substitution analyses and foods related to disease
 
 Discuss studies on legumes/red meat and liver cancer/other diseases.
@@ -272,6 +289,8 @@ e.g, why estimates for HCC and ICC go in opposite direction. sensitivity
 analyses
 
 ## Strength and limitations
+
+Few events: trade off between
 
 # Conclusions
 
@@ -343,3 +362,4 @@ table_legume
 source(here("R", "sens-table.R"))
 table_sens %>% as_gt()
 ```
+
