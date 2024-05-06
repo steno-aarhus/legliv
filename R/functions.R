@@ -485,8 +485,7 @@ end_of_follow_up_main <- function(data) {
     slice_head() %>%
     ungroup() %>%
     mutate(status = case_when(
-      status == "liver_cancer_date" & status_date < as.Date("2020-12-31") ~ "Liver cancer",
-      status == "liver_cancer_date" & status_date >= as.Date("2020-12-31") ~ "Censored",
+      status == "liver_cancer_date" ~ "Liver cancer",
       status == "p40000_i0" ~ "Censored",
       status == "l2fu_d" ~ "Censored",
       status == "cens_date" ~ "Censored"
