@@ -35,6 +35,7 @@ source(here("R","4-diet-table.R"))
 source(here("R","3-1-main-analysis-table.R"))
 source(here("R","7-table-legume-quintile.R"))
 source(here("R","6-table-cancer-type.R"))
+source(here("R", "sens-table.R"))
 ```
 
 # Abstract
@@ -48,6 +49,10 @@ Results:
 Conclusions:
 
 # Introduction
+
+The main aim of this study was to estimate the effect of substituting
+unprocessed red meat, processed red meat and total red meat with legumes
+on primary liver cancer in a free-living population.
 
 # Research Design and Methods
 
@@ -261,24 +266,32 @@ the estimates in any statistically significant way (supplementary tables
 
 ## Summary of results
 
-## Information bias
+## Strength and limitations
 
-Underreporting of unhealthy habits? Non-differentiated
+Selection bias: Incomplete registries regarding cancer. Participants who
+completed \>= 2 diet questionnaires are healthier than the those who
+didn't?
+
+Lavt bortfald.
+
+kun 5% deltagelse.
+
+Information bias: Underreporting of unhealthy habits? Non-differentiated
 misclassification. Participants with unhealthy habits are
 underreporting? differentiated misclassification.
 
-## Selection bias
+incomplete registries, information problem.
 
-Incomplete registries regarding cancer. Participants who completed \>= 2
-diet questionnaires are healthier than the those who didn't?
-
-## Confounding
+Confounding
 
 residual confounding: broad food groups erase effect of specific foods.
 Are processed meat eaten with legumes in the UK? (baked beans and
 bacon). Aflatoxins
 
-## substitution analyses and foods related to disease
+Few events: trade off between statistical validity and residual
+confounding.
+
+## Other studies: substitution analyses and foods related to disease
 
 Discuss studies on legumes/red meat and liver cancer/other diseases.
 Other substitutions
@@ -288,9 +301,7 @@ Other substitutions
 e.g, why estimates for HCC and ICC go in opposite direction. sensitivity
 analyses
 
-## Strength and limitations
-
-Few events: trade off between
+## Perspectives
 
 # Conclusions
 
@@ -359,7 +370,5 @@ table_legume
 \newpage
 
 ```{r sup table 4 table sensitivity analyses, echo=FALSE}
-source(here("R", "sens-table.R"))
 table_sens %>% as_gt()
 ```
-
