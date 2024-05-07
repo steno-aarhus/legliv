@@ -52,7 +52,8 @@ list(
       remove_timestamp() |>
       baseline_date() |>
       birth_date() |>
-      baseline_age()
+      baseline_age() |>
+      remove_ques_error()
   ),
   tar_target(
     name = data_with_covariates,
