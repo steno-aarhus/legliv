@@ -606,6 +606,10 @@ p26154_i1,Cream | Instance 1,p26154
 p26154_i2,Cream | Instance 2,p26154
 p26154_i3,Cream | Instance 3,p26154
 p26154_i4,Cream | Instance 4,p26154
+p30620_i0,Alanine aminotransferase | Instance 0,p30620
+p30620_i1,Alanine aminotransferase | Instance 1,p30620
+p30650_i0,Aspartate aminotransferase | Instance 0,p30650
+p30650_i1,Aspartate aminotransferase | Instance 1,p30650
 p30740_i0,Glucose | Instance 0,p30740
 p30740_i1,Glucose | Instance 1,p30740
 p30750_i0,Glycated haemoglobin (HbA1c) | Instance 0,p30750
@@ -620,6 +624,21 @@ p40000_i0,Date of death | Instance 0,p40000
 p40000_i1,Date of death | Instance 1,p40000
 p40001_i0,Underlying (primary) cause of death: ICD10 | Instance 0,p40001
 p40001_i1,Underlying (primary) cause of death: ICD10 | Instance 1,p40001
+p40002_i0_a0,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 0,p40002
+p40002_i0_a1,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 1,p40002
+p40002_i0_a2,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 2,p40002
+p40002_i0_a3,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 3,p40002
+p40002_i0_a4,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 4,p40002
+p40002_i0_a5,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 5,p40002
+p40002_i0_a6,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 6,p40002
+p40002_i0_a7,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 7,p40002
+p40002_i0_a8,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 8,p40002
+p40002_i0_a9,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 9,p40002
+p40002_i0_a10,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 10,p40002
+p40002_i0_a11,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 11,p40002
+p40002_i0_a12,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 12,p40002
+p40002_i0_a13,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 13,p40002
+p40002_i0_a14,Contributory (secondary) causes of death: ICD10 | Instance 0 | Array 14,p40002
 p40005_i0,Date of cancer diagnosis | Instance 0,p40005
 p40005_i1,Date of cancer diagnosis | Instance 1,p40005
 p40005_i2,Date of cancer diagnosis | Instance 2,p40005
