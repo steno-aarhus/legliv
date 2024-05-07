@@ -38,39 +38,55 @@ ready_flowchart <-
     five = "5 Oxford WebQs"
   )
 
-flowchart <- ready_flowchart %>%
+flowchart_make <- ready_flowchart %>%
   consort_box_add(
-    "full", 0, 50, cohort_count_adorn(ready_flowchart, .full)
+    name = "full",
+    x = 0,
+    y = 50,
+    label = cohort_count_adorn(ready_flowchart, .full,
+                               .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})
   ) %>%
   consort_box_add(
-    "first_inclusion", 0, 35, glue::glue(
+    name = "first_inclusion",
+    x = 0,
+    y = 35,
+    label = glue::glue(
       '
-      {cohort_count_adorn(ready_flowchart, two_ques)}<br>
+      {cohort_count_adorn(ready_flowchart, two_ques, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
       <br>
-      {cohort_count_adorn(ready_flowchart, two)}<br>
-      {cohort_count_adorn(ready_flowchart, three)}<br>
-      {cohort_count_adorn(ready_flowchart, four)}<br>
-      {cohort_count_adorn(ready_flowchart, five)}
+      {cohort_count_adorn(ready_flowchart, two, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
+      {cohort_count_adorn(ready_flowchart, three, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
+      {cohort_count_adorn(ready_flowchart, four, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
+      {cohort_count_adorn(ready_flowchart, five, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
       '
     )
   ) %>%
   consort_box_add(
-    "second_inclusion", 0, 10, cohort_count_adorn(ready_flowchart, both)
+    name = "second_inclusion",
+    x = 0,
+    y = 10,
+    label = cohort_count_adorn(ready_flowchart, both, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})
   ) %>%
   consort_box_add(
-    "first_exclusion", 10, 42.5, glue::glue(
+    name = "first_exclusion",
+    x = 10,
+    y = 42.5,
+    label = glue::glue(
       '
-      {cohort_count_adorn(ready_flowchart, one_ques_excluded)}<br>
-      {cohort_count_adorn(ready_flowchart, two_ques_excluded)}
+      {cohort_count_adorn(ready_flowchart, one_ques_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
+      {cohort_count_adorn(ready_flowchart, two_ques_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
       '
       )
   ) %>%
   consort_box_add(
-    "second_exclusion", 10, 18, glue::glue(
+    name = "second_exclusion",
+    x = 10,
+    y = 18,
+    label = glue::glue(
       '
-      {cohort_count_adorn(ready_flowchart, liver_excluded)}<br>
-      {cohort_count_adorn(ready_flowchart, l2fu_excluded)}<br>
-      {cohort_count_adorn(ready_flowchart, miss_excluded)}
+      {cohort_count_adorn(ready_flowchart, liver_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
+      {cohort_count_adorn(ready_flowchart, l2fu_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
+      {cohort_count_adorn(ready_flowchart, miss_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
       '
       )
   ) %>%
@@ -87,11 +103,12 @@ flowchart <- ready_flowchart %>%
     end = "second_exclusion", end_side = "left", start_x = 0, start_y = 18
   )
 
-flowchart <- flowchart %>%
+flowchart <- flowchart_make %>%
   ggplot() +
   geom_consort() +
-  theme_consort(margin_h = 16.4, margin_v = 1)
-  # ggtext::geom_richtext(
-  #   aes(x = -40, y = 40, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail")
-  # )
+  theme_consort(margin_h = 16.4, margin_v = 1) +
+  ggtext::geom_richtext(
+    aes(x = -40, y = 42.5, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail"),
+    size = 3
+  )
 flowchart
