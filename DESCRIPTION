@@ -23,6 +23,7 @@ Imports:
     readr,
     remotes,
     rmarkdown,
+    scales,
     stringr,
     survival,
     targets,
