@@ -277,19 +277,72 @@ m2p_death <- model2p_death %>%
     label = legume_daily_15 ~ " ",
   )
 
+model2t_nowc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily,
+  data = data
+)
+
+model2r_nowc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily,
+  data = data
+)
+
+model2p_nowc <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily,
+  data = data
+)
+
+m2t_nowc <- model2t_nowc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  )
+
+m2r_nowc <- model2r_nowc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  )
+
+m2p_nowc <- model2p_nowc %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ " ",
+  )
+
 row1 <- tbl_merge(list(m2t_alc, m2r_alc, m2p_alc))
 row2 <- tbl_merge(list(m2t_misreporter, m2r_misreporter, m2p_misreporter))
 row3 <- tbl_merge(list(m2t_3_ques_comp, m2r_3_ques_comp, m2p_3_ques_comp))
 row4 <- tbl_merge(list(m2t_liver_disease, m2r_liver_disease, m2p_liver_disease))
 row5 <- tbl_merge(list(m2t_death, m2r_death, m2p_death))
+row6 <- tbl_merge(list(m2t_nowc, m2r_nowc, m2p_nowc))
 
 table_sens <-
-  tbl_stack(list(row1, row2, row3, row4, row5),
+  tbl_stack(list(row1, row2, row3, row4, row5, row6),
             group_header = c("Exclusion of partipants with a high alcohol intake:",
                              "Exclusion of participants with a implausible food intake:",
                              "Inclusion criteria set to >= 3 Oxfords WebQs:",
                              "Exclusion of participants with any liver disease before baseline:",
-                             "Liver cancer as primary cause of death counts as an event:")) %>%
+                             "Liver cancer as primary cause of death counts as an event:",
+                             "Not adjusted for waist circumference:")) %>%
   modify_caption("**Supplementary table 3. Sensitivity analyses**") %>%
   modify_caption("<div style='text-align: left; font-weight: bold; color: grey'> Supplementary table 3. Sensitivity analyses</div>") %>%
   modify_spanning_header(
