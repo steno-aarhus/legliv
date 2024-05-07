@@ -58,7 +58,6 @@ baseline_date <- function(data) {
       values_to = "completion_date"
     ) %>%
     filter(!is.na(completion_date)) %>%
-    filter(id != 287216) %>% # error in data, p20077 > 2 but only 1 completion date
     group_by(id) %>%
     arrange(completion_date, .by_group = TRUE) %>%
     slice_tail() %>%
