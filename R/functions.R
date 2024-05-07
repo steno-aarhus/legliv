@@ -63,6 +63,7 @@ baseline_date <- function(data) {
     slice_tail() %>%
     rename(baseline_start_date = completion_date) %>%
     ungroup() %>%
+    mutate(baseline_start_date = if_else(id == 377195, NA, baseline_start_date)) %>%
     select(id, baseline_start_date)
   data <- data %>%
     left_join(baseline_start_date, by = "id")
