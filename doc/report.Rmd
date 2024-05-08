@@ -6,9 +6,9 @@ author:
   affiliations:
   - name: Department of Public Health, Aarhus University, Aarhus, Denmark
 date: "`r Sys.Date()`"
-bibliography: references.bib
+output: word_document
 csl: diabetologia.csl
-format: html
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -23,18 +23,31 @@ data_misreporter <- targets::tar_read(data_with_misreporter)
 data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
 data_liver_disease <- targets::tar_read(data_without_liver_disease)
 data_death <- targets::tar_read(data_with_death)
+```
+
+```{r packages, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 library(here)
 library(gt)
 library(gtsummary)
 library(tidyverse)
 library(survival)
 library(ggconsort)
+library(scales)
 library(ggdag)
+```
+
+```{r source, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 source(here("R","2-table1.R"))
 source(here("R","4-diet-table.R"))
 source(here("R","3-1-main-analysis-table.R"))
 source(here("R","7-table-legume-quintile.R"))
 source(here("R","6-table-cancer-type.R"))
+```
+
+```{r source sens, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 source(here("R", "sens-table.R"))
 ```
 
@@ -58,7 +71,7 @@ on primary liver cancer in a free-living population.
 
 **Study population**
 
-The UK Biobank, a population-based prospective cohort, wasinitiated in
+The UK Biobank, a population-based prospective cohort, was initiated in
 2006. [@sudlow2015] During 2006-2010, more than 500,000 participants,
 aged 40-69, were recruited and visited designated assessment centres
 across the UK Participants provided information about age, sex,
@@ -317,7 +330,7 @@ analyses
 # Tables
 
 ```{r table 1 baseline table}
-table_one %>% as_gt()
+table_one
 ```
 
 \newpage
@@ -370,5 +383,5 @@ table_legume
 \newpage
 
 ```{r sup table 4 table sensitivity analyses, echo=FALSE}
-table_sens %>% as_gt()
+table_sens
 ```
