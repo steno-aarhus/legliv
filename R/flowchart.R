@@ -1,5 +1,6 @@
 library(ggconsort)
 library(tidyverse)
+library(scales)
 
 ready_flowchart <-
   data_flowchart %>%
@@ -106,9 +107,8 @@ flowchart_make <- ready_flowchart %>%
 flowchart <- flowchart_make %>%
   ggplot() +
   geom_consort() +
-  theme_consort(margin_h = 16.4, margin_v = 1) +
-  ggtext::geom_richtext(
-    aes(x = -40, y = 42.5, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail"),
-    size = 3
-  )
-flowchart
+  theme_consort(margin_h = 16.4, margin_v = 1)
+  # ggtext::geom_richtext(
+  #   aes(x = -40, y = 42.5, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail"),
+  #   size = 3
+  # )
