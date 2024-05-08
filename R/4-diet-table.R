@@ -70,18 +70,13 @@ diet_liver_table_median <- diet_liver_median %>%
     )
   )
 
-row1 <- tbl_merge(list(diet_all_table_mean, diet_liver_table_mean), tab_spanner = c("**Cohort**", "**Liver cancer**")) %>%
-  bold_labels() %>%
-  modify_footnote(all_stat_cols() ~ "Median (IQR)")
-row2 <- tbl_merge(list(diet_all_table_median, diet_liver_table_median)) %>%
-  bold_labels()
+row1 <- tbl_merge(list(diet_all_table_mean, diet_liver_table_mean))
+row2 <- tbl_merge(list(diet_all_table_median, diet_liver_table_median))
 
 diet_table <-
   tbl_stack(list(row1, row2),
-            quiet = TRUE,
             group_header = c("Total food intake", "Food groups, g/day")) %>%
   modify_header(label ~ "**Daily food intake**") %>%
-  modify_caption("**Table 2. Daily dietary intake of food groups, total food and total energy intake in UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**") %>%
   modify_table_styling(
     columns = label,
     rows = label == "Other animal-based foods",
@@ -97,6 +92,32 @@ diet_table <-
     rows = label == "Unhealthy plant-based foods",
     footnote = "Unhealthy plant-based foods includes: refined grains, potatoes, mixed vegetarian dishes, sweets and snacks, fruit juice, and sugar sweetened beverages."
   ) %>%
-  as_gt()
-
-diet_table
+  modify_spanning_header(everything() ~ NA_character_) %>%
+  as_gt() %>%
+  tab_spanner(
+    label = md("**Cohort**"),
+    columns = c(stat_0_1),
+    id = "cohort"
+  ) %>%
+  tab_spanner(
+    label = md("**Liver cancer**"),
+    columns = c(stat_0_2),
+    id = "livercancer"
+  ) %>%
+  tab_spanner(
+    label = md("**Table 2. Daily dietary intake of food groups, total food and total energy intake in UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**"),
+    columns = everything(),
+    level = 2,
+    id = "title"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(color = "dimgrey", align = "left"),
+      cell_borders(sides = c("top","left","right"), style = "hidden")
+    ),
+    locations = cells_column_spanners(spanners = "title")
+  ) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_row_groups(groups = everything())
+  )

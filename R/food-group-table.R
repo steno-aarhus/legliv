@@ -96,7 +96,19 @@ bold_text <- c(1, 2, 3, 4, 11, 18, 25)
 indent_text <- c(5, 6)
 food_group_table <- df %>%
   gt() %>%
-  tab_caption(caption = md("**Supplementary table 1. Summary of included foods for each food group.**")) %>%
+  tab_spanner(
+    label = md("**Supplementary table 1. Summary of included foods for each food group.**"),
+    columns = everything(),
+    level = 2,
+    id = "title"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(color = "dimgrey", align = "left"),
+      cell_borders(sides = c("top","left","right"), style = "hidden")
+    ),
+    locations = cells_column_spanners(spanners = "title")
+  ) %>%
   cols_label(
     food_group = md("**Food group**"),
     includes = md("**Includes**")
