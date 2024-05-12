@@ -109,7 +109,7 @@ flowchart <- flowchart_make %>%
   geom_consort() +
   theme_void() +
   theme(
-    plot.margin = margin(0.5, 14, 1, 7, unit = "lines")
+    plot.margin = margin(0.5, 14.5, 1, 7.5, unit = "lines")
   )
   # ggtext::geom_richtext(
   #   aes(x = -5,
