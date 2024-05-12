@@ -2,7 +2,6 @@ Package: legliv
 Type: Project
 Version: 0.0.1
 Imports:
-    blandr,
     confintr,
     desc,
     dplyr,
@@ -17,6 +16,7 @@ Imports:
     knitr,
     lubridate,
     magrittr,
+    officedown,
     parameters,
     psych,
     qs,
