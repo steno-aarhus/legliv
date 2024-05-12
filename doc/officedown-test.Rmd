@@ -6,6 +6,8 @@ output:
   officedown::rdocx_document:
     mapstyles:
       Normal: ['First Paragraph']
+csl: diabetologia.csl
+bibliography: references.bib
 ---
 
 ```{r setup officedown, include=FALSE}
@@ -377,8 +379,10 @@ table_main
 
 \newpage
 
-```{r fig.cap="Figure 1. Flowchart of included participants."}
+```{r fig.width= 10, fig.height= 7, fig.cap="Figure 1. Flowchart of included participants."}
+knitr::opts_chunk$set(dpi = 300)
 source(here("R", "flowchart.R"))
+load(here::here("doc", "flowchart.rda"))
 flowchart
 ```
 
