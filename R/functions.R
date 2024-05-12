@@ -598,3 +598,14 @@ remove_liver_disease_before <- function(data) {
     filter(liver_disease == "No")
 }
 
+
+icd_any_cancer <- function(data) {
+  data %>%
+    filter(str_detect(p41270var, "^C[0-9]{2}|^D([0-3][0-9]|4[0-8])") | str_detect(p41271var, "^2(3[0-9]|4[0-9]|0|1)[0-9]{1}$|^14[0-9]{1}$")) %>%
+    group_by(id) %>%
+    arrange(p41280, .by_group = TRUE) %>%
+    slice_head() %>%
+    ungroup() %>%
+    mutate(liver_disease_date = p41280) %>%
+    select(id, liver_disease_date)
+}
