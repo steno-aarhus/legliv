@@ -70,7 +70,7 @@ flowchart_make <- ready_flowchart %>%
   ) %>%
   consort_box_add(
     name = "first_exclusion",
-    x = 10,
+    x = 5,
     y = 42.5,
     label = glue::glue(
       '
@@ -81,7 +81,7 @@ flowchart_make <- ready_flowchart %>%
   ) %>%
   consort_box_add(
     name = "second_exclusion",
-    x = 10,
+    x = 5,
     y = 18,
     label = glue::glue(
       '
@@ -107,8 +107,14 @@ flowchart_make <- ready_flowchart %>%
 flowchart <- flowchart_make %>%
   ggplot() +
   geom_consort() +
-  theme_consort(margin_h = 16.4, margin_v = 1)
+  theme_void() +
+  theme(
+    plot.margin = margin(0.5, 14, 1, 7, unit = "lines")
+  )
   # ggtext::geom_richtext(
-  #   aes(x = -40, y = 42.5, label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail"),
+  #   aes(x = -5,
+  #       y = 42.5,
+  #       label = "Oxford WebQ was administered to:<br>~ 70,000 participants at initial assessment visit<br>~ 320,000 participants via e-mail"
+  #       ),
   #   size = 3
   # )
