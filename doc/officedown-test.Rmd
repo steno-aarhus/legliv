@@ -313,9 +313,9 @@ the estimates in any statistically significant way (supplementary tables
 
 # Discussion
 
-## Summary of results
+**Summary of results**
 
-## Strength and limitations
+**Strength and limitations**
 
 Selection bias: Incomplete registries regarding cancer. Participants who
 completed \>= 2 diet questionnaires are healthier than the those who
@@ -340,17 +340,17 @@ bacon). Aflatoxins
 Few events: trade off between statistical validity and residual
 confounding.
 
-## Other studies: substitution analyses and foods related to disease
+**Other studies: substitution analyses and foods related to disease**
 
 Discuss studies on legumes/red meat and liver cancer/other diseases.
 Other substitutions
 
-## Discuss results
+**Discuss results**
 
 e.g, why estimates for HCC and ICC go in opposite direction. sensitivity
 analyses
 
-## Perspectives
+**Perspectives**
 
 # Conclusions
 
