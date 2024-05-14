@@ -304,7 +304,13 @@ icd_longer_subset <- function(data) {
       names_to = c(".value", "a"),
       names_sep = "_"
     ) %>%
-    filter(!is.na(p41270var) | !is.na(p41271var))
+    filter(!is.na(p41270var) | !is.na(p41271var)) %>%
+    pivot_longer(
+      cols = matches("p41280|p41281"),
+      names_to = "date_name",
+      values_to = "date"
+    ) %>%
+    filter(!is.na(date))
 }
 
 cancer_longer_subset <- function(data) {
@@ -583,12 +589,12 @@ reduce_baseline_data <- function(data) {
 
 icd_liver_disease <- function(data) {
   data %>%
-    filter(str_detect(p41270var, "K7|B18|Z94.4") | str_detect(p41271var, "571|572|573|070|V427")) %>%
+    filter(str_detect(p41270var, "^K7[0-9]|^B1[6-9]|^Z94.4|^I82.0|^I85|^I86.4|^E83.[0-1]|^E88.0") | str_detect(p41271var, "^57[1-4]|^070|^V427|^275[0-1]")) %>%
     group_by(id) %>%
-    arrange(p41280, .by_group = TRUE) %>%
+    arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
     ungroup() %>%
-    mutate(liver_disease_date = p41280) %>%
+    mutate(liver_disease_date = date) %>%
     select(id, liver_disease_date)
 }
 
@@ -598,14 +604,23 @@ remove_liver_disease_before <- function(data) {
     filter(liver_disease == "No")
 }
 
-
 icd_any_cancer <- function(data) {
   data %>%
-    filter(str_detect(p41270var, "^C[0-9]{2}|^D([0-3][0-9]|4[0-8])") | str_detect(p41271var, "^2(3[0-9]|4[0-9]|0|1)[0-9]{1}$|^14[0-9]{1}$")) %>%
+    filter(str_detect(p41270var, "^C[0-9]{2}|^D([0-3][0-9]|4[0-8])") |
+             str_detect(p41271var, "^1[4-9]|^2[0-3][0-9]") |
+             str_detect(p40006, "^C[0-9]{2}|^D([0-3][0-9]|4[0-8])") |
+             str_detect(p40013, "^1[4-9]|^2[0-3][0-9]")
+    ) %>%
     group_by(id) %>%
-    arrange(p41280, .by_group = TRUE) %>%
+    arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
     ungroup() %>%
-    mutate(liver_disease_date = p41280) %>%
-    select(id, liver_disease_date)
+    mutate(cancer_before_date = date) %>%
+    select(id, cancer_before_date)
+}
+
+remove_any_cancer_before <- function(data) {
+  data %>%
+    mutate(cancer_before = if_else(cancer_before_date >= baseline_start_date | is.na(cancer_before_date), "No", "Yes")) %>%
+    filter(cancer_before == "No")
 }
