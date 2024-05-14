@@ -164,5 +164,11 @@ list(
     command = data_main |>
       left_join(icd_liver_disease(icd_subset), by = "id") |>
       remove_liver_disease_before()
+  ),
+  tar_target(
+    name = data_without_cancer,
+    command = data_main |>
+      left_join(icd_any_cancer(cancer_subset), by = "id") |>
+      remove_any_cancer_before()
   )
 )
