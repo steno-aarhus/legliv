@@ -328,9 +328,63 @@ m2p_nowc <- model2p_nowc %>%
     label = legume_daily_15 ~ "Legumes for processed meat",
   )
 
-row1 <- tbl_merge(list(m2t_alc,m2t_misreporter,m2t_liver_disease,m2t_3_ques_comp,m2t_death,m2t_nowc))
-row2 <- tbl_merge(list(m2r_alc,m2r_misreporter,m2r_liver_disease,m2r_3_ques_comp,m2r_death,m2r_nowc))
-row3 <- tbl_merge(list(m2p_alc,m2p_misreporter,m2p_liver_disease,m2p_3_ques_comp,m2p_death,m2p_nowc))
+model2t_any_cancer <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_any_cancer
+)
+
+model2r_any_cancer <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_any_cancer
+)
+
+model2p_any_cancer <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    sex +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_any_cancer
+)
+
+m2t_any_cancer <- model2t_any_cancer %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for total meat",
+  )
+
+m2r_any_cancer <- model2r_any_cancer %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for red meat",
+  )
+
+m2p_any_cancer <- model2p_any_cancer %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Legumes for processed meat",
+  )
+
+row1 <- tbl_merge(list(m2t_alc,m2t_misreporter,m2t_liver_disease,m2t_any_cancer,m2t_3_ques_comp,m2t_death,m2t_nowc))
+row2 <- tbl_merge(list(m2r_alc,m2r_misreporter,m2r_liver_disease,m2r_any_cancer,m2r_3_ques_comp,m2r_death,m2r_nowc))
+row3 <- tbl_merge(list(m2p_alc,m2p_misreporter,m2p_liver_disease,m2p_any_cancer,m2p_3_ques_comp,m2p_death,m2p_nowc))
 
 table_sens <-
   tbl_stack(list(row1, row2, row3)) %>%
@@ -338,7 +392,7 @@ table_sens <-
   modify_spanning_header(everything() ~ NA_character_) %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   modify_table_styling(
-    column = c(p.value_1,p.value_2,p.value_3,p.value_4,p.value_5,p.value_6),
+    column = c(p.value_1,p.value_2,p.value_3,p.value_4,p.value_5,p.value_6,p.value_7),
     hide = TRUE
   ) %>%
   as_gt() %>%
@@ -353,24 +407,29 @@ table_sens <-
     id = "sens2"
   ) %>%
   tab_spanner(
-    label = md("**Fewer than 3 Oxford WebQs**"),
-    columns = c(estimate_4),
+    label = md("**Liver disease before baseline**"),
+    columns = c(estimate_3),
     id = "sens3"
   ) %>%
   tab_spanner(
-    label = md("**Liver disease before baseline**"),
-    columns = c(estimate_3),
+    label = md("**Any cancer before baseline**"),
+    columns = c(estimate_4),
     id = "sens4"
   ) %>%
   tab_spanner(
-    label = md("**Death register as source for liver cancer events**"),
+    label = md("**Fewer than 3 Oxford WebQs**"),
     columns = c(estimate_5),
     id = "sens5"
   ) %>%
   tab_spanner(
-    label = md("**Exclusion of waist circumference from analysis**"),
+    label = md("**Death register as source for liver cancer events**"),
     columns = c(estimate_6),
     id = "sens6"
+  ) %>%
+  tab_spanner(
+    label = md("**Exclusion of waist circumference from analysis**"),
+    columns = c(estimate_7),
+    id = "sens7"
   ) %>%
   tab_spanner(
     label = md("**Supplementary table 3. Sensitivity analyses**"),
@@ -387,7 +446,7 @@ table_sens <-
   ) %>%
   tab_spanner(
     label = md("**Exclusion of participants with:**"),
-    columns = c(estimate_1,estimate_2, estimate_3, estimate_4),
+    columns = c(estimate_1,estimate_2,estimate_3,estimate_4,estimate_5),
     level = 2,
     id = "123"
   )
