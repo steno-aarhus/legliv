@@ -53,13 +53,34 @@ source(here("R", "sens-table.R"))
 
 # Abstract
 
-Objective:
+**Purpose** Lifestyle-associated primary liver cancer is on the rise
+worldwide. Preventative strategies are warranted. We aimed to estimate
+the effect of substituting unprocessed red meat, processed red meat and
+total red meat with legumes on primary liver cancer in a free-living
+population.
 
-Research Design and Methods:
+**Methods** We analyzed data from 126,744 UK Biobank participants who
+compled ≥ 2 24-hour diet recall questionnaires. Substitution of 15g/day
+of legumes with 15/day of unprocessed red meat, processed red meat and
+total red meat was statisatistically modeled using the leave-one-out
+approach. Baseline characteristics were collected from the initial
+assessment visit. Information on liver cancer diagnoses was collected
+via external linkage to inpatient hospital episodes or central cancer
+registries.
 
-Results:
+**Results** During a median follow-up time was 11.3 years, 173
+participants developed liver cancer. In the fully adjusted models, no
+effect of substituting 15/day of legumes with unprocessed red meat
+(`r inline_text(m2r, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`),
+processed red meat
+(`r inline_text(m2p, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`)
+or total red meat
+(`r inline_text(m2t, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`)
+was observed.
 
-Conclusions:
+**Conclusion**
+
+### Keywords
 
 # Introduction
 
@@ -216,8 +237,8 @@ All analyses were conducted in R (version) with a significance level of
 
 After excluding participants with liver cancer and participants lost to
 follow-up before baseline, 126,744 participants remained who had
-completed two or more diet questionnaires. During a median follow-up
-time of 11.3 years, 173 participants developed liver cancer.
+completed two or more diet questionnaires (Figure 1). During a median
+follow-up time of 11.3 years, 173 participants developed liver cancer.
 Participants who developed liver cancer were older at baseline, had a
 higher waist circumference, were less physically active, fewer had never
 smoked, and more were male, compared to all included participants (Table
@@ -277,9 +298,20 @@ the estimates in any statistically significant way (supplementary tables
 
 # Discussion
 
-## Summary of results
+**Summary of results**
 
-## Strength and limitations
+In this study, we found no effect of replacing 15g/day of red meat with
+legumes on risk of primary liver cancer. The estimates did not change
+significantly in any of the sensitivity analyses. Contrary to our
+hypothesis, replacing processed red meat with legumes was associated
+with a non-significant increase in risk of primary liver cancer and with
+a greater magnitude than unprocessed red meat. This tendency was
+observed across all sensitivity analyses. However, the estimates for
+unprocessed red meat were
+
+**Strength and limitations**
+
+This study had some limitations. First,
 
 Selection bias: Incomplete registries regarding cancer. Participants who
 completed \>= 2 diet questionnaires are healthier than the those who
@@ -304,19 +336,19 @@ bacon). Aflatoxins
 Few events: trade off between statistical validity and residual
 confounding.
 
-## Other studies: substitution analyses and foods related to disease
+**Other studies: substitution analyses and foods related to disease**
 
 Discuss studies on legumes/red meat and liver cancer/other diseases.
 Other substitutions
 
-## Discuss results
+**Discuss results**
 
 e.g, why estimates for HCC and ICC go in opposite direction. sensitivity
 analyses
 
 ## Perspectives
 
-# Conclusions
+# Conclusion
 
 # Acknowledgements
 
