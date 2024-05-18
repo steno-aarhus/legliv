@@ -118,25 +118,29 @@ list(
     name = data_main,
     command = data_prepare_main |>
       left_join(end_of_follow_up_main(data_prepare_main), by = "id") |>
-      make_status_age()
+      make_status_age() |>
+      reduce_dataset()
   ),
   tar_target(
     name = data_with_hcc,
     command = data_prepare_hcc |>
       left_join(end_of_follow_up_hcc(data_prepare_hcc), by = "id") |>
-      make_status_age()
+      make_status_age() |>
+      reduce_dataset()
   ),
   tar_target(
     name = data_with_icc,
     command = data_prepare_icc |>
       left_join(end_of_follow_up_icc(data_prepare_icc), by = "id") |>
-      make_status_age()
+      make_status_age() |>
+      reduce_dataset()
   ),
   tar_target(
     name = data_with_death,
     command = data_prepare_death |>
       left_join(end_of_follow_up_death(data_prepare_death), by = "id") |>
-      make_status_age()
+      make_status_age() |>
+      reduce_dataset()
   ),
   tar_target(
     name = data_with_alc,

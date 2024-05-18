@@ -147,7 +147,9 @@ covariates <- function(data) {
         p21022 >= 55 & p21022 < 60 ~ 4,
         p21022 >= 60 & p21022 < 65 ~ 5,
         p21022 >= 65 ~ 6
-      )
+      ),
+      alat = p30620_i0,
+      asat = p30650_i0
     )
   return(data)
 }
@@ -176,10 +178,17 @@ metabolic_syndrome <- function(data) {
       ins_med_men = ifelse(grepl("Insulin", med_men), "Yes", "No"),
       ins_med_women = ifelse(grepl("Insulin", med_women), "Yes", "No"),
       ins_med = if_else(ins_med_men == "Yes" | ins_med_women == "Yes", "Yes", "No"),
-      high_bs = if_else(bs_high == "No" & ins_med == "No", "No", "Yes")
+      high_bs = if_else(bs_high == "No" & ins_med == "No", "No", "Yes"),
+      p93_i0 = rowMeans(pick(matches("p93_i0_")), na.rm = TRUE),
+      p94_i0 = rowMeans(pick(matches("p94_i0_")), na.rm = TRUE),
+      p4079_i0 = rowMeans(pick(matches("p4079_i0_")), na.rm = TRUE),
+      p4080_i0 = rowMeans(pick(matches("p4080_i0_")), na.rm = TRUE),
+      high_dia = if_else(p94_i0 >= 85 | p4079_i0 >= 85, "Yes", "No"),
+      high_sys = if_else(p93_i0 >= 130 | p4080_i0 >= 130, "Yes", "No"),
+      high_bp = if_else(high_dia == "Yes" & high_sys == "Yes", "Yes", "No")
       # met_synd = case_when(
-      #   rowSums(is.na(select(., c("high_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")))) > 0 ~ NA_character_,
-      #   rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")) == "Yes", na.rm = TRUE) >= 3 ~ "Yes",
+      #   rowSums(is.na(select(., c("high_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs", "high_bp")))) > 0 ~ NA_character_,
+      #   rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs", "high_bp")) == "Yes", na.rm = TRUE) >= 3 ~ "Yes",
       #   TRUE ~ "No"
       # )
     )
@@ -623,4 +632,28 @@ remove_any_cancer_before <- function(data) {
   data %>%
     mutate(cancer_before = if_else(cancer_before_date >= baseline_start_date | is.na(cancer_before_date), "No", "Yes")) %>%
     filter(cancer_before == "No")
+}
+
+reduce_dataset <- function(data) {
+  data %>%
+    select(-matches("^p[0-9]"), all_of("p20077"))
+}
+
+remove_high_alat <- function(data) { # Have to redefine cutoff
+  data <- data %>%
+    filter(sex == "Male" & alat < 30 | sex == "Female" & alat < 20 | is.na(alat))
+}
+
+energy_outlier <- function(data) {
+  data <- data %>%
+    group_by(sex) %>%
+    filter(total_energy_food_daily < quantile(total_energy_food_daily, 0.9) & total_energy_food_daily > quantile(total_energy_food_daily, 0.1)) %>%
+    ungroup()
+}
+
+high_alcohol <- function(data) {
+  data <- data %>%
+    group_by(sex) %>%
+    filter(alcohol_daily < quantile(alcohol_daily, 0.9)) %>%
+    ungroup()
 }

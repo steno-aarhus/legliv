@@ -5,16 +5,17 @@ data <- data %>%
     p4079_i0 = rowMeans(pick(matches("p4079_i0_")), na.rm = TRUE),
     p4080_i0 = rowMeans(pick(matches("p4080_i0_")), na.rm = TRUE),
     high_dia = if_else(p94_i0 >= 85 | p4079_i0 >= 85, "Yes", "No"),
-    high_sys = if_else(p93_i0 >= 130 | p4080_i0 >= 130, "Yes", "No")
+    high_sys = if_else(p93_i0 >= 130 | p4080_i0 >= 130, "Yes", "No"),
+    high_bp = if_else(high_dia == "Yes" & high_sys == "Yes", "Yes", "No")
   )
 
 data %>% select(matches("p93|p94|p4079|p4080|high_")) %>% summary()
 data %>% group_by(high_dia) %>% summarise(n())
-
+data <- targets::tar_read(data_main)
 data <- data %>%
   met_synd = case_when(
-    rowSums(is.na(select(., c("high_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")))) > 0 ~ NA_character_,
-    rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs")) == "Yes", na.rm = TRUE) >= 3 ~ "Yes",
+    rowSums(is.na(select(., c("high_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs", "high_bp")))) > 0 ~ NA_character_,
+    rowSums(select(., c("high_bmi_wc", "high_trigly", "bp_med", "low_hdl_chol_med", "high_bs", "high_bp")) == "Yes", na.rm = TRUE) >= 3 ~ "Yes",
     TRUE ~ "No"
   )
 

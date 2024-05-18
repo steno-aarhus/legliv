@@ -6,26 +6,12 @@ author:
   affiliations:
   - name: Department of Public Health, Aarhus University, Aarhus, Denmark
 date: "`r Sys.Date()`"
-output: word_document
+output: html_document
 csl: diabetologia.csl
 bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-targets::tar_config_set(store = here::here("_targets"))
-data <- targets::tar_read(data_main)
-data_flowchart <- targets::tar_read(data_flowchart)
-data_hcc <- targets::tar_read(data_with_hcc)
-data_icc <- targets::tar_read(data_with_icc)
-data_alc <- targets::tar_read(data_with_alc)
-data_misreporter <- targets::tar_read(data_with_misreporter)
-data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
-data_liver_disease <- targets::tar_read(data_without_liver_disease)
-data_death <- targets::tar_read(data_with_death)
-```
-
-```{r packages, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(here)
 library(gt)
@@ -35,19 +21,22 @@ library(survival)
 library(ggconsort)
 library(scales)
 library(ggdag)
-```
-
-```{r source, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+targets::tar_config_set(store = here::here("_targets"))
+data <- targets::tar_read(data_main)
+data_flowchart <- targets::tar_read(data_flowchart)
+data_hcc <- targets::tar_read(data_with_hcc)
+data_icc <- targets::tar_read(data_with_icc)
+data_alc <- targets::tar_read(data_with_alc)
+data_misreporter <- targets::tar_read(data_with_misreporter)
+data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
+data_liver_disease <- targets::tar_read(data_without_liver_disease)
+data_any_cancer <- targets::tar_read(data_without_cancer)
+data_death <- targets::tar_read(data_with_death)
 source(here("R","2-table1.R"))
 source(here("R","4-diet-table.R"))
 source(here("R","3-1-main-analysis-table.R"))
 source(here("R","7-table-legume-quintile.R"))
 source(here("R","6-table-cancer-type.R"))
-```
-
-```{r source sens, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
 source(here("R", "sens-table.R"))
 ```
 
