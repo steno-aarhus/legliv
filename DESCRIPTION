@@ -6,6 +6,7 @@ Imports:
     desc,
     dplyr,
     gert,
+    ggconsort,
     ggdag,
     ggplot2,
     gridExtra,
@@ -17,6 +18,7 @@ Imports:
     lubridate,
     magrittr,
     officedown,
+    pandoc,
     parameters,
     psych,
     qs,
@@ -36,7 +38,10 @@ Imports:
 Encoding: UTF-8
 Remotes: 
     steno-aarhus/ukbAid,
-    higgi13425/ggconsort
+    higgi13425/ggconsort,
+    rstudio/gt,
+    rstudio/rmarkdown,
+    ddsjoberg/gtsummary
 Title: UK Biobank Project
 URL: https://github.com/steno-aarhus/legliv
 BugReports: https://github.com/steno-aarhus/legliv/issues
