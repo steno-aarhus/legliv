@@ -104,20 +104,18 @@ diet_table <-
     columns = c(stat_0_2),
     id = "livercancer"
   ) %>%
-  tab_spanner(
-    label = md("**Table 2. Daily dietary intake of food groups, total food and total energy intake in UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**"),
-    columns = everything(),
-    level = 2,
-    id = "title"
+  tab_header(
+    title = md("**Table 2. Daily dietary intake of food groups, total food and total energy intake in UK Biobank participants who completed >= 2 Oxford WebQ 24-hour diet recall.**")
   ) %>%
   tab_style(
     style = list(
       cell_text(color = "dimgrey", align = "left"),
       cell_borders(sides = c("top","left","right"), style = "hidden")
     ),
-    locations = cells_column_spanners(spanners = "title")
+    locations = cells_title()
   ) %>%
   tab_style(
     style = cell_text(weight = "bold"),
     locations = cells_row_groups(groups = everything())
-  )
+  ) %>%
+  tab_options(table.width = pct(100))

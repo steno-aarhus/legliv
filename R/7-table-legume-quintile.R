@@ -63,18 +63,15 @@ table_legume <- tbl_merge(
     columns = c(estimate_2, ci_2, p.value_2),
     id = "model2"
   ) %>%
-  tab_spanner(
-    label = md("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95% confidence intervals for primary liver cancer.**"),
-    columns = everything(),
-    level = 2,
-    id = "title"
+  tab_header(
+    title = md("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95% confidence intervals for primary liver cancer.**")
   ) %>%
   tab_style(
     style = list(
       cell_text(color = "dimgrey", align = "left"),
       cell_borders(sides = c("top","left","right"), style = "hidden")
     ),
-    locations = cells_column_spanners(spanners = "title")
+    locations = cells_title()
   ) %>%
   tab_footnote(
     footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
@@ -83,4 +80,5 @@ table_legume <- tbl_merge(
   tab_footnote(
     footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
     locations = cells_column_spanners(spanners = "model2")
-  )
+  ) %>%
+  tab_options(table.width = pct(100))

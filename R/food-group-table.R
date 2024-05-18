@@ -96,18 +96,15 @@ bold_text <- c(1, 2, 3, 4, 11, 18, 25)
 indent_text <- c(5, 6)
 food_group_table <- df %>%
   gt() %>%
-  tab_spanner(
-    label = md("**Supplementary table 1. Summary of included foods for each food group.**"),
-    columns = everything(),
-    level = 2,
-    id = "title"
+  tab_header(
+    title = md("**Supplementary table 1. Summary of included foods for each food group.**")
   ) %>%
   tab_style(
     style = list(
       cell_text(color = "dimgrey", align = "left"),
       cell_borders(sides = c("top","left","right"), style = "hidden")
     ),
-    locations = cells_column_spanners(spanners = "title")
+    locations = cells_title()
   ) %>%
   cols_label(
     food_group = md("**Food group**"),
@@ -119,4 +116,17 @@ food_group_table <- df %>%
       columns = food_group,
       rows = bold_text
     )
+  ) %>%
+  tab_options(table.width = pct(100)) %>%
+  cols_width(food_group ~ pct(20),
+             includes ~ pct(80)) %>%
+  gt::tab_options(
+    table.font.size = px(13),
+    data_row.padding = gt::px(1),
+    summary_row.padding = gt::px(1),
+    grand_summary_row.padding = gt::px(1),
+    footnotes.padding = gt::px(1),
+    source_notes.padding = gt::px(1),
+    row_group.padding = gt::px(1),
+    column_labels.font.size = px(20)
   )

@@ -126,18 +126,15 @@ table_main <-
     columns = c(estimate_2, ci_2, p.value_2),
     id = "model2"
   ) %>%
-  tab_spanner(
-    label = md("**Table 3. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**"),
-    columns = everything(),
-    level = 2,
-    id = "title"
+  tab_header(
+    title = md("**Table 3. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**")
   ) %>%
   tab_style(
     style = list(
-      cell_text(color = "dimgrey", align = "left"),
+      cell_text(color = "dimgrey", align = "left", size = "medium"),
       cell_borders(sides = c("top","left","right"), style = "hidden")
     ),
-    locations = cells_column_spanners(spanners = "title")
+    locations = cells_title()
   ) %>%
   tab_footnote(
     footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
@@ -150,4 +147,6 @@ table_main <-
   tab_style(
     style = cell_text(weight = "bold"),
     locations = cells_column_spanners()
-  )
+  ) %>%
+  tab_options(table.width = pct(100),
+              column_labels.font.size = px(13))

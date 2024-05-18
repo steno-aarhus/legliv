@@ -5,6 +5,8 @@ library(survival)
 
 set_gtsummary_theme(theme_gtsummary_journal("jama"),
                     quiet = TRUE)
+set_gtsummary_theme(theme_gtsummary_compact(),
+                    quiet = TRUE)
 
 model2t_alc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
@@ -431,22 +433,22 @@ table_sens <-
     columns = c(estimate_7),
     id = "sens7"
   ) %>%
-  tab_spanner(
-    label = md("**Supplementary table 3. Sensitivity analyses**"),
-    columns = everything(),
-    level = 3,
-    id = "title"
+  tab_header(
+    title = md("**Supplementary table 3. Sensitivity analyses**")
   ) %>%
   tab_style(
     style = list(
       cell_text(color = "dimgrey", align = "left"),
       cell_borders(sides = c("top","left","right"), style = "hidden")
     ),
-    locations = cells_column_spanners(spanners = "title")
+    locations = cells_title()
   ) %>%
   tab_spanner(
     label = md("**Exclusion of participants with:**"),
     columns = c(estimate_1,estimate_2,estimate_3,estimate_4,estimate_5),
     level = 2,
     id = "123"
-  )
+  ) %>%
+  tab_options(table.width = pct(100)) %>%
+  cols_width(matches("estimate|label") ~ pct(10)) %>%
+  opt_horizontal_padding(scale = 3)
