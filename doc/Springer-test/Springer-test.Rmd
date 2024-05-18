@@ -1,12 +1,12 @@
 ---
 classoptions: 
-  - sn-vancouver      
+  - sn-basic      
   - Numbered      # Optional: Use numbered references instead of namedate references (only for sn-nature, sn-basic, sn-vancouver, sn-chicago, sn-mathphys or sn-nature)
   # - referee       # Optional: Use double line spacing 
   # - lineno        # Optional: Add line numbers
   # - iicol         # Optional: Double column layour
 
-title: Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants a prospective cohort study
+title: Substitution of red meat with legumes and risk of primary liver cancer in 126,744 UK Biobank participants a prospective cohort study
 # titlerunning: Article Title runing
 
 authors: 
@@ -32,7 +32,6 @@ authors:
     lastname: Dahm
     affiliation: 1
 
-
 affiliations:
   - number: 1
     corresponding: TRUE
@@ -54,43 +53,28 @@ keywords:
 
 # Sample for structured abstract
 abstract: |
-  **Purpose**: The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+  **Purpose**: Lifestyle-associated primary liver cancer is on the rise worldwide. Preventative strategies are warranted. We aimed to estimate the effect of substituting unprocessed red meat, processed red meat and total red meat with legumes on primary liver cancer in a free-living population.
 
-  **Methods:** The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+  **Methods**: We analyzed data from 126,744 UK Biobank participants who compled >= 2 24-hour diet recall questionnaires. Substitution of 15g/day of legumes with 15/day of unprocessed red meat, processed red meat and total red meat was statisatistically modeled using the leave-one-out approach. Baseline characteristics were collected from the initial assessment visit. Information on liver cancer diagnoses was collected via external linkage to inpatient hospital episodes or central cancer registries.
 
-  **Results:** The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+  **Results**: During a median follow-up time was 11.3 years, 173 participants developed liver cancer. In the fully adjusted models, no effect of substituting 15/day of legumes with unprocessed red meat (), processed red meat () or total red meat () was observed.
 
-  **Conclusion:** The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.}
+  **Conclusion**:
 
 bibliography: bibliography.bib
 
-header-includes: |
-  %% Per the spinger doc, new theorem styles can be included using built in style, 
-  %% but it seems the don't work so commented below
-  %\theoremstyle{thmstyleone}%
-  \newtheorem{theorem}{Theorem}%  meant for continuous numbers
-  %%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
-  %% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
-  \newtheorem{proposition}[theorem]{Proposition}%
-  %%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
+header-includes:
+  - \usepackage{pdflscape}
 
-  %% \theoremstyle{thmstyletwo}%
-  \theoremstyle{remark}
-  \newtheorem{example}{Example}%
-  \newtheorem{remark}{Remark}%
-
-  %% \theoremstyle{thmstylethree}%
-  \theoremstyle{definition}
-  \newtheorem{definition}{Definition}%
-
-output: 
+output:
   rticles::springer_article:
     number_sections: false
+    latex_engine: "xelatex"
+    keep_tex: false
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,
-                      out.extra = "")  # This forces knitr to label all figures.
+knitr::opts_chunk$set(echo = FALSE)
 library(here)
 library(gt)
 library(gtsummary)
@@ -99,607 +83,370 @@ library(survival)
 library(ggconsort)
 library(scales)
 library(ggdag)
-library(kableExtra)
 targets::tar_config_set(store = here::here("_targets"))
+data <- targets::tar_read(data_main)
 data_flowchart <- targets::tar_read(data_flowchart)
+data_hcc <- targets::tar_read(data_with_hcc)
+data_icc <- targets::tar_read(data_with_icc)
+data_alc <- targets::tar_read(data_with_alc)
+data_misreporter <- targets::tar_read(data_with_misreporter)
+data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
+data_liver_disease <- targets::tar_read(data_without_liver_disease)
+data_any_cancer <- targets::tar_read(data_without_cancer)
+data_death <- targets::tar_read(data_with_death)
+source(here("R","2-table1.R"))
+source(here("R","4-diet-table.R"))
+source(here("R","3-1-main-analysis-table.R"))
+source(here("R","7-table-legume-quintile.R"))
+source(here("R","6-table-cancer-type.R"))
+source(here("R", "sens-table.R"))
 ```
 
 # Introduction {#sec1}
 
-```{r, include=FALSE}
-data <- targets::tar_read(data_main)
+The main aim of this study was to estimate the effect of substituting
+unprocessed red meat, processed red meat and total red meat with legumes
+on primary liver cancer in a free-living population.
 
-library(gt)
-library(gtsummary)
-library(tidyverse)
-library(survival)
+# Research Design and Methods {#sec2}
 
-table_1_all <- data %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
+## Study population {#subsec1}
 
-table_1_cancer <- data %>%
-  filter(status == "Liver cancer") %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
+The UK Biobank, a population-based prospective cohort, was initiated in
+2006. [@sudlow2015] During 2006-2010, more than 500,000 participants,
+aged 40-69, were recruited and visited designated assessment centres
+across the UK Participants provided information about age, sex,
+sociodemographic factors (education, Townsend deprivation index, living
+alone) and lifestyle factors (smoking, alcohol consumption, physical
+activity) via touch screen questionnaires and computer-assisted
+interviews. Anthropometric data (BMI, waist circumference) were
+collected via physical measurements (reference to UKB document here).
 
-table_all <- table_1_all %>%
-  tbl_summary(
-    missing_text = "Missing",
-    label = list(
-      typical_diet ~ "Typical diet yesterday",
-      age_at_baseline ~ "Age, years",
-      sex ~ "Sex",
-      education ~ "Educational level",
-      tdi ~ "Townsend Deprivation Index",
-      spouse ~ "Living alone",
-      exercise ~ "Physical activity",
-      smoking ~ "Smoking",
-      alcohol_daily ~ "Alcohol intake, g/day",
-      wc ~ "Waist circumference, cm"
-    ),
-    digits = tdi ~ 1
-  )
+## Dietary assessment {#subsec2}
 
-table_cancer <- table_1_cancer %>%
-  tbl_summary(
-    missing_text = "Missing",
-    label = list(
-      typical_diet ~ "Typical diet yesterday",
-      age_at_baseline ~ "Age, years",
-      sex ~ "Sex",
-      education ~ "Educational level",
-      tdi ~ "Townsend Deprivation Index",
-      spouse ~ "Living alone",
-      exercise ~ "Physical activity",
-      smoking ~ "Smoking",
-      alcohol_daily ~ "Alcohol intake, g/day",
-      wc ~ "Waist circumference, cm"
-    ),
-    digits = tdi ~ 1
-  )
+A web-based 24-hour dietary recall was administered at the end of the
+initial assessment visit for the last 70,000 recruited participants
+(reference from UKB document here). From February 2011 to April 2012,
+320,000 participants who had provided an e-mail address were invited on
+four separate occasions to complete the 24-hour dietary recall, the
+Oxford WebQ, of which 210,947 participants completed at least one. The
+Oxford WebQ covered 206 food items and 32 beverage items commonly
+consumed in the UK. Intakes were reported in standard units of
+measurements, e.g., servings, cups, slices, etc. with intake categories
+ranging from 0 to 3+ units [@piernas2021]. The Oxford WebQ has been
+validated againts interviewer-based 24-hour dietary recalls and
+biomarkers [@Liu2011; @Greenwood2019].
 
-table_one <- tbl_merge(
-  tbls = list(table_all, table_cancer)
-) %>%
-  modify_caption("**Patient Characteristics** (N = {N})") %>% 
-  bold_labels() %>%
-  modify_header(label ~ "**Variable**") %>%
-  modify_footnote(
-    all_stat_cols() ~ "Median (IQR) for continous variables; n (%) for categorical variables"
-  ) %>%
-  modify_table_styling(
-    columns = label,
-    rows = label == "Typical diet yesterday",
-    footnote = "Participants who reported eating a typical diet yesterday for all completed diet questionnaires."
-  ) %>%
-  modify_table_styling(
-    columns = label,
-    rows = label == "Educational level",
-    footnote = "High: College or University degree;
-    Intermediate: A levels/AS levels, O levels/GCSEs, or equivalent;
-    Low: none of the previous mentioned."
-  ) %>%
-  modify_table_styling(
-    columns = label,
-    rows = label == "Physical activity",
-    footnote = "Above or below the 2017 UK Physical activity guidelines of 150 minutes of moderate activity per week or 75 minutes of vigorous activity."
-  ) %>%
-  modify_spanning_header(everything() ~ NA_character_) %>%
-  as_kable_extra() %>% 
-  kable_styling(latex_options = "striped")
+Researchers defined79 food groups and 14 beverage groups from the Oxford
+WebQ using the UK National Diet and Nutrition Survey categories
+[@piernas2021]. These food and beverage groups were used when defining
+the food groups used in the substitution analyses (Supplementary Table
+1). Legumes were defined as dietary pulses, baked beans, tofu-based
+products, peas, hummus, soy drinks, and soy-based desserts and yogurt.
+Red meat intake was defined as intake of beef, pork, lamb, or other
+meat, including offal. Processed meat intake was defined as sausages,
+bacon (with and without fat), ham, or liver pate. Other food groups
+included were animal-based foods, unhealthy plant-based foods, healthy
+plant-based foods, and alcoholic beverages (Supplementary Table 1).
+Animal-based and healthy and unhealthy plant-based food foods were
+grouped based on plant-based diet indices from previous studies
+[@Thompson2023; @Heianza2021; @Satija2017; @Satija2016]. An overview of
+included foods in each food group is displayed in Supplementary Table 1.
+
+Due to the incapability of a single 24-hour dietary recall to properly
+assess habitual dietary intake and variation in diet over time
+[@thompson2013; @gurinovic2017], only participants who completed two or
+more Oxford WebQs were eligible for inclusion in this study.
+
+## Liver cancer assessment {#subsec3}
+
+Liver cancer was defined according to ICD-10 diagnosis codes C22.0 for
+Hepatocellular carcinoma (HCC) or C22.1 for Intrahepatic
+cholangiocarcinoma (ICC). Incident and prevalent cases of liver cancer
+and corresponding diagnosis dates were obtained via linkage to central
+cancer registries or hospital inpatient episodes [@sudlow2015].
+
+## Assessment of confounders {#subsec4}
+
+Confounders were defined *a priori* from a literature review of the
+background literature and illustrated using directed acyclic graphs
+(Supplementary Figure 1). The following confounding variables were
+selected: age at baseline (years, continuous), sex (male, female),
+educational level (high: College or University degree, intermediate: A
+levels/AS levels, O levels/GCSEs, or equivalent, low: none of the
+previous mentioned), Townsend Deprivation Index (continuous), Living
+alone (yes, no), waist circumference (cm, continuous), physical activity
+(above/below the 2017 UK Physical activity guidelines of 150 minutes of
+moderate activity per week or 75 minutes of vigorous activity, or
+unknown), smoking (pack years as a proportion of lifespan exposed to
+smoking, continous), and alcohol intake (g/day, continuous). All
+confounders except age were selected from the initial assessment visit
+before the start of follow-up.
+
+## The substitution model {#subsec5}
+
+The substitution analyses were conducted by replacing an equal mass of
+meat with legumes. The size of the substitution was set to 15 g of
+legumes for 15 g of meat to keep the substitution size below the mean
+intake of any of the substituted food groups in the cohort. The
+substitutions were modelled using the leave-one-out-approach in which
+variables for every food group along with a variable for total food
+intake are included, except the food group that are to be substituted
+[@Ibsen2021]. To estimate substitution of 15 g of all red meats (red and
+processed) with 15 g of legumes, the following model was defined:
+
+```{=tex}
+\begin{align}
+\log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15g)} + \beta_2 \text{Total food intake (g)} \nonumber \\
+&\quad + \beta_3 \text{Other food groups (g)} + \beta_4 \text{Covariates}
+\end{align}
 ```
+When substituting only red meat with legumes, processed meat was added
+to the model:
 
-```{r}
+```{=tex}
+\begin{align}
+\log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15g)} + \beta_2 \text{Processed meat (15g)} \nonumber \\
+&\quad + \beta_3 \text{Total food intake (g)} + \beta_4 \text{Other food groups (g)} \nonumber \\
+&\quad + \beta_5 \text{Covariates}
+\end{align}
+```
+When substituting only processed meat with legumes, red meat was added
+to the model:
+
+```{=tex}
+\begin{align}
+\log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15g)} + \beta_2 \text{Red meat (15g)} \nonumber \\
+&\quad + \beta_3 \text{Total food intake (g)} + \beta_4 \text{Other food groups (g)} \nonumber \\
+&\quad + \beta_5 \text{Covariates}
+\end{align}
+```
+## Statistical analysis {#subsec6}
+
+Multivariable-adjusted Cox proportional hazards regression models were
+used to estimate hazard ratios (HR) with corresponding 95% confidence
+intervals (CI) with age as the underlying timescale. Participants were
+followed from the date of their last completed Oxford WebQ until the
+occurrence of the event of interest or due to right censoring, whichever
+came first. Participants were right censored in the event of death, loss
+to follow-up, or administrative end of follow-up (January 31, 2022). Two
+levels of adjustments were added to the substitution model. Model 1 was
+minimally adjusted for age, total weight of food intake, and all other
+food groups to fit the substitution model. Model was further adjusted
+for sex, educational level, Townsend Deprivation Index, living alone,
+physical activity, smoking, alcohol intake, and waist circumference.
+
+In secondary analyses, each cancer type was analysed separately to
+evaluate if the pooling of HCC and ICC as one outcome in the main
+analysis was justified. Furthermore, to estimate the effect of legume
+intake regardsless of other dietary components, legume consumers
+(divided into quartiles) were compared to non-consumers in secondary
+analyses.
+
+To evaluate the robustness of the main analyses, sensitivity analyses
+were performed on subsamples of participants by excluding those with
+high alcohol intake (more than 32 grams per day for men and 24 grams per
+day for women), participants with plausible energy intake misreporting
+(≤ 3200 or ≥ 16800 kJ/day for men and ≤ 2000 or ≥ 14000 kJ/day for
+women), participants with any other liver disease before baseline, and
+participants with any type of cancer before baseline.
+
+Furthermore, sensitivity analyses were conducted by including only those
+with ≥3 completed Oxford WebQs.
+
+3.       (Mangler)
+
+Sensitivity analyses were modelled like the main analyses.
+
+All analyses were conducted in R (version) with a significance level of
+5 %.
+
+# Results {#sec3}
+
+After excluding participants with liver cancer and participants lost to
+follow-up before baseline, 126,744 participants remained who had
+completed two or more diet questionnaires (Figure \ref{fig:fig1}).
+During a median follow-up time of 11.3 years, 173 participants developed
+liver cancer. Participants who developed liver cancer were older at
+baseline, had a higher waist circumference, were less physically active,
+fewer had never smoked, and more were male, compared to all included
+participants (Table \ref{tab:tab1}).
+
+Mean daily energy intake and food intake and median daily intake of all
+specified food groups are presented in table 2.
+
+No association was found for substituting 15 g/day of legumes with 15
+g/day of total meat, red meat, or processed meat and risk of primary
+liver cancer in model 1 (Table 3: total meat:
+`r inline_text(m1t, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+red meat:
+`r inline_text(m1r, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+processed meat:
+`r inline_text(m1p, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+The estimated associations changed minimally but remained
+non-significant with further adjustments (Table 3: total meat:
+`r inline_text(m2t, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+red meat:
+`r inline_text(m2r, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+processed meat:
+`r inline_text(m2p, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+
+In secondary analyses, when analyzing the substitution association for
+HCC and ICC separately, the risk of HCC was positively associated with
+substituting total, red, or processed meat with legumes (Supplementary
+Table 2, total meat:
+`r inline_text(m2t_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+red meat:
+`r inline_text(m2r_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+processed meat:
+`r inline_text(m2p_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+The association between substituting total, red, or processed meat with
+legumes and ICC indicated inverse associations (Supplementary Table 2,
+total meat:
+`r inline_text(m2t_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+red meat:
+`r inline_text(m2r_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+processed meat:
+`r inline_text(m2p_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+The magnitude or direction of associations were not significantly
+different across strata of liver cancer types.
+
+In the adjusted non-substitution analysis, a mean intake of 6.3 grams of
+legumes per day was associated with a reduced risk of liver cancer,
+compared to no intake
+(`r inline_text(m2t_leg, variable = legume_category, level = "Q1", pattern = '{estimate} (95% {ci})')`);
+however, no associations were observed with further increase in legume
+intake (supplementary table 6).
+
+In sensitivity analyses, excluding participants with high alcohol intake
+or participants with plausible energy intake misreporting or setting
+inclusion criteria to ≥ 3 completed diet questionnaires did not alter
+the estimates in any statistically significant way (supplementary tables
+3 to 5).
+
+# Discussion {#sec4}
+
+## Summary of results {#subsec7}
+
+In this study, we found no effect of replacing 15g/day of red meat with
+legumes on risk of primary liver cancer. The estimates did not change
+significantly in any of the sensitivity analyses. Contrary to our
+hypothesis, replacing processed red meat with legumes was associated
+with a non-significant increase in risk of primary liver cancer and with
+a greater magnitude than unprocessed red meat. This tendency was
+observed across all sensitivity analyses. However, the estimates for
+unprocessed red meat were
+
+## Strength and limitations {#subsec8}
+
+This study had some limitations. First,
+
+Selection bias: Incomplete registries regarding cancer. Participants who
+completed ≥ 2 diet questionnaires are healthier than the those who
+didn't?
+
+Lavt bortfald.
+
+kun 5% deltagelse.
+
+Information bias: Underreporting of unhealthy habits? Non-differentiated
+misclassification. Participants with unhealthy habits are
+underreporting? differentiated misclassification.
+
+incomplete registries, information problem.
+
+Confounding
+
+residual confounding: broad food groups erase effect of specific foods.
+Are processed meat eaten with legumes in the UK? (baked beans and
+bacon). Aflatoxins
+
+Few events: trade off between statistical validity and residual
+confounding.
+
+## Other studies: substitution analyses and foods related to disease {#subsec9}
+
+Discuss studies on legumes/red meat and liver cancer/other diseases.
+Other substitutions
+
+## Discuss results {#subsec10}
+
+e.g, why estimates for HCC and ICC go in opposite direction. sensitivity
+analyses
+
+## Perspectives {#subsec11}
+
+# Conclusion {#sec5}
+
+# Acknowledgements {#sec6}
+
+\newpage
+
+# Tables {#sec7}
+
+```{r tab1}
 table_one
 ```
 
-The Introduction section, of referenced text @bib1 expands on the
-background of the work (some overlap with the Abstract is acceptable).
-The introduction should not include subheadings.
+\newpage
 
-Springer Nature does not impose a strict layout as standard however
-authors are advised to check the individual requirements for the journal
-they are planning to submit to as there may be journal-level
-preferences. When preparing your text please also be aware that some
-stylistic choices are not supported in full text XML (publication
-version), including coloured font. These will not be replicated in the
-typeset article if it is accepted.
-
-# Results {#sec2}
-
-Sample body text. Sample body text. Sample body text. Sample body text.
-Sample body text. Sample body text. Sample body text. Sample body text.
-
-# This is an example for first level head---section head {#sec3}
-
-## This is an example for second level head---subsection head {#subsec2}
-
-### This is an example for third level head---subsubsection head {#subsubsec2}
-
-Sample body text. Sample body text. Sample body text. Sample body text.
-Sample body text. Sample body text. Sample body text.
-
-# Equations {#sec4}
-
-Equations in \LaTeX can either be inline or on-a-line by itself
-("display equations"). For inline equations use the `$...$` commands.
-E.g.: The equation $H\psi = E \psi$ is written via the command
-`$H \psi = E \psi$`.
-
-For display equations (with auto generated equation numbers) one can use
-the equation or align environments:
-
-```{=tex}
-\begin{equation}
-\|\tilde{X}(k)\|^2 \leq\frac{\sum\limits_{i=1}^{p}\left\|\tilde{Y}_i(k)\right\|^2+\sum\limits_{j=1}^{q}\left\|\tilde{Z}_j(k)\right\|^2 }{p+q}.\label{eq1}
-\end{equation}
-```
-where, \begin{align}
-D_\mu &=  \partial_\mu - ig \frac{\lambda^a}{2} A^a_\mu \nonumber \\
-F^a_{\mu\nu} &= \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + g f^{abc} A^b_\mu A^a_\nu \label{eq2}
-\end{align}
-
-Notice the use of `\nonumber` in the align environment at the end of
-each line, except the last, so as not to produce equation numbers on
-lines where no equation numbers are required. The `\label{}` command
-should only be used at the last line of an align environment where
-`\nonumber` is not used.
-
-```{=tex}
-\begin{equation}
-Y_\infty = \left( \frac{m}{\textrm{GeV}} \right)^{-3}
-    \left[ 1 + \frac{3 \ln(m/\textrm{GeV})}{15}
-    + \frac{\ln(c_2/5)}{15} \right]
-\end{equation}
-```
-The class file also supports the use of `\mathbb{}`, `\mathscr{}` and
-`\mathcal{}` commands. As such `\mathbb{R}`, `\mathscr{R}` and
-`\mathcal{R}` produces $\mathbb{R}$, $\mathscr{R}$ and $\mathcal{R}$
-respectively (refer Subsubsection \ref{subsubsec2}).
-
-# Tables {#sec5}
-
-Tables can be inserted via the normal `knitr::kable()` function or other
-table-generating packages.
-
-```{r tab1}
-knitr::kable(head(pressure), 
-             format = "latex", 
-             caption = "Caption text")
+```{r table 2 diet table}
+diet_table
 ```
 
-\pagebreak
+\newpage
 
-```{r fig 1 flowchart, fig.cap = "Figure 1. Flowchart of included participants.", fig.width = 5}
+```{r table 3 main results table, echo=FALSE}
+table_main
+```
+
+\newpage
+
+```{r fig1, out.width = "100%", fig.cap = "Flowchart of included participants."}
 source(here("R", "flowchart.R"))
 flowchart
 ```
 
-\pagebreak
+\newpage
 
-Tables can also be inserted via the normal table and tabular
-environment. To put footnotes inside tables you should use
-`\footnotetext[]{...}` tag. The footnote appears just below the table
-itself (refer Tables\~\ref{tab1} and \ref{tab2}). For the corresponding
-footnotemark use `\footnotemark[...]`
+# Supplemental Material {#sec8}
 
-```{=tex}
-\begin{table}[h]
-\caption{Caption text}\label{tab1}%
-\begin{tabular}{@{}llll@{}}
-\toprule
-Column 1 & Column 2  & Column 3 & Column 4\\
-\midrule
-row 1    & data 1   & data 2  & data 3  \\
-row 2    & data 4   & data 5\footnotemark[1]  & data 6  \\
-row 3    & data 7   & data 8  & data 9\footnotemark[2]  \\
-\botrule
-\end{tabular}
-\footnotetext{Source: This is an example of table footnote. This is an example of table footnote.}
-\footnotetext[1]{Example for a first table footnote. This is an example of table footnote.}
-\footnotetext[2]{Example for a second table footnote. This is an example of table footnote.}
-\end{table}
-```
-\noindent The input format for the above table is as follows:
-
-    \begin{table}[<placement-specifier>]
-    \caption{<table-caption>}\label{<table-label>}%
-    \begin{tabular}{@{}llll@{}}
-    \toprule
-    Column 1 & Column 2 & Column 3 & Column 4\\
-    \midrule
-    row 1 & data 1 & data 2  & data 3 \\
-    row 2 & data 4 & data 5\footnotemark[1] & data 6 \\
-    row 3 & data 7 & data 8  & data 9\footnotemark[2]\\
-    \botrule
-    \end{tabular}
-    \footnotetext{Source: This is an example of table footnote.
-    This is an example of table footnote.}
-    \footnotetext[1]{Example for a first table footnote.
-    This is an example of table footnote.}
-    \footnotetext[2]{Example for a second table footnote.
-    This is an example of table footnote.}
-    \end{table}
-
-```{=tex}
-\begin{table}[h]
-\caption{Example of a lengthy table which is set to full textwidth}\label{tab2}
-\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lcccccc}
-\toprule%
-& \multicolumn{3}{@{}c@{}}{Element 1\footnotemark[1]} & \multicolumn{3}{@{}c@{}}{Element 2\footnotemark[2]} \\\cmidrule{2-4}\cmidrule{5-7}%
-Project & Energy & $\sigma_{calc}$ & $\sigma_{expt}$ & Energy & $\sigma_{calc}$ & $\sigma_{expt}$ \\
-\midrule
-Element 3  & 990 A & 1168 & $1547\pm12$ & 780 A & 1166 & $1239\pm100$\\
-Element 4  & 500 A & 961  & $922\pm10$  & 900 A & 1268 & $1092\pm40$\\
-\botrule
-\end{tabular*}
-\footnotetext{Note: This is an example of table footnote. This is an example of table footnote this is an example of table footnote this is an example of~table footnote this is an example of table footnote.}
-\footnotetext[1]{Example for a first table footnote.}
-\footnotetext[2]{Example for a second table footnote.}
-\end{table}
-```
-\vfill\eject
-
-In case of double column layout, tables which do not fit in single
-column width should be set to full text width. For this, you need to use
-`\begin{table*}` `...` `\end{table*}` instead of `\begin{table}` `...`
-`\end{table}` environment. Lengthy tables which do not fit in textwidth
-should be set as rotated table. For this, you need to use
-`\begin{sidewaystable}` `...` `\end{sidewaystable}` instead of
-`\begin{table*}` `...` `\end{table*}` environment. This environment puts
-tables rotated to single column width. For tables rotated to double
-column width, use `\begin{sidewaystable*}` `...` `\end{sidewaystable*}`.
-
-```{=tex}
-\begin{sidewaystable}
-\caption{Tables which are too long to fit, should be written using the "sidewaystable" environment as shown here}\label{tab3}
-\begin{tabular*}{\textheight}{@{\extracolsep\fill}lcccccc}
-\toprule%
-& \multicolumn{3}{@{}c@{}}{Element 1\footnotemark[1]}& \multicolumn{3}{@{}c@{}}{Element\footnotemark[2]} \\\cmidrule{2-4}\cmidrule{5-7}%
-Projectile & Energy & $\sigma_{calc}$ & $\sigma_{expt}$ & Energy & $\sigma_{calc}$ & $\sigma_{expt}$ \\
-\midrule
-Element 3 & 990 A & 1168 & $1547\pm12$ & 780 A & 1166 & $1239\pm100$ \\
-Element 4 & 500 A & 961  & $922\pm10$  & 900 A & 1268 & $1092\pm40$ \\
-Element 5 & 990 A & 1168 & $1547\pm12$ & 780 A & 1166 & $1239\pm100$ \\
-Element 6 & 500 A & 961  & $922\pm10$  & 900 A & 1268 & $1092\pm40$ \\
-\botrule
-\end{tabular*}
-\footnotetext{Note: This is an example of table footnote this is an example of table footnote this is an example of table footnote this is an example of~table footnote this is an example of table footnote.}
-\footnotetext[1]{This is an example of table footnote.}
-\end{sidewaystable}
-```
-# Figures {#sec6}
-
-As per the \LaTeX standards you need to use eps images for
-\LaTeX compilation and `pdf/jpg/png` images for `PDFLaTeX` compilation.
-Use the `dev` knitr option to use the approrpate format. This is one of
-the major difference between \LaTeX and `PDFLaTeX`. Each image should be
-from a single input .eps/vector image file. Avoid using subfigures. The
-command for inserting images for \LaTeX and `PDFLaTeX` can be
-generalized. The package used to insert images in `LaTeX/PDFLaTeX` is
-the graphicx package. Figures can be inserted via the normal figure
-environment as shown in the below example:
-
-```{r fig1, fig.cap = "This is an example of a caption", fig.width = 5}
-plot(pressure)
+```{r fig2, out.width = "100%", fig.cap = "Directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing meat with legumes on liver cancer. Shadowed arrows represent biasing paths."}
+source(here("R", "dag-code.R"))
+dag
 ```
 
-# Algorithms, Program codes and Listings {#sec7}
+\newpage
 
-Packages `algorithm`, `algorithmicx` and `algpseudocode` are used for
-setting algorithms in \LaTeX using the format:
-
-    \begin{algorithm}
-    \caption{<alg-caption>}\label{<alg-label>}
-    \begin{algorithmic}[1]
-    . . .
-    \end{algorithmic}
-    \end{algorithm}
-
-You may refer above listed package documentations for more details
-before setting `algorithm` environment. For program codes, the "program"
-package is required and the command to be used is `\begin{program}`
-`...` `\end{program}`. A fast exponentiation procedure:
-
-Similarly, for `listings`, use the `listings` package.
-`\begin{lstlisting}` `...` `\end{lstlisting}` is used to set
-environments similar to `verbatim` environment. Refer to the
-`lstlisting` package documentation for more details.
-
-A fast exponentiation procedure:
-
-```{=latex}
-\lstset{texcl=true,basicstyle=\small\sf,commentstyle=\small\rm,mathescape=true,escapeinside={(*}{*)}}
-\begin{lstlisting}
-begin
-  for $i:=1$ to $10$ step $1$ do
-      expt($2,i$);  
-      newline() od                (*\textrm{Comments will be set flush to the right margin}*)
-where
-proc expt($x,n$) $\equiv$
-  $z:=1$;
-  do if $n=0$ then exit fi;
-     do if odd($n$) then exit fi;                 
-        comment: (*\textrm{This is a comment statement;}*)
-        $n:=n/2$; $x:=x*x$ od;
-     { $n>0$ };
-     $n:=n-1$; $z:=z*x$ od;
-  print($z$). 
-end
-\end{lstlisting}
+```{r sup table 1 food table new}
+source(here("R", "food-group-table.R"))
+food_group_table
 ```
-```{=latex}
-\begin{algorithm}
-\caption{Calculate $y = x^n$}\label{algo1}
-\begin{algorithmic}[1]
-\Require $n \geq 0 \vee x \neq 0$
-\Ensure $y = x^n$ 
-\State $y \Leftarrow 1$
-\If{$n < 0$}\label{algln2}
-        \State $X \Leftarrow 1 / x$
-        \State $N \Leftarrow -n$
-\Else
-        \State $X \Leftarrow x$
-        \State $N \Leftarrow n$
-\EndIf
-\While{$N \neq 0$}
-        \If{$N$ is even}
-            \State $X \Leftarrow X \times X$
-            \State $N \Leftarrow N / 2$
-        \Else[$N$ is odd]
-            \State $y \Leftarrow y \times X$
-            \State $N \Leftarrow N - 1$
-        \EndIf
-\EndWhile
-\end{algorithmic}
-\end{algorithm}
+
+\newpage
+
+```{r sup table 2 stratified on cancer type}
+table_cancer_type
 ```
-::: {.minipage latex="{\\hsize}"}
-\lstset{frame=single,framexleftmargin=-1pt,framexrightmargin=-17pt,framesep=12pt,linewidth=0.98\textwidth,language=pascal}
 
-<!-- Set your language (you can change the language for each code-block optionally) -->
+\newpage
 
-<!-- Start your code-block -->
+```{r sup table 3 legume quartiles, echo=FALSE}
+table_legume
+```
 
-::: {.lstlisting latex="true"}
-for i:=maxint to 0 do begin { do nothing } end; Write('Case insensitive
-'); Write('Pascal keywords.');
-:::
-:::
+\newpage
 
-# Cross referencing {#sec8}
+```{r, results='asis', echo=FALSE}
+cat('\\begin{landscape}')
+```
 
-Figures and tables are labeled with a prefix (fig or tab, respectively)
-plus the chunk label. Other environments such as equation and align can
-be labelled via the `\label{#label}` command inside or just below the
-`\caption{}` command. You can then use the label for cross-reference. As
-an example, consider the chunk label declared for Figure \ref{fig:fig1}
-which is fig1. To cross-reference it, use the command
-`Figure \ref{fig:fig1}`, for which it comes up as
-"Figure \ref{fig:fig1}".
+```{r sup table 4 table sensitivity analyses, echo=FALSE}
+table_sens
+```
 
-To reference line numbers in an algorithm, consider the label declared
-for the line number 2 of Algorithm \ref{algo1} is `\label{algln2}`. To
-cross-reference it, use the command `\ref{algln2}` for which it comes up
-as line \ref{algln2} of Algorithm \ref{algo1}.
+```{r, results='asis', echo=FALSE}
+cat('\\end{landscape}')
+```
 
-## Details on reference citations {#subsec7}
-
-For citations of references, use @bib1 or [@bib2].
-
-# Examples for theorem like environments {#sec10}
-
-The documentclass for springer `sn-jnl.cls` contains 3 styling that you
-can use to set new default for theorems and proofs type
-
-`thmstyleone`
-
-:   Numbered, theorem head in bold font and theorem text in italic style
-
-`thmstyletwo`
-
-:   Numbered, theorem head in roman font and theorem text in italic
-    style
-
-`thmstylethree`
-
-:   Numbered, theorem head in bold font and theorem text in roman style
-
-For mathematics journals, theorem styles can be included as shown in the
-following examples.
-
-::: {.theorem latex="true"}
-Example theorem text. Example theorem text. Example theorem text.
-Example theorem text. Example theorem text. Example theorem text.
-Example theorem text. Example theorem text. Example theorem text.
-Example theorem text. Example theorem text.
-:::
-
-To add labels and subheadings, use LaTeX notation
-
-::: {.theorem latex="[Theorem subhead]\\label{thm1}"}
-Example theorem text. Example theorem text. Example theorem text.
-Example theorem text. Example theorem text. Example theorem text.
-Example theorem text. Example theorem text. Example theorem text.
-Example theorem text. Example theorem text.
-:::
-
-Other environments are proposition, example, remark, definition, proof
-and quote
-
-Sample body text. Sample body text. Sample body text. Sample body text.
-Sample body text. Sample body text. Sample body text. Sample body text.
-
-::: {.proposition latex="true"}
-Example proposition text. Example proposition text. Example proposition
-text. Example proposition text. Example proposition text. Example
-proposition text. Example proposition text. Example proposition text.
-Example proposition text. Example proposition text.
-:::
-
-Sample body text. Sample body text. Sample body text. Sample body text.
-Sample body text. Sample body text. Sample body text. Sample body text.
-
-::: {.example latex="true"}
-Phasellus adipiscing semper elit. Proin fermentum massa ac quam. Sed
-diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas
-lacinia. Nam ipsum ligula, eleifend at, accumsan nec, suscipit a, ipsum.
-Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem.
-:::
-
-Sample body text. Sample body text. Sample body text. Sample body text.
-Sample body text. Sample body text. Sample body text. Sample body text.
-
-::: {.remark latex="true"}
-Phasellus adipiscing semper elit. Proin fermentum massa ac quam. Sed
-diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas
-lacinia. Nam ipsum ligula, eleifend at, accumsan nec, suscipit a, ipsum.
-Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem.
-:::
-
-Sample body text. Sample body text. Sample body text. Sample body text.
-Sample body text. Sample body text. Sample body text. Sample body text.
-
-::: {.definition latex="[Definition sub head]"}
-Example definition text. Example definition text. Example definition
-text. Example definition text. Example definition text. Example
-definition text. Example definition text. Example definition text.
-:::
-
-Additionally a predefined "proof" environment is available. This prints
-a "Proof" head in italic font style and the "body text" in roman font
-style with an open square at the end of each proof environment.
-
-::: {.proof latex="true"}
-Example for proof text. Example for proof text. Example for proof text.
-Example for proof text. Example for proof text. Example for proof text.
-Example for proof text. Example for proof text. Example for proof text.
-Example for proof text.
-:::
-
-Sample body text. Sample body text. Sample body text. Sample body text.
-Sample body text. Sample body text. Sample body text. Sample body text.
-
-# Methods {#sec11}
-
-Topical subheadings are allowed. Authors must ensure that their Methods
-section includes adequate experimental and characterization data
-necessary for others in the field to reproduce their work. Authors are
-encouraged to include RIIDs where appropriate.
-
-**Ethical approval declarations** (only required where applicable) Any
-article reporting experiment/s carried out on (i)\~live vertebrate (or
-higher invertebrates), (ii)\~humans or (iii)\~human samples must include
-an unambiguous statement within the methods section that meets the
-following requirements:
-
-1.  Approval: a statement which confirms that all experimental protocols
-    were approved by a named institutional and/or licensing committee.
-    Please identify the approving body in the methods section
-
-2.  Accordance: a statement explicitly saying that the methods were
-    carried out in accordance with the relevant guidelines and
-    regulations
-
-3.  Informed consent (for experiments involving humans or human tissue
-    samples): include a statement confirming that informed consent was
-    obtained from all participants and/or their legal guardian/s
-
-If your manuscript includes potentially identifying patient/participant
-information, or if it describes human transplantation research, or if it
-reports results of a clinical trial then additional information will be
-required. Please visit
-(<https://www.nature.com/nature-research/editorial-policies>) for Nature
-Portfolio journals,
-(<https://www.springer.com/gp/authors-editors/journal-author/journal-author-helpdesk/publishing-ethics/14214>)
-for Springer Nature journals, or
-([https://www.biomedcentral.com/getpublished/editorial-policies\\\#ethics+and+consent](https://www.biomedcentral.com/getpublished/editorial-policies#ethics+and+consent){.uri})
-for BMC.
-
-# Discussion {#sec12}
-
-Discussions should be brief and focused. In some disciplines use of
-Discussion or 'Conclusion' is interchangeable. It is not mandatory to
-use both. Some journals prefer a section 'Results and Discussion'
-followed by a section 'Conclusion'. Please refer to Journal-level
-guidance for any specific requirements.
-
-# Conclusion {#sec13}
-
-Conclusions may be used to restate your hypothesis or research question,
-restate your major findings, explain the relevance and the added value
-of your work, highlight any limitations of your study, describe future
-directions for research and recommendations.
-
-In some disciplines use of Discussion or 'Conclusion' is
-interchangeable. It is not mandatory to use both. Please refer to
-Journal-level guidance for any specific requirements.
-
-\backmatter
-
-\bmhead{Supplementary information}
-
-If your article has accompanying supplementary file/s please state so
-here.
-
-Authors reporting data from electrophoretic gels and blots should supply
-the full unprocessed scans for key as part of their Supplementary
-information. This may be requested by the editorial team/s if it is
-missing.
-
-Please refer to Journal-level guidance for any specific requirements.
-
-\bmhead{Acknowledgments}
-
-Acknowledgments are not compulsory. Where included they should be brief.
-Grant or contribution numbers may be acknowledged.
-
-Please refer to Journal-level guidance for any specific requirements.
-
-# Declarations {.unnumbered}
-
-Some journals require declarations to be submitted in a standardised
-format. Please check the Instructions for Authors of the journal to
-which you are submitting to see if you need to complete this section. If
-yes, your manuscript must contain the following sections under the
-heading \`Declarations':
-
--   Funding
--   Conflict of interest/Competing interests (check journal-specific
-    guidelines for which heading to use)
--   Ethics approval
--   Consent to participate
--   Consent for publication
--   Availability of data and materials
--   Code availability
--   Authors' contributions
-
-\noindent If any of the sections are not relevant to your manuscript,
-please include the heading and write \`Not applicable' for that section.
-
-::: {.flushleft latex="true"}
-Editorial Policies for:
-
-\noindent Springer journals and proceedings:
-<https://www.springer.com/gp/editorial-policies>
-
-\noindent Nature Portfolio journals:
-<https://www.nature.com/nature-research/editorial-policies>
-
-\noindent \textit{Scientific Reports}:
-<https://www.nature.com/srep/journal-policies/editorial-policies>
-
-\noindent BMC journals:
-<https://www.biomedcentral.com/getpublished/editorial-policies>
-:::
-
-::: {.appendices latex="true"}
-# Section title of first appendix {#secA1}
-
-An appendix contains supplementary information that is not an essential
-part of the text itself but which may be helpful in providing a more
-comprehensive understanding of the research problem or it is information
-that is too cumbersome to be included in the body of the paper.
-
-For submissions to Nature Portfolio Journals please use the heading
-"Extended Data".
-:::
+\newpage
