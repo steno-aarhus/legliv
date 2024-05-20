@@ -6,7 +6,7 @@ classoptions:
   # - lineno        # Optional: Add line numbers
   # - iicol         # Optional: Double column layour
 
-title: Substitution of red meat with legumes and risk of primary liver cancer in 126,744 UK Biobank participants: a prospective cohort study
+title: Substitution of red meat with legumes and risk of primary liver cancer in 126,744 UK Biobank participants a prospective cohort study
 # titlerunning: Article Title runing
 
 authors: 
@@ -19,13 +19,11 @@ authors:
     email: nb@ph-au.dk
     affiliation: 1
     corresponding: TRUE
-    equalcont: These authors contributed equally to this work.
 
   - firstname: Fie
     lastname: Langmann
     degrees: PhD Student
     affiliation: 1
-    equalcont: These authors contributed equally to this work.
     
   - firstname: Christina
     particle: C.
@@ -43,9 +41,10 @@ affiliations:
         country: Denmark
   
 keywords:
-  - key
-  - dictionary
-  - word
+  - Food Substitutions
+  - Liver cancer
+  - Red meat
+  - Legumes
 
 # Sample for structured abstract
 abstract: |
@@ -59,19 +58,22 @@ abstract: |
 
 bibliography: bibliography.bib
 
-header-includes:
-  - \usepackage{pdflscape}
-  - \usepackage{amssymb}
-
 output:
   bookdown::pdf_book:
     base_format: rticles::springer_article
     number_sections: false
     latex_engine: xelatex
+    
+header-includes:
+  - \usepackage{pdflscape}
+  - \usepackage{amssymb}
+  - \usepackage{amsmath}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE,
+                      fig.pos = "b",
+                      out.extra = "")
 library(here)
 library(gt)
 library(gtsummary)
@@ -198,8 +200,8 @@ processed) with 15 g of legumes, the following model was defined:
 &\quad + \beta_3 \text{Other food groups (g)} + \beta_4 \text{Covariates}
 \end{align}
 ```
-When substituting only red meat with legumes, processed red meat was
-added to the model:
+\noindent When substituting only red meat with legumes, processed red
+meat was added to the model:
 
 ```{=tex}
 \begin{align}
@@ -208,8 +210,8 @@ added to the model:
 &\quad + \beta_5 \text{Covariates}
 \end{align}
 ```
-When substituting only processed red meat with legumes, red meat was
-added to the model:
+\noindent When substituting only processed red meat with legumes, red
+meat was added to the model:
 
 ```{=tex}
 \begin{align}
@@ -391,11 +393,13 @@ analyses
 
 # Tables {#sec7}
 
-```{r tab1}
+```{r table_one}
 table_one
 ```
 
 \newpage
+
+\noindent
 
 ```{r table 2 diet table}
 diet_table
@@ -403,7 +407,7 @@ diet_table
 
 \newpage
 
-```{r table 3 main results table, echo=FALSE}
+```{r table 3 main results table, echo=FALSE, tab.cap = "wefwioejf"}
 table_main
 ```
 
