@@ -6,7 +6,7 @@ classoptions:
   # - lineno        # Optional: Add line numbers
   # - iicol         # Optional: Double column layour
 
-title: Substitution of red meat with legumes and risk of primary liver cancer in 126,744 UK Biobank participants a prospective cohort study
+title: Substitution of red meat with legumes and risk of primary liver cancer in 126,744 UK Biobank participants: a prospective cohort study
 # titlerunning: Article Title runing
 
 authors: 
@@ -53,7 +53,7 @@ abstract: |
 
   **Methods**: We analyzed data from 126,744 UK Biobank participants who compled >= 2 24-hour diet recall questionnaires. Substitution of 15g/day of legumes with 15/day of unprocessed red meat, processed red meat and total red meat was statisatistically modeled using the leave-one-out approach. Baseline characteristics were collected from the initial assessment visit. Information on liver cancer diagnoses was collected via external linkage to inpatient hospital episodes or central cancer registries.
 
-  **Results**: During a median follow-up time was 11.3 years, 173 participants developed liver cancer. In the fully adjusted models, no effect of substituting 15/day of legumes with unprocessed red meat (), processed red meat () or total red meat () was observed.
+  **Results**: During a median follow-up time was 11.3 years, 173 participants developed liver cancer. In the fully adjusted models, no effect of substituting 15/day of legumes with unprocessed red meat (HR: 0.97 (95% 0.91 to 1.03);), processed red meat (HR: 1.02 (95% 0.93 to 1.13)) or total red meat (HR: 0.98 (95% 0.93 to 1.04)) was observed.
 
   **Conclusion**:
 
@@ -61,12 +61,13 @@ bibliography: bibliography.bib
 
 header-includes:
   - \usepackage{pdflscape}
+  - \usepackage{amssymb}
 
 output:
   bookdown::pdf_book:
     base_format: rticles::springer_article
     number_sections: false
-    latex_engine: lualatex
+    latex_engine: xelatex
 ---
 
 ```{r setup, include=FALSE}
@@ -284,43 +285,43 @@ specified food groups are presented in table 2.
 No association was found for substituting 15 g/day of legumes with 15
 g/day of total meat, red meat, or processed meat and risk of primary
 liver cancer in model 1 (Table 3: total meat:
-`r inline_text(m1t, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+`r inline_text(m1t, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 red meat:
-`r inline_text(m1r, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+`r inline_text(m1r, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 processed meat:
-`r inline_text(m1p, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+`r inline_text(m1p, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`).
 The estimated associations changed minimally but remained
 non-significant with further adjustments (Table 3: total meat:
-`r inline_text(m2t, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+`r inline_text(m2t, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 red meat:
-`r inline_text(m2r, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+`r inline_text(m2r, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 processed meat:
-`r inline_text(m2p, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+`r inline_text(m2p, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`).
 
 In secondary analyses, when analyzing the substitution association for
 HCC and ICC separately, the risk of HCC was positively associated with
 substituting total, red, or processed meat with legumes (Supplementary
 Table 2, total meat:
-`r inline_text(m2t_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+`r inline_text(m2t_hcc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 red meat:
-`r inline_text(m2r_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+`r inline_text(m2r_hcc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 processed meat:
-`r inline_text(m2p_hcc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+`r inline_text(m2p_hcc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`).
 The association between substituting total, red, or processed meat with
 legumes and ICC indicated inverse associations (Supplementary Table 2,
 total meat:
-`r inline_text(m2t_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+`r inline_text(m2t_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 red meat:
-`r inline_text(m2r_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`;
+`r inline_text(m2r_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 processed meat:
-`r inline_text(m2p_icc, variable = legume_daily_15, pattern = '{estimate} (95% {ci})')`).
+`r inline_text(m2p_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`).
 The magnitude or direction of associations were not significantly
 different across strata of liver cancer types.
 
 In the adjusted non-substitution analysis, a mean intake of 6.3 grams of
 legumes per day was associated with a reduced risk of liver cancer,
 compared to no intake
-(`r inline_text(m2t_leg, variable = legume_category, level = "Q1", pattern = '{estimate} (95% {ci})')`);
+(`r inline_text(m2t_leg, variable = legume_category, level = "Q1", pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`);
 however, no associations were observed with further increase in legume
 intake (supplementary table 6).
 
