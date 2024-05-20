@@ -2,6 +2,7 @@ Package: legliv
 Type: Project
 Version: 0.0.1
 Imports:
+    bookdown,
     confintr,
     desc,
     dplyr,
