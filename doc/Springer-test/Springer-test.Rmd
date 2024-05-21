@@ -7,7 +7,6 @@ classoptions:
   # - iicol         # Optional: Double column layour
 
 title: Substitution of red meat with legumes and risk of primary liver cancer in 126,744 UK Biobank participants a prospective cohort study
-# titlerunning: Article Title runing
 
 authors: 
   - prefix:
