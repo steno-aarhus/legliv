@@ -56,6 +56,7 @@ abstract: |
   **Conclusion**: Overall, no association between substituting red meat with legumes and liver cancer was observed. Further research with longer follow-up time is warranted to increase the number of liver cancer events.
 
 bibliography: bibliography.bib
+biblio-style: unsrt
 
 output:
   bookdown::pdf_book:
@@ -160,9 +161,12 @@ more Oxford WebQs were eligible for inclusion in this study.
 
 Liver cancer was defined according to ICD-10 diagnosis codes C22.0 for
 Hepatocellular carcinoma (HCC) or C22.1 for Intrahepatic
-cholangiocarcinoma (ICC). Incident and prevalent cases of liver cancer
-and corresponding diagnosis dates were obtained via linkage to central
-cancer registries or hospital inpatient episodes [@sudlow2015].
+cholangiocarcinoma (ICC) and ICD-9 diagnosis codes 1550 Malignant
+neoplasm of liver, primary or 1551 Malignant neoplasm of intrahepatic
+bile ducts. Incident and prevalent cases of liver cancer and
+corresponding diagnosis dates were obtained via external linkage to
+central cancer registries or hospital inpatient episodes [@RN112;
+@RN114].
 
 ## Assessment of confounders {#subsec4}
 
@@ -230,7 +234,7 @@ came first. Participants were right censored in the event of death, loss
 to follow-up, or administrative end of follow-up (October 31, 2022). Two
 levels of adjustments were added to the substitution model. Model 1 was
 minimally adjusted for age, total weight of food intake, and all other
-food groups to fit the substitution model. Model was further adjusted
+food groups to fit the substitution model. Model 2 was further adjusted
 for sex, educational level, Townsend Deprivation Index, living alone,
 physical activity, smoking, alcohol intake, and waist circumference.
 
@@ -255,10 +259,8 @@ between replacing red meat with legumes and liver cancer; however,
 strong arguments exist giving support to anthropometry being a mediator
 between diet and health outcomes. Thus, to test for erroneously
 conditioning on a potential mediator, waist circumference was removed in
-a sensitivity analysis.
-
-Sensitivity analyses were modelled like the fully adjusted models in the
-main analyses.
+a sensitivity analysis. Sensitivity analyses were modelled like the
+fully adjusted models in the main analyses.
 
 All analyses were conducted in R (version 4.1.1) with a significance
 level of 5 %.
@@ -309,9 +311,9 @@ red meat:
 `r inline_text(m2r_hcc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 processed red meat:
 `r inline_text(m2p_hcc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`).
-The association between substituting total, unprocessed, or processed
-red meat with legumes and ICC indicated inverse associations
-(Supplementary Table 2, total red meat:
+The association between substituting total or unprocessed red meat with
+legumes and ICC indicated inverse associations (Supplementary Table 2:
+total red meat:
 `r inline_text(m2t_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
 red meat:
 `r inline_text(m2r_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}, {conf.high}")`;
@@ -327,11 +329,13 @@ compared to no intake
 however, no associations were observed with further increase in legume
 intake (supplementary table 3).
 
-In sensitivity analyses, excluding participants with high alcohol intake
-or participants with plausible energy intake misreporting or setting
-inclusion criteria to ≥ 3 completed diet questionnaires did not alter
-the estimates in any statistically significant way (supplementary table
-4).
+In sensitivity analyses, excluding participants based on high alcohol
+intake, implausible energy intake, any liver disease or cancer before
+baseline, or fewer than 3 completed Oxford WebQs did not alter the
+estimates in any statistically significant way. This also applied for
+including death registries as source of liver cancer events and
+excluding waist circumference from the fully adjusted analysis
+(Supplementary table 4).
 
 # Discussion {#sec4}
 
@@ -339,8 +343,10 @@ the estimates in any statistically significant way (supplementary table
 
 In this study of UK Biobank participants, we found no effect of
 replacing 15g/day of red meat with legumes on risk of primary liver
-cancer. The estimates did not change significantly in any of the
-sensitivity analyses.
+cancer. Secondary analyses
+
+The estimates did not change significantly in any of the sensitivity
+analyses.
 
 ## Discuss results {#subsec8}
 
