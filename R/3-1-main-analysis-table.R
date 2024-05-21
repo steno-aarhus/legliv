@@ -64,42 +64,42 @@ m1t <- model1t %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "Total red meat",
   )
 
 m1r <- model1r %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "Unprocessed red meat",
   )
 
 m1p <- model1p %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "Processed red meat",
   )
 
 m2t <- model2t %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "Total red meat",
   )
 
 m2r <- model2r %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "Unprocessed red meat",
   )
 
 m2p <- model2p %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "Processed red meat",
   )
 
 row1 <- tbl_merge(list(m1t, m2t)) %>%
@@ -109,7 +109,7 @@ row3 <- tbl_merge(list(m1p, m2p))
 
 table_main <-
   tbl_stack(list(row1, row2, row3)) %>%
-  modify_header(label = "**15 g/day substitution**") %>%
+  modify_header(label = "**15 g/day of legumes replacing:**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   modify_table_styling(
     column = c(p.value_1, p.value_2),

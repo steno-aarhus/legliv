@@ -63,42 +63,42 @@ m1t_hcc  <- model1t_hcc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "Total red meat",
   )
 
 m1r_hcc  <- model1r_hcc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "Unprocessed red meat",
   )
 
 m1p_hcc  <- model1p_hcc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "Processed red meat",
   )
 
 m2t_hcc  <- model2t_hcc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "Total red meat",
   )
 
 m2r_hcc  <- model2r_hcc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "Unprocessed red meat",
   )
 
 m2p_hcc  <- model2p_hcc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "Processed red meat",
   )
 
 model1t_icc <- coxph(
@@ -159,42 +159,42 @@ m1t_icc  <- model1t_icc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "Total red meat",
   )
 
 m1r_icc  <- model1r_icc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "Unprocessed red meat",
   )
 
 m1p_icc  <- model1p_icc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "Processed red meat",
   )
 
 m2t_icc  <- model2t_icc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for total meat",
+    label = legume_daily_15 ~ "Total red meat",
   )
 
 m2r_icc  <- model2r_icc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for red meat",
+    label = legume_daily_15 ~ "Unprocessed red meat",
   )
 
 m2p_icc  <- model2p_icc %>%
   tbl_regression(
     exponentiate = T,
     include = legume_daily_15,
-    label = legume_daily_15 ~ "Legumes for processed meat",
+    label = legume_daily_15 ~ "Processed red meat",
   )
 
 row1 <- tbl_merge(list(m1t_hcc, m2t_hcc)) %>%
@@ -208,7 +208,7 @@ row6 <- tbl_merge(list(m1p_icc, m2p_icc))
 table_cancer_type <-
   tbl_stack(list(row1, row2, row3, row4, row5, row6),
             group_header = c("Hepatocellular carcinoma", "Hepatocellular carcinoma", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma")) %>%
-  modify_header(label = "**15 g/day substitution**") %>%
+  modify_header(label = "**15 g/day of legumes replacing:**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   modify_table_styling(
     column = c(p.value_1, p.value_2),
