@@ -281,8 +281,8 @@ baseline, had a higher waist circumference, were less physically active,
 fewer had never smoked, and more were male, compared to all included
 participants (Table 1).
 
-Mean daily energy intake and food intake and median daily intake of all
-specified food groups are presented in table 2.
+Mean daily energy intake and food intake and daily intake of all
+specified food groups in grams are presented in table 2.
 
 No association was found for substituting 15 g/day of legumes with 15
 g/day of total red meat, unprocessed red meat, or processed red meat and
@@ -340,13 +340,26 @@ the estimates in any statistically significant way (supplementary table
 In this study of UK Biobank participants, we found no effect of
 replacing 15g/day of red meat with legumes on risk of primary liver
 cancer. The estimates did not change significantly in any of the
-sensitivity analyses. Contrary to our hypothesis, replacing processed
-red meat with legumes was associated with a non-significant increase in
-risk of primary liver cancer and with a greater magnitude than
-unprocessed red meat. This tendency was observed across all sensitivity
-analyses. However, the estimates for unprocessed red meat were
+sensitivity analyses.
 
-## Strength and limitations {#subsec8}
+## Discuss results {#subsec8}
+
+e.g, why estimates for HCC and ICC go in opposite direction. sensitivity
+analyses
+
+Contrary to our hypothesis, replacing processed red meat with legumes
+was associated with a non-significant increase in risk of primary liver
+cancer and with a greater magnitude than unprocessed red meat. This
+tendency was observed across all sensitivity analyses. However, the
+estimates for processed red meat were labeled with less confidence due
+to the low median intake and
+
+## Other studies: substitution analyses and foods related to disease {#subsec9}
+
+Discuss studies on legumes/red meat and liver cancer/other diseases.
+Other substitutions
+
+## Strength and limitations {#subsec10}
 
 This study had some limitations. First, None of the registries used to
 determine a diagnosis of liver cancer were complete or up to date
@@ -364,7 +377,13 @@ events.
 Second, the relative low number of events limited our efforts of
 adjusting for confounding as too many adjustment levels per event can
 affect the validity of the multivariable Cox regression model, causing
-potential biased estimates.
+potential biased estimates. Efforts were made to reach at least 10
+events per variable for the main analysis to secure statistical validity
+by limiting the number of adjustment levels, i.e., fewer and broader
+food groups and fewer levels for categorical covariates. This was done
+while respecting our *a priori* causal assumptions. Reaching statistical
+validity was a trade-off with increasing residual confounding as
+importance of specific food groups or
 
 Selection bias: Incomplete registries regarding cancer. Participants who
 completed ≥ 2 diet questionnaires are healthier than the those who
@@ -388,16 +407,6 @@ bacon). Aflatoxins
 
 Few events: trade off between statistical validity and residual
 confounding.
-
-## Other studies: substitution analyses and foods related to disease {#subsec9}
-
-Discuss studies on legumes/red meat and liver cancer/other diseases.
-Other substitutions
-
-## Discuss results {#subsec10}
-
-e.g, why estimates for HCC and ICC go in opposite direction. sensitivity
-analyses
 
 ## Perspectives {#subsec11}
 
