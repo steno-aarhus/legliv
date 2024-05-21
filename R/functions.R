@@ -428,7 +428,7 @@ remove_before_baseline_hcc <- function(data) {
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
     filter(is.na(hcc_date) | hcc_date >= baseline_start_date) %>%
     filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
-    mutate(cens_date = if_else(is.na(hcc_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
+    mutate(cens_date = if_else(is.na(hcc_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-10-31"), NA))
   return(data)
 }
 
@@ -437,7 +437,7 @@ remove_before_baseline_icc <- function(data) {
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
     filter(is.na(icc_date) | icc_date >= baseline_start_date) %>%
     filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
-    mutate(cens_date = if_else(is.na(icc_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
+    mutate(cens_date = if_else(is.na(icc_date) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-10-31"), NA))
   return(data)
 }
 
@@ -446,7 +446,7 @@ remove_before_baseline_death <- function(data) {
     filter(is.na(l2fu_d) | l2fu_d >= baseline_start_date) %>%
     filter(is.na(liver_cancer_date_death) | liver_cancer_date_death >= baseline_start_date) %>%
     filter(is.na(p40000_i0) | p40000_i0 >= baseline_start_date) %>%
-    mutate(cens_date = if_else(is.na(liver_cancer_date_death) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-12-31"), NA))
+    mutate(cens_date = if_else(is.na(liver_cancer_date_death) & is.na(p40000_i0) & is.na(l2fu_d), as.Date("2022-10-31"), NA))
   return(data)
 }
 
