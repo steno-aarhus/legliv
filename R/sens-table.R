@@ -432,7 +432,7 @@ table_sens <-
   ) %>%
   tab_footnote(
     footnote = "ICD10 codes: C00-C97 and D00-D48. ICD9 codes: 140-239.",
-    locations = cells_column_spanners(spanners = "sens3")
+    locations = cells_column_spanners(spanners = "sens4")
   ) %>%
   tab_spanner(
     label = md("**Fewer than 3 Oxford WebQs**"),
