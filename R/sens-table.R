@@ -406,7 +406,7 @@ table_sens <-
     id = "sens2"
   ) %>%
   tab_footnote(
-    footnote = "Exclusion of the upper and lower 10th percentile of daily energy intake for each sex.",
+    footnote = "Exclusion of the upper and lower decile of daily energy intake for each sex.",
     locations = cells_column_spanners(spanners = "sens2")
   ) %>%
   tab_spanner(
