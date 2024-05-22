@@ -342,10 +342,11 @@ excluding waist circumference from the fully adjusted analysis
 
 In this study of UK Biobank participants, we found no effect of
 replacing 15g/day of red meat with legumes on risk of primary liver
-cancer. When stratifying on liver cancer type, replacing total red meat
-and unprocessed red meat with legumes was inversely associated with ICC,
-though insignificant. The estimates did not change significantly in any
-of the sensitivity analyses.
+cancer. The estimates did not change significantly in any of the
+sensitivity analyses. When stratifying by liver cancer type, replacing
+total red meat and unprocessed red meat with legumes showed an inverse
+association with ICC, though the results were not statistically
+significant.
 
 ## Discuss results {#subsec8}
 
@@ -354,72 +355,70 @@ analyses
 
 Contrary to our hypothesis, replacing processed red meat with legumes
 was associated with a non-significant increase in risk of primary liver
-cancer and with a greater magnitude than unprocessed red meat. This
-tendency was observed across all sensitivity analyses. However, the
+cancer, with a greater effect size compared to unprocessed red meat.
+This pattern persisted across all sensitivity analyses. However, the
 estimates for processed red meat were labeled with less confidence due
-to the low median intake. These results correspond to a recent analysis
-in the UK Biobank on meat intake and cancers, finding that intake of
-unprocessed red meat was associated with a non-significant increase in
-risk of liver cancer and with a greater magnitude than processed meat
-(both white and red meat) [@Knuppel2020], lending support to the
-assertion that processed meat is not associated with risk of liver
-cancer in this study population.
+to the low median intake. These findings align with recent analyses from
+the UK Biobank, which indicated that unprocessed red meat intake was
+associated with a non-significant increase in liver cancer risk, with a
+greater effect size than processed meat (both white and red meat)
+[@Knuppel2020]. This supports the notion that processed meat may not be
+associated with liver cancer risk in this population.
 
 Stratifying on cancer type revealed that replacing unprocessed red meat
-with legumes to some extent was associated with a decreased risk of
-liver cancer (Supplementary table 4), contrary to HCC. However, the
-robustness of these results were not tested in further analyses as they
-were associated with greater uncertainty.
+with legumes to some extent was associated with a decreased risk of ICC,
+contrary to HCC (Supplementary table 4). However, the robustness of
+these results were not tested in further analyses as they were
+associated with greater uncertainty.
 
 ## Other studies: substitution analyses and foods related to disease {#subsec9}
 
 Discuss studies on legumes/red meat and liver cancer/other diseases.
 Other substitutions
 
-The literature on food substitutions in general is sparse and almost
-non-existent for liver cancer as an outcome. However, a recent
-meta-anlysis of observational studies found a non-linear dose-response
-relationship between intake of legumes and liver cancer, with a
-protective effect occurring between intakes of 8 g/day to 40 g/day
-[@liu2023a]. This somewhat stands in opposition to our findings of no
-increase above 6.3 g/day of legumes was associated with a decreased risk
-of liver cancer, compared to no intake of legumes. A recent
-meta-analysis of observational studies no association between red or
-processed meat intake and HCC [@Di2023].
+The literature on food substitutions, particularly in relation to liver
+cancer, is sparse. However, a recent meta-anlysis of observational
+studies found a non-linear dose-response relationship between legume
+intake and liver cancer risk, with a protective effect observed between
+intakes of 8 g/day to 40 g/day [@liu2023a]. This somewhat contrasts with
+our findings where any increase above 6.3 g/day of legumes was not
+associated with a decreased risk of liver cancer, compared to no legume
+intake. A recent meta-analysis of observational studies no association
+between red or processed meat intake and HCC [@Di2023].
 
 ## Strength and limitations {#subsec10}
 
 This study had some limitations. First, None of the registries used to
-determine a diagnosis of liver cancer were complete or up to date
-[@RN112]. Data from external providers, e.g., the NHS England, NHS
-Central Register or National Records of Scotland, were estimated to be
-mostly complete by the UK Biobank at various dates, ranging from 31
-December 2016 for cancer data from Wales to 31 October 2022 for hospital
-inpatient data from England [@RN114]. This could introduce
-misclassification bias of the outcome as individuals with liver cancer
-may not be identified as events. However, the estimates were robust to a
-sensitivity analysis where we included death registries as a source of
-liver cancer diagnoses in an attempt to accommodate for missing outcome
-events.
+determine a diagnosis of liver cancer were complete or up-to-date at the
+time of analysis [@RN112]. Data from external providers, such as the NHS
+England, NHS Central Register or National Records of Scotland, were
+estimated to be mostly complete by the UK Biobank at various dates,
+ranging from 31 December 2016 for cancer data from Wales to 31 October
+2022 for hospital inpatient data from England [@RN114]. This could
+introduce misclassification bias, as individuals with liver cancer may
+not be identified as events. However, the estimates were robust in a
+sensitivity analysis that included death registries as an additional
+source of liver cancer diagnoses to accommodate missing outcome events.
 
-Second, the relative low number of events limited our efforts of
-adjusting for confounding as too many adjustment levels per event can
-affect the validity of the multivariable Cox regression model, causing
-potential biased estimates. Efforts were made to reach at least 10
-events per variable for the main analysis to secure statistical validity
-by limiting the number of adjustment levels, i.e., fewer and broader
-food groups and fewer levels for categorical covariates. This was done
-while respecting our *a priori* causal assumptions. Reaching statistical
-validity was a trade-off with increasing residual confounding as the
-importance of specific food groups may have been diluted. Risk factors
-that we were unable to adjust for may have contributed to residual
-confounding; aflatoxin B1 is a known liver carcinogen
+Second, the relatively low number of events limited our ability to
+adjust for confounding factors. Too many adjustment levels per event can
+compromise the validity of the multivariable Cox regression model,
+potentially causing biased estimates. To ensure statistical validity, we
+aimed for at least 10 events per variable in the main analysis by
+limiting the number of adjustment levels, using fewer and broader food
+groups, and fewer levels for categorical covariates. This approach was
+guided by our *a priori* causal assumptions. Although this method helped
+maintain statistical validity, it may have increased residual
+confounding by diluting the importance of specific food groups.
+Additionally, risk factors that we could not adjust for, such as
+aflatoxin B1, a known liver carcinogen, may have contributed to residual
+confounding.
 
 Strengths of this study are the large sample size and the prospective
-longitudinal design that are strengthening generalisability and
+longitudinal design, which enhance generalizability and establish
 temporality. Estimates were robust to exclusion of participants with
-fewer than 3 completed Oxford WebQs, lending support to at least 2
-completed Oxford WebQs being sufficient to correct for measurement
+fewer than three completed Oxford WebQs, indicating that at least two
+completed Oxford WebQs were sufficient to correct for measurement
 errors.
 
 Selection bias: Incomplete registries regarding cancer. Participants who
