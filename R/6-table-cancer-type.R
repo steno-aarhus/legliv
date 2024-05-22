@@ -1,9 +1,9 @@
+library(tidyverse)
 library(survival)
 library(gt)
 library(gtsummary)
-
-set_gtsummary_theme(theme_gtsummary_journal("jama"),
-                    quiet = TRUE)
+source(here::here("R","gtsummary-theme.R"))
+gtsummary::set_gtsummary_theme(my_theme)
 
 model1t_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
@@ -210,19 +210,15 @@ table_cancer_type <-
             group_header = c("Hepatocellular carcinoma", "Hepatocellular carcinoma", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma")) %>%
   modify_header(label = "**15 g/day of legumes replacing:**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-  ) %>%
   as_gt() %>%
   tab_spanner(
     label = md("**Model 1**"),
-    columns = c(estimate_1, ci_1, p.value_1),
+    columns = c(estimate_1),
     id = "model1"
   ) %>%
   tab_spanner(
     label = md("**Model 2**"),
-    columns = c(estimate_2, ci_2, p.value_2),
+    columns = c(estimate_2),
     id = "model2"
   ) %>%
   tab_header(
@@ -246,5 +242,4 @@ table_cancer_type <-
   tab_style(
     style = cell_text(weight = "bold"),
     locations = cells_row_groups(groups = everything())
-  ) %>%
-  tab_options(table.width = pct(100))
+  )

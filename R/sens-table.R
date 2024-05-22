@@ -2,11 +2,8 @@ library(gt)
 library(gtsummary)
 library(tidyverse)
 library(survival)
-
-set_gtsummary_theme(theme_gtsummary_journal("jama"),
-                    quiet = TRUE)
-set_gtsummary_theme(theme_gtsummary_compact(),
-                    quiet = TRUE)
+source(here::here("R","gtsummary-theme.R"))
+gtsummary::set_gtsummary_theme(my_theme)
 
 model2t_alc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
@@ -393,10 +390,6 @@ table_sens <-
   modify_header(label = "**15 g/day of legumes replacing:**") %>%
   modify_spanning_header(everything() ~ NA_character_) %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-  modify_table_styling(
-    column = c(p.value_1,p.value_2,p.value_3,p.value_4,p.value_5,p.value_6,p.value_7),
-    hide = TRUE
-  ) %>%
   as_gt() %>%
   tab_spanner(
     label = md("**High alcohol intake**"),
@@ -440,7 +433,7 @@ table_sens <-
     id = "sens5"
   ) %>%
   tab_spanner(
-    label = md("**Death register as source for liver cancer events**"),
+    label = md("**Death register as source of liver cancer events**"),
     columns = c(estimate_6),
     id = "sens6"
   ) %>%
@@ -465,6 +458,6 @@ table_sens <-
     level = 2,
     id = "123"
   ) %>%
-  tab_options(table.width = pct(100)) %>%
-  cols_width(matches("estimate|label") ~ pct(10)) %>%
-  opt_horizontal_padding(scale = 3)
+  tab_options(table.width = pct(100),
+              table.font.size = px(10)) %>%
+  cols_width(matches("estimate|label") ~ pct(10))
