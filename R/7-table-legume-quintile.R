@@ -2,9 +2,34 @@ library(gt)
 library(gtsummary)
 library(tidyverse)
 library(survival)
+source(here::here("R","gtsummary-theme.R"))
+gtsummary::set_gtsummary_theme(my_theme)
 
-set_gtsummary_theme(theme_gtsummary_journal("jama"),
-                    quiet = TRUE)
+fn_add_mean <- function(data, variable, ...) {
+  data %>%
+    dplyr::group_by(.data[[variable]]) %>%
+    dplyr::arrange(.data[[variable]]) %>%
+    dplyr::summarise(legume_daily = mean(legume_daily, na.rm = TRUE)) %>%
+    select(legume_daily) %>%
+    mutate(legume_daily = style_sigfig(legume_daily))
+}
+fn_add_mean(data, "legume_category")
+
+tbl_legume_mean <-
+  data %>%
+  select(legume_daily, legume_category) %>%
+  tbl_summary(
+    include  = -legume_daily,
+    label = legume_category ~ "Categories:",
+    type = everything() ~ "categorical"
+  ) %>%
+  add_stat(
+    all_categorical() ~ fn_add_mean,
+    location = all_categorical() ~  "level"
+  ) %>%
+  modify_header(legume_daily ~ "**Mean daily legume intake**") %>%
+  modify_table_styling(columns = stat_0,
+                       hide = TRUE)
 
 model1t_leg <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
@@ -39,28 +64,19 @@ m2t_leg <- model2t_leg %>%
   ) %>% bold_p(t = 0.05)
 
 table_legume <- tbl_merge(
-  tbls = list(m1t_leg, m2t_leg)
+  tbls = list(tbl_legume_mean,m1t_leg, m2t_leg)
 ) %>%
   modify_spanning_header(everything() ~ NA_character_) %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
-  modify_table_styling(
-    columns = label,
-    rows = label == "Categories:",
-    footnote = "mean daily intake of legumes in grams for each quartile: Q1: 6.3, Q2: 15.7, Q3: 34.3, Q4 109."
-  ) %>%
-  modify_table_styling(
-    column = c(p.value_1, p.value_2),
-    hide = TRUE
-  ) %>%
   as_gt() %>%
   tab_spanner(
     label = md("**Model 1**"),
-    columns = c(estimate_1, ci_1, p.value_1),
+    columns = c(estimate_2),
     id = "model1"
   ) %>%
   tab_spanner(
     label = md("**Model 2**"),
-    columns = c(estimate_2, ci_2, p.value_2),
+    columns = c(estimate_3),
     id = "model2"
   ) %>%
   tab_header(
@@ -80,5 +96,4 @@ table_legume <- tbl_merge(
   tab_footnote(
     footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
     locations = cells_column_spanners(spanners = "model2")
-  ) %>%
-  tab_options(table.width = pct(100))
+  )
