@@ -36,7 +36,7 @@ affiliations:
       orgdiv: Department of Public Health
       orgname: Aarhus University
     address:
-        city: 8000 Aarhus C
+        city: Aarhus
         country: Denmark
   
 keywords:
