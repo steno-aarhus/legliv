@@ -65,8 +65,6 @@ output:
     
 header-includes:
   - \usepackage{pdflscape}
-  - \usepackage{amssymb}
-  - \usepackage{amsmath}
 ---
 
 ```{r setup, include=FALSE}
