@@ -1,10 +1,8 @@
 library(gt)
 library(gtsummary)
 library(tidyverse)
-library(survival)
-
-set_gtsummary_theme(theme_gtsummary_compact(),
-                    quiet = TRUE)
+source(here::here("R","gtsummary-theme.R"))
+gtsummary::set_gtsummary_theme(my_theme)
 
 table_1_all <- data %>%
   select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
@@ -88,6 +86,4 @@ table_one <- tbl_merge(
   ) %>%
   tab_header(
     title = md("**Table 1. Baseline characteristics of UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**")
-  ) %>%
-  tab_options(table.width = pct(100),
-              heading.title.font.size = px(13))
+  )

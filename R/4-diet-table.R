@@ -1,6 +1,8 @@
 library(gt)
 library(gtsummary)
 library(tidyverse)
+source(here::here("R","gtsummary-theme.R"))
+gtsummary::set_gtsummary_theme(my_theme)
 
 diet_all_mean <- data %>%
   select(
