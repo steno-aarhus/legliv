@@ -456,7 +456,7 @@ FUNCTION {format.archive}
   archivePrefix empty$
       { "" }
       { archivePrefix ":" *}
-  if$           
+  if$
 }
 
 FUNCTION {format.primaryClass}
@@ -464,7 +464,7 @@ FUNCTION {format.primaryClass}
   primaryClass empty$
       { "" }
       { "{[" primaryClass * "]}" *}
-  if$           
+  if$
 }
 
 FUNCTION {format.soft.eprint}
@@ -485,7 +485,7 @@ FUNCTION {format.softmisc.archive}
   archivePrefix empty$
       { "" }
       { "" }
-  if$           
+  if$
 }
 
 FUNCTION {format.softmisc.eprint}
@@ -1705,7 +1705,6 @@ FUNCTION {presort}
 }
 
 ITERATE {presort}
-SORT
 STRINGS { last.label next.extra }
 INTEGERS { last.extra.num number.label }
 FUNCTION {initialize.extra.label.stuff}
@@ -1758,7 +1757,6 @@ FUNCTION {bib.sort.order}
   'sort.key$ :=
 }
 ITERATE {bib.sort.order}
-SORT
 FUNCTION {begin.bib}
 { preamble$ empty$
     'skip$
