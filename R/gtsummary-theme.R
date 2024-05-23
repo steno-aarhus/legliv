@@ -6,12 +6,6 @@ my_theme <-
     "pkgwide-str:ci.sep" = " to ",
     "style_number-arg:decimal.mark" = ".",
     "style_number-arg:big.mark" = ",",
-    "add_stat_label-arg:location" = "row",
-    "tbl_summary-str:continuous_stat" = "{median} ({p25} \U2013 {p75})",
-    "tbl_summary-str:categorical_stat" = "{n} ({p})",
-    "tbl_summary-fn:addnl-fn-to-run" = function(x) {
-      add_stat_label(x)
-    },
     "add_difference-fn:addnl-fn-to-run" = function(x) {
       # merging coef and CI columns, if error, returning x unaltered
       tryCatch(
@@ -93,7 +87,7 @@ my_theme <-
     "as_gt-lst:addl_cmds" = list(
       tab_spanner = rlang::expr(
         gt::tab_options(
-          table.font.size = gt::px(13),
+          table.font.size = gt::px(13.33),
           data_row.padding = gt::px(1),
           summary_row.padding = gt::px(1),
           grand_summary_row.padding = gt::px(1),
