@@ -144,5 +144,4 @@ table_main <-
     style = cell_text(weight = "bold"),
     locations = cells_column_spanners()
   ) %>%
-  tab_options(table.width = pct(100),
-              column_labels.font.size = px(13))
+  tab_options(table.width = pct(100))
