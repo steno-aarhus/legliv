@@ -460,6 +460,6 @@ table_sens <-
   ) %>%
   tab_options(table.width = pct(100),
               table.font.size = px(10)) %>%
-  cols_width(matches("estimate|label") ~ pct(10))
+  cols_width(matches("estimate|label") ~ pct(12.5))
 
 # table_sens %>% gtsave("doc/latex-tables/table-sens.tex")
