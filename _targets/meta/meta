@@ -1,34 +1,34 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-base_data|stem|1aed7aeb6e2d501d|307aa50c160c9ca4|57388b3367d06827|-2061583069||t19866.7796513467s|08d4065161b1c8e4|430146550|qs|local|vector|||44.164|One or more parsing issues, call problems on your data frame for details,e.g.  dat  vroom...  problemsdat|
+base_data|stem|1aed7aeb6e2d501d|307aa50c160c9ca4|57388b3367d06827|-2061583069||t19869.3752043152s|08d4065161b1c8e4|430146550|qs|local|vector|||50.703|One or more parsing issues, call problems on your data frame for details,e.g.  dat  vroom...  problemsdat|
 baseline_age|function|ce2c1cc36e4cc499|||||||||||||||
 baseline_date|function|f27c2ac237238ff6|||||||||||||||
 birth_date|function|a40df4bad8274051|||||||||||||||
 calculate_food_intake|function|806775cceb01ad0c|||||||||||||||
 cancer_longer_subset|function|52e8aed534981d57|||||||||||||||
 cancer_longer_subset_death|function|4176392d5b09179a|||||||||||||||
-cancer_subset|stem|a3cd783f441fdcb6|1e1712356a36dd7e|c3acf04c597fe0a9|2021236119||t19866.7804903769s|a2cbbe55b5c7466e|11453953|qs|local|vector|||11.09||
-cancer_subset_death|stem|636a42eaa6497bc6|eb8234bba660c168|a740ac456d42d868|1855944093||t19866.7807169053s|d8b315b11d0dab95|11614696|qs|local|vector|||18.92||
+cancer_subset|stem|a3cd783f441fdcb6|1e1712356a36dd7e|c3acf04c597fe0a9|2021236119||t19869.3760418663s|a2cbbe55b5c7466e|11453953|qs|local|vector|||12.578||
+cancer_subset_death|stem|636a42eaa6497bc6|eb8234bba660c168|a740ac456d42d868|1855944093||t19869.3768675655s|d8b315b11d0dab95|11614696|qs|local|vector|||24.86||
 covariates|function|5b456d7b1213a515|||||||||||||||
-data_flowchart|stem|a58a0d2595450c3a|263e349269cb179c|d30f35e1cf94eb14|1666536010||t19866.7809592208s|8143ca32deaed43f|837254|qs|local|vector|||0.08||
+data_flowchart|stem|a58a0d2595450c3a|263e349269cb179c|d30f35e1cf94eb14|1666536010||t19869.3772911326s|8143ca32deaed43f|837254|qs|local|vector|||0.076||
 data_id|function|89d26696f15af8f7|||||||||||||||
-data_main|stem|9f8a81df4957f10c|4704e8aec297a903|473ae6a783d7b98f|1745148097||t19866.7820871411s|530223f1b6938492|15734842|qs|local|vector|||12.57||
-data_prepare_death|stem|938422daefc41017|6e81f7a2257248ee|4462dc785508b4e4|-289350023||t19866.7812023697s|4f87193020be7005|164574030|qs|local|vector|||5.35||
-data_prepare_hcc|stem|08bf4ba6e9a20986|342cc96f589840a0|4338e84023ce7139|-1136496530||t19866.7810759342s|5823858cb3eada08|164818133|qs|local|vector|||4.597||
-data_prepare_icc|stem|165ef7c93b941d0f|032770880aa56e4f|71c02d732463acfc|-725779404||t19866.781343759s|d4ba02583b9c7945|164766337|qs|local|vector|||6.607||
-data_prepare_main|stem|0feaa15e6b34b09f|3cde2df656819e63|5599913a0355fd5f|575598617||t19866.781472602s|c2dc99eba19e80cb|164573902|qs|local|vector|||5.546||
-data_with_3_ques_comp|stem|cd69005b758fd6da|6c53c8dad3b031f3|d6f1a48f3f640262|774312748||t19866.7820942708s|5663dcb52a31136e|10289143|qs|local|vector|||0.026||
-data_with_alc|stem|76024b8c17615b3d|1fc3256e2ba2a9ad|578240a8cf94e9fd|-1504592392||t19866.7820911226s|e2127b039b6022c0|12083247|qs|local|vector|||0.036||
-data_with_covariates|stem|64455dbf01a162d5|cdcfa7b0174b9d43|7df1130ba8f12644|1151666800||t19866.7801554223s|86e1a2b97c92ef7a|142797591|qs|local|vector|||1.531||
-data_with_death|stem|e3d43dfa226aebc5|9c6ce136c8fa0256|854f0386f26d47d7|1410826127||t19866.7817883901s|ac88eba1f06c69c4|15737427|qs|local|vector|||11.995||
-data_with_diet|stem|9a85b7b045615959|b36877083a324045|2967dac5e1f42ad2|-342067963||t19866.7802368577s|e5764c1b9cb21e88|150074416|qs|local|vector|||2.781||
-data_with_hcc|stem|c7582a589b0b89a5|9275be7f0a203f26|958ac5a5e2bae657|1933525792||t19866.7816449636s|2e1550b71d9cd9d8|15731246|qs|local|vector|||14.41||
-data_with_icc|stem|67f7c6de70479818|b935b4bb1718e1a8|678ddf60d15535c3|1889807357||t19866.7819370943s|7a914db6d937d0a5|15726754|qs|local|vector|||12.445||
-data_with_id|stem|506fb1fa1dda03db|b1ed6a024e45b08b|4003cb91dbec4752|1851572945||t19866.7798058843s|fbe7611f094bd36f|430148638|qs|local|vector|||0.017||
-data_with_liver_cancer|stem|4de21588423036d0|1c05840dfab1a265|6e414096b4cf3ec8|535191577||t19866.7809566282s|8ec45804eae7deab|164787799|qs|local|vector|||8.858||
-data_with_misreporter|stem|6e1ea329afbc1a1d|16e77592a3292dba|7b2d427c1525e374|2047422163||t19866.7821681599s|1b8f4a2fbe0f7041|15677860|qs|local|vector|||0.044||
-data_with_split_column|stem|397dcfd25339dd89|4c557b37fa3677b0|b302220db9133b61|1045311392||t19866.7803538487s|0321cd8da8bd8fc0|164774338|qs|local|vector|||4.53|Debug mode activated adding variables p41270_ok, p41270_pieces, andp41270_remainder.. Debug mode activated adding variables p41271_ok, p41271_pieces, andp41271_remainder.. Debug mode activated adding variables p41272_ok, p41272_pieces, andp41272_remainder.. Debug mode activated adding variables p41273_ok, p41273_pieces, andp41273_remainder.|
-data_without_cancer|stem|a2efd43f36aca9a4|b06b136747647fc7|af3c73edafcdfc6c|-1433781382||t19866.7821631599s|282d9ddbd930f2ae|12883919|qs|local|vector|||5.631||
-data_without_liver_disease|stem|0601510c307d4a7d|4262c985209e441a|0bf2cb8d79ffbd81|1509120522||t19866.7821918174s|7c21c536ead694a0|15732195|qs|local|vector|||1.611||
+data_main|stem|9f8a81df4957f10c|4704e8aec297a903|473ae6a783d7b98f|1745148097||t19869.3795484143s|530223f1b6938492|15734842|qs|local|vector|||11.379||
+data_prepare_death|stem|938422daefc41017|6e81f7a2257248ee|4462dc785508b4e4|-289350023||t19869.3786151206s|4f87193020be7005|164574030|qs|local|vector|||9.969||
+data_prepare_hcc|stem|08bf4ba6e9a20986|342cc96f589840a0|4338e84023ce7139|-1136496530||t19869.3774278462s|5823858cb3eada08|164818133|qs|local|vector|||6.57||
+data_prepare_icc|stem|165ef7c93b941d0f|032770880aa56e4f|71c02d732463acfc|-725779404||t19869.3787643352s|d4ba02583b9c7945|164766337|qs|local|vector|||7.564||
+data_prepare_main|stem|0feaa15e6b34b09f|3cde2df656819e63|5599913a0355fd5f|575598617||t19869.3788866044s|c2dc99eba19e80cb|164573902|qs|local|vector|||5.259||
+data_with_3_ques_comp|stem|cd69005b758fd6da|6c53c8dad3b031f3|d6f1a48f3f640262|774312748||t19869.3795553588s|5663dcb52a31136e|10289143|qs|local|vector|||0.026||
+data_with_alc|stem|3ee6203e47f9b0a5|b77a3c4dd35fad0d|1e647f4df674e16f|-1504592392||t19869.4691439868s|9cd8e59a53dad9e4|14196485|qs|local|vector|||0.831||
+data_with_covariates|stem|64455dbf01a162d5|cdcfa7b0174b9d43|7df1130ba8f12644|1151666800||t19869.3756909384s|86e1a2b97c92ef7a|142797591|qs|local|vector|||1.421||
+data_with_death|stem|e3d43dfa226aebc5|9c6ce136c8fa0256|854f0386f26d47d7|1410826127||t19869.3792604033s|ac88eba1f06c69c4|15737427|qs|local|vector|||12.997||
+data_with_diet|stem|9a85b7b045615959|b36877083a324045|2967dac5e1f42ad2|-342067963||t19869.3757714944s|e5764c1b9cb21e88|150074416|qs|local|vector|||2.853||
+data_with_hcc|stem|c7582a589b0b89a5|9275be7f0a203f26|958ac5a5e2bae657|1933525792||t19869.3791055874s|2e1550b71d9cd9d8|15731246|qs|local|vector|||12.841||
+data_with_icc|stem|67f7c6de70479818|b935b4bb1718e1a8|678ddf60d15535c3|1889807357||t19869.3794123487s|7a914db6d937d0a5|15726754|qs|local|vector|||12.752||
+data_with_id|stem|506fb1fa1dda03db|b1ed6a024e45b08b|4003cb91dbec4752|1851572945||t19869.3753535754s|fbe7611f094bd36f|430148638|qs|local|vector|||0.018||
+data_with_liver_cancer|stem|4de21588423036d0|1c05840dfab1a265|6e414096b4cf3ec8|535191577||t19869.3771780303s|8ec45804eae7deab|164787799|qs|local|vector|||12.54||
+data_with_misreporter|stem|d635a9b816865aa0|0bdc6105dfe9e4dd|25ed1052cef91c09|2047422163||t19869.469150885s|5820a927fb391472|12541868|qs|local|vector|||0.293||
+data_with_split_column|stem|397dcfd25339dd89|4c557b37fa3677b0|b302220db9133b61|1045311392||t19869.375888671s|0321cd8da8bd8fc0|164774338|qs|local|vector|||4.684|Debug mode activated adding variables p41270_ok, p41270_pieces, andp41270_remainder.. Debug mode activated adding variables p41271_ok, p41271_pieces, andp41271_remainder.. Debug mode activated adding variables p41272_ok, p41272_pieces, andp41272_remainder.. Debug mode activated adding variables p41273_ok, p41273_pieces, andp41273_remainder.|
+data_without_cancer|stem|a2efd43f36aca9a4|b06b136747647fc7|af3c73edafcdfc6c|-1433781382||t19869.3796485075s|282d9ddbd930f2ae|12883919|qs|local|vector|||7.107||
+data_without_liver_disease|stem|0601510c307d4a7d|4262c985209e441a|0bf2cb8d79ffbd81|1509120522||t19869.3796873503s|7c21c536ead694a0|15732195|qs|local|vector|||2.142||
 download_project_data|stem|2ab4e8ee3aa1d03a|a2d5526e97b1e4dd|ef46db3751d8e999|-405941752|/home/rstudio-server/legliv/data/data.csv|t19795.6720846171s|665a51a834461fea|1461051909|file|local|vector|||9.176||
 end_of_follow_up_death|function|89812046185fb545|||||||||||||||
 end_of_follow_up_hcc|function|81f963daa3e5ae76|||||||||||||||
@@ -41,7 +41,7 @@ high_alcohol|function|cbac554a1ade35a7|||||||||||||||
 icd_any_cancer|function|45c3de86df6f929f|||||||||||||||
 icd_liver_disease|function|6b6103369c2f1829|||||||||||||||
 icd_longer_subset|function|db0e0eab23085805|||||||||||||||
-icd_subset|stem|dafd08f95085f095|5618ac0588d532c3|45a04632dde78c9e|-2025657748||t19866.7807904703s|4b369d7b0ca02774|11004082|qs|local|vector|||5.827||
+icd_subset|stem|dafd08f95085f095|5618ac0588d532c3|45a04632dde78c9e|-2025657748||t19869.376964742s|4b369d7b0ca02774|11004082|qs|local|vector|||7.887||
 legume_strat|function|f3fb04201a5dff2d|||||||||||||||
 liver_cancer_hcc|function|2434d861da4cf63f|||||||||||||||
 liver_cancer_icc|function|0db56489e94f4903|||||||||||||||
@@ -51,8 +51,8 @@ make_status_age|function|27ed63b0b11feb8d|||||||||||||||
 metabolic_syndrome|function|a179989a451eaa98|||||||||||||||
 other_variables|function|e9f41005697bfb3c|||||||||||||||
 package_deps|object|2445d8480fa92f6c|||||||||||||||
-project_data_path|stem|cc8fb7f2efffecc4|12b8a0a40a937e5b|2c530c1562a7fbd1|667840095|/home/rstudio-server/legliv/data/data.csv|t19866.7789779186s|5fa2120395cd9d05|1685666034|file|local|vector|||10.467|running command timedatectl had status 1|
-readied_data|stem|412c103a90df4e28|da61a0848003b641|7f6e424accbecd20|-799528652||t19866.7800899128s|30589de40804233e|136596444|qs|local|vector|||20.443||
+project_data_path|stem|cc8fb7f2efffecc4|12b8a0a40a937e5b|2c530c1562a7fbd1|667840095|/home/rstudio-server/legliv/data/data.csv|t19869.3744558387s|5fa2120395cd9d05|1685666034|file|local|vector|||11.849|running command timedatectl had status 1|
+readied_data|stem|412c103a90df4e28|da61a0848003b641|7f6e424accbecd20|-799528652||t19869.3756283918s|30589de40804233e|136596444|qs|local|vector|||19.801||
 reduce_baseline_data|function|dda5d61d81b8b448|||||||||||||||
 reduce_dataset|function|b982011ceea3c1f3|||||||||||||||
 reduce_full_data|function|d3a0184109356b0d|||||||||||||||
