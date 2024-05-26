@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.26)  26 MAY 2024 16:37
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.26)  26 MAY 2024 21:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -724,8 +724,7 @@ File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
 \l__pdf_internal_box=\box96
 \g__pdf_backend_annotation_int=\count360
 \g__pdf_backend_link_int=\count361
-)
-No file legliv_eur-j-nutr.aux.
+) (./legliv_eur-j-nutr.aux)
 \openout1 = `legliv_eur-j-nutr.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
@@ -790,11 +789,9 @@ LaTeX Font Info:    ... okay on input line 78.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 78.
+(./legliv_eur-j-nutr.out) (./legliv_eur-j-nutr.out)
 \@outlinefile=\write4
 \openout4 = `legliv_eur-j-nutr.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 \c@lstlisting=\count363
 LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 125.
@@ -862,9 +859,6 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.51686> not available
 
 LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 125.
 
-Overfull \vbox (0.66534pt too high) has occurred while \output is active []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -875,74 +869,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [1
 
 
+
 ]
-
-Package natbib Warning: Citation `sudlow2015' on page 2 undefined on input line 140.
-
-
-Package natbib Warning: Citation `RN113' on page 2 undefined on input line 147.
-
-
-Underfull \hbox (badness 1264) in paragraph at lines 139--148
+Underfull \hbox (badness 1264) in paragraph at lines 143--152
 \TU/lmr/m/n/10.03749 sumption, physical activity) via touch screen
  []
 
 
-Package natbib Warning: Citation `RN115' on page 2 undefined on input line 154.
-
-
-Package natbib Warning: Citation `piernas2021' on page 2 undefined on input line 161.
-
-
-Package natbib Warning: Citation `Liu2011' on page 2 undefined on input line 162.
-
-
-Package natbib Warning: Citation `Greenwood2019' on page 2 undefined on input line 162.
-
-
-Package natbib Warning: Citation `piernas2021' on page 2 undefined on input line 166.
-
-
-Package natbib Warning: Citation `Thompson2023' on page 2 undefined on input line 177.
-
-
-Package natbib Warning: Citation `Heianza2021' on page 2 undefined on input line 177.
-
-
-Package natbib Warning: Citation `Satija2017' on page 2 undefined on input line 177.
-
-
-Package natbib Warning: Citation `Satija2016' on page 2 undefined on input line 177.
-
-
-LaTeX Warning: Reference `tab-food-group' on page 2 undefined on input line 179.
-
-
-Underfull \hbox (badness 1533) in paragraph at lines 164--180
+Underfull \hbox (badness 1533) in paragraph at lines 168--184
 \TU/lmr/m/n/10.03749 (with and without fat), ham, or liver pate.
- []
-
-
-Package natbib Warning: Citation `thompson2013' on page 2 undefined on input line 183.
-
-
-Package natbib Warning: Citation `gurinovic2017' on page 2 undefined on input line 183.
-
-
-Package natbib Warning: Citation `RN112' on page 2 undefined on input line 195.
-
-
-Package natbib Warning: Citation `RN114' on page 2 undefined on input line 195.
-
-
-LaTeX Warning: Reference `fig:fig2' on page 2 undefined on input line 202.
-
-
-Package natbib Warning: Citation `Ibsen2021' on page 2 undefined on input line 225.
-
-
-Underfull \hbox (badness 1097) in paragraph at lines 218--227
-\TU/lmr/m/n/10.03749 The substitution analyses were conducted by
  []
 
 
@@ -953,11 +888,9 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[2]
+[2
 
-Package natbib Warning: Citation `Tomova2022' on page 3 undefined on input line 262.
-
-
+]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -966,60 +899,29 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [3]
-
-LaTeX Warning: Reference `fig:fig1' on page 4 undefined on input line 313.
-
-
-Underfull \hbox (badness 1052) in paragraph at lines 310--314
+Underfull \hbox (badness 1052) in paragraph at lines 316--320
 \TU/lmr/m/n/10.03749 before baseline, participants lost to follow-up
  []
 
 File: legliv_eur-j-nutr_files/figure-latex/fig1-1.pdf Graphic file (type pdf)
 <use legliv_eur-j-nutr_files/figure-latex/fig1-1.pdf>
 
-LaTeX Warning: Reference `tab1' on page 4 undefined on input line 323.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 361--367
+Underfull \hbox (badness 10000) in paragraph at lines 367--373
 
  []
 
 
-LaTeX Warning: Reference `tab-diet' on page 4 undefined on input line 371.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 399--403
+Underfull \hbox (badness 10000) in paragraph at lines 405--409
 
  []
 
 
-LaTeX Warning: Reference `tab-main' on page 4 undefined on input line 408.
-
-
-LaTeX Warning: Reference `tab-main' on page 4 undefined on input line 416.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 438--440
+Underfull \hbox (badness 10000) in paragraph at lines 441--443
 
  []
 
 
-LaTeX Warning: Reference `tab-cancer' on page 4 undefined on input line 446.
-
-
-LaTeX Warning: Reference `tab-cancer' on page 4 undefined on input line 453.
-
-
-LaTeX Warning: Reference `tab-legume' on page 4 undefined on input line 468.
-
-
-LaTeX Warning: Reference `tab-sens' on page 4 undefined on input line 476.
-
-
-Package natbib Warning: Citation `Knuppel2020' on page 4 undefined on input line 498.
-
-
-Underfull \hbox (badness 2903) in paragraph at lines 501--506
+Underfull \hbox (badness 2903) in paragraph at lines 502--507
 []\TU/lmr/m/n/10.03749 Stratifying on cancer type revealed that
  []
 
@@ -1032,22 +934,9 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [4]
-
-Package natbib Warning: Citation `liu2023a' on page 5 undefined on input line 511.
-
-
-Package natbib Warning: Citation `Di2023' on page 5 undefined on input line 515.
-
-
-Underfull \hbox (badness 1248) in paragraph at lines 507--516
+Underfull \hbox (badness 1248) in paragraph at lines 508--517
 []\TU/lmr/m/n/10.03749 The literature on food substitutions, par-
  []
-
-
-Package natbib Warning: Citation `RN112' on page 5 undefined on input line 519.
-
-
-Package natbib Warning: Citation `RN114' on page 5 undefined on input line 523.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1058,7 +947,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [5]
-Underfull \hbox (badness 1259) in paragraph at lines 542--557
+Underfull \hbox (badness 1259) in paragraph at lines 543--558
 \TU/lmr/m/n/10.03749 generalizability. Though health registries may
  []
 
@@ -1071,8 +960,55 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [6]
+File: legliv_eur-j-nutr_files/figure-latex/fig2-1.pdf Graphic file (type pdf)
+<use legliv_eur-j-nutr_files/figure-latex/fig2-1.pdf>
 
-LaTeX Warning: Reference `tab-sens' on page 7 undefined on input line 561.
+Underfull \hbox (badness 10000) in paragraph at lines 616--618
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 638--640
+
+ []
+
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 646.
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 646.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 646.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
+(Font)              size <7> substituted on input line 646.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
+(Font)              size <5> substituted on input line 646.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 646.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 646.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 646.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 646.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 660--664
+
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1084,21 +1020,261 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [7]
 
-! LaTeX Error: Environment longtable* undefined.
+LaTeX Warning: Text page 8 contains only floats.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.581 \begin{longtable*}
-                        {@{\extracolsep{\fill}}>{\raggedright\arraybackslash... 
+
+Overfull \vbox (23.71838pt too high) has occurred while \output is active []
+
+
+LaTeX Warning: Text page 8 contains only floats.
+
+
+Overfull \vbox (23.71838pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (9.71841pt too high) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[8]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[9
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[10] (./legliv_eur-j-nutr.bbl
+Underfull \hbox (badness 1292) in paragraph at lines 13--14
+\TU/lmr/m/n/10.03749 tion. URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+[][][] [] [][][] [] [][][][] [] [][][][][][][][][][][][][][][][][][][][][] [] [][][]$[][]\TU/lmr/m/n/10.03749 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+[]\TU/lmr/m/n/10.03749 UK Biobank (2024) 24-hour dietary
+ []
+
+
+Underfull \hbox (badness 2080) in paragraph at lines 16--17
+\TU/lmr/m/n/10.03749 recall questionnaire (oxford webq). URL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+[][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] [] [][][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 1389) in paragraph at lines 22--23
+\TU/lmr/m/n/10.03749 webq, a low-cost, web-based method for
+ []
+
+
+Underfull \hbox (badness 4479) in paragraph at lines 25--26
+[]\TU/lmr/m/n/10.03749 Greenwood DC, Hardie LJ, Frost GS,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+\TU/lmr/m/n/10.03749 Healthful plant-based dietary patterns,
+ []
+
+
+Underfull \hbox (badness 5316) in paragraph at lines 31--32
+\TU/lmr/m/n/10.03749 genetic risk of obesity, and cardiovas-
+ []
+
+
+Underfull \hbox (badness 8113) in paragraph at lines 31--32
+\TU/lmr/m/n/10.03749 cular risk in the uk biobank study.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+\TU/lmr/m/n/10.03749 Clinical Nutrition 40(7):4694–4701.
+ []
+
+
+Underfull \hbox (badness 3679) in paragraph at lines 34--35
+[]\TU/lmr/m/n/10.03749 Satija A, Bhupathiraju SN, Spiegelman
+ []
+
+
+Underfull \hbox (badness 1603) in paragraph at lines 34--35
+\TU/lmr/m/n/10.03749 422. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] [] [] [] [][][][] [] [][][][] [] [][] []
+ []
+
+
+Underfull \hbox (badness 2644) in paragraph at lines 37--38
+[]\TU/lmr/m/n/10.03749 Satija A, Bhupathiraju SN, Rimm EB,
+ []
+
+
+Underfull \hbox (badness 6859) in paragraph at lines 37--38
+\TU/lmr/m/n/10.03749 et al (2016) Plant-based dietary pat-
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 37--38
+\TU/lmr/m/n/10.03749 terns and incidence of type 2 diabetes
+ []
+
+
+Underfull \hbox (badness 5203) in paragraph at lines 37--38
+\TU/lmr/m/n/10.03749 in us men and women: Results from
+ []
+
+
+Underfull \hbox (badness 4084) in paragraph at lines 37--38
+\TU/lmr/m/n/10.03749 three prospective cohort studies. PLOS
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+[]\TU/lmr/m/n/10.03749 Thompson FE, Subar AF (2013)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+\TU/lmr/m/n/10.03749 Dietary Assessment Methodology, Else-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+\TU/lmr/m/n/10.03749 vier, pp 5–46. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+[]\TU/lmr/m/n/10.03749 Gurinović M, Zeković M, Milešević
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+\TU/lmr/m/n/10.03749 J, et al (2017) Nutritional Assess-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+\TU/lmr/m/n/10.03749 ment, Elsevier. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+[]\TU/lmr/m/n/10.03749 UK Biobank (2024) Health out-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+\TU/lmr/m/n/10.03749 comes overview. URL [][]$[][][][][] [] [] [] [][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+[][][][] [] [][] [] [][] [] [][] [] [][][][][][][][] [] [][][] [] [][][][] []
+ []
+
+
+Underfull \hbox (badness 1708) in paragraph at lines 46--47
+[][][][][][][][][][][][][][][][][][][][][][] [] [][][]$[][]\TU/lmr/m/n/10.03749 , accessed 21
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+[]\TU/lmr/m/n/10.03749 UK Biobank (2023) Data providers
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+\TU/lmr/m/n/10.03749 and dates of data availability. URL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+[][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] [] [][][] [] [][][][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+[][][] [] [][][] [] [][][][] [] [][][][][][][][][] [] [][][] [] [][][][][]$[][]\TU/lmr/m/n/10.03749 ,
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 55--56
+\TU/lmr/m/n/10.03749 Theory and performance of substitution
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[11
+
+
+]
+Underfull \hbox (badness 1127) in paragraph at lines 58--59
+\TU/lmr/m/n/10.03749 Journal of Epidemiology 49(5):1540–1552.
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 61--62
+\TU/lmr/m/n/10.03749 vational studies. Nutrition Journal 22(1).
+ []
+
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[12
+
+] (./legliv_eur-j-nutr.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-05-08>
+ ***********
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.25pt have occurred.
+
+Package rerunfilecheck Info: File `legliv_eur-j-nutr.out' has not changed.
+(rerunfilecheck)             Checksum: 60F338690C2DF2EE41FB137C7692E021;1673.
+ ) 
 Here is how much of TeX's memory you used:
- 24581 strings out of 476648
- 453414 string characters out of 5799784
- 1953556 words of memory out of 5000000
- 46236 multiletter control sequences out of 15000+600000
- 575970 words of font info for 134 fonts, out of 8000000 for 9000
+ 24728 strings out of 476648
+ 456238 string characters out of 5799784
+ 1954556 words of memory out of 5000000
+ 46369 multiletter control sequences out of 15000+600000
+ 577926 words of font info for 146 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 99i,12n,101p,641b,775s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,16n,101p,824b,775s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on legliv_eur-j-nutr.pdf (7 pages).
+Output written on legliv_eur-j-nutr.pdf (12 pages).

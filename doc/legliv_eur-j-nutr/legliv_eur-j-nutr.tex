@@ -109,13 +109,13 @@
   \affil[3]{\orgdiv{Department of Nutrition, Exercise and Sports}, \orgname{University of Copenhagen}, \orgaddress{\city{Copenhagen}, \country{Denmark}}}
   \affil[4]{\orgdiv{MRC Epidemiology Unit, School of Clinical Medicine}, \orgname{University of Cambridge}, \orgaddress{\city{Cambridge}, \country{United Kingdom}}}
 
-\abstract{\textbf{Purpose}: Lifestyle-associated primary liver cancer is on the rise worldwide. Preventative strategies are warranted. We aimed to estimate the effect of substituting unprocessed red meat, processed red meat and total red meat with legumes on primary liver cancer in a free-living population.
+\abstract{\textbf{Purpose}: Primary liver cancer is on the rise worldwide, partially due to poor diets and sedentary lifestyles. Shifting to more plant-based diets may lower the risk. We aimed to estimate the effect of replacing unprocessed red meat, processed red meat and total red meat with legumes on primary liver cancer in a free-living population.
 
-\textbf{Methods}: We analyzed data from 126,744 UK Biobank participants who completed \(\geq\) 2 24-hour diet recall questionnaires. Cox proportional hazards regression models were used to estimate substitution of 15g/day of legumes with 15/day of total red meat, unprocessed red meat and processed red meat on liver cancer risk, using the leave-one-out food substitution model. Baseline characteristics were collected from the initial assessment visit. Information on liver cancer diagnoses was collected via external linkage to inpatient hospital episodes or central cancer registries.
+\textbf{Methods}: We analyzed data from 126,744 UK Biobank participants who completed \(\geq\) 2 24-hour diet recall questionnaires. Baseline characteristics were collected from the initial assessment visit. Information on liver cancer diagnoses was collected via external linkage to inpatient hospital episodes or central cancer registries. Cox proportional hazards regression models were used to estimate substitution of 15g/day of legumes with 15/day of total red meat, unprocessed red meat and processed red meat on liver cancer risk, using the leave-one-out food substitution model.
 
-\textbf{Results}: During a median follow-up time of 11.3 years, 173 participants developed liver cancer. In the fully adjusted models, no effect of substituting 15/day of legumes with total red meat (HR: 0.98 (95\% CI 0.93-1.04)), unprocessed red meat (HR: 0.97 (95\% CI 0.91-1.03)) or processed red meat (HR: 1.02 (95\% CI 0.93-1.13)) was observed. The results were robust to sensitivity analyses.
+\textbf{Results}: During a median follow-up time of 11.3 years, 173 participants developed liver cancer. In the fully adjusted models, no association was observed when substituting 15/day of legumes with total red meat (HR: 0.98 (95\% CI 0.93-1.04)), unprocessed red meat (HR: 0.97 (95\% CI 0.91-1.03)) or processed red meat (HR: 1.02 (95\% CI 0.93-1.13)).
 
-\textbf{Conclusion}: Overall, no association between substituting red meat with legumes and liver cancer was observed. Further research with longer follow-up time is warranted.}
+\textbf{Conclusion}: Overall, little evidence of an association between replacing red meat with legumes and liver cancer was observed. Further research in larger study populations with longer follow-up time is warranted.}
 
 \keywords{Food Substitutions, Liver cancer, Red meat, Legumes}
 
@@ -123,10 +123,14 @@
 
 \maketitle
 
+\newpage
+
+\clearpage
+
 \hypertarget{sec1}{%
 \section{Background}\label{sec1}}
 
-The main aim of this study was to estimate the effect of substituting
+The main aim of this study was to estimate the effect of replacing
 unprocessed red meat, processed red meat and total red meat with legumes
 on primary liver cancer in a free-living population.
 
@@ -178,8 +182,8 @@ grouped based on plant-based diet indices from previous studies
 included foods in each food group is displayed in Table
 \ref{tab-food-group}.
 
-Due to the incapability of a single 24-hour dietary recall to properly
-assess habitual dietary intake and variation in diet over time
+As a single 24-hour dietary recall does not assess habitual dietary
+intake and variation in diet over time at an individual level
 \citep{thompson2013, gurinovic2017}, only participants who completed two or
 more Oxford WebQs were eligible for inclusion in this study.
 
@@ -215,15 +219,16 @@ before the start of follow-up.
 \hypertarget{subsec5}{%
 \subsection{The substitution model}\label{subsec5}}
 
-The substitution analyses were conducted by replacing an equal mass of
-meat with legumes. The size of the substitution was set to 15 g of
-legumes for 15 g of meat to keep the substitution size below the mean
-intake of any of the substituted food groups in the cohort. The
-substitutions were modeled using the leave-one-out-approach in which
-variables for every food group along with a variable for total food
-intake are included, except the food group that are to be substituted
-\citep{Ibsen2021}. To estimate substitution of 15 g of all red meats (red and
-processed) with 15 g of legumes, the following model was defined:
+The substitution analyses were conducted by by modelling replacement of
+an equal mass of meat with legumes. The portion size of the substitution
+was set to 15 g of legumes for 15 g of meat to ensure that substitutions
+were below the mean intake of any of the substituted food groups in the
+cohort. The substitutions were modeled using the leave-one-out-approach
+in which variables for every food group along with a variable for total
+food intake are included, except the food group that are to be
+substituted \citep{Ibsen2021}. To estimate substitution of 15 g of all red
+meats (red and processed) with 15 g of legumes, the following model was
+defined:
 
 \begin{align}
 \log(h(t;x)) &= \log(h_0(t)) \nonumber \\
@@ -279,26 +284,27 @@ physical activity, smoking, alcohol intake, and waist circumference.
 
 In secondary analyses, each cancer type was analysed separately to
 evaluate if the pooling of HCC and ICC as one outcome in the main
-analysis was justified. Furthermore, to estimate the effect of legume
-intake regardsless of other dietary components, legume consumers
-(divided into quartiles) were compared to non-consumers.
+analysis was justified. Furthermore, to estimate the association of
+legume intake with liver cancer regardless of other dietary components,
+legume consumers (divided into quartiles) were compared to
+non-consumers.
 
 To evaluate the robustness of the main analyses, sensitivity analyses
 were performed on subsamples of participants by excluding those with
 high alcohol intake (exclusion of upper decile of daily alcohol intake
-for each sex), implausible energy intake (exclusion of upper and lower
-deciel of each sex), any liver disease before baseline, any type of
-cancer before baseline, and fewer than 3 completed Oxford WebQs. As
-neither the central cancer registries nor the hospital inpatient
-registries were complete, liver cancer diagnoses retrieved from death
-registries, which where more up-to-date, were included in a sensitivity
-analysis to test for outcome misclassification bias. Lastly, one of our
-causal assumptions was that anthropometry confounded the causal
-relationship between replacing red meat with legumes and liver cancer;
-however, strong arguments exist giving support to anthropometry being a
-mediator between diet and health outcomes. Thus, to test for erroneously
+by sex), implausible energy intake (exclusion of upper and lower deciel
+of each sex), any liver disease before baseline, any type of cancer
+before baseline, and fewer than 3 completed Oxford WebQs. As neither the
+central cancer registries nor the hospital inpatient registries were
+complete, liver cancer diagnoses retrieved from death registries, which
+were more up-to-date, were included in a sensitivity analysis to test
+for outcome misclassification bias. Lastly, one of our causal
+assumptions was that anthropometry confounded the causal relationship
+between replacing red meat with legumes and liver cancer; however,
+strong arguments exist giving support to anthropometry being a mediator
+between diet and health outcomes. Thus, to test for erroneously
 conditioning on a potential mediator, waist circumference was removed in
-a sensitivity analysis. Sensitivity analyses were modeled like the fully
+a sensitivity analysis. Sensitivity analyses were modeled as the fully
 adjusted models in the main analyses.
 
 All analyses were conducted in R (version 4.1.1) with a significance
@@ -309,8 +315,8 @@ level of 5 \%.
 
 After excluding participants with liver cancer before baseline,
 participants lost to follow-up before baseline, and participants with
-errors in the diet data, 126,744 participants remained who had completed
-two or more diet questionnaires (Figure \ref{fig:fig1}).
+errors in dietary data, 126,744 participants who had completed two or
+more diet questionnaires remained (Figure \ref{fig:fig1}).
 
 \begin{figure*}
 \includegraphics[width=1\linewidth,]{legliv_eur-j-nutr_files/figure-latex/fig1-1} \caption{Flowchart of included participants. Missing diet data were merged with loss to follow-up before baseline due to n being less than 5. It should be noted that not all UK Biobank participants were invited to complete an Oxfords WebQ. Only the last 70,000 participants to visit an assessment center were asked to complete an Oxford WebQ at the end of their visit. Further Oxfords WebQs were sent to ~320,000 participants who provied an e-mail adress.}\label{fig:fig1}
@@ -318,11 +324,11 @@ two or more diet questionnaires (Figure \ref{fig:fig1}).
 
 During a median follow-up time of 11.3 years, 173 participants developed
 liver cancer. Participants who developed liver cancer were older at
-baseline, had a higher waist circumference, were less physically active,
-fewer had never smoked, and more were male, compared to all included
-participants (Table \ref{tab1}).
+baseline, were more likely to be male, have a higher waist
+circumference, be less physically active, and fewer had never smoked,
+compared to all included participants (Table \ref{tab1}).
 
-\begin{table*}[!t]
+\begin{table*}
 \caption{{\small \textbf{Baseline characteristics of UK Biobank participants who completed $\geq$ 2 Oxford WebQ 24-hour diet recall.}}}\label{tab1}
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
@@ -367,10 +373,10 @@ Low: none of the previous mentioned.\\
 \end{minipage}
 \end{table*}
 
-Mean daily energy intake and food intake and daily intake of all
+Mean daily energy and total food intakes as well as daily intake of all
 specified food groups in grams are presented in Table \ref{tab-diet}.
 
-\begin{table*}[!t]
+\begin{table*}
 \caption{{\small \textbf{Daily dietary intake of food groups, total food and total energy intake in UK Biobank participants who completed $\geq$ 2 Oxford WebQ 24-hour diet recall.}}}\label{tab-diet}
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
@@ -403,25 +409,22 @@ Alcoholic beverages & 132 (0, 342) & 144 (0, 375) \\
 \end{minipage}
 \end{table*}
 
-No association was found for substituting 15 g/day of legumes with 15
-g/day of total red meat, unprocessed red meat, or processed red meat and
-risk of primary liver cancer in model 1 (Table \ref{tab-main}: total red
-meat:
+No evidence of associations was found for substituting 15 g/day of
+legumes with 15 g/day of total red meat, unprocessed red meat, or
+processed red meat and risk of primary liver cancer in Model 1 (Table
+\ref{tab-main}: total red meat:
 HR: 0.98, 95\% CI: 0.93-1.04;
 unprocessed red meat:
 HR: 0.97, 95\% CI: 0.91-1.03;
 processed red meat:
 HR: 1.02, 95\% CI: 0.93-1.13).
-The estimated associations changed minimally but remained
-non-significant with further adjustments (Table \ref{tab-main}: total
-red meat:
-HR: 1.02, 95\% CI: 0.96-1.08;
-unprocessed red meat:
-HR: 1.00, 95\% CI: 0.94-1.07;
-processed red meat:
-HR: 1.09, 95\% CI: 0.98-1.20).
+The estimated associations changed minimally with further adjustments.
+There was weak evidence of an association between replacement of
+processed red meat with legumes (
+HR: 1.09, 95\% CI: 0.98-1.20;
+Table \ref{tab-main}).
 
-\begin{table*}[!t]
+\begin{table*}
 \caption{{\small \textbf{Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95\% confidence intervals for primary liver cancer.}}}\label{tab-main}
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
@@ -440,18 +443,16 @@ Processed red meat & 1.02 (0.93-1.13) & 1.09 (0.98-1.20) \\
 \end{minipage}
 \end{table*}
 
-In secondary analyses, when analyzing the substitution association for
-HCC and ICC separately, the risk of HCC was positively associated with
-substituting total, unprocessed, or processed red meat with legumes
-(Table \ref{tab-cancer}, total red meat:
+In secondary analyses, when analyzing the associations between
+replacement of meat with legumes and HCC or ICC separately, weak
+evidence of a higher risk of HCC was observed (Table \ref{tab-cancer},
+total red meat:
 HR: 1.06, 95\% CI: 0.97-1.16;
 red meat:
 HR: 1.05, 95\% CI: 0.96-1.15;
 processed red meat:
 HR: 1.09, 95\% CI: 0.95-1.26).
-The association between substituting total or unprocessed red meat with
-legumes and ICC indicated inverse associations (Table \ref{tab-cancer},
-total red meat:
+This was similar for ICC (Table \ref{tab-cancer}, total red meat:
 HR: 0.97, 95\% CI: 0.90-1.05;
 red meat:
 HR: 0.95, 95\% CI: 0.87-1.03;
@@ -460,20 +461,20 @@ HR: 1.07, 95\% CI: 0.93- 1.22).
 The magnitude or direction of associations were not significantly
 different across strata of liver cancer types.
 
-In the adjusted non-substitution analysis, a mean intake of 6.3 grams of
-legumes per day was associated with a reduced risk of liver cancer,
-compared to no intake
+In the adjusted non-substitution analysis, only the first quartile of
+legume intake (mean intake 6.3 grams/day) was associated with a lower
+risk of liver cancer, compared to no intake
 (HR: 0.59, 95\% CI: 0.35-0.98);
-however, no associations were observed with further increase in legume
+no associations were observed for quartiles 2, 3 or 4 compared to no
 intake (Table \ref{tab-legume}).
 
 In sensitivity analyses, excluding participants based on high alcohol
-intake, implausible energy intake, any liver disease or cancer before
+intake, implau- sible energy intake, any liver disease or cancer before
 baseline, or fewer than 3 completed Oxford WebQs did not alter the
-estimates in any statistically significant way. This also applied for
-including death registries as a source of liver cancer events and
-excluding waist circumference from the fully adjusted analysis
-(Supplementary table \ref{tab-sens}).
+estimates appreciably. Similar results were also found when including
+death registries as a source of liver cancer cases and when excluding
+waist circumference from the fully adjusted analysis (Supplementary
+table \ref{tab-sens}).
 
 \hypertarget{sec4}{%
 \section{Discussion}\label{sec4}}
@@ -560,11 +561,6 @@ model mimics some aspects of a randomized controlled design.
 
 Supplementary table \ref{tab-sens}
 
-\hypertarget{sec6}{%
-\section{Acknowledgements}\label{sec6}}
-
-\newpage
-
 \begin{appendices}
 
 \renewcommand{\thetable}{S\arabic{table}} \renewcommand{\theHtable}{S\arabic{table}}
@@ -573,15 +569,13 @@ Supplementary table \ref{tab-sens}
 \hypertarget{secA1}{%
 \section{Supplementary material}\label{secA1}}
 
-\newpage
+\begin{figure*}[!t]
+\includegraphics[width=1\linewidth,]{legliv_eur-j-nutr_files/figure-latex/fig2-1} \caption{Directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing red meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing red meat with legumes on liver cancer. Shadowed arrows represent biasing paths. DAG terminology demands visualisation of all hypothesized correlating relationships between variables, typically resulting in complex an hard-to-follow illustrations. To improve readability, inter-covariate arrows are hidden in the above DAG.}\label{fig:fig2}
+\end{figure*}
 
-\begingroup
-\setlength\LTleft{0\linewidth}
-\setlength\LTright{0\linewidth}\fontsize{12.0pt}{14.4pt}\selectfont
-\begin{longtable*}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.2\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.8\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
-\caption{
-{\small \textbf{Summary of included foods for each food group.}}
-}\label{tab-food-group} \\ 
+\begin{table*}[!t]
+\caption{{\small \textbf{Summary of included foods for each food group.}}}\label{tab-food-group}
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.2\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.8\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
 \textbf{Food group} & \textbf{Includes} \\ 
 \midrule\addlinespace[2.5pt]
@@ -589,60 +583,13 @@ Supplementary table \ref{tab-sens}
   Tofu-based products, Hummus, Peas \\ 
 {\bfseries Red meat} & Beef, Lamb, Other meat including offal, Pork \\ 
 {\bfseries Processed meat} & Sausages, bacon (with and without fat), ham, liver pate \\ 
-{\bfseries Animal-based foods} &   \\ 
-Poultry & Fried poultry with batter/breadcrumbs, Poultry (with/without skin) \\ 
-Fish & Fried fish with batter/breadcrumbs, Oily fish, including salmon, Prawns, lobster, crab, shellfish,
-  Tinned tuna, white fish, other fish \\ 
-Dairy & Spreadable/lower fat butter, dairy-based very low fat spread, Spreadable normal fat butter, dairy-based normal fat spread (including cholesterol lowering spread),
-  Ice cream, milk puddings, milk-based desserts, cheesecake, Dairy-based smoothies, milk-based drinks, hot chocolate,
-  Whole milk yogurt (plain), Cheese >17.5 g fat per 100 g, including hard cheese, soft cheese, spreadable, Blue, Feta, Mozzarella, Goats, other),
-  Fat free and lower fat yogurt, plain or flavoured, Cheese <=17.5g fat per 100 g, including hard and spreadable lower fat cheese, Cottage,
-  Semi-skimmed milk >1 g fat per 100 g (cow, other), Skimmed milk <1 g fat per 100 g (cow, cholesterol lowering, powdered),
-  Whole milk >3.6 g fat per 100 g (cow, goat, sheep), Cream (cow's milk) \\ 
-Eggs & Whole eggs and processed (omelette, scotch eggs, other) \\ 
-Sauces & Mayonnaise, salad dressing, pesto, cheese sauce, white sauce, gravy, Yeast, chutney, olives, ketchup, brown sauce, tomato sauce \\ 
-Mixed dishes & Pizza (including gluten free crust), Crisps, savoury biscuits, cheese snacks, other savoury biscuits,
-  Soups, homemade, powdered and canned, Sushi \\ 
-{\bfseries Healthy plant-based foods} &   \\ 
-Whole grains & Mixed, brown or seeded bread, sliced, baguette, bap, roll, Wholemeal bread, sliced, baguette, bap, roll,
-  Wholewheat biscuit cereal, Bran cereal, Porridge oats (including milk/dried fruit added),
-  Oatcrunch breakfast cereal, Muesli (with or without dried fruit), Brown and wholemeal pasta and rice \\ 
-Fruits & Apples and pears, Blackberries, strawberries, blueberries, raspberries, cherries, Grapefruit, orange, satsuma,
-  Dried fruit, prunes, Bananas, mixed fruit, grapes, mango, melon, peach, pineapple, kiwi, other, Stewed fruit, plums \\ 
-Nuts & Peanut-butter and chocolate-based spread, Unsalted peanuts and nuts, Salted peanuts and nuts \\ 
-Plant oils & Olive oil, Olive oil based lower fat spread, plant-based lower fat margarine and soya-based lower fat spread (including cholesterol lowering spread),
-  Olive oil based spread, plant-based soft or hard margarine and soya-based spread (including cholesterol lowering spread) \\ 
-Beverages & Normal instant, filter, cappuccino, espresso coffee, Decaffeinated instant, filter, cappuccino, espresso coffee,
-  Black, green and other tea, Decaffeinated black, herbal tea, rooibos, Plain water, sparkling water \\ 
-Vegetables & Garlic, leek, onion, Broccoli, cabbage, kale, cauliflower, spinach, sprouts, Mixed side salad, lettuce, watercress,
-  Beetroot, carrots, celery, parsnip, turnip, Fresh and tinned tomatoes,
-  Mushrooms, mixed vegetables, avocado, broad beans, green beans, butternut squash, courgettes, peppers, other,
-  Coleslaw, salad with added fat/mayonnaise, guacamole, sweetcorn \\ 
-{\bfseries Unhealthy plant-based foods} &   \\ 
-Refined cereals & Chocolate biscuits, plain biscuits, sweet biscuits and cookies, Naan, garlic bread, other bread (including gluten free),
-  White bread, sliced, baguette, bap, roll, Oatcrunch breakfast cereal, Crisps, savoury biscuits, cheese snacks, other savoury biscuits,
-  White pasta, rice, couscous, gluten free pasta \\ 
-Potatoes & Potatoes, sweet potatoes, boiled or baked, Potatoes and chips, fried or roasted with fat, Potatoes, mashed \\ 
-Fruit juice & Orange, grapefruit drink and 100\% fruit juice \\ 
-Mixed dishes, vegetarian & Double and single crust pies, crumble pies, Yorkshire pudding, snackpot noodles,
-  Indian samosa, pakora snacks, Quorn-based and vegetarian burgers and products \\ 
-Sweets \& snacks & Table sugar, honey, jam and preserves,
-  Chocolate bar (including white, milk and dark chocolate), chocolate-covered raisins, chocolate-covered sweets,
-  Pancakes, croissant, Danish pastries, scones, fruitcakes, cakes, doughnuts, sponge puddings, other desserts, cereal bars, sweet snacks,
-  Hard and soft sweets (including sugar free) \\ 
-Sugar sweetened beverages & Rice and oat vegetable drinks, Low calorie fizzy drinks and squash, Fizzy sugary drinks, squash, fruit smoothies \\ 
-{\bfseries Alcoholic beverages} & Beer and cider, Spirits and other alcoholic drinks, Fortified wine, Red and rose wine, White wine \\ 
+{\bfseries Animal-based foods} & Poultry, fish, dairy, eggs, mixed dishes, and sauces and condiments \\ 
+{\bfseries Healthy plant-based foods} & Whole grains, fruits, nuts, plant oils, beverages (water, tea and coffee), vegetables \\ 
+{\bfseries Unhealthy plant-based foods} & Refined cereals, potatoes, fruit juice, mixed dishes (vegetarian), sweets \& snacks, and sugar sweetened beverages \\ 
+{\bfseries Alcoholic beverages} & Beer and cider, spirits and other alcoholic drinks, fortified wine, red and rose wine, white wine \\ 
 \bottomrule
-\end{longtable*}
-\endgroup
-
-\newpage
-
-\begin{figure*}[!b]
-\includegraphics[width=1\linewidth,]{legliv_eur-j-nutr_files/figure-latex/fig2-1} \caption{Directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing red meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing red meat with legumes on liver cancer. Shadowed arrows represent biasing paths. DAG terminology demands visualisation of all hypothesized correlating relationships between variables, typically resulting in complex an hard-to-follow illustrations. To improve readability, inter-covariate arrows are hidden in the above DAG.}\label{fig:fig2}
-\end{figure*}
-
-\newpage
+\end{tabular*}
+\end{table*}
 
 \begin{table*}[!t]
 \caption{{\small \textbf{Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95\% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.}}}\label{tab-cancer}
@@ -693,12 +640,10 @@ Categories: &  &  &  \\
 \end{minipage}
 \end{table*}
 
-\begin{landscape}
-
-\begin{table*}[!t]
-\fontsize{7.5pt}{9.0pt}\selectfont
+\begin{sidewaystable*}[!t]
 \caption{{\small \textbf{Sensitivity analyses}}}\label{tab-sens}
-\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.1\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.1\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.1\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.1\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.1\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.1\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.1\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.1\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
+\fontsize{7.5pt}{9.0pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
  & \multicolumn{5}{c}{\textbf{Exclusion of participants with:}} &  &  \\ 
 \cmidrule(lr){2-6}
@@ -717,11 +662,11 @@ Processed red meat & 1.06 (0.95-1.17) & 1.10 (0.98-1.24) & 1.07 (0.96-1.20) & 1.
 \textsuperscript{\textit{3}}ICD10 codes: K70-79, B16-19, Z94.4, I82.0, I85, I86.4, E83.0-1 and E88. ICD9 codes: 571-574, 070, V427 and 2750-2751.\\
 \textsuperscript{\textit{4}}ICD10 codes: C00-C97 and D00-D48. ICD9 codes: 140-239.\\
 \end{minipage}
-\end{table*}
-
-\end{landscape}
+\end{sidewaystable*}
 
 \end{appendices}
+
+\clearpage
 
 \bibliography{bibliography.bib}
 
