@@ -397,7 +397,7 @@ table_sens <-
     id = "sens1"
   ) %>%
   tab_footnote(
-    footnote = "Exclusion of the upper 10th percentile of daily alcohol intake in grams for each sex.",
+    footnote = "Exclusion of the upper decile of alcohol intake (g/day) for each sex.",
     locations = cells_column_spanners(spanners = "sens1")
   ) %>%
   tab_spanner(
@@ -406,7 +406,7 @@ table_sens <-
     id = "sens2"
   ) %>%
   tab_footnote(
-    footnote = "Exclusion of the upper and lower decile of daily energy intake for each sex.",
+    footnote = "Exclusion of the upper and lower decile of energy intake (kJ/day) for each sex.",
     locations = cells_column_spanners(spanners = "sens2")
   ) %>%
   tab_spanner(
@@ -461,3 +461,5 @@ table_sens <-
   tab_options(table.width = pct(100),
               table.font.size = px(10)) %>%
   cols_width(matches("estimate|label") ~ pct(10))
+
+# table_sens %>% gtsave("doc/latex-tables/table-sens.tex")

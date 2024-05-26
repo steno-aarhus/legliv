@@ -1,6 +1,7 @@
 library(tidyverse)
 library(gt)
-
+source(here::here("R","gtsummary-theme.R"))
+gtsummary::set_gtsummary_theme(my_theme)
 id <- data.frame(id = 1:25)
 
 food_group <- c(
@@ -117,16 +118,9 @@ food_group_table <- df %>%
       rows = bold_text
     )
   ) %>%
-  tab_options(table.width = pct(100)) %>%
+  tab_options(table.width = pct(100),
+              latex.use.longtable = TRUE) %>%
   cols_width(food_group ~ pct(20),
-             includes ~ pct(80)) %>%
-  gt::tab_options(
-    table.font.size = px(13),
-    data_row.padding = gt::px(1),
-    summary_row.padding = gt::px(1),
-    grand_summary_row.padding = gt::px(1),
-    footnotes.padding = gt::px(1),
-    source_notes.padding = gt::px(1),
-    row_group.padding = gt::px(1),
-    column_labels.font.size = px(20)
-  )
+             includes ~ pct(80))
+
+# food_group_table %>% gtsave("doc/latex-tables/table-food-group.tex")
