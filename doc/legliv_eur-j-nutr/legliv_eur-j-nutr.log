@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.24)  24 MAY 2024 14:20
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.26)  26 MAY 2024 16:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -154,7 +154,7 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@ppsavesec=\count273
 \c@@ppsaveapp=\count274
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+Package: hyperref 2024-05-23 v7.01i Hypertext links for LaTeX
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -173,8 +173,6 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode not found.
 )) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
-Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -188,32 +186,34 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count276
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
 \@linkdim=\dimen171
 \Hy@linkcounter=\count277
 \Hy@pagecounter=\count278
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2024-05-23 v7.01i Hyperref: PDFDocEncoding definition (HO)
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count279
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2024-05-23 v7.01i Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Hyper figures OFF on input line 4179.
-Package hyperref Info: Link nesting OFF on input line 4184.
-Package hyperref Info: Hyper index ON on input line 4187.
-Package hyperref Info: Plain pages OFF on input line 4194.
-Package hyperref Info: Backreferencing OFF on input line 4199.
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4446.
+Package hyperref Info: Bookmarks ON on input line 4424.
 \c@Hy@tempcnt=\count280
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4784.
+LaTeX Info: Redefining \url on input line 4763.
 \XeTeXLinkMargin=\dimen172
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -223,13 +223,13 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count281
 \Field@Width=\dimen173
 \Fld@charsize=\dimen174
-Package hyperref Info: Hyper figures OFF on input line 6063.
-Package hyperref Info: Link nesting OFF on input line 6068.
-Package hyperref Info: Hyper index ON on input line 6071.
-Package hyperref Info: backreferencing OFF on input line 6078.
-Package hyperref Info: Link coloring OFF on input line 6083.
-Package hyperref Info: Link coloring with OCG OFF on input line 6088.
-Package hyperref Info: PDF/A mode OFF on input line 6093.
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
@@ -240,10 +240,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
-File: hxetex.def 2024-01-20 v7.01h Hyperref driver for XeTeX
-(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
-Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
-)
+File: hxetex.def 2024-05-23 v7.01i Hyperref driver for XeTeX
 \pdfm@box=\box68
 \c@Hy@AnnotLevel=\count285
 \HyField@AnnotCount=\count286
@@ -461,17 +458,216 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 \lst@lineno=\count323
 \lst@maxwidth=\dimen260
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/listings/lstpatch.sty
-File: lstpatch.sty 2024/03/11 1.10a (Carsten Heinz)
+File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/03/11 1.10a (Carsten Heinz)
+File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
 \c@lstnumber=\count324
 \lst@skipnumbers=\count325
 \lst@framebox=\box76
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2024/03/11 1.10a listings configuration
+File: listings.cfg 2024/05/25 1.10b listings configuration
 ))
-Package: listings 2024/03/11 1.10a (Carsten Heinz)
-(/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: listings 2024/05/25 1.10b (Carsten Heinz)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/orcidlink/orcidlink.sty
+Package: orcidlink 2023/12/30 v1.0.5 Linked ORCiD logo macro package
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks39
+\pgfutil@tempdima=\dimen261
+\pgfutil@tempdimb=\dimen262
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box77
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks40
+\pgfkeys@temptoks=\toks41
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks42
+))
+\pgf@x=\dimen263
+\pgf@y=\dimen264
+\pgf@xa=\dimen265
+\pgf@ya=\dimen266
+\pgf@xb=\dimen267
+\pgf@yb=\dimen268
+\pgf@xc=\dimen269
+\pgf@yc=\dimen270
+\pgf@xd=\dimen271
+\pgf@yd=\dimen272
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count326
+\c@pgf@countb=\count327
+\c@pgf@countc=\count328
+\c@pgf@countd=\count329
+\t@pgf@toka=\toks43
+\t@pgf@tokb=\toks44
+\t@pgf@tokc=\toks45
+\pgf@sys@id@count=\count330
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-xetex.def
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+File: pgfsys-xetex.def 2023-01-15 v3.1.10 (3.1.10)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2023-01-15 v3.1.10 (3.1.10)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)
+\pgfsys@objnum=\count331
+))) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count332
+\pgfsyssoftpath@bigbuffer@items=\count333
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen273
+\pgfmath@count=\count334
+\pgfmath@box=\box78
+\pgfmath@toks=\toks46
+\pgfmath@stack@operand=\toks47
+\pgfmath@stack@operation=\toks48
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count335
+)) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen274
+\pgf@picmaxx=\dimen275
+\pgf@picminy=\dimen276
+\pgf@picmaxy=\dimen277
+\pgf@pathminx=\dimen278
+\pgf@pathmaxx=\dimen279
+\pgf@pathminy=\dimen280
+\pgf@pathmaxy=\dimen281
+\pgf@xx=\dimen282
+\pgf@xy=\dimen283
+\pgf@yx=\dimen284
+\pgf@yy=\dimen285
+\pgf@zx=\dimen286
+\pgf@zy=\dimen287
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen288
+\pgf@path@lasty=\dimen289
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen290
+\pgf@shorten@start@additional=\dimen291
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box79
+\pgf@hbox=\box80
+\pgf@layerbox@main=\box81
+\pgf@picture@serial@count=\count336
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen292
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen293
+\pgf@pt@y=\dimen294
+\pgf@pt@temp=\dimen295
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen296
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen297
+\pgf@sys@shading@range@num=\count337
+\pgf@shadingcount=\count338
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box82
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box83
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen298
+\pgf@nodesepend=\dimen299
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+)) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen300
+\pgffor@skip=\dimen301
+\pgffor@stack=\toks49
+\pgffor@toks=\toks50
+)) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count339
+\pgfplotmarksize=\dimen302
+)
+\tikz@lastx=\dimen303
+\tikz@lasty=\dimen304
+\tikz@lastxsaved=\dimen305
+\tikz@lastysaved=\dimen306
+\tikz@lastmovetox=\dimen307
+\tikz@lastmovetoy=\dimen308
+\tikzleveldistance=\dimen309
+\tikzsiblingdistance=\dimen310
+\tikz@figbox=\box84
+\tikz@figbox@bg=\box85
+\tikz@tempbox=\box86
+\tikz@tempbox@bg=\box87
+\tikztreelevel=\count340
+\tikznumberofchildren=\count341
+\tikznumberofcurrentchild=\count342
+\tikz@fig@count=\count343
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count344
+\pgfmatrixcurrentcolumn=\count345
+\pgf@matrix@numberofcolumns=\count346
+)
+\tikz@expandcount=\count347
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarysvg.path.code.tex
+File: tikzlibrarysvg.path.code.tex 2023-01-15 v3.1.10 (3.1.10)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibrarysvg.path.code.tex
+File: pgflibrarysvg.path.code.tex 2023-01-15 v3.1.10 (3.1.10)
+(/home/rstudio-server/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleparser.code.tex
+File: pgfmoduleparser.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfparserdef@arg@count=\count348
+)
+\pgf@lib@svg@last@x=\dimen311
+\pgf@lib@svg@last@y=\dimen312
+\pgf@lib@svg@last@c@x=\dimen313
+\pgf@lib@svg@last@c@y=\dimen314
+\pgf@lib@svg@count=\count349
+\pgf@lib@svg@max@num=\count350
+))
+\@curXheight=\skip72
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
 Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
@@ -481,82 +677,83 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
 )) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
-\LTleft=\skip72
-\LTright=\skip73
-\LTpre=\skip74
-\LTpost=\skip75
-\LTchunksize=\count326
-\LTcapwidth=\dimen261
-\LT@head=\box77
-\LT@firsthead=\box78
-\LT@foot=\box79
-\LT@lastfoot=\box80
-\LT@gbox=\box81
-\LT@cols=\count327
-\LT@rows=\count328
-\c@LT@tables=\count329
-\c@LT@chunks=\count330
-\LT@p@ftn=\toks39
+\LTleft=\skip73
+\LTright=\skip74
+\LTpre=\skip75
+\LTpost=\skip76
+\LTchunksize=\count351
+\LTcapwidth=\dimen315
+\LT@head=\box88
+\LT@firsthead=\box89
+\LT@foot=\box90
+\LT@lastfoot=\box91
+\LT@gbox=\box92
+\LT@cols=\count352
+\LT@rows=\count353
+\c@LT@tables=\count354
+\c@LT@chunks=\count355
+\LT@p@ftn=\toks51
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen262
-\ar@mcellbox=\box82
-\extrarowheight=\dimen263
-\NC@list=\toks40
-\extratabsurround=\skip76
-\backup@length=\skip77
-\ar@cellbox=\box83
+\col@sep=\dimen316
+\ar@mcellbox=\box93
+\extrarowheight=\dimen317
+\NC@list=\toks52
+\extratabsurround=\skip77
+\backup@length=\skip78
+\ar@cellbox=\box94
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count331
-\calc@Bcount=\count332
-\calc@Adimen=\dimen264
-\calc@Bdimen=\dimen265
-\calc@Askip=\skip78
-\calc@Bskip=\skip79
+\calc@Acount=\count356
+\calc@Bcount=\count357
+\calc@Adimen=\dimen318
+\calc@Bdimen=\dimen319
+\calc@Askip=\skip79
+\calc@Bskip=\skip80
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count333
-\calc@Cskip=\skip80
+\calc@Ccount=\count358
+\calc@Cskip=\skip81
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box84
-\fn@width=\dimen266
+\fn@notes=\box95
+\fn@width=\dimen320
 ) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
-\g__graphics_track_int=\count334
-\l__pdf_internal_box=\box85
-\g__pdf_backend_annotation_int=\count335
-\g__pdf_backend_link_int=\count336
-) (./legliv_eur-j-nutr.aux)
+\g__graphics_track_int=\count359
+\l__pdf_internal_box=\box96
+\g__pdf_backend_annotation_int=\count360
+\g__pdf_backend_link_int=\count361
+)
+No file legliv_eur-j-nutr.aux.
 \openout1 = `legliv_eur-j-nutr.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 78.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
 \footinsA=\insert252
-\c@footnoteA=\count337
+\c@footnoteA=\count362
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -592,80 +789,80 @@ LaTeX Font Info:    ... okay on input line 76.
 * \@reversemargintrue
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 76.
-(./legliv_eur-j-nutr.out) (./legliv_eur-j-nutr.out)
-\@outlinefile=\write3
-\openout3 = `legliv_eur-j-nutr.out'.
+Package hyperref Info: Link coloring ON on input line 78.
+\@outlinefile=\write4
+\openout4 = `legliv_eur-j-nutr.out'.
 
-\c@lstlisting=\count338
-LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 116.
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+\c@lstlisting=\count363
+LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 125.
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <8.43146> not available
-(Font)              size <8> substituted on input line 116.
+(Font)              size <8> substituted on input line 125.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <8.43146> not available
-(Font)              size <8> substituted on input line 116.
+(Font)              size <8> substituted on input line 125.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <8.43146> not available
-(Font)              size <8> substituted on input line 116.
+(Font)              size <8> substituted on input line 125.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 125.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 125.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 116.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 125.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <8.43146> not available
-(Font)              size <8> substituted on input line 116.
+(Font)              size <8> substituted on input line 125.
 
-LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 116.
+LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 125.
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 116.
+(Font)              size <6> substituted on input line 125.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <5.52061> not available
-(Font)              size <6> substituted on input line 116.
+(Font)              size <6> substituted on input line 125.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 116.
+(Font)              size <6> substituted on input line 125.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 116.
+(Font)              size <6> substituted on input line 125.
 
-LaTeX Font Info:    Calculating math sizes for size <9.03374> on input line 116.
+LaTeX Font Info:    Calculating math sizes for size <9.03374> on input line 125.
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.51686> not available
-(Font)              size <5> substituted on input line 116.
+(Font)              size <5> substituted on input line 125.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <4.51686> not available
-(Font)              size <5> substituted on input line 116.
+(Font)              size <5> substituted on input line 125.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <4.51686> not available
-(Font)              size <5> substituted on input line 116.
+(Font)              size <5> substituted on input line 125.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.51686> not available
-(Font)              size <5> substituted on input line 116.
+(Font)              size <5> substituted on input line 125.
 
-LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 116.
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 125.
 
-Underfull \hbox (badness 1264) in paragraph at lines 130--139
-\TU/lmr/m/n/10.03749 sumption, physical activity) via touch screen
- []
+Overfull \vbox (0.66534pt too high) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -679,17 +876,72 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 ]
-Underfull \hbox (badness 1533) in paragraph at lines 155--170
+
+Package natbib Warning: Citation `sudlow2015' on page 2 undefined on input line 140.
+
+
+Package natbib Warning: Citation `RN113' on page 2 undefined on input line 147.
+
+
+Underfull \hbox (badness 1264) in paragraph at lines 139--148
+\TU/lmr/m/n/10.03749 sumption, physical activity) via touch screen
+ []
+
+
+Package natbib Warning: Citation `RN115' on page 2 undefined on input line 154.
+
+
+Package natbib Warning: Citation `piernas2021' on page 2 undefined on input line 161.
+
+
+Package natbib Warning: Citation `Liu2011' on page 2 undefined on input line 162.
+
+
+Package natbib Warning: Citation `Greenwood2019' on page 2 undefined on input line 162.
+
+
+Package natbib Warning: Citation `piernas2021' on page 2 undefined on input line 166.
+
+
+Package natbib Warning: Citation `Thompson2023' on page 2 undefined on input line 177.
+
+
+Package natbib Warning: Citation `Heianza2021' on page 2 undefined on input line 177.
+
+
+Package natbib Warning: Citation `Satija2017' on page 2 undefined on input line 177.
+
+
+Package natbib Warning: Citation `Satija2016' on page 2 undefined on input line 177.
+
+
+LaTeX Warning: Reference `tab-food-group' on page 2 undefined on input line 179.
+
+
+Underfull \hbox (badness 1533) in paragraph at lines 164--180
 \TU/lmr/m/n/10.03749 (with and without fat), ham, or liver pate.
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 190--204
-\TU/lmr/m/n/10.03749 alent, low: none of the previous mentioned),
- []
+Package natbib Warning: Citation `thompson2013' on page 2 undefined on input line 183.
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 208--217
+Package natbib Warning: Citation `gurinovic2017' on page 2 undefined on input line 183.
+
+
+Package natbib Warning: Citation `RN112' on page 2 undefined on input line 195.
+
+
+Package natbib Warning: Citation `RN114' on page 2 undefined on input line 195.
+
+
+LaTeX Warning: Reference `fig:fig2' on page 2 undefined on input line 202.
+
+
+Package natbib Warning: Citation `Ibsen2021' on page 2 undefined on input line 225.
+
+
+Underfull \hbox (badness 1097) in paragraph at lines 218--227
 \TU/lmr/m/n/10.03749 The substitution analyses were conducted by
  []
 
@@ -702,14 +954,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [2]
-Underfull \hbox (badness 1052) in paragraph at lines 300--304
-\TU/lmr/m/n/10.03749 before baseline, participants lost to follow-up
- []
 
-File: fig1-1.pdf Graphic file (type pdf)
-<use fig1-1.pdf>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+Package natbib Warning: Citation `Tomova2022' on page 3 undefined on input line 262.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -720,20 +966,61 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [3]
-Missing character: There is no ≥ (U+2265) in font [lmroman9-bold]:mapping=tex-text;!
 
-Underfull \hbox (badness 10000) in paragraph at lines 351--357
+LaTeX Warning: Reference `fig:fig1' on page 4 undefined on input line 313.
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 310--314
+\TU/lmr/m/n/10.03749 before baseline, participants lost to follow-up
+ []
+
+File: legliv_eur-j-nutr_files/figure-latex/fig1-1.pdf Graphic file (type pdf)
+<use legliv_eur-j-nutr_files/figure-latex/fig1-1.pdf>
+
+LaTeX Warning: Reference `tab1' on page 4 undefined on input line 323.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--367
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--393
+LaTeX Warning: Reference `tab-diet' on page 4 undefined on input line 371.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 399--403
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 428--430
+LaTeX Warning: Reference `tab-main' on page 4 undefined on input line 408.
 
+
+LaTeX Warning: Reference `tab-main' on page 4 undefined on input line 416.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--440
+
+ []
+
+
+LaTeX Warning: Reference `tab-cancer' on page 4 undefined on input line 446.
+
+
+LaTeX Warning: Reference `tab-cancer' on page 4 undefined on input line 453.
+
+
+LaTeX Warning: Reference `tab-legume' on page 4 undefined on input line 468.
+
+
+LaTeX Warning: Reference `tab-sens' on page 4 undefined on input line 476.
+
+
+Package natbib Warning: Citation `Knuppel2020' on page 4 undefined on input line 498.
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 501--506
+[]\TU/lmr/m/n/10.03749 Stratifying on cancer type revealed that
  []
 
 
@@ -745,6 +1032,24 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [4]
+
+Package natbib Warning: Citation `liu2023a' on page 5 undefined on input line 511.
+
+
+Package natbib Warning: Citation `Di2023' on page 5 undefined on input line 515.
+
+
+Underfull \hbox (badness 1248) in paragraph at lines 507--516
+[]\TU/lmr/m/n/10.03749 The literature on food substitutions, par-
+ []
+
+
+Package natbib Warning: Citation `RN112' on page 5 undefined on input line 519.
+
+
+Package natbib Warning: Citation `RN114' on page 5 undefined on input line 523.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -753,6 +1058,11 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [5]
+Underfull \hbox (badness 1259) in paragraph at lines 542--557
+\TU/lmr/m/n/10.03749 generalizability. Though health registries may
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -761,49 +1071,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [6]
-Underfull \hbox (badness 2903) in paragraph at lines 491--496
-[]\TU/lmr/m/n/10.03749 Stratifying on cancer type revealed that
- []
 
-
-Underfull \hbox (badness 1248) in paragraph at lines 497--506
-[]\TU/lmr/m/n/10.03749 The literature on food substitutions, par-
- []
-
-
-Underfull \hbox (badness 1259) in paragraph at lines 532--547
-\TU/lmr/m/n/10.03749 generalizability. Though health registries may
- []
-
-(./legliv_eur-j-nutr.bbl
-Underfull \hbox (badness 1221) in paragraph at lines 13--14
-[]\TU/lmr/m/n/10.03749 Biobank U (2011) Order of data collec-
- []
-
-
-Underfull \hbox (badness 1292) in paragraph at lines 13--14
-\TU/lmr/m/n/10.03749 tion. URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--14
-[][][] [] [][][] [] [][][][] [] [][][][][][][][][][][][][][][][][][][][][] [] [][][]$[][]\TU/lmr/m/n/10.03749 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-[]\TU/lmr/m/n/10.03749 Biobank U (2024) 24-hour dietary
- []
-
-
-Underfull \hbox (badness 2080) in paragraph at lines 16--17
-\TU/lmr/m/n/10.03749 recall questionnaire (oxford webq). URL
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-[][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] [] [][][][][][][][] []
- []
+LaTeX Warning: Reference `tab-sens' on page 7 undefined on input line 561.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -814,192 +1083,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [7]
-Underfull \hbox (badness 1389) in paragraph at lines 22--23
-\TU/lmr/m/n/10.03749 webq, a low-cost, web-based method for
- []
 
-
-Underfull \hbox (badness 4479) in paragraph at lines 25--26
-[]\TU/lmr/m/n/10.03749 Greenwood DC, Hardie LJ, Frost GS,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
-\TU/lmr/m/n/10.03749 Healthful plant-based dietary patterns,
- []
-
-
-Underfull \hbox (badness 5316) in paragraph at lines 31--32
-\TU/lmr/m/n/10.03749 genetic risk of obesity, and cardiovas-
- []
-
-
-Underfull \hbox (badness 8113) in paragraph at lines 31--32
-\TU/lmr/m/n/10.03749 cular risk in the uk biobank study.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
-\TU/lmr/m/n/10.03749 Clinical Nutrition 40(7):4694–4701.
- []
-
-
-Underfull \hbox (badness 3679) in paragraph at lines 34--35
-[]\TU/lmr/m/n/10.03749 Satija A, Bhupathiraju SN, Spiegelman
- []
-
-
-Underfull \hbox (badness 1603) in paragraph at lines 34--35
-\TU/lmr/m/n/10.03749 422. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] [] [] [] [][][][] [] [][][][] [] [][] []
- []
-
-
-Underfull \hbox (badness 2644) in paragraph at lines 37--38
-[]\TU/lmr/m/n/10.03749 Satija A, Bhupathiraju SN, Rimm EB,
- []
-
-
-Underfull \hbox (badness 6859) in paragraph at lines 37--38
-\TU/lmr/m/n/10.03749 et al (2016) Plant-based dietary pat-
- []
-
-
-Underfull \hbox (badness 2418) in paragraph at lines 37--38
-\TU/lmr/m/n/10.03749 terns and incidence of type 2 diabetes
- []
-
-
-Underfull \hbox (badness 5203) in paragraph at lines 37--38
-\TU/lmr/m/n/10.03749 in us men and women: Results from
- []
-
-
-Underfull \hbox (badness 4084) in paragraph at lines 37--38
-\TU/lmr/m/n/10.03749 three prospective cohort studies. PLOS
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
-[]\TU/lmr/m/n/10.03749 Thompson FE, Subar AF (2013)
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
-\TU/lmr/m/n/10.03749 Dietary Assessment Methodology, Else-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
-\TU/lmr/m/n/10.03749 vier, pp 5–46. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-[]\TU/lmr/m/n/10.03749 Gurinović M, Zeković M, Milešević
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-\TU/lmr/m/n/10.03749 J, et al (2017) Nutritional Assess-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-\TU/lmr/m/n/10.03749 ment, Elsevier. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-[]\TU/lmr/m/n/10.03749 Biobank U (2024) Health outcomes
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-\TU/lmr/m/n/10.03749 overview. URL [][]$[][][][][] [] [] [] [][][][][][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-[][][][] [] [][] [] [][] [] [][] [] [][][][][][][][] [] [][][] [] [][][][] []
- []
-
-
-Underfull \hbox (badness 1708) in paragraph at lines 46--47
-[][][][][][][][][][][][][][][][][][][][][][] [] [][][]$[][]\TU/lmr/m/n/10.03749 , accessed 21
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-[]\TU/lmr/m/n/10.03749 Biobank U (2023) Data providers
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-\TU/lmr/m/n/10.03749 and dates of data availability. URL
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-[][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] [] [][][] [] [][][][][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-[][][] [] [][][] [] [][][][] [] [][][][][][][][][] [] [][][] [] [][][][][]$[][]\TU/lmr/m/n/10.03749 ,
- []
-
-
-Underfull \hbox (badness 2564) in paragraph at lines 55--56
-\TU/lmr/m/n/10.03749 Theory and performance of substitution
- []
-
-
-Underfull \hbox (badness 1127) in paragraph at lines 58--59
-\TU/lmr/m/n/10.03749 Journal of Epidemiology 49(5):1540–1552.
- []
-
-
-Underfull \hbox (badness 1038) in paragraph at lines 61--62
-\TU/lmr/m/n/10.03749 vational studies. Nutrition Journal 22(1).
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[]| []
- []
-
-[8])
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[]| []
- []
-
-[9
-
-] (./legliv_eur-j-nutr.aux)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-05-08>
- ***********
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.48314pt have occurred.
-
-Package rerunfilecheck Info: File `legliv_eur-j-nutr.out' has not changed.
-(rerunfilecheck)             Checksum: E1DBE3C008051D042B1071D602D5BA16;1515.
- ) 
+! LaTeX Error: Environment longtable* undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.581 \begin{longtable*}
+                        {@{\extracolsep{\fill}}>{\raggedright\arraybackslash... 
 Here is how much of TeX's memory you used:
- 14297 strings out of 476648
- 221466 string characters out of 5799784
- 1949556 words of memory out of 5000000
- 36163 multiletter control sequences out of 15000+600000
- 573126 words of font info for 121 fonts, out of 8000000 for 9000
+ 24581 strings out of 476648
+ 453414 string characters out of 5799784
+ 1953556 words of memory out of 5000000
+ 46236 multiletter control sequences out of 15000+600000
+ 575970 words of font info for 134 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 87i,12n,93p,776b,511s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,101p,641b,775s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on legliv_eur-j-nutr.pdf (9 pages).
+Output written on legliv_eur-j-nutr.pdf (7 pages).
