@@ -145,12 +145,12 @@ list(
   tar_target(
     name = data_with_alc,
     command = data_main |>
-      remove_high_alcohol()
+      high_alcohol()
   ),
   tar_target(
     name = data_with_misreporter,
     command = data_main |>
-      remove_misreporter()
+      energy_outlier()
   ),
   tar_target(
     name = data_with_3_ques_comp,
