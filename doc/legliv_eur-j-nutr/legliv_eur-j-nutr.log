@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.26)  26 MAY 2024 21:15
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.26)  27 MAY 2024 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -667,15 +667,7 @@ File: pgfmoduleparser.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@lib@svg@max@num=\count350
 ))
 \@curXheight=\skip72
-) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
-Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
-(/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
-Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
-(/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/graphics/lscape.sty
-Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
-)
-Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
-)) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+) (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
 \LTleft=\skip73
 \LTright=\skip74
@@ -727,30 +719,30 @@ File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
 ) (./legliv_eur-j-nutr.aux)
 \openout1 = `legliv_eur-j-nutr.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 78.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 77.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
 \footinsA=\insert252
 \c@footnoteA=\count362
 *geometry* driver: auto-detecting
@@ -788,76 +780,76 @@ LaTeX Font Info:    ... okay on input line 78.
 * \@reversemargintrue
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 78.
+Package hyperref Info: Link coloring ON on input line 77.
 (./legliv_eur-j-nutr.out) (./legliv_eur-j-nutr.out)
 \@outlinefile=\write4
 \openout4 = `legliv_eur-j-nutr.out'.
 
 \c@lstlisting=\count363
-LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 125.
+LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 124.
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <8.43146> not available
-(Font)              size <8> substituted on input line 125.
+(Font)              size <8> substituted on input line 124.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <8.43146> not available
-(Font)              size <8> substituted on input line 125.
+(Font)              size <8> substituted on input line 124.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <8.43146> not available
-(Font)              size <8> substituted on input line 125.
+(Font)              size <8> substituted on input line 124.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 125.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 125.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 125.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 124.
 (/home/rstudio-server/.TinyTeX/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <8.43146> not available
-(Font)              size <8> substituted on input line 125.
+(Font)              size <8> substituted on input line 124.
 
-LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 125.
+LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 124.
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 125.
+(Font)              size <6> substituted on input line 124.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <5.52061> not available
-(Font)              size <6> substituted on input line 125.
+(Font)              size <6> substituted on input line 124.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 125.
+(Font)              size <6> substituted on input line 124.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 125.
+(Font)              size <6> substituted on input line 124.
 
-LaTeX Font Info:    Calculating math sizes for size <9.03374> on input line 125.
+LaTeX Font Info:    Calculating math sizes for size <9.03374> on input line 124.
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.51686> not available
-(Font)              size <5> substituted on input line 125.
+(Font)              size <5> substituted on input line 124.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <4.51686> not available
-(Font)              size <5> substituted on input line 125.
+(Font)              size <5> substituted on input line 124.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <4.51686> not available
-(Font)              size <5> substituted on input line 125.
+(Font)              size <5> substituted on input line 124.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.51686> not available
-(Font)              size <5> substituted on input line 125.
+(Font)              size <5> substituted on input line 124.
 
-LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 125.
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 124.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -871,13 +863,13 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 ]
-Underfull \hbox (badness 1264) in paragraph at lines 143--152
-\TU/lmr/m/n/10.03749 sumption, physical activity) via touch screen
+Underfull \hbox (badness 1205) in paragraph at lines 153--165
+\TU/lmr/m/n/10.03749 They further contain phytochemicals such as
  []
 
 
-Underfull \hbox (badness 1533) in paragraph at lines 168--184
-\TU/lmr/m/n/10.03749 (with and without fat), ham, or liver pate.
+Underfull \hbox (badness 1264) in paragraph at lines 192--201
+\TU/lmr/m/n/10.03749 sumption, physical activity) via touch screen
  []
 
 
@@ -891,6 +883,11 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [2
 
 ]
+Underfull \hbox (badness 1533) in paragraph at lines 217--233
+\TU/lmr/m/n/10.03749 (with and without fat), ham, or liver pate.
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -899,30 +896,20 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [3]
-Underfull \hbox (badness 1052) in paragraph at lines 316--320
+Underfull \hbox (badness 1052) in paragraph at lines 365--369
 \TU/lmr/m/n/10.03749 before baseline, participants lost to follow-up
  []
 
 File: legliv_eur-j-nutr_files/figure-latex/fig1-1.pdf Graphic file (type pdf)
 <use legliv_eur-j-nutr_files/figure-latex/fig1-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 367--373
+Underfull \hbox (badness 10000) in paragraph at lines 421--427
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 405--409
+Underfull \hbox (badness 10000) in paragraph at lines 459--463
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 441--443
-
- []
-
-
-Underfull \hbox (badness 2903) in paragraph at lines 502--507
-[]\TU/lmr/m/n/10.03749 Stratifying on cancer type revealed that
  []
 
 
@@ -934,8 +921,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [4]
-Underfull \hbox (badness 1248) in paragraph at lines 508--517
-[]\TU/lmr/m/n/10.03749 The literature on food substitutions, par-
+Underfull \hbox (badness 10000) in paragraph at lines 495--497
+
  []
 
 
@@ -947,11 +934,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [5]
-Underfull \hbox (badness 1259) in paragraph at lines 543--558
-\TU/lmr/m/n/10.03749 generalizability. Though health registries may
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -960,57 +942,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [6]
-File: legliv_eur-j-nutr_files/figure-latex/fig2-1.pdf Graphic file (type pdf)
-<use legliv_eur-j-nutr_files/figure-latex/fig2-1.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 616--618
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 638--640
-
- []
-
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 646.
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 646.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 646.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 646.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 646.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 646.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 646.
-
-
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 646.
-
-
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 646.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 660--664
-
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1019,20 +950,9 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [7]
-
-LaTeX Warning: Text page 8 contains only floats.
-
-
-Overfull \vbox (23.71838pt too high) has occurred while \output is active []
-
-
-LaTeX Warning: Text page 8 contains only floats.
-
-
-Overfull \vbox (23.71838pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (9.71841pt too high) has occurred while \output is active []
+Underfull \hbox (badness 1248) in paragraph at lines 609--620
+[]\TU/lmr/m/n/10.03749 The literature on food substitutions, par-
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1043,6 +963,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [8]
+File: legliv_eur-j-nutr_files/figure-latex/fig2-1.pdf Graphic file (type pdf)
+<use legliv_eur-j-nutr_files/figure-latex/fig2-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1052,6 +978,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [9
 
+
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1060,7 +987,161 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[10] (./legliv_eur-j-nutr.bbl
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 687--689
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 709--711
+
+ []
+
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 717.
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 717.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 717.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
+(Font)              size <7> substituted on input line 717.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
+(Font)              size <5> substituted on input line 717.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 717.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 717.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 717.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 717.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 731--735
+
+ []
+
+
+Overfull \hbox (1022.13458pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## \caption{{\small \textbf{Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95\% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.}}}\label{tab:tab-cancer}[] 
+ []
+
+
+Overfull \hbox (94.67035pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}[] 
+ []
+
+
+Overfull \hbox (310.72736pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ##  & \textbf{Model 1}\textsuperscript{\textit{1}} & \textbf{Model 2}\textsuperscript{\textit{2}} \\[] 
+ []
+
+
+Overfull \hbox (368.69388pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## \textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\[] 
+ []
+
+
+Overfull \hbox (110.4794pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## \multicolumn{3}{l}{{\bfseries Hepatocellular carcinoma}} \\[] 
+ []
+
+
+Overfull \hbox (89.40073pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## Total red meat & 1.01 (0.93-1.10) & 1.06 (0.97-1.16) \\[] 
+ []
+
+
+Overfull \hbox (121.01881pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## Unprocessed red meat & 1.01 (0.92-1.11) & 1.05 (0.96-1.15) \\[] 
+ []
+
+
+Overfull \hbox (110.47945pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## Processed red meat & 1.01 (0.88-1.16) & 1.09 (0.95-1.26) \\[] 
+ []
+
+
+Overfull \hbox (147.36719pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## \multicolumn{3}{l}{{\bfseries Intrahepatic cholangiocarcinoma}} \\[] 
+ []
+
+
+Overfull \hbox (89.40073pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## Total red meat & 0.94 (0.87-1.02) & 0.97 (0.90-1.05) \\[] 
+ []
+
+
+Overfull \hbox (121.01881pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## Unprocessed red meat & 0.92 (0.85-1.00) & 0.95 (0.87-1.03) \\[] 
+ []
+
+
+Overfull \hbox (110.47945pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## Processed red meat & 1.02 (0.89-1.17) & 1.07 (0.93-1.22) \\[] 
+ []
+
+
+Overfull \hbox (405.58167pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## \textsuperscript{\textit{1}}Adjusted for age (as underlying timescale), other food groups, and total food intake.\\[] 
+ []
+
+
+Overfull \hbox (774.45947pt too wide) in paragraph at lines 765--765
+[]\TU/lmtt/m/n/10.03749 ## \textsuperscript{\textit{2}}Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.\\[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[11
+
+
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[13]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[14] (./legliv_eur-j-nutr.bbl
 Underfull \hbox (badness 1292) in paragraph at lines 13--14
 \TU/lmr/m/n/10.03749 tion. URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] []
  []
@@ -1233,7 +1314,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[11
+[15
 
 
 ]
@@ -1254,7 +1335,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[12
+[16
 
 ] (./legliv_eur-j-nutr.aux)
  ***********
@@ -1269,12 +1350,12 @@ Package rerunfilecheck Info: File `legliv_eur-j-nutr.out' has not changed.
 (rerunfilecheck)             Checksum: 60F338690C2DF2EE41FB137C7692E021;1673.
  ) 
 Here is how much of TeX's memory you used:
- 24728 strings out of 476648
- 456238 string characters out of 5799784
- 1954556 words of memory out of 5000000
- 46369 multiletter control sequences out of 15000+600000
- 577926 words of font info for 146 fonts, out of 8000000 for 9000
+ 24660 strings out of 476648
+ 454201 string characters out of 5799784
+ 1953556 words of memory out of 5000000
+ 46309 multiletter control sequences out of 15000+600000
+ 577934 words of font info for 147 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 99i,16n,101p,824b,775s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,16n,101p,799b,775s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on legliv_eur-j-nutr.pdf (12 pages).
+Output written on legliv_eur-j-nutr.pdf (16 pages).

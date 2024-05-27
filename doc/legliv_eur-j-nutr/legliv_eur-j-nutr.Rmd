@@ -19,17 +19,17 @@ authors:
     orcid: 0000-0003-3474-9346
     affiliation: 1
     
-  - firstname: Daniel
-    particle: B.
-    lastname: Ibsen
-    orcid: 0000-0002-7038-4770
-    affiliation: [1, 2, 3, 4]
-    
   - firstname: Luke
     particle: W.
     lastname: Johnston
     orcid: 0000-0003-4169-2616
     affiliation: [1, 2]
+
+  - firstname: Daniel
+    particle: B.
+    lastname: Ibsen
+    orcid: 0000-0002-7038-4770
+    affiliation: [1, 2, 3, 4]
     
   - firstname: Christina
     particle: C.
@@ -98,8 +98,6 @@ output:
     latex_engine: "xelatex"
     
 header-includes:
-  - \usepackage{pdflscape}
-  - \usepackage{longtable}
 ---
 
 ```{r setup, include=FALSE}
@@ -112,11 +110,14 @@ library(tidyverse)
 library(survival)
 targets::tar_config_set(store = here::here("_targets"))
 data <- targets::tar_read(data_main)
+data_flowchart <- targets::tar_read(data_flowchart)
 data_hcc <- targets::tar_read(data_with_hcc)
 data_icc <- targets::tar_read(data_with_icc)
 source(here("R","3-1-main-analysis-table.R"))
 source(here("R","7-table-legume-quintile.R"))
 source(here("R","6-table-cancer-type.R"))
+source(here("R", "flowchart.R"))
+source(here("R", "dag-code.R"))
 ```
 
 \clearpage
@@ -307,7 +308,7 @@ meat was added to the model:
 \end{align}
 ```
 \noindent The performance of the leave-one-out model when modeling equal
-mass substitutions has been validates against simulated data
+mass substitutions has been validated against simulated data
 [@Tomova2022].
 
 ## Statistical analysis {#subsec6}
@@ -360,11 +361,10 @@ participants lost to follow-up before baseline, and participants with
 errors in dietary data, 126,744 participants who had completed two or
 more diet questionnaires remained (Figure \ref{fig:fig1}).
 
-```{=tex}
-\begin{figure*}
-\includegraphics[width=1\linewidth,]{legliv_eur-j-nutr_files/figure-latex/fig1-1} \caption{Flowchart of included participants. Missing diet data were merged with loss to follow-up before baseline due to n being less than 5. It should be noted that not all UK Biobank participants were invited to complete an Oxfords WebQ. Only the last 70,000 participants to visit an assessment center were asked to complete an Oxford WebQ at the end of their visit. Further Oxfords WebQs were sent to ~320,000 participants who provied an e-mail adress.}\label{fig:fig1}
-\end{figure*}
+```{r fig1, out.width = "75%", fig.env = "figure*", fig.align = 'center', fig.cap = "Flowchart of included participants. Missing diet data were merged with loss to follow-up before baseline due to n being less than 5. It should be noted that not all UK Biobank participants were invited to complete an Oxfords WebQ. Only the last 70,000 participants to visit an assessment center were asked to complete an Oxford WebQ at the end of their visit. Further Oxford WebQs were sent to ~320,000 participants who provied an e-mail adress."}
+flowchart
 ```
+
 During a median follow-up time of 11.3 years, 173 participants developed
 liver cancer. Participants who developed liver cancer were older at
 baseline, were more likely to be male, have a higher waist
@@ -618,13 +618,16 @@ Supplementary table \ref{tab-sens}
 \renewcommand{\thetable}{S\arabic{table}} \renewcommand{\theHtable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}} \renewcommand{\theHfigure}{S\arabic{figure}}
 ```
+\clearpage
+
 # Supplementary material {#secA1}
 
-```{=tex}
-\begin{figure*}[!t]
-\includegraphics[width=1\linewidth,]{legliv_eur-j-nutr_files/figure-latex/fig2-1} \caption{Simplified directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing red meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing red meat with legumes on liver cancer. Shadowed arrows represent biasing paths. DAG terminology demands visualisation of all hypothesized correlating relationships between variables, typically resulting in complex an hard-to-follow illustrations. To improve readability, inter-covariate arrows are hidden in the above DAG.}\label{fig:fig2}
-\end{figure*}
+```{r fig2, out.width = "100%", fig.env = "figure*", fig.align = 'center', fig.pos = "h", fig.cap = "Simplified directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing red meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing red meat with legumes on liver cancer. Shadowed arrows represent biasing paths. DAG terminology demands visualisation of all hypothesized correlating relationships between variables, typically resulting in complex an hard-to-follow illustrations. To improve readability, inter-covariate arrows are hidden in the above DAG."}
+dag
 ```
+
+\clearpage
+
 ```{=tex}
 \begin{table*}[!t]
 \caption{{\small \textbf{Summary of included foods for each food group.}}}\label{tab-food-group}
@@ -723,4 +726,3 @@ Processed red meat & 1.06 (0.95-1.17) & 1.10 (0.98-1.24) & 1.07 (0.96-1.20) & 1.
 :::
 
 \clearpage
-
