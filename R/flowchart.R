@@ -105,9 +105,10 @@ flowchart_make <- ready_flowchart %>%
     end = "second_exclusion", end_side = "left", start_x = 0, start_y = 18
   )
 
-flowchart_make %>%
+flowchart <- flowchart_make %>%
   ggplot() +
-  geom_consort() +
+  geom_consort_arrow() +
+  geom_consort_box() +
   theme_void() +
   theme(
     plot.margin = margin(0.5, 13, 1, 7.5, unit = "lines")
