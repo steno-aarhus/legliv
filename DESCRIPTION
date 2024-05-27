@@ -39,7 +39,7 @@ Imports:
 Encoding: UTF-8
 Remotes: 
     steno-aarhus/ukbAid,
-    higgi13425/ggconsort,
+    tgerke/ggconsort,
     AaronGullickson/gt@floating-table,
     rstudio/rmarkdown,
     ddsjoberg/gtsummary,
