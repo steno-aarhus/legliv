@@ -647,7 +647,7 @@ remove_high_alat <- function(data) { # Have to redefine cutoff
 energy_outlier <- function(data) {
   data <- data %>%
     group_by(sex) %>%
-    filter(total_energy_food_daily < quantile(total_energy_food_daily, 0.9) & total_energy_food_daily > quantile(total_energy_food_daily, 0.1)) %>%
+    filter(total_energy_food_daily < quantile(total_energy_food_daily, 0.975) & total_energy_food_daily > quantile(total_energy_food_daily, 0.025)) %>%
     ungroup()
 }
 
