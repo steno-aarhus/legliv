@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.26)  27 MAY 2024 13:03
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.29)  29 MAY 2024 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -863,13 +863,18 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 ]
-Underfull \hbox (badness 1205) in paragraph at lines 153--165
-\TU/lmr/m/n/10.03749 They further contain phytochemicals such as
+Underfull \hbox (badness 1215) in paragraph at lines 130--144
+\TU/lmr/m/n/10.03749 Hepatocellular carcinoma (HCC) is the sixth
  []
 
 
-Underfull \hbox (badness 1264) in paragraph at lines 192--201
+Underfull \hbox (badness 1264) in paragraph at lines 186--195
 \TU/lmr/m/n/10.03749 sumption, physical activity) via touch screen
+ []
+
+
+Underfull \hbox (badness 1533) in paragraph at lines 211--227
+\TU/lmr/m/n/10.03749 (with and without fat), ham, or liver pate.
  []
 
 
@@ -883,11 +888,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [2
 
 ]
-Underfull \hbox (badness 1533) in paragraph at lines 217--233
-\TU/lmr/m/n/10.03749 (with and without fat), ham, or liver pate.
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -896,19 +896,24 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [3]
-Underfull \hbox (badness 1052) in paragraph at lines 365--369
+Underfull \hbox (badness 1052) in paragraph at lines 359--363
 \TU/lmr/m/n/10.03749 before baseline, participants lost to follow-up
  []
 
 File: legliv_eur-j-nutr_files/figure-latex/fig1-1.pdf Graphic file (type pdf)
 <use legliv_eur-j-nutr_files/figure-latex/fig1-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--427
+Underfull \hbox (badness 10000) in paragraph at lines 415--421
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 459--463
+Underfull \hbox (badness 10000) in paragraph at lines 453--457
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 489--491
 
  []
 
@@ -921,11 +926,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 495--497
-
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -950,7 +950,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [7]
-Underfull \hbox (badness 1248) in paragraph at lines 609--620
+Underfull \hbox (badness 1248) in paragraph at lines 603--614
 []\TU/lmr/m/n/10.03749 The literature on food substitutions, par-
  []
 
@@ -988,121 +988,51 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 687--689
+Underfull \hbox (badness 10000) in paragraph at lines 681--683
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 709--711
+Underfull \hbox (badness 10000) in paragraph at lines 703--705
 
  []
 
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 717.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 711.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 717.
+(Font)              size <7> substituted on input line 711.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 717.
+(Font)              size <5> substituted on input line 711.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 717.
+(Font)              size <7> substituted on input line 711.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 717.
+(Font)              size <5> substituted on input line 711.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 717.
+(Font)              size <7> substituted on input line 711.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 717.
+(Font)              size <5> substituted on input line 711.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 717.
+(Font)              size <7> substituted on input line 711.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 717.
+(Font)              size <5> substituted on input line 711.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 731--735
+Underfull \hbox (badness 10000) in paragraph at lines 725--729
 
- []
-
-
-Overfull \hbox (1022.13458pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## \caption{{\small \textbf{Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95\% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.}}}\label{tab:tab-cancer}[] 
- []
-
-
-Overfull \hbox (94.67035pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}[] 
- []
-
-
-Overfull \hbox (310.72736pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ##  & \textbf{Model 1}\textsuperscript{\textit{1}} & \textbf{Model 2}\textsuperscript{\textit{2}} \\[] 
- []
-
-
-Overfull \hbox (368.69388pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## \textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\[] 
- []
-
-
-Overfull \hbox (110.4794pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## \multicolumn{3}{l}{{\bfseries Hepatocellular carcinoma}} \\[] 
- []
-
-
-Overfull \hbox (89.40073pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## Total red meat & 1.01 (0.93-1.10) & 1.06 (0.97-1.16) \\[] 
- []
-
-
-Overfull \hbox (121.01881pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## Unprocessed red meat & 1.01 (0.92-1.11) & 1.05 (0.96-1.15) \\[] 
- []
-
-
-Overfull \hbox (110.47945pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## Processed red meat & 1.01 (0.88-1.16) & 1.09 (0.95-1.26) \\[] 
- []
-
-
-Overfull \hbox (147.36719pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## \multicolumn{3}{l}{{\bfseries Intrahepatic cholangiocarcinoma}} \\[] 
- []
-
-
-Overfull \hbox (89.40073pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## Total red meat & 0.94 (0.87-1.02) & 0.97 (0.90-1.05) \\[] 
- []
-
-
-Overfull \hbox (121.01881pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## Unprocessed red meat & 0.92 (0.85-1.00) & 0.95 (0.87-1.03) \\[] 
- []
-
-
-Overfull \hbox (110.47945pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## Processed red meat & 1.02 (0.89-1.17) & 1.07 (0.93-1.22) \\[] 
- []
-
-
-Overfull \hbox (405.58167pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## \textsuperscript{\textit{1}}Adjusted for age (as underlying timescale), other food groups, and total food intake.\\[] 
- []
-
-
-Overfull \hbox (774.45947pt too wide) in paragraph at lines 765--765
-[]\TU/lmtt/m/n/10.03749 ## \textsuperscript{\textit{2}}Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.\\[] 
  []
 
 
@@ -1113,11 +1043,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[11
-
-
-
-]
+[11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1133,177 +1059,99 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[13]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[]| []
- []
-
-[14] (./legliv_eur-j-nutr.bbl
-Underfull \hbox (badness 1292) in paragraph at lines 13--14
-\TU/lmr/m/n/10.03749 tion. URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] []
+[13] (./legliv_eur-j-nutr.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+\TU/lmr/m/n/10.03749 demiology of hepatocellular carcinoma
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--14
-[][][] [] [][][] [] [][][][] [] [][][][][][][][][][][][][][][][][][][][][] [] [][][]$[][]\TU/lmr/m/n/10.03749 ,
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+\TU/lmr/m/n/10.03749 and intrahepatic cholangiocarcinoma.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-[]\TU/lmr/m/n/10.03749 UK Biobank (2024) 24-hour dietary
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+\TU/lmr/m/n/10.03749 Cancer Control 24(3):107327481772924.
  []
 
 
-Underfull \hbox (badness 2080) in paragraph at lines 16--17
-\TU/lmr/m/n/10.03749 recall questionnaire (oxford webq). URL
+Underfull \hbox (badness 1975) in paragraph at lines 13--14
+[]\TU/lmr/m/n/10.03749 Younossi ZM, Koenig AB, Abdelatif D,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-[][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] [] [][][][][][][][] []
+Underfull \hbox (badness 1092) in paragraph at lines 19--20
+\TU/lmr/m/n/10.03749 and risk of non-alcoholic fatty liver dis-
  []
 
 
-Underfull \hbox (badness 1389) in paragraph at lines 22--23
-\TU/lmr/m/n/10.03749 webq, a low-cost, web-based method for
+Underfull \hbox (badness 1430) in paragraph at lines 19--20
+\TU/lmr/m/n/10.03749 prospective cohort study in uk biobank.
  []
 
 
-Underfull \hbox (badness 4479) in paragraph at lines 25--26
-[]\TU/lmr/m/n/10.03749 Greenwood DC, Hardie LJ, Frost GS,
+Underfull \hbox (badness 2894) in paragraph at lines 19--20
+\TU/lmr/m/n/10.03749 Nutrients 14(24):5335. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
-\TU/lmr/m/n/10.03749 Healthful plant-based dietary patterns,
+Underfull \hbox (badness 1314) in paragraph at lines 19--20
+[][][][] [] [][][][][][][][][][]$[][]\TU/lmr/m/n/10.03749 , URL [][]$[][][][] [] [] [] [][] [] [][][] [] [][][] []
  []
 
 
-Underfull \hbox (badness 5316) in paragraph at lines 31--32
-\TU/lmr/m/n/10.03749 genetic risk of obesity, and cardiovas-
+Underfull \hbox (badness 1694) in paragraph at lines 25--26
+[]\TU/lmr/m/n/10.03749 Khan SA, Tavolari S, Brandi G (2019)
  []
 
 
-Underfull \hbox (badness 8113) in paragraph at lines 31--32
-\TU/lmr/m/n/10.03749 cular risk in the uk biobank study.
+Underfull \hbox (badness 2626) in paragraph at lines 25--26
+\TU/lmr/m/n/10.03749 factors. Liver International 39(S1):19–31.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
-\TU/lmr/m/n/10.03749 Clinical Nutrition 40(7):4694–4701.
+Underfull \hbox (badness 2326) in paragraph at lines 34--35
+[]\TU/lmr/m/n/10.03749 Wongjarupong N, Assavapongpaiboon B,
  []
 
 
-Underfull \hbox (badness 3679) in paragraph at lines 34--35
-[]\TU/lmr/m/n/10.03749 Satija A, Bhupathiraju SN, Spiegelman
+Underfull \hbox (badness 2600) in paragraph at lines 34--35
+\TU/lmr/m/n/10.03749 fatty liver disease as a risk factor for
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 34--35
-\TU/lmr/m/n/10.03749 422. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] [] [] [] [][][][] [] [][][][] [] [][] []
+Underfull \hbox (badness 1303) in paragraph at lines 37--38
+\TU/lmr/m/n/10.03749 alcoholic fatty liver disease is associated
+ []
+
+
+Underfull \hbox (badness 1117) in paragraph at lines 37--38
+\TU/lmr/m/n/10.03749 with intrahepatic cholangiocarcinoma and
  []
 
 
 Underfull \hbox (badness 2644) in paragraph at lines 37--38
-[]\TU/lmr/m/n/10.03749 Satija A, Bhupathiraju SN, Rimm EB,
+\TU/lmr/m/n/10.03749 tial analysis. Eur J Gastroenterol Hep-
  []
 
 
-Underfull \hbox (badness 6859) in paragraph at lines 37--38
-\TU/lmr/m/n/10.03749 et al (2016) Plant-based dietary pat-
+Underfull \hbox (badness 2512) in paragraph at lines 37--38
+\TU/lmr/m/n/10.03749 atol 33(1):62–68. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 2418) in paragraph at lines 37--38
-\TU/lmr/m/n/10.03749 terns and incidence of type 2 diabetes
+Underfull \hbox (badness 3482) in paragraph at lines 40--41
+\TU/lmr/m/n/10.03749 cancer risk: Results from the shanghai
  []
 
 
-Underfull \hbox (badness 5203) in paragraph at lines 37--38
-\TU/lmr/m/n/10.03749 in us men and women: Results from
+Underfull \hbox (badness 3088) in paragraph at lines 43--44
+\TU/lmr/m/n/10.03749 Increased intake of vegetables, but not
  []
 
 
-Underfull \hbox (badness 4084) in paragraph at lines 37--38
-\TU/lmr/m/n/10.03749 three prospective cohort studies. PLOS
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
-[]\TU/lmr/m/n/10.03749 Thompson FE, Subar AF (2013)
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
-\TU/lmr/m/n/10.03749 Dietary Assessment Methodology, Else-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
-\TU/lmr/m/n/10.03749 vier, pp 5–46. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-[]\TU/lmr/m/n/10.03749 Gurinović M, Zeković M, Milešević
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-\TU/lmr/m/n/10.03749 J, et al (2017) Nutritional Assess-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-\TU/lmr/m/n/10.03749 ment, Elsevier. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-[]\TU/lmr/m/n/10.03749 UK Biobank (2024) Health out-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-\TU/lmr/m/n/10.03749 comes overview. URL [][]$[][][][][] [] [] [] [][][][][][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-[][][][] [] [][] [] [][] [] [][] [] [][][][][][][][] [] [][][] [] [][][][] []
- []
-
-
-Underfull \hbox (badness 1708) in paragraph at lines 46--47
-[][][][][][][][][][][][][][][][][][][][][][] [] [][][]$[][]\TU/lmr/m/n/10.03749 , accessed 21
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-[]\TU/lmr/m/n/10.03749 UK Biobank (2023) Data providers
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-\TU/lmr/m/n/10.03749 and dates of data availability. URL
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-[][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] [] [][][] [] [][][][][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-[][][] [] [][][] [] [][][][] [] [][][][][][][][][] [] [][][] [] [][][][][]$[][]\TU/lmr/m/n/10.03749 ,
- []
-
-
-Underfull \hbox (badness 2564) in paragraph at lines 55--56
-\TU/lmr/m/n/10.03749 Theory and performance of substitution
+Underfull \hbox (badness 3803) in paragraph at lines 52--53
+\TU/lmr/m/n/10.03749 alone or with other legumes and car-
  []
 
 
@@ -1314,16 +1162,200 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[15
+[14
+
 
 
 ]
-Underfull \hbox (badness 1127) in paragraph at lines 58--59
+Underfull \hbox (badness 7081) in paragraph at lines 58--59
+[]\TU/lmr/m/n/10.03749 UN (????) Food and climate change:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
+[][]$[][][][][] [] [] [] [][][] [] [][] [] [][][] [] [][] [] [][][][][][][][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 1292) in paragraph at lines 67--68
+\TU/lmr/m/n/10.03749 tion. URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
+[][][] [] [][][] [] [][][][] [] [][][][][][][][][][][][][][][][][][][][][] [] [][][]$[][]\TU/lmr/m/n/10.03749 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+[]\TU/lmr/m/n/10.03749 UK Biobank (2024) 24-hour dietary
+ []
+
+
+Underfull \hbox (badness 2080) in paragraph at lines 70--71
+\TU/lmr/m/n/10.03749 recall questionnaire (oxford webq). URL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+[][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] [] [][][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 1389) in paragraph at lines 76--77
+\TU/lmr/m/n/10.03749 webq, a low-cost, web-based method for
+ []
+
+
+Underfull \hbox (badness 4479) in paragraph at lines 79--80
+[]\TU/lmr/m/n/10.03749 Greenwood DC, Hardie LJ, Frost GS,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+\TU/lmr/m/n/10.03749 Healthful plant-based dietary patterns,
+ []
+
+
+Underfull \hbox (badness 5316) in paragraph at lines 85--86
+\TU/lmr/m/n/10.03749 genetic risk of obesity, and cardiovas-
+ []
+
+
+Underfull \hbox (badness 8113) in paragraph at lines 85--86
+\TU/lmr/m/n/10.03749 cular risk in the uk biobank study.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+\TU/lmr/m/n/10.03749 Clinical Nutrition 40(7):4694–4701.
+ []
+
+
+Underfull \hbox (badness 3679) in paragraph at lines 88--89
+[]\TU/lmr/m/n/10.03749 Satija A, Bhupathiraju SN, Spiegelman
+ []
+
+
+Underfull \hbox (badness 1603) in paragraph at lines 88--89
+\TU/lmr/m/n/10.03749 422. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] [] [] [] [][][][] [] [][][][] [] [][] []
+ []
+
+
+Underfull \hbox (badness 2644) in paragraph at lines 91--92
+[]\TU/lmr/m/n/10.03749 Satija A, Bhupathiraju SN, Rimm EB,
+ []
+
+
+Underfull \hbox (badness 6859) in paragraph at lines 91--92
+\TU/lmr/m/n/10.03749 et al (2016) Plant-based dietary pat-
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 91--92
+\TU/lmr/m/n/10.03749 terns and incidence of type 2 diabetes
+ []
+
+
+Underfull \hbox (badness 5203) in paragraph at lines 91--92
+\TU/lmr/m/n/10.03749 in us men and women: Results from
+ []
+
+
+Underfull \hbox (badness 4084) in paragraph at lines 91--92
+\TU/lmr/m/n/10.03749 three prospective cohort studies. PLOS
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+[]\TU/lmr/m/n/10.03749 Thompson FE, Subar AF (2013)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+\TU/lmr/m/n/10.03749 Dietary Assessment Methodology, Else-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+\TU/lmr/m/n/10.03749 vier, pp 5–46. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+[]\TU/lmr/m/n/10.03749 Gurinović M, Zeković M, Milešević
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+\TU/lmr/m/n/10.03749 J, et al (2017) Nutritional Assess-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+\TU/lmr/m/n/10.03749 ment, Elsevier. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+[]\TU/lmr/m/n/10.03749 UK Biobank (2024) Health out-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+\TU/lmr/m/n/10.03749 comes overview. URL [][]$[][][][][] [] [] [] [][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+[][][][] [] [][] [] [][] [] [][] [] [][][][][][][][] [] [][][] [] [][][][] []
+ []
+
+
+Underfull \hbox (badness 1708) in paragraph at lines 100--101
+[][][][][][][][][][][][][][][][][][][][][][] [] [][][]$[][]\TU/lmr/m/n/10.03749 , accessed 21
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+[]\TU/lmr/m/n/10.03749 UK Biobank (2023) Data providers
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+\TU/lmr/m/n/10.03749 and dates of data availability. URL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+[][]$[][][][][] [] [] [] [][][][][][][] [] [][][][] [] [][] [] [][] [] [][] [] [][][] [] [][][][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+[][][] [] [][][] [] [][][][] [] [][][][][][][][][] [] [][][] [] [][][][][]$[][]\TU/lmr/m/n/10.03749 ,
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 109--110
+\TU/lmr/m/n/10.03749 Theory and performance of substitution
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 112--113
 \TU/lmr/m/n/10.03749 Journal of Epidemiology 49(5):1540–1552.
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 61--62
+Underfull \hbox (badness 1038) in paragraph at lines 115--116
 \TU/lmr/m/n/10.03749 vational studies. Nutrition Journal 22(1).
  []
 
@@ -1350,11 +1382,11 @@ Package rerunfilecheck Info: File `legliv_eur-j-nutr.out' has not changed.
 (rerunfilecheck)             Checksum: 60F338690C2DF2EE41FB137C7692E021;1673.
  ) 
 Here is how much of TeX's memory you used:
- 24660 strings out of 476648
- 454201 string characters out of 5799784
- 1953556 words of memory out of 5000000
- 46309 multiletter control sequences out of 15000+600000
- 577934 words of font info for 147 fonts, out of 8000000 for 9000
+ 24708 strings out of 476648
+ 455002 string characters out of 5799104
+ 1955556 words of memory out of 5000000
+ 46360 multiletter control sequences out of 15000+600000
+ 577926 words of font info for 146 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
  99i,16n,101p,799b,775s stack positions out of 10000i,1000n,20000p,200000b,200000s
 

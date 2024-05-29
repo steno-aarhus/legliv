@@ -113,9 +113,9 @@ data <- targets::tar_read(data_main)
 data_flowchart <- targets::tar_read(data_flowchart)
 data_hcc <- targets::tar_read(data_with_hcc)
 data_icc <- targets::tar_read(data_with_icc)
-source(here("R","3-1-main-analysis-table.R"))
-source(here("R","7-table-legume-quintile.R"))
-source(here("R","6-table-cancer-type.R"))
+source(here("R","table-main.R"))
+source(here("R","table-legume-quartiles.R"))
+source(here("R","table-cancer-type.R"))
 source(here("R", "flowchart.R"))
 source(here("R", "dag-code.R"))
 ```
@@ -151,8 +151,8 @@ shown a significant adverse association between NAFLD and IH-CCA
 The impact of specific food groups on liver cancer risk is not well
 known. Observational studies suggest that intake of coffee, vegetables
 and whole grains may lower HCC risk [@zhang2013; @yang2014; @Liu2021;
-@Bravi2017]. The protective properties of these foods are proposedly due
-to their content of dietary fibers and polyphenols, which are also
+@Bhurwal2020]. The protective properties of these foods are proposedly
+due to their content of dietary fibers and polyphenols, which are also
 defining components of legumes. The health benefits of legumes are
 extends to improved glycemic control, hypotensive and anticarcinogenic
 properties with obsevered inverse associations with cardiovascular
