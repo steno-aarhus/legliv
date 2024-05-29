@@ -4,7 +4,7 @@
 %=================================================================
 % pandoc conditionals added to preserve backwards compatibility with previous versions of rticles
 
-\documentclass[notspecified,article,submit,moreauthors,pdftex]{Definitions/mdpi}
+\documentclass[nutrients,article,submit,moreauthors,pdftex]{Definitions/mdpi}
 
 
 %% Some pieces required from the pandoc template
@@ -70,10 +70,13 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Full title of the paper (Capitalized)}
+\Title{Substitution of red meat with legumes and risk of primary liver
+cancer in 126,744 UK Biobank participants: a prospective cohort study}
 
 % MDPI internal command: Title for citation in the left column
-\TitleCitation{Full title of the paper (Capitalized)}
+\TitleCitation{Substitution of red meat with legumes and risk of primary
+liver cancer in 126,744 UK Biobank participants: a prospective cohort
+study}
 
 % Author Orchid ID: enter ID or remove command
 %\newcommand{\orcidauthorA}{0000-0000-0000-000X} % Add \orcidA{} behind the author's name
@@ -81,39 +84,49 @@
 
 
 % Authors, for the paper (add full first names)
-\Author{Dominik
-Leutnant$^{1,2,\ddagger,*}$\href{https://orcid.org/0000-0003-3293-2315}
-{\orcidicon}, John Doe$^{2, \dagger, \ddagger}$}
+\Author{Niels Bock$^{1}$\href{https://orcid.org/0009-0005-7373-1589}
+{\orcidicon}, Fie
+Langmann$^{1}$\href{https://orcid.org/0000-0003-3474-9346}
+{\orcidicon}, Luke W. Johnston$^{1,
+2}$\href{https://orcid.org/0000-0003-4169-2616}
+{\orcidicon}, Daniel B. Ibsen$^{1, 2, 3,
+4}$\href{https://orcid.org/0000-0002-7038-4770}
+{\orcidicon}, Christina C. Dahm$^{1,
+*}$\href{https://orcid.org/0000-0003-0481-2893}
+{\orcidicon}}
 
 
 %\longauthorlist{yes}
 
 
 % MDPI internal command: Authors, for metadata in PDF
-\AuthorNames{Dominik Leutnant, John Doe}
+\AuthorNames{Niels Bock, Fie Langmann, Luke W. Johnston, Daniel B.
+Ibsen, Christina C. Dahm}
 
 % MDPI internal command: Authors, for citation in the left column
 %\AuthorCitation{Lastname, F.; Lastname, F.; Lastname, F.}
 % If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
-\AuthorCitation{Leutnant, D.; Doe, J.}
+\AuthorCitation{Bock, N.; Langmann, F; Johnston, LW; Ibsen, DB; Dahm,
+CC.}
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
 \address{%
-$^{1}$ \quad Muenster University of Applied Sciences - Institute for
-Infrastructure, Water, Resources, Environment Correnstr. 25, 48149
-Muenster,
-Germany; \href{mailto:leutnant@fh-muenster.de}{\nolinkurl{leutnant@fh-muenster.de}}\\
-$^{2}$ \quad Your department Street, City,
-Country; \href{mailto:mail@mail.com}{\nolinkurl{mail@mail.com}}\\
+$^{1}$ \quad Department of Public Health, Aarhus University, Aarhus,
+Denmark; \\
+$^{2}$ \quad Steno Diabetes Center Aarhus, Aarhus University Hospital,
+Aarhus N, Denmark; \\
+$^{3}$ \quad Department of Nutrition, Exercise and Sports, University of
+Copenhagen, Copenhagen, Denmark; \\
+$^{4}$ \quad MRC Epidemiology Unit, School of Clinical Medicine,
+University of Cambridge, Cambridge, United Kingdom; \\
 }
 
 % Contact information of the corresponding author
-\corres{Correspondence: \href{mailto:leutnant@fh-muenster.de}{\nolinkurl{leutnant@fh-muenster.de}};
-Tel.: +XX-000-00-0000.}
+\corres{Correspondence: \href{mailto:CCD@ph.au.dk}{\nolinkurl{CCD@ph.au.dk}}.}
 
 % Current address and/or shared authorship
-\firstnote{Current address: Updated affiliation}
-\secondnote{These authors contributed equally to this work.}
+
+
 
 
 
@@ -123,28 +136,36 @@ Tel.: +XX-000-00-0000.}
 % The commands \thirdnote{} till \eighthnote{} are available for further notes
 
 % Simple summary
-\simplesumm{A Simple summary goes here.}
 
 %\conference{} % An extended version of a conference paper
 
 % Abstract (Do not insert blank lines, i.e. \\)
-\abstract{A single paragraph of about 200 words maximum. For research
-articles, abstracts should give a pertinent overview of the work. We
-strongly encourage authors to use the following style of structured
-abstracts, but without headings: 1) Background: Place the question
-addressed in a broad context and highlight the purpose of the study; 2)
-Methods: Describe briefly the main methods or treatments applied; 3)
-Results: Summarize the article's main findings; and 4) Conclusion:
-Indicate the main conclusions or interpretations. The abstract should be
-an objective representation of the article, it must not contain results
-which are not presented and substantiated in the main text and should
-not exaggerate the main conclusions.}
+\abstract{Purpose: Primary liver cancer is on the rise worldwide,
+partially due to poor diets and sedentary lifestyles. Shifting to more
+plant-based diets may lower the risk. We aimed to estimate the effect of
+replacing unprocessed red meat, processed red meat and total red meat
+with legumes on primary liver cancer in a free-living population.
+Methods: We analyzed data from 126,744 UK Biobank participants who
+completed \(\geq\) 2 24-hour diet recall questionnaires. Baseline
+characteristics were collected from the initial assessment visit.
+Information on liver cancer diagnoses was collected via external linkage
+to inpatient hospital episodes or central cancer registries. Cox
+proportional hazards regression models were used to estimate
+substitution of 15g/day of legumes with 15/day of total red meat,
+unprocessed red meat and processed red meat on liver cancer risk, using
+the leave-one-out food substitution model. Results: During a median
+follow-up time of 11.3 years, 173 participants developed liver cancer.
+In the fully adjusted models, no association was observed when
+substituting 15/day of legumes with total red meat (HR: 0.98 (95\% CI
+0.93-1.04)), unprocessed red meat (HR: 0.97 (95\% CI 0.91-1.03)) or
+processed red meat (HR: 1.02 (95\% CI 0.93-1.13)). Conclusion: Overall,
+little evidence of an association between replacing red meat with
+legumes and liver cancer was observed. Further research in larger study
+populations with longer follow-up time is warranted.}
 
 
 % Keywords
-\keyword{keyword 1; keyword 2; keyword 3 (list three to ten pertinent
-keywords specific to the article, yet reasonably common within the
-subject discipline.).}
+\keyword{Food Substitutions; liver cancer; red meat; legumes.}
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
 %\PACS{J0101}
@@ -194,47 +215,6 @@ subject discipline.).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Pandoc syntax highlighting
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % tightlist command for lists without linebreak
 \providecommand{\tightlist}{%
@@ -250,406 +230,481 @@ subject discipline.).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Version}\label{version}
+\hypertarget{sec1}{%
+\section{Background}\label{sec1}}
 
-This Rmd-skeleton uses the mdpi Latex template published 2023-03-25.
-However, the official template gets more frequently updated than the
-\textbf{rticles} package. Therefore, please make sure prior to paper
-submission, that you're using the most recent .cls, .tex and .bst files
-(available \href{http://www.mdpi.com/authors/latex}{here}).
+Hepatocellular carcinoma (HCC) is the sixth most common cancer in the
+world and the third leading cause of cancer-related death with viral
+hepatitis being the leading risk factor \citep{Massarweh2017}. In
+low-infection populations, modifiable risk factors, such as dietary
+habits, may play an increasing role in HCC pathogenesis as non-alcoholic
+fatty liver disease (NAFLD) has become the leading cause of liver
+cirrhosis \citep{Younossi2016, Younossi2020} that may in turn progress
+to HCC. A western dietary pattern high in fats and red meats and
+concurrently low in fruits, vegetables, and whole grains is associated
+with NAFLD progression \citep{Guo2022}. The prevalence of NAFLD-related
+HCC cases is an increasing global problem {[}7{]}, and it is estimated
+that prevalent cases of NAFLD-related HCC in the US will increase by
+146\%, from 10,100 to 24,900 cases, while incident NAFLD-related HCC
+cases will increase by 137\%, from 5,160 to 12,240 cases, in 2030
+\citep{Estes2018}.
 
-\section{Article Header Information}\label{article-header-information}
+The second most common primary liver cancer is the intrahepatic
+cholangiocarcinoma (ICC) \citep{Khan2019}. While HCC emerges from the
+liver parenchyma, ICC emerges from the bile duct. Despite being a
+relatively rare cancer, ICC is characterized by its aggressivity, late
+diagnosis and poor survival \citep{kirstein2016}. It is estimated that
+the incidence of ICC is on the rise worldwide \citep{Bergquist2015}.
+Recent meta-analyses have shown a significant adverse association
+between NAFLD and IH-CCA \citep{Wongjarupong2017, corrao2020}.
 
-The YAML header includes information needed mainly for formatting the
-front and back matter of the article. Required elements include:
+The impact of specific food groups on liver cancer risk is not well
+known. Observational studies suggest that intake of coffee, vegetables
+and whole grains may lower HCC risk
+\citep{zhang2013, yang2014, Liu2021, Bhurwal2020}. The protective
+properties of these foods are proposedly due to their content of dietary
+fibers and polyphenols, which are also defining components of legumes.
+The health benefits of legumes are extends to improved glycemic control,
+hypotensive and anticarcinogenic properties with obsevered inverse
+associations with cardiovascular disease and colorectal cancer
+\citep{viguiliouk2019, jin2022}. Two large prospective cohort studies
+found some evidence of inverse associations between legume consumption
+and risk of HCC \citep{zhang2013, Liu2021}. However, replacement foods
+were not specified in these studies, which fails to reflect that an
+increase in intake of one food is associated with a concomitantly
+decreased intake of another food. Studies on substituting plant protein
+for animal protein are important as we need to eat less animal-based
+foods and more plants to lower the climate impact of our diet
+\citep{RN71}. Although previous research has investigated substitution
+of animal-based proteins with plant-based proteins in relations to NAFLD
+\citep{Zhang2023}, research on substituting meats with legumes in
+relation to risk of HCC and ICC is sparse. This leaves a substantial gap
+in our current knowledge on the beneficial effects on primary liver
+cancer from substituting red meat with legumes.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{title}\KeywordTok{:}\AttributeTok{ Title of the paper}
-\FunctionTok{author}\KeywordTok{:}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ first and last name}
-\FunctionTok{    affil}\KeywordTok{: }\CharTok{|}
-\NormalTok{      One or more comma seperated numbers corresponding to affilitation}
-\NormalTok{      and one or more  comma seperated symbols corresponding }
-\NormalTok{      optional notes.}
-\AttributeTok{    }\FunctionTok{orcid}\KeywordTok{:}\AttributeTok{ optional orcid number}
-\FunctionTok{affiliation}\KeywordTok{:}\AttributeTok{  }
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{num}\KeywordTok{:}\AttributeTok{ 1,..., n for each affiliation}
-\AttributeTok{    }\FunctionTok{address}\KeywordTok{:}\AttributeTok{ required}
-\AttributeTok{    }\FunctionTok{email}\KeywordTok{:}\AttributeTok{ required}
-\FunctionTok{authorcitation}\KeywordTok{: }\CharTok{|}
-\NormalTok{  Lastname, F.}
-\FunctionTok{correspondence}\KeywordTok{: }\CharTok{|}
-\NormalTok{  email@email.com; Tel.: +XX{-}000{-}00{-}0000.}
-\FunctionTok{journal}\KeywordTok{:}\AttributeTok{ notspecified}
-\FunctionTok{type}\KeywordTok{:}\AttributeTok{ article}
-\FunctionTok{status}\KeywordTok{:}\AttributeTok{ submit}
-\end{Highlighting}
-\end{Shaded}
+The main aim of this study was to estimate the effect of replacing
+unprocessed red meat, processed red meat and total red meat with legumes
+on primary liver cancer in a free-living population.
 
-Journal options are in Table \ref{tab:mdpinames}. The \texttt{status}
-variable should generally not be changed by authors. The \texttt{type}
-variable describes the type of of submission and defaults to
-\texttt{article} but can be replaced with any of the ones in Table
-\ref{tab:mdpitype}
+\hypertarget{sec2}{%
+\section{Research Design and Methods}\label{sec2}}
 
-\begin{table}
+\hypertarget{subsec1}{%
+\subsection{Study population}\label{subsec1}}
 
-\caption{\label{tab:mdpitype}MDPI article types.}
-\centering
-\begin{tabular}[t]{lll}
+The UK Biobank, a population-based prospective cohort, was initiated in
+2006. \citep{sudlow2015} During 2006-2010, more than 500,000
+participants, aged 40-69, were recruited and visited designated
+assessment centres across the UK Participants provided information about
+age, sex, sociodemographic factors (education, Townsend deprivation
+index, living alone) and lifestyle factors (smoking, alcohol
+consumption, physical activity) via touch screen questionnaires and
+computer-assisted interviews. Anthropometric data (waist circumference)
+were collected via physical measurements \citep{RN113}.
+
+\hypertarget{subsec2}{%
+\subsection{Dietary assessment}\label{subsec2}}
+
+A web-based 24-hour dietary recall was administered at the end of the
+initial assessment visit for the last 70,000 recruited participants
+\citep{RN115}. From February 2011 to April 2012, 320,000 participants
+who had provided an e-mail address were invited on four separate
+occasions to complete the 24-hour dietary recall, the Oxford WebQ, of
+which 210,947 participants completed at least one. The Oxford WebQ
+covered 206 food items and 32 beverage items commonly consumed in the
+UK. Intakes were reported in standard units of measurements, e.g.,
+servings, cups, slices, etc. with intake categories ranging from 0 to 3+
+units \citep{piernas2021}. The Oxford WebQ has been validated against
+interviewer-based 24-hour dietary recalls and biomarkers
+\citep{Liu2011, Greenwood2019}.
+
+Researchers defined 79 food groups and 14 beverage groups from the
+Oxford WebQ using the UK National Diet and Nutrition Survey categories
+\citep{piernas2021}. These food and beverage groups were used when
+defining the food groups used in the substitution analyses
+(Supplementary Table 1). Legumes were defined as dietary pulses, baked
+beans, tofu-based products, peas, hummus, soy drinks, and soy-based
+desserts and yogurt. Red meat intake was defined as intake of beef,
+pork, lamb, or other meat, including offal. Processed red meat intake
+was defined as sausages, bacon (with and without fat), ham, or liver
+pate. Other food groups included were animal-based foods, unhealthy
+plant-based foods, healthy plant-based foods, and alcoholic beverages
+(Supplementary Table 1). Animal-based and healthy and unhealthy
+plant-based food foods were grouped based on plant-based diet indices
+from previous studies
+\citep{Thompson2023, Heianza2021, Satija2017, Satija2016}. An overview
+of included foods in each food group is displayed in Table
+\ref{tab-food-group}.
+
+As a single 24-hour dietary recall does not assess habitual dietary
+intake and variation in diet over time at an individual level
+\citep{thompson2013, gurinovic2017}, only participants who completed two
+or more Oxford WebQs were eligible for inclusion in this study.
+
+\hypertarget{subsec3}{%
+\subsection{Liver cancer assessment}\label{subsec3}}
+
+Liver cancer was defined according to ICD-10 diagnosis codes C22.0 for
+Hepatocellular carcinoma (HCC) or C22.1 for Intrahepatic
+cholangiocarcinoma (ICC) and ICD-9 diagnosis codes 1550 Malignant
+neoplasm of liver, primary or 1551 Malignant neoplasm of intrahepatic
+bile ducts. Incident and prevalent cases of liver cancer and
+corresponding diagnosis dates were obtained via external linkage to
+central cancer registries or hospital inpatient episodes
+\citep{RN112, RN114}.
+
+\hypertarget{subsec4}{%
+\subsection{Assessment of confounders}\label{subsec4}}
+
+Confounders were defined \emph{a priori} from a literature review of the
+background literature and illustrated using directed acyclic graphs
+(Figure \ref{fig:fig2}). The following confounding variables were
+selected: age at baseline (years, continuous), sex (male, female),
+educational level (high: College or University degree, intermediate: A
+levels/AS levels, O levels/GCSEs, or equivalent, low: none of the
+previous mentioned), Townsend Deprivation Index (continuous), Living
+alone (yes, no), waist circumference (cm, continuous), physical activity
+(above/below the 2017 UK Physical activity guidelines of 150 minutes of
+moderate activity per week or 75 minutes of vigorous activity, or
+unknown), smoking (pack years as a proportion of lifespan exposed to
+smoking, continous), and alcohol intake (g/day, continuous). All
+confounders except age were selected from the initial assessment visit
+before the start of follow-up.
+
+\hypertarget{subsec5}{%
+\subsection{The substitution model}\label{subsec5}}
+
+The substitution analyses were conducted by by modelling replacement of
+an equal mass of meat with legumes. The portion size of the substitution
+was set to 15 g of legumes for 15 g of meat to ensure that substitutions
+were below the mean intake of any of the substituted food groups in the
+cohort. The substitutions were modeled using the leave-one-out-approach
+in which variables for every food group along with a variable for total
+food intake are included, except the food group that are to be
+substituted \citep{Ibsen2021}. To estimate substitution of 15 g of all
+red meats (red and processed) with 15 g of legumes, the following model
+was defined:
+
+\begin{align}
+\log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15g)} \hspace{0.5em} + \nonumber \\
+&\quad \hspace{0.5em} \beta_2 \text{Total food intake (g)} + \beta_3 \text{Other food groups (g)} + \beta_4 \text{Covariates}
+\end{align}
+
+\noindent When substituting only red meat with legumes, processed red
+meat was added to the model:
+
+\begin{align}
+\log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15g)} + \beta_2 \text{Processed red meat (15g)} \hspace{0.5em} + \nonumber \\
+&\quad \hspace{0.5em} \beta_3 \text{Total food intake (g)} + \beta_4 \text{Other food groups (g)} + \beta_5 \text{Covariates}
+\end{align}
+
+\noindent When substituting only processed red meat with legumes, red
+meat was added to the model:
+
+\begin{align}
+\log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15g)} + \beta_2 \text{Unprocessed red meat (15g)} \hspace{0.5em} + \nonumber \\
+&\quad \hspace{0.5em} \beta_3 \text{Total food intake (g)}  + \beta_4 \text{Other food groups (g)} + \beta_5 \text{Covariates}
+\end{align}
+
+\noindent The performance of the leave-one-out model when modeling equal
+mass substitutions has been validated against simulated data
+\citep{Tomova2022}.
+
+\hypertarget{subsec6}{%
+\subsection{Statistical analysis}\label{subsec6}}
+
+Multivariable-adjusted Cox proportional hazards regression models were
+used to estimate hazard ratios (HR) with corresponding 95\% confidence
+intervals (CI) with age as the underlying timescale. Participants were
+followed from the date of their last completed Oxford WebQ until the
+occurrence of the event of interest or due to right censoring, whichever
+came first. Participants were right censored in the event of death, loss
+to follow-up, or administrative end of follow-up (October 31, 2022). Two
+levels of adjustments were added to the substitution model. Model 1 was
+minimally adjusted for age, total weight of food intake, and all other
+food groups to fit the substitution model. Model 2 was further adjusted
+for sex, educational level, Townsend Deprivation Index, living alone,
+physical activity, smoking, alcohol intake, and waist circumference.
+
+In secondary analyses, each cancer type was analysed separately to
+evaluate if the pooling of HCC and ICC as one outcome in the main
+analysis was justified. Furthermore, to estimate the association of
+legume intake with liver cancer regardless of other dietary components,
+legume consumers (divided into quartiles) were compared to
+non-consumers.
+
+To evaluate the robustness of the main analyses, sensitivity analyses
+were performed on subsamples of participants by excluding those with
+high alcohol intake (exclusion of upper decile of daily alcohol intake
+by sex), implausible energy intake (exclusion of upper and lower deciel
+of each sex), any liver disease before baseline, any type of cancer
+before baseline, and fewer than 3 completed Oxford WebQs. As neither the
+central cancer registries nor the hospital inpatient registries were
+complete, liver cancer diagnoses retrieved from death registries, which
+were more up-to-date, were included in a sensitivity analysis to test
+for outcome misclassification bias. Lastly, one of our causal
+assumptions was that anthropometry confounded the causal relationship
+between replacing red meat with legumes and liver cancer; however,
+strong arguments exist giving support to anthropometry being a mediator
+between diet and health outcomes. Thus, to test for erroneously
+conditioning on a potential mediator, waist circumference was removed in
+a sensitivity analysis. Sensitivity analyses were modeled as the fully
+adjusted models in the main analyses.
+
+All analyses were conducted in R (version 4.1.1) with a significance
+level of 5 \%.
+
+\hypertarget{sec3}{%
+\section{Results}\label{sec3}}
+
+After excluding participants with liver cancer before baseline,
+participants lost to follow-up before baseline, and participants with
+errors in dietary data, 126,744 participants who had completed two or
+more diet questionnaires remained (Figure \ref{fig:fig1}).
+
+\begin{figure*}
+
+{\centering \includegraphics[width=1\linewidth,]{legliv-nutrients_files/figure-latex/fig1-1} 
+
+}
+
+\caption{Flowchart of included participants. Missing diet data were merged with loss to follow-up before baseline due to n being less than 5. It should be noted that not all UK Biobank participants were invited to complete an Oxfords WebQ. Only the last 70,000 participants to visit an assessment center were asked to complete an Oxford WebQ at the end of their visit. Further Oxford WebQs were sent to ~320,000 participants who provied an e-mail adress.}\label{fig:fig1}
+\end{figure*}
+
+During a median follow-up time of 11.3 years, 173 participants developed
+liver cancer. Participants who developed liver cancer were older at
+baseline, were more likely to be male, have a higher waist
+circumference, be less physically active, and fewer had never smoked,
+compared to all included participants (Table \ref{tab1}).
+
+\begin{table*}[!t]
+\caption{{\small \textbf{Baseline characteristics of UK Biobank participants who completed $\geq$ 2 Oxford WebQ 24-hour diet recall.}}}\label{tab1}
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
-abstract & entry & retraction\\
-addendum & expressionofconcern & review\\
-article & extendedabstract & perspective\\
-book & datadescriptor & protocol\\
-bookreview & editorial & shortnote\\
-\addlinespace
-briefreport & essay & studyprotocol\\
-casereport & erratum & systematicreview\\
-comment & hypothesis & supfile\\
-commentary & interestingimage & technicalnote\\
-communication & obituary & viewpoint\\
-\addlinespace
-conferenceproceedings & opinion & guidelines\\
-correction & projectreport & registeredreport\\
-conferencereport & reply & tutorial\\
+ & \textbf{Cohort} & \textbf{Liver cancer} \\ 
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+\textbf{Variable} & \textbf{N = 126,744}\textsuperscript{\textit{1}} & \textbf{N = 173}\textsuperscript{\textit{1}} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Typical diet yesterday}\textsuperscript{\textit{2}} & 73,213 (58\%) & 105 (61\%) \\ 
+{\bfseries Age, years} & 60 (53, 65) & 64.0 (60.0, 68.0) \\ 
+{\bfseries Sex} &  &  \\ 
+    Female & 70,659 (56\%) & 65 (38\%) \\ 
+    Male & 56,085 (44\%) & 108 (62\%) \\ 
+{\bfseries Educational level}\textsuperscript{\textit{3}} &  &  \\ 
+    High & 59,416 (47\%) & 76 (44\%) \\ 
+    Intermediate & 41,817 (33\%) & 52 (30\%) \\ 
+    Low & 25,472 (20\%) & 45 (26\%) \\ 
+    Missing & 39 &  \\ 
+{\bfseries Townsend Deprivation Index} & -2.4 (-3.8, 0.0) & -2.6 (-3.7, -0.7) \\ 
+    Missing & 149 &  \\ 
+{\bfseries Living alone} & 22,658 (18\%) & 34 (20\%) \\ 
+    Missing & 171 &  \\ 
+{\bfseries Physical activity}\textsuperscript{\textit{4}} &  &  \\ 
+    Above & 58,111 (46\%) & 61 (35\%) \\ 
+    Below & 50,712 (40\%) & 79 (46\%) \\ 
+    Missing & 17,921 (14\%) & 33 (19\%) \\ 
+{\bfseries Smoking} &  &  \\ 
+    Never & 72,583 (57\%) & 75 (43\%) \\ 
+    Ever & 54,122 (43\%) & 98 (57\%) \\ 
+    Missing & 39 &  \\ 
+{\bfseries Alcohol intake, g/day} & 11 (0, 26) & 11 (0, 29) \\ 
+{\bfseries Waist circumference, cm} & 88 (79, 97) & 98 (89, 107) \\ 
+    Missing & 168 &  \\ 
 \bottomrule
-\end{tabular}
-\end{table}
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Median (IQR) for continous variables; n (\%) for categorical variables\\
+\textsuperscript{\textit{2}}Participants who reported eating a typical diet yesterday for all completed diet questionnaires.\\
+\textsuperscript{\textit{3}}High: College or University degree;
+Intermediate: A levels/AS levels, O levels/GCSEs, or equivalent;
+Low: none of the previous mentioned.\\
+\textsuperscript{\textit{4}}Above or below the 2017 UK Physical activity guidelines of 150 minutes of moderate activity per week or 75 minutes of vigorous activity.\\
+\end{minipage}
+\end{table*}
 
-\subsection{Journal Specific YAML
-variables}\label{journal-specific-yaml-variables}
+Mean daily energy and total food intakes as well as daily intake of all
+specified food groups in grams are presented in Table \ref{tab-diet}.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# for journal Diversity,}
-\CommentTok{\# add the Life Science Identifier using:}
-\FunctionTok{lsid}\KeywordTok{:}\AttributeTok{ http://zoobank.org/urn:lsid:zoobank.org:act:nnnn}
-
-
-\CommentTok{\# for journal Applied Sciences}
-\CommentTok{\# add featured application}
-\FunctionTok{featuredapplication}\KeywordTok{: }\CharTok{|}
-\NormalTok{  Authors are encouraged to provide a concise }
-\NormalTok{  description of the specific application or }
-\NormalTok{  a potential application of the work. This }
-\NormalTok{  section is not mandatory.}
-
-\CommentTok{\# for the journal Data}
-\CommentTok{\# add dataset doi and license}
-\FunctionTok{dataset}\KeywordTok{:}\AttributeTok{ https://doi.org/10.1000/182}
-\FunctionTok{datasetlicense}\KeywordTok{:}\AttributeTok{ CC{-}BY{-}4.0}
-
-\CommentTok{\# for the journal Toxins}
-\CommentTok{\# add key contributions}
-\FunctionTok{keycontributions}\KeywordTok{: }\CharTok{|}
-\NormalTok{  The breakthroughs or highlights of the manuscript. }
-\NormalTok{  Authors can write one or two sentences to describe }
-\NormalTok{  the most important part of the paper.}
-
-\CommentTok{\# for the journal Encyclopedia}
-\FunctionTok{encyclopediadef}\KeywordTok{: }\CharTok{|}
-\NormalTok{  For entry manuscripts only: please provide a brief overview}
-\NormalTok{  of the entry title instead of an abstract.}
-\FunctionTok{entrylink}\KeywordTok{:}\AttributeTok{ The Link to this entry published on the encyclopedia platform.}
-
-\CommentTok{\# for the journal Advances in Respiratory Medicine}
-\CommentTok{\# add highlights}
-\FunctionTok{addhighlights}\KeywordTok{: }\CharTok{|}
-\NormalTok{  This is an obligatory section in “Advances in Respiratory Medicine”, }
-\NormalTok{  whose goal is to increase the discoverability and readability of the}
-\NormalTok{  article via search engines and other scholars. Highlights should not }
-\NormalTok{  be a copy of the abstract, but a simple text allowing the reader to }
-\NormalTok{  quickly and simplified find out what the article is about and what can }
-\NormalTok{  be cited from it. Each of these parts should be devoted up to 2\textasciitilde{}bullet }
-\NormalTok{  points.}
-\end{Highlighting}
-\end{Shaded}
-
-\startlandscape
-
-\begin{longtable}[t]{llllllll}
-\caption{\label{tab:mdpinames}MDPI journal names.}\\
+\begin{table*}[!t]
+\caption{{\small \textbf{Daily dietary intake of food groups, total food and total energy intake in UK Biobank participants who completed $\geq$ 2 Oxford WebQ 24-hour diet recall.}}}\label{tab-diet}
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
-acoustics & biomedinformatics & dentistry & galaxies & jcp & metabolites & philosophies & socsci\\
-actuators & biomimetics & dermato & games & jcs & metals & photochem & software\\
-addictions & biomolecules & dermatopathology & gases & jcto & meteorology & photonics & soilsystems\\
-admsci & biophysica & designs & gastroent & jdb & methane & phycology & solar\\
-adolescents & biosensors & devices & gastrointestdisord & jeta & metrology & physchem & solids\\
-\addlinespace
-aerobiology & biotech & diabetology & gels & jfb & micro & physics & spectroscj\\
-aerospace & birds & diagnostics & genealogy & jfmk & microarrays & physiologia & sports\\
-agriculture & bloods & dietetics & genes & jimaging & microbiolres & plants & standards\\
-agriengineering & blsf & digital & geographies & jintelligence & micromachines & plasma & stats\\
-agrochemicals & brainsci & disabilities & geohazards & jlpea & microorganisms & platforms & std\\
-\addlinespace
-agronomy & breath & diseases & geomatics & jmmp & microplastics & pollutants & stresses\\
-ai & buildings & diversity & geosciences & jmp & minerals & polymers & surfaces\\
-air & businesses & dna & geotechnics & jmse & mining & polysaccharides & surgeries\\
-algorithms & cancers & drones & geriatrics & jne & modelling & poultry & suschem\\
-allergies & carbon & dynamics & grasses & jnt & molbank & powders & sustainability\\
-\addlinespace
-alloys & cardiogenetics & earth & gucdd & jof & molecules & preprints & symmetry\\
-analytica & catalysts & ebj & hazardousmatters & joitmc & mps & proceedings & synbio\\
-analytics & cells & ecologies & healthcare & jor & msf & processes & systems\\
-anatomia & ceramics & econometrics & hearts & journalmedia & mti & prosthesis & targets\\
-animals & challenges & economies & hemato & jox & muscles & proteomes & taxonomy\\
-\addlinespace
-antibiotics & chemengineering & education & hematolrep & jpm & nanoenergyadv & psf & technologies\\
-antibodies & chemistry & ejihpe & heritage & jrfm & nanomanufacturing & psych & telecom\\
-antioxidants & chemosensors & electricity & higheredu & jsan & nanomaterials & psychiatryint & test\\
-applbiosci & chemproc & electrochem & highthroughput & jtaer & ncrna & psychoactives & textiles\\
-appliedchem & children & electronicmat & histories & jvd & ndt & publications & thalassrep\\
-\addlinespace
-appliedmath & chips & electronics & horticulturae & jzbg & network & quantumrep & thermo\\
-applmech & cimb & encyclopedia & hospitals & kidneydial & neuroglia & quaternary & tomography\\
-applmicrobiol & civileng & endocrines & humanities & kinasesphosphatases & neurolint & qubs & tourismhosp\\
-applnano & cleantechnol & energies & humans & knowledge & neurosci & radiation & toxics\\
-applsci & climate & eng & hydrobiology & land & nitrogen & reactions & toxins\\
-\addlinespace
-aquacj & clinpract & engproc & hydrogen & languages & notspecified & receptors & transplantology\\
-architecture & clockssleep & entomology & hydrology & laws & nri & recycling & transportation\\
-arm & cmd & entropy & hygiene & life & nursrep & regeneration & traumacare\\
-arthropoda & coasts & environments & idr & liquids & nutraceuticals & religions & traumas\\
-arts & coatings & environsciproc & ijerph & literature & nutrients & remotesensing & tropicalmed\\
-\addlinespace
-asc & colloids & epidemiologia & ijfs & livers & obesities & reports & universe\\
-asi & colorants & epigenomes & ijgi & logics & oceans & reprodmed & urbansci\\
-astronomy & commodities & est & ijms & logistics & ohbm & resources & uro\\
-atmosphere & compounds & fermentation & ijns & lubricants & onco & rheumato & vaccines\\
-atoms & computation & fibers & ijpb & lymphatics & oncopathology & risks & vehicles\\
-\addlinespace
-audiolres & computers & fintech & ijtm & machines & optics & robotics & venereology\\
-automation & condensedmatter & fire & ijtpp & macromol & oral & ruminants & vetsci\\
-axioms & conservation & fishes & ime & magnetism & organics & safety & vibration\\
-bacteria & constrmater & fluids & immuno & magnetochemistry & organoids & sci & virtualworlds\\
-batteries & cosmetics & foods & informatics & make & osteology & scipharm & viruses\\
-\addlinespace
-bdcc & covid & forecasting & information & marinedrugs & oxygen & sclerosis & vision\\
-behavsci & crops & forensicsci & infrastructures & materials & parasites & seeds & waste\\
-beverages & cryptography & forests & inorganics & materproc & parasitologia & sensors & water\\
-biochem & crystals & foundations & insects & mathematics & particles & separations & wem\\
-bioengineering & csmf & fractalfract & instruments & mca & pathogens & sexes & wevj\\
-\addlinespace
-biologics & ctn & fuels & inventions & measurements & pathophysiology & signals & wind\\
-biology & curroncol & future & iot & medicina & pediatrrep & sinusitis & women\\
-biomass & cyber & futureinternet & j & medicines & pharmaceuticals & skins & world\\
-biomechanics & dairy & futurepharmacol & jal & medsci & pharmaceutics & smartcities & youth\\
-biomed & data & futurephys & jcdd & membranes & pharmacoepidemiology & sna & zoonoticdis\\
-\addlinespace
-biomedicines & ddc & futuretransp & jcm & merits & pharmacy & societies & \\
+ & \textbf{Cohort} & \textbf{Liver cancer} \\ 
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+\textbf{Daily food intake} & \textbf{N = 126,744}\textsuperscript{\textit{1}} & \textbf{N = 173}\textsuperscript{\textit{1}} \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{l}{{\bfseries Total food intake}} \\ 
+\midrule\addlinespace[2.5pt]
+Energy, kJ & 8,430 (7,179, 9,856) & 8,579 (7,413, 10,048) \\ 
+Weight, g & 3,144 (2,720, 3,621) & 3,162 (2,737, 3,659) \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{l}{{\bfseries Food groups, g/day}} \\ 
+\midrule\addlinespace[2.5pt]
+Legumes & 11 (0, 34) & 8 (0, 35) \\ 
+Red and processed meat & 53 (15, 86) & 60 (30, 95) \\ 
+Red meat & 30 (0, 60) & 45 (0, 73) \\ 
+Processed meat & 9 (0, 30) & 8 (0, 31) \\ 
+Other animal-based foods\textsuperscript{\textit{2}} & 475 (361, 603) & 448 (322, 604) \\ 
+Healthy plant-based foods\textsuperscript{\textit{3}} & 1,806 (1,454, 2,198) & 1,791 (1,365, 2,158) \\ 
+Unhealthy plant-based foods\textsuperscript{\textit{4}} & 472 (324, 662) & 491 (365, 698) \\ 
+Alcoholic beverages & 132 (0, 342) & 144 (0, 375) \\ 
 \bottomrule
-\end{longtable}
-\finishlandscape
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Median (IQR)\\
+\textsuperscript{\textit{2}}Other animal-based foods include: poultry, fish, dairy, eggs, and mixed dishes with animal products.\\
+\textsuperscript{\textit{3}}Healthy plant-based foods include: whole grains, vegetables, fruits, nuts, plant oils, and beverages (coffee, tea, water).\\
+\textsuperscript{\textit{4}}Unhealthy plant-based foods includes: refined grains, potatoes, mixed vegetarian dishes, sweets and snacks, fruit juice, and sugar sweetened beverages.\\
+\end{minipage}
+\end{table*}
 
-\section{Introduction}\label{introduction}
+No evidence of associations was found for substituting 15 g/day of
+legumes with 15 g/day of total red meat, unprocessed red meat, or
+processed red meat and risk of primary liver cancer in Model 1 (Table
+\ref{tab-main}: total red meat: HR: 0.98, 95\% CI: 0.93-1.04;
+unprocessed red meat: HR: 0.97, 95\% CI: 0.91-1.03; processed red meat:
+HR: 1.02, 95\% CI: 0.93-1.13). The estimated associations changed
+minimally with further adjustments. There was weak evidence of an
+association between replacement of processed red meat with legumes ( HR:
+1.09, 95\% CI: 0.98-1.20; Table \ref{tab-main}).
 
-The introduction should briefly place the study in a broad context and
-highlight why it is important. It should define the purpose of the work
-and its significance. The current state of the research field should be
-reviewed carefully and key publications cited. Please highlight
-controversial and diverging hypotheses when necessary. Finally, briefly
-mention the main aim of the work and highlight the principal
-conclusions. As far as possible, please keep the introduction
-comprehensible to scientists outside your particular field of research.
-Citing a journal paper
-\citep{bertrand-krajewski_distribution_1998, leutnant_stormwater_2016}.
-And now citing a book reference \citet{gujer_systems_2008}. Some MDPI
-journals use Chicago and others use APA, this template should choose the
-correct citation format for you once you specify the journal in the YAML
-header.
-
-To use endnotes, change \texttt{endnotes:\ true} in the YAML header,
-then use \texttt{\textbackslash{}endnote\{This\ is\ an\ endnote.\}}.
-
-\section{Materials and Methods}\label{materials-and-methods}
-
-Materials and Methods should be described with sufficient details to
-allow others to replicate and build on published results. Please note
-that publication of your manuscript implicates that you must make all
-materials, data, computer code, and protocols associated with the
-publication available to readers. Please disclose at the submission
-stage any restrictions on the availability of materials or information.
-New methods and protocols should be described in detail while
-well-established methods can be briefly described and appropriately
-cited.
-
-Research manuscripts reporting large datasets that are deposited in a
-publicly available database should specify where the data have been
-deposited and provide the relevant accession numbers. If the accession
-numbers have not yet been obtained at the time of submission, please
-state that they will be provided during review. They must be provided
-prior to publication.
-
-Interventionary studies involving animals or humans, and other studies
-require ethical approval must list the authority that provided approval
-and the corresponding ethical approval code.
-
-\section{Results}\label{results}
-
-This section may be divided by subheadings. It should provide a concise
-and precise description of the experimental results, their
-interpretation as well as the experimental conclusions that can be
-drawn.
-
-\subsection{Subsection Heading Here}\label{subsection-heading-here}
-
-Subsection text here.
-
-\subsubsection{Subsubsection Heading
-Here}\label{subsubsection-heading-here}
-
-Bulleted lists look like this:
-
-\begin{itemize}
-\tightlist
-\item
-  First bullet
-\item
-  Second bullet
-\item
-  Third bullet
-\end{itemize}
-
-Numbered lists can be added as follows:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  First item
-\item
-  Second item
-\item
-  Third item
-\end{enumerate}
-
-The text continues here.
-
-\subsection{Figures, Tables and
-Schemes}\label{figures-tables-and-schemes}
-
-All figures and tables should be cited in the main text as Figure
-\ref{fig:fig1}, \ref{tab:tab1}, etc. To get cross-reference to figure
-generated by R chunks include the
-\texttt{\textbackslash{}\textbackslash{}label\{\}} tag in the
-\texttt{fig.cap} attribute of the R chunk:
-\texttt{fig.cap\ =\ "Fancy\ Caption\textbackslash{}\textbackslash{}label\{fig:plot\}"}.
-
-\begin{figure}
-\centering
-\includegraphics{legliv-nutrients_files/figure-latex/fig1-1.pdf}
-\caption{A figure added with a code chunk.\label{fig:fig1}}
-\end{figure}
-
-When making tables using \texttt{kable}, it is suggested to use the
-\texttt{format="latex"} and \texttt{tabl.envir="table"} arguments to
-ensure table numbering and compatibility with the mdpi document class.
-
-\begin{table}[H]
-
-\caption{\label{tab:tab1}This is a table caption. Tables should be placed in the 
-             main text near to the first time they are~cited.}
-\begin{tabular}[t]{lccc}
+\begin{table*}[!t]
+\caption{{\small \textbf{Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95\% confidence intervals for primary liver cancer.}}}\label{tab-main}
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
-  & mpg & cyl & disp\\
-\midrule
-Mazda RX4 & 21.0 & 6 & 160\\
-Mazda RX4 Wag & 21.0 & 6 & 160\\
-Datsun 710 & 22.8 & 4 & 108\\
-Hornet 4 Drive & 21.4 & 6 & 258\\
-Hornet Sportabout & 18.7 & 8 & 360\\
+ & {\bfseries \textbf{Model 1}}\textsuperscript{\textit{1}} & {\bfseries \textbf{Model 2}}\textsuperscript{\textit{2}} \\ 
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+\textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\ 
+\midrule\addlinespace[2.5pt]
+Total red meat & 0.98 (0.93-1.04) & 1.02 (0.96-1.08) \\ 
+Unprocessed red meat & 0.97 (0.91-1.03) & 1.00 (0.94-1.07) \\ 
+Processed red meat & 1.02 (0.93-1.13) & 1.09 (0.98-1.20) \\ 
 \bottomrule
-\end{tabular}
-\end{table}
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Adjusted for age (as underlying timescale), other food groups, and total food intake.\\
+\textsuperscript{\textit{2}}Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.\\
+\end{minipage}
+\end{table*}
 
-For a very wide table, landscape layouts are allowed.
+In secondary analyses, when analyzing the associations between
+replacement of meat with legumes and HCC or ICC separately, weak
+evidence of a higher risk of HCC was observed (Table \ref{tab-cancer},
+total red meat: HR: 1.06, 95\% CI: 0.97-1.16; red meat: HR: 1.05, 95\%
+CI: 0.96-1.15; processed red meat: HR: 1.09, 95\% CI: 0.95-1.26). This
+was similar for ICC (Table \ref{tab-cancer}, total red meat: HR: 0.97,
+95\% CI: 0.90-1.05; red meat: HR: 0.95, 95\% CI: 0.87-1.03; processed
+red meat: HR: 1.07, 95\% CI: 0.93- 1.22). The magnitude or direction of
+associations were not significantly different across strata of liver
+cancer types.
 
-\startlandscape
+In the adjusted non-substitution analysis, only the first quartile of
+legume intake (mean intake 6.3 grams/day) was associated with a lower
+risk of liver cancer, compared to no intake (HR: 0.59, 95\% CI:
+0.35-0.98); no associations were observed for quartiles 2, 3 or 4
+compared to no intake (Table \ref{tab-legume}).
 
-\begin{table}[H]
+In sensitivity analyses, excluding participants based on high alcohol
+intake, implau- sible energy intake, any liver disease or cancer before
+baseline, or fewer than 3 completed Oxford WebQs did not alter the
+estimates appreciably. Similar results were also found when including
+death registries as a source of liver cancer cases and when excluding
+waist circumference from the fully adjusted analysis (Supplementary
+table \ref{tab-sens}).
 
-\caption{\label{tab:tab2}This is a very wide table}
-\begin{tabular}[t]{cccc}
-\toprule
-Title.1 & Title.2 & Title.3 & Title.4\\
-\midrule
-Entry 1 & Data & Data & This cell has some longer content that runs over
-                               two lines\\
-Entry 2 & Data & Data & Data\\
-\bottomrule
-\end{tabular}
-\end{table}
+\hypertarget{sec4}{%
+\section{Discussion}\label{sec4}}
 
-\finishlandscape
+Contrary to our hypothesis, in this study we found little evidence of an
+association between replacing 15g/day of red or processed meat with
+legumes on risk of primary liver cancer. The estimates were robust to
+our sensitivity analyses. When investigating liver cancer types
+separately, replacing total red meat and unprocessed red meat with
+legumes showed some weak evidence of an inverse association with ICC.
+Our results for legume intake without specified substitutions did not
+show a clear pattern of association.
 
-\subsection{Formatting of Mathematical
-Components}\label{formatting-of-mathematical-components}
+This study had some limitations. First, none of the registries used to
+determine a diagnosis of liver cancer were complete or up-to-date at the
+time of analysis \citep{RN112}. Data from external providers, such as
+the NHS England, NHS Central Register or National Records of Scotland,
+were estimated to be mostly complete by the UK Biobank at various dates,
+ranging from 31 December 2016 for cancer data from Wales to 31 October
+2022 for hospital inpatient data from England \citep{RN114}. This could
+introduce misclassification of the outcome, as individuals with liver
+cancer may not be identified as cases. However, the estimates were
+robust in a sensitivity analysis that included death registries as an
+additional source of liver cancer diagnoses to accommodate missing
+outcome events. Incorrectly classifying non-cases as cases would lead to
+attenuation of our results, but this is unlikely due to register
+linkage. Second, the relatively low number of events limited our ability
+to adjust for confounding factors. Excessive adjustment parameters per
+event can compromise the validity of the multivariable Cox regression
+model, potentially causing biased estimates. To ensure statistical
+validity, we aimed for at least 10 events per variable in the main
+analysis by limiting the number of adjustment levels, using fewer and
+broader food groups, and fewer levels for categorical covariates. This
+approach was guided by our \emph{a priori} causal assumptions. Although
+this method helped maintain statistical validity, it may have increased
+residual confounding by diluting the importance of specific food groups.
+Additionally, risk factors that we could not adjust for, such as
+aflatoxin B1, a known liver carcinogen, may have contributed to residual
+confounding. Third, by specifying that the dietary exposure was
+collected on at least two occasions, our study population suffered
+considerable attrition. This is unlikely to be completely at random, and
+most likely resulted in a study population with greater focus on their
+dietary habits. For example, the mean intake of processed meat was low
+in our study population. If a diet consisting of higher intakes of
+healthier plant-based foods is associated with lower liver cancer
+incidence, our study population may be at lower risk overall, thus
+reducing the power of our study to detect an association.
 
-This is an example of an equation:
+Information on dietary intake was collected using self-reported 24-hour
+diet recall questionnaires. Strengths of this study are the prospective
+longitudinal design, which establish temporality between the diet
+exposure and liver cancer outcome, and the large sample size, which
+enabled analyses of a rare cancer. Though health registries may have
+been only partially up to date, using registries almost eliminates
+selection bias due to loss to follow-up. Estimates were robust to
+exclusion of participants with fewer than three completed Oxford WebQs,
+indicating that at least two 24-hour diet recall measurements were
+sufficient to estimate diet over time. Further, our specified
+substitution analyses have some strengths in contrast to traditional
+methods in nutritional epidemiology through examining the effect of
+consuming a food or nutrient while holding all other foods constant. The
+substitution is easily interpretable and reflects the implications that
+an increased intake of a food is at the expense a decreased intake of
+other foods. In that sense, the food substitution model mimics some
+aspects of a randomized controlled design.
 
-\[
-a = 1.
-\]
+Contrary to our hypothesis, replacing processed red meat with legumes
+was associated with a non-significant increase in risk of primary liver
+cancer, with a greater effect size compared to unprocessed red meat.
+This pattern persisted across all sensitivity analyses. However, the
+estimates for processed red meat were labeled with less confidence,
+partly due to the low median intake. These findings align with recent
+analyses from the UK Biobank, which indicated that unprocessed red meat
+intake was associated with a non-significant increase in liver cancer
+risk, with a greater effect size than processed meat (both white and red
+meat) \citep{Knuppel2020}. This supports the notion that processed meat
+may not be associated with liver cancer risk in this population.
 
-If you want numbered equations use Latex and wrap in the equation
-environment:
+The literature on food substitutions, particularly in relation to liver
+cancer, is sparse. Accordingly, we also conducted an analysis of legume
+intake without specifying food substitutions. However, a recent
+meta-anlysis of observational studies found a non-linear dose-response
+relationship between legume intake and liver cancer risk, with a
+protective effect observed between intakes of 8 g/day to 40 g/day
+\citep{liu2023a}. This somewhat contrasts with our findings where any
+increase above 6.3 g/day of legumes was not associated with a decreased
+risk of liver cancer, compared to no legume intake. A recent
+meta-analysis of observational studies showed no association between red
+or processed meat intake and HCC \citep{Di2023}.
 
-\begin{equation}
-a = 1,
-\end{equation}
+\hypertarget{sec5}{%
+\section{Conclusion}\label{sec5}}
 
-the text following an equation need not be a new paragraph. Please
-punctuate equations as regular text.
-
-This is the example 2 of equation:
-
-\begin{adjustwidth}{-\extralength}{0cm}
-\begin{equation}
-a = b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + 
-u + v + w + x + y + z
-\end{equation}
-\end{adjustwidth}
-
-Theorem-type environments (including propositions, lemmas, corollaries
-etc.) can be formatted as follows:
-
-Example of a theorem:
-
-\begin{Theorem}
-Example text of a theorem
-
-\end{Theorem}
-
-The text continues here. Proofs must be formatted as follows:
-
-Example of a proof:
-
-\begin{proof}[Proof of Theorem1]
-Text of the proof. Note that the phrase ``of Theorem 1'\,' is optional
-if it is clear which theorem is being referred to.
-
-\end{proof}
-
-The text continues here.
-
-\section{Discussion}\label{discussion}
-
-Authors should discuss the results and how they can be interpreted in
-perspective of previous studies and of the working hypotheses. The
-findings and their implications should be discussed in the broadest
-context possible. Future research directions may also be highlighted.
-
-\section{Conclusion}\label{conclusion}
-
-This section is not mandatory, but can be added to the manuscript if the
-discussion is unusually long or complex.
-
-\section{Patents}\label{patents}
-
-This section is not mandatory, but may be added if there are patents
-resulting from the work reported in this manuscript.
+Supplementary table \ref{tab-sens}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -658,85 +713,21 @@ resulting from the work reported in this manuscript.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% optional
 \supplementary{The following supporting information can be downloaded
-at:\\
-\linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1:
-title.}
+at:}
 
 % Only for the journal Methods and Protocols:
 % If you wish to submit a video article, please do so with any other supplementary material.
 % \supplementary{The following supporting information can be downloaded at: \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title. A supporting video article is available at doi: link.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\authorcontributions{For research articles with several authors, a short
-paragraph specifying their individual contributions must be provided.
-The following statements should be used ``X.X. and Y.Y. conceive and
-designed the experiments; X.X. performed the experiments; X.X. and Y.Y.
-analyzed the data; W.W. contributed reagents/materials/analysis tools;
-Y.Y. wrote the paper.'\,' Authorship must be limited to those who have
-contributed substantially to the work reported.}
 
-\funding{Please add:
-\texttt{This\ research\ received\ no\ external\ funding\textquotesingle{}\textquotesingle{}\ or}This
-research was funded by NAME OF FUNDER grant number XXX.'\,' and and
-``The APC was funded by XXX'\,'. Check carefully that the details given
-are accurate and use the standard spelling of funding agency names at
-\url{https://search.crossref.org/funding}, any errors may affect your
-future funding.}
+\funding{This research received no external funding.}
 
-\institutionalreview{In this section, you should add the Institutional
-Review Board Statement and approval number, if relevant to your study.
-You might choose to exclude this statement if the study did not require
-ethical approval. Please note that the Editorial Office might ask you
-for further information. Please add ``The study was conducted in
-accordance with the Declaration of Helsinki, and approved by the
-Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE
-(protocol code XXX and date of approval).'' for studies involving
-humans. OR ``The animal study protocol was approved by the Institutional
-Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code
-XXX and date of approval).'' for studies involving animals. OR ``Ethical
-review and approval were waived for this study due to REASON (please
-provide a detailed justification).'' OR ``Not applicable'' for studies
-not involving humans or animals.}
 
-\informedconsent{Any research article describing a study involving
-humans should contain this statement. Please add
-\texttt{Informed\ consent\ was\ obtained\ from\ all\ subjects\ \ involved\ in\ the\ study.\textquotesingle{}\textquotesingle{}\ OR}Patient
-consent was waived due to REASON (please provide a detailed
-justification).'\,' OR ``Not applicable'\,' for studies not involving
-humans. You might also choose to exclude this statement if the study did
-not involve humans.
 
-Written informed consent for publication must be obtained from
-participating patients who can be identified (including by the patients
-themselves). Please state ``Written informed consent has been obtained
-from the patient(s) to publish this paper'\,' if applicable.}
 
-\dataavailability{We encourage all authors of articles published in MDPI
-journals to share their research data. In this section, please provide
-details regarding where data supporting reported results can be found,
-including links to publicly archived datasets analyzed or generated
-during the study. Where no new data were created, or where data is
-unavailable due to privacy or ethical re-strictions, a statement is
-still required. Suggested Data Availability Statements are available in
-section ``MDPI Research Data Policies'' at
-\url{https://www.mdpi.com/ethics}.}
 
-\acknowledgments{All sources of funding of the study should be
-disclosed. Please clearly indicate grants that you have received in
-support of your research work. Clearly state if you received funds for
-covering the costs to publish in open access.}
-
-\conflictsofinterest{Declare conflicts of interest or state `The authors
-declare no conflict of interest.' Authors must identify and declare any
-personal circumstances or interest that may be perceived as
-inappropriately influencing the representation or interpretation of
-reported research results. Any role of the funding sponsors in the
-design of the study; in the collection, analyses or interpretation of
-data in the writing of the manuscript, or in the decision to publish the
-results must be declared in this section. If there is no role, please
-state `The founding sponsors had no role in the design of the study; in
-the collection, analyses, or interpretation of data; in the writing of
-the manuscript, an in the decision to publish the results'.}
+\conflictsofinterest{The authors declare no conflict of interest.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Optional
@@ -748,10 +739,9 @@ The following abbreviations are used in this manuscript:\\
 
 \noindent
 \begin{tabular}{@{}ll}
-MDPI & Multidisciplinary Digital Publishing Institute \\
-DOAJ & Directory of open access journals \\
-TLA & Three letter acronym \\
-LD & linear dichroism \\
+NAFLD & Non-alcoholic fatty liver disease \\
+HCC & Hepatocellular carcinoma \\
+ICC & Intrahepatic cholangiocarcinoma \\
 \end{tabular}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
