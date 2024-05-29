@@ -4,14 +4,14 @@
 %% %%		latex@mdpi.com
 %% %%
 %% %%	Initial class provided by:
-%% %%		Stefano Mariani 
+%% %%		Stefano Mariani
 %% %%   Modified by:
-%% %%		Dietrich Rordorf 
-%% %%		Peter Harremoes 
-%% %%		Zeno Schumacher 
-%% %%		Maddalena Giulini 
-%% %%		Andres Gartmann 
-%% %%		Dr. Janine Daum 
+%% %%		Dietrich Rordorf
+%% %%		Peter Harremoes
+%% %%		Zeno Schumacher
+%% %%		Maddalena Giulini
+%% %%		Andres Gartmann
+%% %%		Dr. Janine Daum
 %% %%   Versions:
 %% %%		v1.0 before Dr. Janine Daum
 %% %%		v2.0 when Dr. Janine Daum started (March 2013)
@@ -50,7 +50,7 @@
 \RequirePackage{multirow}
 \RequirePackage{microtype} % For command \textls[]{}
 \RequirePackage{tikz} % For \foreach used for Orcid icon
-\RequirePackage{refcount} % To enable extracting the value of the counter "LastPage" 
+\RequirePackage{refcount} % To enable extracting the value of the counter "LastPage"
 \RequirePackage{changepage} % To adjust the width of the column for the title part and figures/tables (adjustwidth environment)
 \RequirePackage{attrib} % For XML2PDF use \tag{} for equation
 \RequirePackage{upgreek} % For making greek letters not italic
@@ -71,9 +71,9 @@
 \newcommand{\continuouspages}[1]{\gdef\@continuouspages{#1}}
 
 %% To choose the journal
-% All journals (website name, full name, short name, DOI abbreviation, and ISSN + choice of continuous page numbers) are defined in an extra file. 
+% All journals (website name, full name, short name, DOI abbreviation, and ISSN + choice of continuous page numbers) are defined in an extra file.
 \input{Definitions/journalnames}
-\DeclareOption{journal}{\ClassWarning{mdpi}{You used an invalid journal name or you have not specified the journal. The first option of the documentclass command specifies the journal. The word 'journal' should be replaced by one of the journal names specified in template.tex (in the comment 'Choose between the following MDPI journal').}} 
+\DeclareOption{journal}{\ClassWarning{mdpi}{You used an invalid journal name or you have not specified the journal. The first option of the documentclass command specifies the journal. The word 'journal' should be replaced by one of the journal names specified in template.tex (in the comment 'Choose between the following MDPI journal').}}
 
 %% To choose the type of manuscript
 \DeclareOption{abstract}{\gdef\@arttype{Abstract}}
@@ -177,47 +177,47 @@
  \newcounter{theorem}
  \setcounter{theorem}{0}
  \newtheorem{Theorem}[theorem]{Theorem}
- 
+
  \newcounter{lemma}
  \setcounter{lemma}{0}
  \newtheorem{Lemma}[lemma]{Lemma}
- 
+
  \newcounter{corollary}
  \setcounter{corollary}{0}
  \newtheorem{Corollary}[corollary]{Corollary}
- 
+
  \newcounter{proposition}
  \setcounter{proposition}{0}
  \newtheorem{Proposition}[proposition]{Proposition}
- 
+
  \newcounter{characterization}
  \setcounter{characterization}{0}
  \newtheorem{Characterization}[characterization]{Characterization}
- 
+
  \newcounter{property}
  \setcounter{property}{0}
  \newtheorem{Property}[property]{Property}
- 
+
  \newcounter{problem}
  \setcounter{problem}{0}
  \newtheorem{Problem}[problem]{Problem}
- 
+
  \newcounter{example}
  \setcounter{example}{0}
  \newtheorem{Example}[example]{Example}
- 
+
  \newcounter{examplesanddefinitions}
  \setcounter{examplesanddefinitions}{0}
  \newtheorem{ExamplesandDefinitions}[examplesanddefinitions]{Examples and Definitions}
- 
+
  \newcounter{remark}
  \setcounter{remark}{0}
  \newtheorem{Remark}[remark]{Remark}
- 
+
  \newcounter{definition}
  \setcounter{definition}{0}
  \newtheorem{Definition}[definition]{Definition}
- 
+
  \newcounter{hypothesis}
  \setcounter{hypothesis}{0}
  \newtheorem{Hypothesis}[hypothesis]{Hypothesis}
@@ -225,21 +225,21 @@
  \newcounter{notation}
  \setcounter{notation}{0}
  \newtheorem{Notation}[notation]{Notation}
- 
+
  \newcounter{assumption}
  \setcounter{assumption}{0}
  \newtheorem{Assumption}[assumption]{Assumption}
- 
+
  \newcounter{algorithm}
  \setcounter{algorithm}{0}
  \newtheorem{Algorithm}[algorithm]{Algorithm}
- 
+
  % Define left/right mark in math environment
 \let\originalleft\left
 \let\originalright\right
 \renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
 \renewcommand{\right}{\aftergroup\egroup\originalright}
- 
+
 
 %%%% References
 \RequirePackage[sort&compress,sectionbib]{natbib} % Option sectionbib is for optionally organizing references using sections (author request)
@@ -313,16 +313,16 @@
 % After TeXLive 2021, \AddToHook{begindocument} is needed to make sure that hyperref is loaded last. \ifdef{\AddToHook{begindocument}}{ is needed for backwards-compatibility because \AddToHook{begindocument} did not yet exist in 2020.
 % After TeXLive 2022, \AddToHook{begindocument/before}{} is needed and  \DeclareHookRule{begindocument}{hyperref}{before}{mdpi} needs to be added because of the new version of hyperref.
 \newcommand{\hyperrefpackage}{
-\ifthenelse{\equal{\@arttype}{Book} 
+\ifthenelse{\equal{\@arttype}{Book}
 	\OR \equal{\@arttype}{Monograph}}{
 	\RequirePackage[unicode=true,
 	bookmarksopen={true},
-	pdffitwindow=true, 
-	colorlinks=true, 
-	linkcolor=black, 
-	citecolor=black, 
-	urlcolor=black, 
-	hyperfootnotes=false, 
+	pdffitwindow=true,
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=black,
+	urlcolor=black,
+	hyperfootnotes=false,
 	pdfstartview={FitH},
 	pdfpagemode=UseNone,
 	pdfpagelabels]{hyperref}
@@ -330,39 +330,39 @@
 	\ifthenelse{\equal{\@journal}{laws}}{
 	\RequirePackage[unicode=true,
 	bookmarksopen={true},
-	pdffitwindow=true, 
-	colorlinks=true, 
-	linkcolor=bluecite, 
-	citecolor=bluecite, 
-	urlcolor=bluecite, 
-	hyperfootnotes=false, 
+	pdffitwindow=true,
+	colorlinks=true,
+	linkcolor=bluecite,
+	citecolor=bluecite,
+	urlcolor=bluecite,
+	hyperfootnotes=false,
 	pdfstartview={FitH},
 	pdfpagemode= UseNone]{hyperref}
 	}{
 	\RequirePackage[unicode=true,
 	bookmarksopen={true},
-	pdffitwindow=true, 
-	colorlinks=true, 
-	linkcolor=bluecite, 
-	citecolor=bluecite, 
-	urlcolor=bluecite, 
-	hyperfootnotes=true, 
+	pdffitwindow=true,
+	colorlinks=true,
+	linkcolor=bluecite,
+	citecolor=bluecite,
+	urlcolor=bluecite,
+	hyperfootnotes=true,
 	pdfstartview={FitH},
 	pdfpagemode= UseNone]{hyperref}
-	} 
+	}
 }
 \RequirePackage[capitalise,noabbrev]{cleveref}
 }
 \ifdef{\AddToHook}{
 \DeclareHookRule{begindocument}{hyperref}{before}{mdpi}
-	\AddToHook{begindocument/before}{ 
+	\AddToHook{begindocument/before}{
 		\hyperrefpackage
 		}
 	}{
 	\hyperrefpackage
 }
 %% To have the possibility to change the urlcolor
-\newcommand{\changeurlcolor}[1]{\hypersetup{urlcolor=#1}} 
+\newcommand{\changeurlcolor}[1]{\hypersetup{urlcolor=#1}}
 
 %% Cleveref definitions
 \newcommand{\cleverefDefinitions}{
@@ -375,7 +375,7 @@
 	\crefname{paragraph}{Section}{Sections}
 	\crefrangelabelformat{figure}{##3##1##4--##5##2##6} % double # for nesting inside \newcommand
 	\crefrangelabelformat{table}{##3##1##4--##5##2##6}
-	\crefrangelabelformat{section}{##3##1##4--##5##2##6}	
+	\crefrangelabelformat{section}{##3##1##4--##5##2##6}
 	\crefrangelabelformat{appendix}{##3##1##4--##5##2##6}
 	\crefrangelabelformat{scheme}{##3##1##4--##5##2##6}
 	\crefrangelabelformat{chart}{##3##1##4--##5##2##6}
@@ -463,8 +463,8 @@
 		\@AuthorCitation%
 		\IfEndWith{\meaning\@AuthorCitation}{.}{ }{. }% Remove period if author name ends with "."
 		{\@pubyear}. %
-		\@TitleCitation% 
-		\IfEndWith{\meaning\@TitleCitation}{?}{ }{% 
+		\@TitleCitation%
+		\IfEndWith{\meaning\@TitleCitation}{?}{ }{%
 			\IfEndWith{\meaning\@TitleCitation}{!}{ }{%
 				\IfEndWith{\meaning\@TitleCitation}{.}{ }{. }%
 				}%
@@ -474,8 +474,8 @@
 		}{%
 		\@AuthorCitation%
 		\IfEndWith{\meaning\@AuthorCitation}{.}{ }{. }% Remove period if author name ends with "."
-		\@TitleCitation% 
-		\IfEndWith{\meaning\@TitleCitation}{?}{ }{% 
+		\@TitleCitation%
+		\IfEndWith{\meaning\@TitleCitation}{?}{ }{%
 			\IfEndWith{\meaning\@TitleCitation}{!}{ }{%
 				\IfEndWith{\meaning\@TitleCitation}{.}{ }{. }%
 				}%
@@ -548,11 +548,11 @@
 % For \@pubvolume, \@issuenum, and \@articlenumber: create command to cut leading zeros
 \newcommand\cutdigits[1]{%
 	\ifnum#1>0 %
-		\number#1 
+		\number#1
 	\else
 		\ifnum#1<10000 %
 			\number#1
-		\else             
+		\else
 			error
 		\fi
 	\fi
@@ -564,7 +564,7 @@
 \newcommand{\address}[2][]{\renewcommand{\firstargument}{#1}\gdef\@address{#2}}
 \newcommand{\corresfirstargument}{}
 \def\@corres{}
-\newcommand{\corres}[2][]{\renewcommand{\corresfirstargument}{#1}\gdef\@corres{#2}} 
+\newcommand{\corres}[2][]{\renewcommand{\corresfirstargument}{#1}\gdef\@corres{#2}}
 \def\@conference{}
 \newcommand{\conference}[1]{\gdef\@conference{#1}}%
 \def\@abstract{}
@@ -574,20 +574,20 @@
 \def\@LSID{}
 \newcommand{\LSID}[1]{\gdef\@LSID{#1}}
 \def\@datereceived{}
-\newcommand{\datereceived}[1]{\gdef\@datereceived{#1}} 
+\newcommand{\datereceived}[1]{\gdef\@datereceived{#1}}
 \def\@daterevised{}
-\newcommand{\daterevised}[1]{\gdef\@daterevised{#1}} 
+\newcommand{\daterevised}[1]{\gdef\@daterevised{#1}}
 \def\@dateaccepted{}
-\newcommand{\dateaccepted}[1]{\gdef\@dateaccepted{#1}} 
-\newcommand{\datepublished}[1]{\gdef\@datepublished{#1}} 
+\newcommand{\dateaccepted}[1]{\gdef\@dateaccepted{#1}}
+\newcommand{\datepublished}[1]{\gdef\@datepublished{#1}}
 \def\@datecorrected{}
 \newcommand{\datecorrected}[1]{\gdef\@datecorrected{#1}}
 \def\@dateretracted{}
 \newcommand{\dateretracted}[1]{\gdef\@dateretracted{#1}}
 \def\@pacs{}
-\newcommand{\PACS}[1]{\gdef\@pacs{#1}} 
+\newcommand{\PACS}[1]{\gdef\@pacs{#1}}
 \def\@msc{}
-\newcommand{\MSC}[1]{\gdef\@msc{#1}} 
+\newcommand{\MSC}[1]{\gdef\@msc{#1}}
 \def\@jel{}
 \newcommand{\JEL}[1]{\gdef\@jel{#1}}
 \def\@keyword{}
@@ -662,7 +662,7 @@
 		\OR \equal{\@arttype}{Monograph}}{%
 	\fancypagestyle{plain}{%
 		\fancyhf{}
-        		\fancyfoot[C]{\footnotesize\thepage}	
+        		\fancyfoot[C]{\footnotesize\thepage}
 		}
 	}{%
 	\ifthenelse{\equal{\@arttype}{Supfile}}{
@@ -719,7 +719,7 @@
 			}
 			}
 		}%
-	}%	
+	}%
 
 
 %%%% Maketitle part 1: Logo, Arttype, Title, Author
@@ -752,7 +752,7 @@
 		\ifthenelse{\equal{\@journal}{preprints}
 			\OR \equal{\@arttype}{Book}
 			\OR \equal{\@arttype}{Monograph}}{}{%
-				\ifthenelse{\equal{\@status}{submit}}{%	
+				\ifthenelse{\equal{\@status}{submit}}{%
 					\hfill \href{https://www.mdpi.com}{%
 					\includegraphics[height=1cm]{Definitions/logo-mdpi.eps}}%
 					}{
@@ -781,7 +781,7 @@
 		\ifthenelse{\equal{\@arttype}{Book}
 			\OR \equal{\@arttype}{Monograph}}{}{
 			\textit{\@arttype}%
-			}%	
+			}%
  	   	\par%
     		}%1
     		{%2
@@ -821,7 +821,7 @@
 			}{
 			\marginnote[\contentleftcolumn]{}% Alignment with the affiliations
 		}
-	\ifthenelse{\equal{\@arttype}{Monograph}}{\vspace{-2cm}}{}	
+	\ifthenelse{\equal{\@arttype}{Monograph}}{\vspace{-2cm}}{}
 	}
 
 %%%% Commands for hanging indent
@@ -833,7 +833,7 @@
 
 % Split content into five parts
 \newcommand{\leftcolFont}{%
-	\linespread{1.71} 
+	\linespread{1.71}
 	\fontsize{7}{7}\selectfont
 	\justify
 	\hyphenpenalty=10000
@@ -864,7 +864,7 @@
 			\vspace{-1pt}
 			}
 	}
-}	
+}
 
 % Part 3: Dates
 \newcommand{\leftcolDates}{
@@ -915,9 +915,9 @@
 	\leftcolFont
 	\cright
 }
-	
+
 % Content of the left column. The marginnote with this content will be placed it at the very top of the first page to have a fixed reference point
-\newcommand{\contentleftcolumn}{ 
+\newcommand{\contentleftcolumn}{
 \ifthenelse{\equal{\@arttype}{Supfile}}{}{
 	\leftcolUpdateCitation\vspace{-2pt} 	%1
 	\leftcolExternalEditor 			%2
@@ -949,18 +949,18 @@
 \def\@leftcolumnsplit{}
 \newcommand{\leftcolumnsplit}[1]{\gdef\@leftcolumnsplit{#1}}
 
-% Split option 1	
+% Split option 1
 \newcommand{\OptionOneA}{
 	\leftcolUpdateCitation\vspace{-2pt} %1
 	\leftcolExternalEditor %2
 	\leftcolDates\vspace{-2pt} %3
 }
-		
+
 \newcommand{\OptionOneB}{
 	\leftcolumnCright %4
 }
 
-% Split option 2	
+% Split option 2
 \newcommand{\OptionTwoA}{
 	\leftcolUpdateCitation\vspace{-2pt} %1
 	\leftcolExternalEditor\vspace{-10pt} %2
@@ -983,7 +983,7 @@
 }
 
 %%%% Maketitle part 2
-\newcommand{\maketitlen}{ 
+\newcommand{\maketitlen}{
 	\ifthenelse{\equal{\@arttype}{Book}
 	\OR \equal{\@arttype}{Monograph}}{\vspace{12pt}}{%
 	\begin{flushleft}
@@ -1010,7 +1010,7 @@
 	}%
 	{%
 	\ifthenelse{\equal{\@firstnote}{\@empty}}{}{%
-	\hang\ifthenelse{\equal{\@conference}{\@empty}}{$^\dagger$}{$^\ddagger$} \tabto{\dist} \@firstnote}	
+	\hang\ifthenelse{\equal{\@conference}{\@empty}}{$^\dagger$}{$^\ddagger$} \tabto{\dist} \@firstnote}
 	\par
 	}%
 	{%
@@ -1068,7 +1068,7 @@
 	\noindent\textbf{Featured Application:\space\@featuredapplication}
 	\vspace{12pt}
 	\par
-}	
+}
 %
 %10
 \ifthenelse{\equal{\@simplesumm}{\@empty}}{}{
@@ -1166,7 +1166,7 @@
 		\abstractkeywords
 	}%
 }
-	
+
 \AtBeginDocument{
 	\calculateMyLen
 	\DeclareSymbolFont{AMSb}{U}{msb}{m}{n}
@@ -1290,14 +1290,14 @@
 \setcounter{theorem}{0}
 \setcounter{lemma}{0}
 \setcounter{corollary}{0}
-\setcounter{proposition}{0} 
-\setcounter{characterization}{0} 
-\setcounter{property}{0} 
-\setcounter{problem}{0} 
-\setcounter{example}{0} 
-\setcounter{examplesanddefinitions}{0} 
-\setcounter{remark}{0} 
-\setcounter{definition}{0} 
+\setcounter{proposition}{0}
+\setcounter{characterization}{0}
+\setcounter{property}{0}
+\setcounter{problem}{0}
+\setcounter{example}{0}
+\setcounter{examplesanddefinitions}{0}
+\setcounter{remark}{0}
+\setcounter{definition}{0}
 \setcounter{hypothesis}{0}
 \setcounter{notation}{0}
 \setcounter{algorithm}{0}
@@ -1338,26 +1338,26 @@
 \gdef\theHsection{\@Alph\c@section.}% for hyperref
 \gdef\theHsubsection{\@Alph\c@section.\@arabic\c@subsection}% for hyperref
 \csname appendixmore\endcsname
-\renewcommand{\thefigure}{A\arabic{figure}}
-\renewcommand{\thetable}{A\arabic{table}}
-\renewcommand{\thescheme}{A\arabic{scheme}}
-\renewcommand{\thechart}{A\arabic{chart}}
-\renewcommand{\theboxenv}{A\arabic{boxenv}}
-\renewcommand{\theequation}{A\arabic{equation}}
-\renewcommand{\thetheorem}{A\arabic{theorem}}
-\renewcommand{\thelemma}{A\arabic{lemma}}
-\renewcommand{\thecorollary}{A\arabic{corollary}}
-\renewcommand{\theproposition}{A\arabic{proposition}} 
-\renewcommand{\thecharacterization}{A\arabic{characterization}}
-\renewcommand{\theproperty}{A\arabic{property}}
-\renewcommand{\theproblem}{A\arabic{problem}}
-\renewcommand{\theexample}{A\arabic{example}}
-\renewcommand{\theexamplesanddefinitions}{A\arabic{examplesanddefinitions}}
-\renewcommand{\theremark}{A\arabic{remark}}
-\renewcommand{\thedefinition}{A\arabic{definition}}
-\renewcommand{\thehypothesis}{A\arabic{hypothesis}}
-\renewcommand{\thenotation}{A\arabic{notation}}
-\renewcommand{\thealgorithm}{A\arabic{algorithm}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thescheme}{S\arabic{scheme}}
+\renewcommand{\thechart}{S\arabic{chart}}
+\renewcommand{\theboxenv}{S\arabic{boxenv}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thetheorem}{S\arabic{theorem}}
+\renewcommand{\thelemma}{S\arabic{lemma}}
+\renewcommand{\thecorollary}{S\arabic{corollary}}
+\renewcommand{\theproposition}{S\arabic{proposition}}
+\renewcommand{\thecharacterization}{S\arabic{characterization}}
+\renewcommand{\theproperty}{S\arabic{property}}
+\renewcommand{\theproblem}{S\arabic{problem}}
+\renewcommand{\theexample}{S\arabic{example}}
+\renewcommand{\theexamplesanddefinitions}{S\arabic{examplesanddefinitions}}
+\renewcommand{\theremark}{S\arabic{remark}}
+\renewcommand{\thedefinition}{S\arabic{definition}}
+\renewcommand{\thehypothesis}{S\arabic{hypothesis}}
+\renewcommand{\thenotation}{S\arabic{notation}}
+\renewcommand{\thealgorithm}{S\arabic{algorithm}}
 }
 
 
@@ -1385,7 +1385,7 @@
 					paperheight=244mm,
 					footskip=20pt,
 					headsep=24pt,
-					%includehead, 
+					%includehead,
 					includefoot]{geometry}
 	}{
 	\RequirePackage[left=5.87cm, %1.27 cm + 0.51 cm + 4.1 cm = 5.87 cm (= 1.27 cm + marginparwidth + marginparsep)
@@ -1407,7 +1407,7 @@
 	\fancyfootoffset[L]{\extralength}%
 } % Footer into the margin
 
-\linespread{1.05} 
+\linespread{1.05}
 \setlength{\parindent}{0.75cm}
 
 %%%% Commands for landscape page
@@ -1437,12 +1437,12 @@
 %%%% Figures and tables
 \RequirePackage{newfloat}
 \DeclareFloatingEnvironment[]{listing}
-\DeclareFloatingEnvironment[name=Box]{boxenv}	
+\DeclareFloatingEnvironment[name=Box]{boxenv}
 \DeclareFloatingEnvironment[]{chart}
 \DeclareFloatingEnvironment[]{scheme}
 \DeclareFloatingEnvironment[]{figurewide}
 
-\RequirePackage{caption} 
+\RequirePackage{caption}
 \captionsetup[figure]{position=bottom, 	labelfont={bf, small, stretch=1.17}, labelsep=period, textfont={small, stretch=1.17}, aboveskip=6pt, belowskip=-6pt, singlelinecheck=off, justification=justified}
 
 \captionsetup[scheme]{position=bottom,	labelfont={bf, small, stretch=1.17}, labelsep=period, textfont={small, stretch=1.17}, aboveskip=6pt, belowskip=-6pt, singlelinecheck=off, justification=justified}
@@ -1494,7 +1494,7 @@
 	\renewcommand{\thetable}{S\arabic{table}}%
 	}{}%
 
-%% Link to supplementary material: www.mdpi.com/ISSN-number/volume-number/issue-number/article-number	
+%% Link to supplementary material: www.mdpi.com/ISSN-number/volume-number/issue-number/article-number
 \newcommand{\linksupplementary}[1]{\url{https://www.mdpi.com/article/\@doinum/#1}}
 
 
@@ -1530,7 +1530,7 @@
 			\rule{\fulllength}{0.4pt}%
 		}%
 	}
-	
+
 \rhead{%
 \ifthenelse{\equal{\@arttype}{Book}
 \OR \equal{\@arttype}{Monograph}}{}{%
@@ -1670,7 +1670,7 @@
 				{\justifying\textbf{Copyright:} \copyright \ {\@copyrightyear} by the \@authornum.\linebreak%
 				Licensee MDPI, Basel, Switzerland.\linebreak%
 				This article is an open access article %
-				distributed under the terms and \linebreak% 
+				distributed under the terms and \linebreak%
 				conditions of the Creative Commons Attribution %
 				\ifthenelse{\equal{\@journal}{ijtpp}}{(CC BY-NC-ND)}{(CC BY)} %
 				license %
@@ -1686,7 +1686,7 @@
 		}
 	}
 
-	
+
 %%%% For tables XML2PDF
 \RequirePackage{seqsplit} % Use for split table column
   \newlength{\cellWidtha}
