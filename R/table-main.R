@@ -145,3 +145,5 @@ table_main <-
     locations = cells_column_spanners()
   ) %>%
   tab_options(table.width = pct(100))
+
+# table_main %>% gtsave("doc/latex-tables/table-main.tex")

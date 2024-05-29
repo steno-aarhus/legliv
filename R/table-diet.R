@@ -121,3 +121,5 @@ diet_table <-
     locations = cells_row_groups(groups = everything())
   ) %>%
   tab_options(table.width = pct(100))
+
+# diet_table %>% gtsave("doc/latex-tables/table-diet.tex")
