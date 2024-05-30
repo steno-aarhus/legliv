@@ -397,7 +397,7 @@ table_sens <-
     id = "sens1"
   ) %>%
   tab_footnote(
-    footnote = "Exclusion of the upper decile of alcohol intake (g/day) for each sex.",
+    footnote = "Exclusion of the upper decile of alcohol intake (g/day) by sex.",
     locations = cells_column_spanners(spanners = "sens1")
   ) %>%
   tab_spanner(
@@ -406,7 +406,7 @@ table_sens <-
     id = "sens2"
   ) %>%
   tab_footnote(
-    footnote = "Exclusion of participants below the 2.5th percentile and abowe the 97.5th percentile of energy intake (kJ/day) for each sex.",
+    footnote = "Exclusion of participants below the 2.5th percentile and above the 97.5th percentile of energy intake (kJ/day) by sex.",
     locations = cells_column_spanners(spanners = "sens2")
   ) %>%
   tab_spanner(
