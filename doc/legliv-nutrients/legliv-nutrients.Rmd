@@ -106,19 +106,21 @@ cirrhosis [@Younossi2016; @Younossi2020] that may in turn progress to
 HCC. A western dietary pattern high in fats and red meats and
 concurrently low in fruits, vegetables, and whole grains is associated
 with NAFLD progression [@Guo2022]. The prevalence of NAFLD-related HCC
-cases is an increasing global problem [7], and it is estimated that
-prevalent cases of NAFLD-related HCC in the US will increase by 146%,
-from 10,100 to 24,900 cases, while incident NAFLD-related HCC cases will
-increase by 137%, from 5,160 to 12,240 cases, in 2030 [@Estes2018].
+cases is an increasing global problem [@Younossi2016], and it is
+estimated that prevalent cases of NAFLD-related HCC in the US will
+increase by 146%, from 10,100 to 24,900 cases, while incident
+NAFLD-related HCC cases will increase by 137%, from 5,160 to 12,240
+cases, in 2030 [@Estes2018].
 
 The second most common primary liver cancer is the intrahepatic
 cholangiocarcinoma (ICC) [@Khan2019]. While HCC emerges from the liver
 parenchyma, ICC emerges from the bile duct. Despite being a relatively
 rare cancer, ICC is characterized by its aggressivity, late diagnosis
 and poor survival [@kirstein2016]. It is estimated that the incidence of
-ICC is on the rise worldwide [@Bergquist2015]. Recent meta-analyses have
-shown a significant adverse association between NAFLD and ICC
-[@Wongjarupong2017; @corrao2020].
+ICC is increasing in populations that are not burdened by known
+infectous and environmental risk factors [@Bergquist2015]. Recent
+meta-analyses have shown a significant adverse association between NAFLD
+and ICC [@Wongjarupong2017; @corrao2020].
 
 The impact of specific food groups on liver cancer risk is not well
 known. Observational studies suggest that intake of coffee, vegetables
@@ -143,9 +145,13 @@ legumes in relation to risk of HCC and ICC is sparse. This leaves a
 substantial gap in our current knowledge on the beneficial effects on
 primary liver cancer from substituting red meat with legumes.
 
-The main aim of this study was to estimate the effect of replacing
-unprocessed red meat, processed red meat and total red meat with legumes
-on primary liver cancer in a free-living population.
+The low incidence of liver cancer in populations not burdened by viral
+hepatitis complicates an observational prospective research design;
+nonetheless, the prospects of the burden of liver cancer on public
+health warrant investigation of preventative measures. Thus, the main
+aim of this study was to estimate the effect of replacing unprocessed
+red meat, processed red meat and total red meat with legumes on primary
+liver cancer in a free-living population.
 
 # Research Design and Methods {#sec2}
 
@@ -500,27 +506,33 @@ effect of consuming a food or nutrient while holding all other foods
 constant. The substitution is easily interpretable and reflects the
 implications that an increased intake of a food is at the expense a
 decreased intake of other foods. In that sense, the food substitution
-model mimics some aspects of a randomized controlled design. Information
-on dietary intake was collected using self-reported 24-hour diet recall
-questionnaires, which may have introduced measurement error partly due
-24-hour recalls not reflecting past dietary intake. However, estimates
-were robust to exclusion of participants with fewer than three completed
-Oxford WebQs, indicating that at least two 24-hour diet recall
-measurements were sufficient to estimate diet over time. A validation
-study of the Oxford WebQ found some person-specific biases within
-participants with a higher BMI having greater disparities for
-correlation with true intakes for some nutrients [@Greenwood2019]. We
-did not adjust for BMI, however, adjusting for waist circumference did
-not change our estimates significantly, lending some support to
-sufficient adjustment of person specific bias. Finally, by specifying
-that the dietary exposure was collected on at least two occasions, our
-study population suffered considerable attrition. This is unlikely to be
-completely at random, and most likely resulted in a study population
-with greater focus on their dietary habits. For example, the mean intake
-of processed meat was low in our study population. If a diet consisting
-of higher intakes of healthier plant-based foods is associated with
-lower liver cancer incidence, our study population may be at lower risk
-overall, thus reducing the power of our study to detect an association.
+model mimics some aspects of a randomized controlled design. A
+limitation of this research design was that the low intake of the
+substituted foods in this population restricted the size of the
+substitution, which may in turn have restricted findings of clinically
+significant effect sizes.
+
+Information on dietary intake was collected using self-reported 24-hour
+diet recall questionnaires, which may have introduced measurement error
+partly due 24-hour recalls not reflecting past dietary intake. However,
+estimates were robust to exclusion of participants with fewer than three
+completed Oxford WebQs, indicating that at least two 24-hour diet recall
+measurements were sufficient to account for natural flucturations in
+dietary intake over time. A validation study of the Oxford WebQ found
+some person-specific biases within participants with a higher BMI having
+greater disparities for correlation with true intakes for some nutrients
+[@Greenwood2019]. We did not adjust for BMI; however, adjusting for
+waist circumference did not change our estimates significantly, lending
+some support to sufficient adjustment of person specific bias. Finally,
+by specifying that the dietary exposure was collected on at least two
+occasions, our study population suffered considerable attrition. This is
+unlikely to be completely at random, and most likely resulted in a study
+population with greater focus on their dietary habits. For example, the
+mean intake of processed meat was low in our study population. If a diet
+consisting of higher intakes of healthier plant-based foods is
+associated with lower liver cancer incidence, our study population may
+be at lower risk overall, thus reducing the power of our study to detect
+an association.
 
 None of the registries used to determine a diagnosis of liver cancer
 were complete or up-to-date at the time of analysis [@RN112]. Data from
@@ -566,17 +578,27 @@ not be associated with liver cancer risk in this population.
 
 The literature on food substitutions, particularly in relation to liver
 cancer, is sparse. Accordingly, we also conducted an analysis of legume
-intake without specifying food substitutions. However, a recent
-meta-anlysis of observational studies found a non-linear dose-response
-relationship between legume intake and liver cancer risk, with a
-protective effect observed between intakes of 8 g/day to 40 g/day
-[@liu2023a]. This somewhat contrasts with our findings where any
-increase above 6.3 g/day of legumes was not associated with a decreased
-risk of liver cancer, compared to no legume intake. A recent
-meta-analysis of observational studies showed no association between red
-or processed meat intake and HCC [@Di2023].
+intake without specifying food substitutions. A recent meta-anlysis of
+observational studies found a non-linear dose-response relationship
+between legume intake and liver cancer risk, with a protective effect
+observed between intakes of 8 g/day to 40 g/day [@liu2023a]. This
+somewhat contrasts with our findings where any increase above 6.3 g/day
+of legumes was not associated with a decreased risk of liver cancer,
+compared to no legume intake. One recent meta-analysis of observational
+studies showed no association between red or processed meat intake and
+HCC [@Di2023] while another found a positive association between
+processed meat and HCC [@Yu2022]. Another study examined replacement of
+animal-based protein sources with plant-based protein sources and NAFLD
+risk in two cohorts and found a near significant decrease in NAFLD when
+replacing processed meat, but not unprocessed red meat, with legumes in
+one cohort and a near significant increase in NAFLD risk when replacing
+total red and processed meat with legumes in another cohort
+[@Zhang2023].
 
 # Conclusion {#sec5}
 
-Supplementary table \ref{tab-sens}
-
+Overall, little evidence of an association between replacing red meat
+with legumes and liver cancer was observed. These results should be
+interpreted with caution due to the low intake of the substituted foods
+and few liver cancer cases. Further research in larger study populations
+with longer follow-up time is warranted.
