@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.29)  29 MAY 2024 21:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.30)  30 MAY 2024 14:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1184,10 +1184,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 227--227
 
 Package marginnote Info: xpos seems to be 167.01753pt on input line 227.
 Package epstopdf Info: Source file: <Definitions/logo-mdpi.eps>
-(epstopdf)                    date: 2024-05-29 18:53:47
+(epstopdf)                    date: 2024-05-30 08:45:37
 (epstopdf)                    size: 721843 bytes
 (epstopdf)             Output file: <Definitions/logo-mdpi-eps-converted-to.pdf>
-(epstopdf)                    date: 2024-05-29 18:53:47
+(epstopdf)                    date: 2024-05-30 08:45:37
 (epstopdf)                    size: 43760 bytes
 (epstopdf)             Command: <repstopdf --outfile=Definitions/logo-mdpi-eps-converted-to.pdf Definitions/logo-mdpi.eps>
 (epstopdf)             \includegraphics on input line 227.
@@ -1268,7 +1268,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [3]
-<legliv-nutrients_files/figure-latex/fig1-1.pdf, id=188, 469.755pt x 325.215pt>
+<legliv-nutrients_files/figure-latex/fig1-1.pdf, id=189, 469.755pt x 325.215pt>
 File: legliv-nutrients_files/figure-latex/fig1-1.pdf Graphic file (type pdf)
 <use legliv-nutrients_files/figure-latex/fig1-1.pdf>
 Package pdftex.def Info: legliv-nutrients_files/figure-latex/fig1-1.pdf  used on input line 467.
@@ -1320,12 +1320,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 745--745
+Underfull \hbox (badness 10000) in paragraph at lines 754--754
 
  []
 
 (./appendix.tex
-<legliv-nutrients_files/figure-latex/fig2-1.pdf, id=234, 469.755pt x 325.215pt>
+<legliv-nutrients_files/figure-latex/fig2-1.pdf, id=236, 469.755pt x 325.215pt>
 File: legliv-nutrients_files/figure-latex/fig2-1.pdf Graphic file (type pdf)
 <use legliv-nutrients_files/figure-latex/fig2-1.pdf>
 Package pdftex.def Info: legliv-nutrients_files/figure-latex/fig2-1.pdf  used on input line 9.
@@ -1454,18 +1454,18 @@ Package rerunfilecheck Info: File `legliv-nutrients.out' has not changed.
 (rerunfilecheck)             Checksum: A58C8C22065BC36B28B18E4657987C1C;1704.
  ) 
 Here is how much of TeX's memory you used:
- 34111 strings out of 475953
- 640455 string characters out of 5789471
+ 34109 strings out of 475953
+ 640537 string characters out of 5790159
  1971904 words of memory out of 5000000
  55158 multiletter control sequences out of 15000+600000
- 646871 words of font info for 473 fonts, out of 8000000 for 9000
+ 646636 words of font info for 470 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  123i,15n,135p,1013b,796s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/rstudio-server/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.375pk></home/rstudio-server/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/rstudio-server/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/rstudio-server/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/rstudio-server/.TinyTeX/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></home/rstudio-server/.TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></home/rstudio-server/.TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></home/rstudio-server/.TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on legliv-nutrients.pdf (13 pages, 242150 bytes).
+Output written on legliv-nutrients.pdf (13 pages, 243000 bytes).
 PDF statistics:
- 394 PDF objects out of 1000 (max. 8388607)
- 336 compressed objects within 4 object streams
+ 396 PDF objects out of 1000 (max. 8388607)
+ 338 compressed objects within 4 object streams
  87 named destinations out of 1000 (max. 500000)
  125577 words of extra memory for PDF output out of 128383 (max. 10000000)
 
