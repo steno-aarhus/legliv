@@ -243,5 +243,3 @@ table_cancer_type <-
     style = cell_text(weight = "bold"),
     locations = cells_row_groups(groups = everything())
   )
-
-# table_cancer_type %>% gtsave("doc/latex-tables/table-cancer-type.tex")

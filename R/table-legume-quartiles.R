@@ -97,5 +97,3 @@ table_legume <- tbl_merge(
     footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
     locations = cells_column_spanners(spanners = "model2")
   )
-
-# table_legume %>% gtsave("doc/latex-tables/table-legume.tex")
