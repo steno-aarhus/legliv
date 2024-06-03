@@ -85,7 +85,8 @@ table_one <- tbl_merge(
     id = "livercancer"
   ) %>%
   tab_header(
-    title = md("**Table 1. Baseline characteristics of UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**")
+    title = md("**Baseline characteristics of UK Biobank participants who completed $\\geq$ 2 Oxford WebQ 24-hour diet recall.**"),
+    label = "1"
   )
 
 # table_one %>% gtsave("doc/latex-tables/table-baseline.tex")

@@ -123,7 +123,8 @@ table_main <-
     id = "model2"
   ) %>%
   tab_header(
-    title = md("**Table 3. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**")
+    title = md("**Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**"),
+    label = "main"
   ) %>%
   tab_style(
     style = list(
@@ -143,5 +144,4 @@ table_main <-
   tab_style(
     style = cell_text(weight = "bold"),
     locations = cells_column_spanners()
-  ) %>%
-  tab_options(table.width = pct(100))
+  )
