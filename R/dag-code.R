@@ -90,4 +90,3 @@ dag <- legliv_tidy |>
   theme(legend.position = "none") + # f.eks "right" hvis du vil se legend (kan give et overblik ift. farvningen af nodes).
   geom_dag_label(color="black", size = 2) +
   scale_adjusted() # tror ikke det gør nogen forskel om den er her eller ej, i hvert fald ikke for min DAG.
-dag
