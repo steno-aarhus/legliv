@@ -58,7 +58,7 @@ funding: |
 conflictsofinterest: |
   The authors declare no conflict of interest.
 supplementary: |
- The following supporting information can be downloaded at:  
+ `r ukbAid::statements$paper`  
 abbreviations:
   - short: NAFLD
     long: Non-alcoholic fatty liver disease
@@ -75,9 +75,13 @@ abbreviations:
 bibliography: mybibfile.bib
 appendix: appendix.tex
 endnotes: false
-output: 
-  rticles::mdpi_article:
-    extra_dependencies: longtable
+output:
+  bookdown::pdf_book:
+    base_format: rticles::mdpi_article
+    extra_dependencies: longtable, fancyhdr
+header-includes:
+  - \usepackage{caption}
+  - \captionsetup{font=small,justification=raggedright,singlelinecheck=false}
 ---
 
 ```{r setup, include=FALSE}
@@ -99,10 +103,7 @@ source(here("R","table-main.R"))
 source(here("R","table-legume-quartiles.R"))
 source(here("R","table-cancer-type.R"))
 source(here("R", "flowchart.R"))
-source(here("R", "dag-code.R"))
 ```
-
-`r ukbAid::statements$paper`
 
 # Introduction {#sec1}
 
@@ -196,14 +197,14 @@ Researchers defined 79 food categories and 14 beverage categories from
 the Oxford WebQ using the UK National Diet and Nutrition Survey
 categories [@piernas2021]. These food and beverage groups were used when
 defining the food groups used in the substitution analyses (Table
-\ref{tab-food-group}). Legumes were defined as legumes and dietary
+\@ref(tab:food-group)). Legumes were defined as legumes and dietary
 pulses, baked beans, tofu-based products, peas, hummus, soy drinks, and
 soy-based desserts and yogurt. Red meat intake was defined as intake of
 beef, pork, lamb, or other meat, including offal. Processed red meat
 intake was defined as sausages, bacon (with and without fat), ham, or
 liver pate. Other food groups included were animal-based foods,
 unhealthy plant-based foods, healthy plant-based foods, and alcoholic
-beverages (Table \ref{tab-food-group}). Animal-based and healthy and
+beverages (Table \@ref(tab:food-group)). Animal-based and healthy and
 unhealthy plant-based food foods were grouped based on plant-based diet
 indices from previous studies [@Thompson2023; @Heianza2021; @Satija2017;
 @Satija2016].
@@ -343,18 +344,18 @@ During a median follow-up time of 11.3 years, 173 participants developed
 liver cancer. Those who developed liver cancer were older at baseline,
 were more likely to be male, have a higher waist circumference, be less
 physically active, and fewer had never smoked, compared to all included
-participants (Table \ref{tab1}).
+participants (Table \@ref(tab:baseline)).
 
-```{r}
+```{r baseline}
 table_one %>% 
   tab_options(latex.use.longtable = FALSE,
               latex.tbl.pos = "t")
 ```
 
 Mean daily energy and total food intakes as well as daily intake of all
-specified food groups in grams are presented in Table \ref{tabdiet}.
+specified food groups in grams are presented in Table \@ref(tab:diet).
 
-```{r}
+```{r diet}
 table_diet %>% 
   tab_options(latex.use.longtable = FALSE,
               latex.tbl.pos = "t")
@@ -363,7 +364,7 @@ table_diet %>%
 No evidence of associations was found for substituting 15 g/day of
 legumes with 15 g/day of total red meat, unprocessed red meat, or
 processed red meat and risk of primary liver cancer in Model 1 (Table
-\ref{tab-main}: total red meat:
+\@ref(tab:main): total red meat:
 `r inline_text(m1t, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`;
 unprocessed red meat:
 `r inline_text(m1r, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`;
@@ -373,9 +374,9 @@ The estimated associations changed minimally with further adjustments.
 There was weak evidence of an association between replacement of
 processed red meat with legumes (
 `r inline_text(m2p, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`;
-Table \ref{tab-main}).
+Table \@ref(tab:main)).
 
-```{r}
+```{r main}
 table_main %>% 
   tab_options(latex.use.longtable = FALSE,
               latex.tbl.pos = "t")
@@ -383,7 +384,7 @@ table_main %>%
 
 In secondary analyses, when analyzing the associations between
 replacement of red meat with legumes and HCC or ICC separately, weak
-evidence of a higher risk of HCC was observed (Table \ref{tab-cancer},
+evidence of a higher risk of HCC was observed (Table \@ref(tab:cancer),
 total red meat:
 `r inline_text(m2t_hcc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`;
 unprocessed red meat:
@@ -397,15 +398,15 @@ unprocessed red meat:
 `r inline_text(m2r_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`)
 but not for processed red meat (
 `r inline_text(m2p_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}- {conf.high}")`,
-Table \ref{tab-cancer}). The magnitude or direction of associations were
-not significantly different across strata of liver cancer types.
+Table \@ref(tab:cancer)). The magnitude or direction of associations
+were not significantly different across strata of liver cancer types.
 
 In the adjusted non-substitution analysis, only the first quartile of
 legume intake (mean intake 6.3 grams/day) was associated with a lower
 risk of liver cancer, compared to no intake
 (`r inline_text(m2t_leg, variable = legume_category, level = "Q1", pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`);
 no associations were observed for quartiles 2, 3 or 4 compared to no
-intake (Table \ref{tab-legume}).
+intake (Table \@ref(tab:legume)).
 
 In sensitivity analyses, excluding participants based on high alcohol
 intake, implausible energy intake, any liver disease or cancer before
@@ -413,7 +414,7 @@ baseline, or fewer than 3 completed Oxford WebQs did not alter the
 estimates appreciably. Similar results were also found when including
 death registries as a source of liver cancer cases and when excluding
 waist circumference from the fully adjusted analysis (Table
-\ref{tab-sens}).
+\@ref(tab:sens)).
 
 # Discussion {#sec4}
 
@@ -531,4 +532,3 @@ with legumes and liver cancer was observed. These results should be
 interpreted with caution due to the low intake of the substituted foods
 and few liver cancer cases. Further research in larger study populations
 with longer follow-up time is warranted.
-
