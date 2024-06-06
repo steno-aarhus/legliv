@@ -39,7 +39,7 @@ affiliation:
       Cambridge, United Kingdom
 # author citation list in chicago format
 authorcitation: |
-  Bock, N.; Langmann, F; Johnston, LW; Ibsen, DB; Dahm, CC.
+  Bock, N; Langmann, F; Johnston, LW; Ibsen, DB; Dahm, CC
 correspondence: |
   CCD@ph.au.dk.
 # document options
@@ -104,7 +104,7 @@ source(here("R", "dag-code.R"))
 
 `r ukbAid::statements$paper`
 
-# Background {#sec1}
+# Introduction {#sec1}
 
 Hepatocellular carcinoma (HCC) is the sixth most common cancer in the
 world and the third leading cause of cancer-related death with viral
@@ -163,7 +163,7 @@ aim of this study was to estimate the association between replacing
 unprocessed red meat, processed red meat and total red meat with legumes
 on primary liver cancer in a free-living population.
 
-# Research Design and Methods {#sec2}
+# Materials and Methods {#sec2}
 
 ## Study population {#subsec1}
 
@@ -417,7 +417,7 @@ waist circumference from the fully adjusted analysis (Table
 
 # Discussion {#sec4}
 
-Contrary to our hypothesis, this study we showed little evidence of an
+Contrary to our hypothesis, this study showed little evidence of an
 association between replacing 15 g/day of red or processed meat with
 legumes on risk of primary liver cancer. The estimates were robust to
 sensitivity analyses. When investigating liver cancer types separately,
@@ -479,19 +479,19 @@ unlikely due to register linkage. Though health registries may have been
 only partially up to date, using registries almost eliminates selection
 bias due to loss to follow-up.
 
-The relatively low number of events limited our ability to adjust for
-confounding factors. Excessive adjustment parameters per event can
+The relatively low number of events limited the possibility to adjust
+for confounding factors. Excessive adjustment parameters per event can
 compromise the validity of the multivariable Cox regression model,
-potentially causing biased estimates. To ensure statistical validity, we
-aimed for at least 10 events per variable in the main analysis by
+potentially causing biased estimates. To ensure statistical validity, at
+least 10 events per variable were aimed for in the main analysis by
 limiting the number of adjustment levels, using fewer and broader food
 groups, and fewer levels for categorical covariates. This approach was
 guided by our *a priori* causal assumptions. Although this method helped
 maintain statistical validity, it may have increased residual
 confounding by diluting the importance of specific food groups.
-Additionally, risk factors that we could not adjust for, such as
-aflatoxin B1, a known liver carcinogen, may have contributed to residual
-confounding.
+Additionally, risk factors that could not be adjust for, such as
+aflatoxin B1, a known liver carcinogen, may have contributed to
+additional residual confounding.
 
 Contrary to our hypothesis, replacing processed red meat with legumes
 was associated with a non-significant increase in risk of primary liver
@@ -506,9 +506,9 @@ meat) [@Knuppel2020]. This supports the notion that processed meat may
 not be associated with liver cancer risk in this population.
 
 The literature on food substitutions, particularly in relation to liver
-cancer, is sparse. Accordingly, we also conducted an analysis of legume
-intake without specifying food substitutions. A recent meta-anlysis of
-observational studies found a non-linear dose-response relationship
+cancer, is sparse. Accordingly, an analysis of legume intake without
+specifying food substitutions was also conducted. A recent meta-analysis
+of observational studies found a non-linear dose-response relationship
 between legume intake and liver cancer risk, with a protective effect
 observed between intakes of 8 g/day to 40 g/day [@liu2023a]. This
 somewhat contrasts with our findings where any increase above 6.3 g/day
