@@ -139,7 +139,7 @@ covariates <- function(data) {
         exercise == "No" ~ "Below",
         is.na(exercise) ~ "Unknown"
       ),
-      exercise = factor(exercise, levels = c("Above", "Below", "Missing")),
+      exercise = factor(exercise, levels = c("Above", "Below", "Unknown")),
       age_strat = case_when(
         p21022 < 45 ~ 1,
         p21022 >= 45 & p21022 < 50 ~ 2,
@@ -360,7 +360,7 @@ cancer_longer_subset_death <- function(data) {
 
 liver_cancer_main <- function(data){
   data %>%
-    filter(str_detect(p41270var, "C22.0|C22.1")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22.0|C22.1")|str_detect(p40013, "^155[0-9]")) %>%
+    filter(str_detect(p41270var, "C22\\.0|C22\\.1")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22\\.0|C22\\.1")|str_detect(p40013, "^155[0-9]")) %>%
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
@@ -371,7 +371,7 @@ liver_cancer_main <- function(data){
 
 liver_cancer_hcc <- function(data) {
   data %>%
-    filter(str_detect(p41270var, "C22.0")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22.0")|str_detect(p40013, "^155[0-9]")) %>%
+    filter(str_detect(p41270var, "C22\\.0")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22\\.0")|str_detect(p40013, "^155[0-9]")) %>%
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
@@ -382,7 +382,7 @@ liver_cancer_hcc <- function(data) {
 
 liver_cancer_icc <- function(data) {
   data %>%
-    filter(str_detect(p41270var, "C22.1")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22.1")|str_detect(p40013, "^155[0-9]")) %>%
+    filter(str_detect(p41270var, "C22\\.1")|str_detect(p41271var, "^155[0-9]")|str_detect(p40006, "C22\\.1")|str_detect(p40013, "^155[0-9]")) %>%
     filter(!is.na(date)) %>%
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
@@ -394,12 +394,12 @@ liver_cancer_icc <- function(data) {
 
 liver_cancer_main_death <- function(data){
   data %>%
-    filter(str_detect(p41270var, "C22.0|C22.1")
+    filter(str_detect(p41270var, "C22\\.0|C22\\.1")
            |str_detect(p41271var, "^155[0-9]")
-           |str_detect(p40006, "C22.0|C22.1")
+           |str_detect(p40006, "C22\\.0|C22\\.1")
            |str_detect(p40013, "^155[0-9]")
-           |str_detect(p40001, "C22.0|C22.1")
-           |str_detect(p40002, "C22.0|C22.1")
+           |str_detect(p40001, "C22\\.0|C22\\.1")
+           |str_detect(p40002, "C22\\.0|C22\\.1")
            ) %>%
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
@@ -598,7 +598,7 @@ reduce_baseline_data <- function(data) {
 
 icd_liver_disease <- function(data) {
   data %>%
-    filter(str_detect(p41270var, "^K7[0-9]|^B1[6-9]|^Z94.4|^I82.0|^I85|^I86.4|^E83.[0-1]|^E88.0") | str_detect(p41271var, "^57[1-4]|^070|^V427|^275[0-1]")) %>%
+    filter(str_detect(p41270var, "^K7[0-9]|^B1[6-9]|^Z94\\.4|^I85|^I86\\.4|^E83\\.[0-1]") | str_detect(p41271var, "^57[1-4]|^070|^V427|^275[0-1]")) %>%
     group_by(id) %>%
     arrange(date, .by_group = TRUE) %>%
     slice_head() %>%
