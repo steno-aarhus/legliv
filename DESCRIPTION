@@ -40,7 +40,7 @@ Encoding: UTF-8
 Remotes: 
     steno-aarhus/ukbAid,
     tgerke/ggconsort,
-    nielsbock/gt@ref-fix,
+    nielsbock/gt@latex-caption,
     rstudio/rmarkdown,
     ddsjoberg/gtsummary,
     nielsbock/rticles
