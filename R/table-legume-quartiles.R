@@ -90,7 +90,7 @@ table_legume <- tbl_merge(
     locations = cells_title()
   ) %>%
   tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    footnote = "Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake.",
     locations = cells_column_spanners(spanners = "model1")
   ) %>%
   tab_footnote(

@@ -222,7 +222,7 @@ table_cancer_type <-
     id = "model2"
   ) %>%
   tab_header(
-    title = md("**Supplementary table 2. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.**")
+    title = md("**Supplementary table 2. Replacing 15/day of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.**")
   ) %>%
   tab_style(
     style = list(
@@ -232,7 +232,7 @@ table_cancer_type <-
     locations = cells_title()
   ) %>%
   tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    footnote = "Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake.",
     locations = cells_column_spanners(spanners = "model1")
   ) %>%
   tab_footnote(

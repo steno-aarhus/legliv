@@ -123,7 +123,7 @@ table_main <-
     id = "model2"
   ) %>%
   tab_header(
-    title = md("**Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**"),
+    title = md("**Replacing 15/day of total red meat, unprocessed red meat, and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**"),
     label = "main"
   ) %>%
   tab_style(
@@ -134,7 +134,7 @@ table_main <-
     locations = cells_title()
   ) %>%
   tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    footnote = "Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake.",
     locations = cells_column_spanners(spanners = "model1")
   ) %>%
   tab_footnote(

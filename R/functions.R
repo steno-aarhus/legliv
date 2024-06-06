@@ -137,7 +137,7 @@ covariates <- function(data) {
       exercise = case_when(
         exercise == "Yes" ~ "Above",
         exercise == "No" ~ "Below",
-        is.na(exercise) ~ "Missing"
+        is.na(exercise) ~ "Unknown"
       ),
       exercise = factor(exercise, levels = c("Above", "Below", "Missing")),
       age_strat = case_when(

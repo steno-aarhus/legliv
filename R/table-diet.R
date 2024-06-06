@@ -82,17 +82,17 @@ table_diet <-
   modify_table_styling(
     columns = label,
     rows = label == "Other animal-based foods",
-    footnote = "Other animal-based foods include: poultry, fish, dairy, eggs, and mixed dishes with animal products."
+    footnote = "Other animal-based foods include poultry, fish, dairy, eggs, and mixed dishes with animal products."
   ) %>%
   modify_table_styling(
     columns = label,
     rows = label == "Healthy plant-based foods",
-    footnote = "Healthy plant-based foods include: whole grains, vegetables, fruits, nuts, plant oils, and beverages (coffee, tea, water)."
+    footnote = "Healthy plant-based foods include whole grains, vegetables, fruits, nuts, plant oils, and beverages (coffee, tea, water)."
   ) %>%
   modify_table_styling(
     columns = label,
     rows = label == "Unhealthy plant-based foods",
-    footnote = "Unhealthy plant-based foods includes: refined grains, potatoes, mixed vegetarian dishes, sweets and snacks, fruit juice, and sugar sweetened beverages."
+    footnote = "Unhealthy plant-based foods include refined grains, potatoes, mixed vegetarian dishes, sweets and snacks, fruit juice, and sugar sweetened beverages."
   ) %>%
   modify_spanning_header(everything() ~ NA_character_) %>%
   as_gt() %>%
@@ -107,7 +107,7 @@ table_diet <-
     id = "livercancer"
   ) %>%
   tab_header(
-    title = md("**Daily dietary intake of food groups, total food and total energy intake in UK Biobank participants who completed $\\geq$ 2 Oxford WebQ 24-hour diet recall.**"),
+    title = md("**Daily dietary intake of food groups, total food, and total energy intake in UK Biobank participants who completed $\\geq$ 2 Oxford WebQ dietary recalls.**"),
     label = "diet"
   ) %>%
   tab_style(
