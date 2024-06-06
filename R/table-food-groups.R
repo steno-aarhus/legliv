@@ -39,8 +39,8 @@ df <- data.frame(food_group = food_group_df,
 
 food_group_table <- df %>%
   gt() %>%
-  tab_header(
-    title = md("**Supplementary table 1. Summary of included foods for each food group.**")
+  tab_caption(
+    md("**Supplementary table 1. Summary of included foods for each food group.**")
   ) %>%
   tab_style(
     style = list(

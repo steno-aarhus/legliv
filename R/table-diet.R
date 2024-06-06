@@ -106,9 +106,8 @@ table_diet <-
     columns = c(stat_0_2),
     id = "livercancer"
   ) %>%
-  tab_header(
-    title = md("**Daily dietary intake of food groups, total food, and total energy intake in UK Biobank participants who completed $\\geq$ 2 Oxford WebQ dietary recalls.**"),
-    label = "diet"
+  tab_caption(
+    md("**Daily dietary intake of food groups, total food, and total energy intake in UK Biobank participants who completed $\\geq$ 2 Oxford WebQ dietary recalls.**")
   ) %>%
   tab_style(
     style = list(

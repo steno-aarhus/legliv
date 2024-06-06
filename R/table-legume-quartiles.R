@@ -79,8 +79,8 @@ table_legume <- tbl_merge(
     columns = c(estimate_3),
     id = "model2"
   ) %>%
-  tab_header(
-    title = md("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95% confidence intervals for primary liver cancer.**")
+  tab_caption(
+    md("**No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95% confidence intervals for primary liver cancer.**")
   ) %>%
   tab_style(
     style = list(

@@ -122,9 +122,8 @@ table_main <-
     columns = c(estimate_2),
     id = "model2"
   ) %>%
-  tab_header(
-    title = md("**Replacing 15/day of total red meat, unprocessed red meat, and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**"),
-    label = "main"
+  tab_caption(
+    md("**Replacing 15/day of total red meat, unprocessed red meat, and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**")
   ) %>%
   tab_style(
     style = list(
