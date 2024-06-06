@@ -415,7 +415,7 @@ table_sens <-
     id = "sens3"
   ) %>%
   tab_footnote(
-    footnote = "ICD10 codes: K70-79, B16-19, Z94.4, I82.0, I85, I86.4, E83.0-1 and E88. ICD9 codes: 571-574, 070, V427 and 2750-2751.",
+    footnote = "ICD10 codes: K70-79, B16-19, Z94.4, I85, I86.4, and E83.0-1. ICD9 codes: 5710-5745, 0700-0709, V427 and 2750-2751.",
     locations = cells_column_spanners(spanners = "sens3")
   ) %>%
   tab_spanner(
@@ -442,8 +442,8 @@ table_sens <-
     columns = c(estimate_7),
     id = "sens7"
   ) %>%
-  tab_header(
-    title = md("**Supplementary table 4. Sensitivity analyses**")
+  tab_caption(
+    md("**Sensitivity analyses**")
   ) %>%
   tab_style(
     style = list(
