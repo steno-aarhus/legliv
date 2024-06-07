@@ -9,7 +9,7 @@ model2t_alc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -20,7 +20,7 @@ model2r_alc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -31,7 +31,7 @@ model2p_alc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -63,7 +63,7 @@ model2t_misreporter <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -74,7 +74,7 @@ model2r_misreporter <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -85,7 +85,7 @@ model2p_misreporter <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -118,7 +118,7 @@ model2t_3_ques_comp <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -129,7 +129,7 @@ model2r_3_ques_comp <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -140,7 +140,7 @@ model2p_3_ques_comp <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -172,7 +172,7 @@ model2t_liver_disease <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -183,7 +183,7 @@ model2r_liver_disease <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -194,7 +194,7 @@ model2p_liver_disease <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -226,7 +226,7 @@ model2t_death <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -237,7 +237,7 @@ model2r_death <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -248,7 +248,7 @@ model2p_death <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -280,7 +280,7 @@ model2t_nowc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily,
   data = data
@@ -290,7 +290,7 @@ model2r_nowc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily,
   data = data
@@ -300,7 +300,7 @@ model2p_nowc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily,
   data = data
@@ -331,7 +331,7 @@ model2t_any_cancer <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -342,7 +342,7 @@ model2r_any_cancer <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -353,7 +353,7 @@ model2p_any_cancer <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,

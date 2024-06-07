@@ -8,7 +8,8 @@ gtsummary::set_gtsummary_theme(my_theme)
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data
 )
 
@@ -16,7 +17,7 @@ model2t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -26,7 +27,8 @@ model2t <- coxph(
 model1r <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data
 )
 
@@ -34,7 +36,7 @@ model2r <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -44,7 +46,8 @@ model2r <- coxph(
 model1p <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data
 )
 
@@ -52,7 +55,7 @@ model2p <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,

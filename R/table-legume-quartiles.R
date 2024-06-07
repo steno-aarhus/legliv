@@ -34,7 +34,8 @@ tbl_legume_mean <-
 model1t_leg <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
-    animal_foods + hpdi + updi + total_weight_food_daily,
+    animal_foods + hpdi + updi + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data
 )
 
@@ -49,7 +50,7 @@ model2t_leg <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
     animal_foods + hpdi + updi + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
