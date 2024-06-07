@@ -18,7 +18,8 @@ other_variables <- function(data) {
       age_recruit = p21022,
       p40000_d0 = p40000_i0,
       p40001_d0 = p40001_i0,
-      age_dead = p40007_i0
+      age_dead = p40007_i0,
+      ass_center = p54_i0
     )
   data <- data %>%
     mutate(across(starts_with("p100020_i"), ~ coalesce(., "Yes"))) %>%
