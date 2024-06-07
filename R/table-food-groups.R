@@ -59,12 +59,11 @@ food_group_table <- df %>%
       columns = food_group
     )
   ) %>%
-  tab_options(table.width = pct(100),
-              latex.use.longtable = FALSE) %>%
+  tab_options(table.width = pct(100)) %>%
   cols_width(food_group ~ pct(20),
              includes ~ pct(80)) %>%
   tab_options(
-    table.font.size = gt::px(13.33),
+    table.font.size = gt::px(12),
     data_row.padding = gt::px(1),
     summary_row.padding = gt::px(1),
     grand_summary_row.padding = gt::px(1),
