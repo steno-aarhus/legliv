@@ -57,8 +57,9 @@ funding: |
   This research received no external funding.
 conflictsofinterest: |
   The authors declare no conflict of interest.
+dataavailability: |
+  `r ukbAid::statements$paper` Data can be accessed via application to the Access Management System (AMS) at https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access. Showcase of the data are available at https://biobank.ndph.ox.ac.uk/showcase/.
 supplementary: |
- `r ukbAid::statements$paper`  
 abbreviations:
   - short: NAFLD
     long: Non-alcoholic fatty liver disease
@@ -73,7 +74,7 @@ abbreviations:
   - short: IQR
     long: Interquartile range
 bibliography: mybibfile.bib
-appendix: appendix.tex
+appendix: appendix-test.tex
 endnotes: false
 output:
   bookdown::pdf_book:
@@ -293,11 +294,14 @@ occurrence of the event of interest or due to right censoring, whichever
 came first. Participants were right censored in the event of death, loss
 to follow-up, or administrative end of follow-up (October 31, 2022). Two
 levels of adjustments were added to the substitution model. Model 1 was
-minimally adjusted for age (as the underlying timescale), total weight
-of food and beverage intake, and all other food groups to fit the
-substitution model. Model 2 was further adjusted for sex, educational
+minimally adjusted for age (as the underlying timescale) total weight of
+food and beverage intake, and all other food groups to fit the
+substitution model. Model 1 was additionally stratified on age at
+recruitment (\<45, 45-49, 50-54, 55-59, 60-64 and $\geq$ 65), attented
+assessment centre, and sex. Model 2 was further adjusted for educational
 level, Townsend Deprivation Index, living alone, physical activity,
-smoking, alcohol intake, and waist circumference.
+smoking, alcohol intake, and waist circumference. Assumptions of
+proportional hazards were checked using Shchoenfeld residuals.
 
 In secondary analyses, each cancer type was analysed separately to
 evaluate if the pooling of HCC and ICC as one outcome in the main
@@ -379,7 +383,7 @@ Table \@ref(tab:main)).
 ```{r main}
 table_main %>% 
   tab_options(latex.use.longtable = FALSE,
-              latex.tbl.pos = "t")
+              latex.tbl.pos = "b")
 ```
 
 In secondary analyses, when analyzing the associations between
@@ -419,13 +423,13 @@ waist circumference from the fully adjusted analysis (Table
 # Discussion {#sec4}
 
 Contrary to our hypothesis, this study showed little evidence of an
-association between replacing 15 g/day of red or processed meat with
-legumes on risk of primary liver cancer. The estimates were robust to
-sensitivity analyses. When investigating liver cancer types separately,
-replacing total red meat and unprocessed red meat with legumes showed
-some weak evidence of an inverse association with ICC. The results for
-legume intake without specified substitutions did not show a clear
-pattern of association.
+association between replacing 15 g/day of unprocessed or processed red
+meat with legumes on risk of primary liver cancer. The estimates were
+robust to sensitivity analyses. When investigating liver cancer types
+separately, replacing total red meat and unprocessed red meat with
+legumes showed some weak evidence of an inverse association with ICC.
+The results for legume intake without specified substitutions did not
+show a clear pattern of association.
 
 The prospective longitudinal design of this study established
 temporality between the diet exposure and liver cancer outcome, and the
@@ -443,8 +447,8 @@ substitution, which may in turn have restricted findings of clinical
 relevance.
 
 Information on dietary intake was collected using self-reported 24-hour
-diet recalls, which may have introduced measurement error partly due
-24-hour recalls limited ability in estimating habitual dietary intake.
+diet recalls, which may have introduced measurement error partly due to
+24-hour recalls' limited ability to estimate habitual dietary intake.
 However, estimates were robust to exclusion of participants with fewer
 than three completed Oxford WebQs, indicating that at least two 24-hour
 diet recall measurements were sufficient to account for some of the

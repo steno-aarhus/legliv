@@ -412,11 +412,14 @@ occurrence of the event of interest or due to right censoring, whichever
 came first. Participants were right censored in the event of death, loss
 to follow-up, or administrative end of follow-up (October 31, 2022). Two
 levels of adjustments were added to the substitution model. Model 1 was
-minimally adjusted for age (as the underlying timescale), total weight
-of food and beverage intake, and all other food groups to fit the
-substitution model. Model 2 was further adjusted for sex, educational
+minimally adjusted for age (as the underlying timescale) total weight of
+food and beverage intake, and all other food groups to fit the
+substitution model. Model 1 was additionally stratified on age at
+recruitment (\textless45, 45-49, 50-54, 55-59, 60-64 and \(\geq\) 65), attented
+assessment centre, and sex. Model 2 was further adjusted for educational
 level, Townsend Deprivation Index, living alone, physical activity,
-smoking, alcohol intake, and waist circumference.
+smoking, alcohol intake, and waist circumference. Assumptions of
+proportional hazards were checked using Shchoenfeld residuals.
 
 In secondary analyses, each cancer type was analysed separately to
 evaluate if the pooling of HCC and ICC as one outcome in the main
@@ -458,7 +461,7 @@ more Oxford WebQs remained (Figure \ref{fig:fig1}).
 
 \begin{figure*}
 
-{\centering \includegraphics[width=1\linewidth,]{legliv-nutrients_files/figure-latex/fig1-1} 
+{\centering \includegraphics[width=1\linewidth,]{legliv-nutrients_files/figure-latex/fig1-1}
 
 }
 
@@ -473,38 +476,38 @@ participants (Table \ref{tab:baseline}).
 
 \begin{table}[t]
 \caption{
-\label{tab:baseline}\textbf{Baseline characteristics of UK Biobank participants who completed \(\geq\) 2 Oxford WebQ dietary recalls.}} 
+\label{tab:baseline}\textbf{Baseline characteristics of UK Biobank participants who completed \(\geq\) 2 Oxford WebQ dietary recalls.}}
 \fontsize{9.0pt}{10.8pt}\selectfont
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
- & \textbf{Cohort} & \textbf{Liver cancer} \\ 
+ & \textbf{Cohort} & \textbf{Liver cancer} \\
 \cmidrule(lr){2-2} \cmidrule(lr){3-3}
-\textbf{Variable} & \textbf{N = 126,744}\textsuperscript{\textit{1}} & \textbf{N = 173}\textsuperscript{\textit{1}} \\ 
+\textbf{Variable} & \textbf{N = 126,744}\textsuperscript{\textit{1}} & \textbf{N = 173}\textsuperscript{\textit{1}} \\
 \midrule\addlinespace[2.5pt]
-{\bfseries Age, years} & 60 (53, 65) & 64.0 (60.0, 68.0) \\ 
-{\bfseries Sex} &  &  \\ 
-    Female & 70,659 (56\%) & 65 (38\%) \\ 
-    Male & 56,085 (44\%) & 108 (62\%) \\ 
-{\bfseries Educational level}\textsuperscript{\textit{2}} &  &  \\ 
-    High & 59,416 (47\%) & 76 (44\%) \\ 
-    Intermediate & 41,817 (33\%) & 52 (30\%) \\ 
-    Low & 25,472 (20\%) & 45 (26\%) \\ 
-    Missing & 39 &  \\ 
-{\bfseries Townsend Deprivation Index} & -2.4 (-3.8, 0.0) & -2.6 (-3.7, -0.7) \\ 
-    Missing & 149 &  \\ 
-{\bfseries Living alone} & 22,658 (18\%) & 34 (20\%) \\ 
-    Missing & 171 &  \\ 
-{\bfseries Physical activity}\textsuperscript{\textit{3}} &  &  \\ 
-    Above & 58,111 (46\%) & 61 (35\%) \\ 
-    Below & 50,712 (40\%) & 79 (46\%) \\ 
-    Unknown & 17,921 (14\%) & 33 (19\%) \\ 
-{\bfseries Smoking} &  &  \\ 
-    Never & 72,583 (57\%) & 75 (43\%) \\ 
-    Ever & 54,122 (43\%) & 98 (57\%) \\ 
-    Missing & 39 &  \\ 
-{\bfseries Alcohol intake, g/day} & 11 (0, 26) & 11 (0, 29) \\ 
-{\bfseries Waist circumference, cm} & 88 (79, 97) & 98 (89, 107) \\ 
-    Missing & 168 &  \\ 
+{\bfseries Age, years} & 60 (53, 65) & 64.0 (60.0, 68.0) \\
+{\bfseries Sex} &  &  \\
+    Female & 70,659 (56\%) & 65 (38\%) \\
+    Male & 56,085 (44\%) & 108 (62\%) \\
+{\bfseries Educational level}\textsuperscript{\textit{2}} &  &  \\
+    High & 59,416 (47\%) & 76 (44\%) \\
+    Intermediate & 41,817 (33\%) & 52 (30\%) \\
+    Low & 25,472 (20\%) & 45 (26\%) \\
+    Missing & 39 &  \\
+{\bfseries Townsend Deprivation Index} & -2.4 (-3.8, 0.0) & -2.6 (-3.7, -0.7) \\
+    Missing & 149 &  \\
+{\bfseries Living alone} & 22,658 (18\%) & 34 (20\%) \\
+    Missing & 171 &  \\
+{\bfseries Physical activity}\textsuperscript{\textit{3}} &  &  \\
+    Above & 58,111 (46\%) & 61 (35\%) \\
+    Below & 50,712 (40\%) & 79 (46\%) \\
+    Unknown & 17,921 (14\%) & 33 (19\%) \\
+{\bfseries Smoking} &  &  \\
+    Never & 72,583 (57\%) & 75 (43\%) \\
+    Ever & 54,122 (43\%) & 98 (57\%) \\
+    Missing & 39 &  \\
+{\bfseries Alcohol intake, g/day} & 11 (0, 26) & 11 (0, 29) \\
+{\bfseries Waist circumference, cm} & 88 (79, 97) & 98 (89, 107) \\
+    Missing & 168 &  \\
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
@@ -521,29 +524,29 @@ specified food groups in grams are presented in Table \ref{tab:diet}.
 
 \begin{table}[t]
 \caption{
-\label{tab:diet}\textbf{Daily dietary intake of food groups, total food, and total energy intake in UK Biobank participants who completed \(\geq\) 2 Oxford WebQ dietary recalls.}} 
+\label{tab:diet}\textbf{Daily dietary intake of food groups, total food, and total energy intake in UK Biobank participants who completed \(\geq\) 2 Oxford WebQ dietary recalls.}}
 \fontsize{9.0pt}{10.8pt}\selectfont
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
- & \textbf{Cohort} & \textbf{Liver cancer} \\ 
+ & \textbf{Cohort} & \textbf{Liver cancer} \\
 \cmidrule(lr){2-2} \cmidrule(lr){3-3}
-\textbf{Daily food intake} & \textbf{N = 126,744}\textsuperscript{\textit{1}} & \textbf{N = 173}\textsuperscript{\textit{1}} \\ 
+\textbf{Daily food intake} & \textbf{N = 126,744}\textsuperscript{\textit{1}} & \textbf{N = 173}\textsuperscript{\textit{1}} \\
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{{\bfseries Total food intake}} \\ 
+\multicolumn{3}{l}{{\bfseries Total food intake}} \\
 \midrule\addlinespace[2.5pt]
-Energy, kJ & 8,430 (7,179, 9,856) & 8,579 (7,413, 10,048) \\ 
-Weight, g & 3,144 (2,720, 3,621) & 3,162 (2,737, 3,659) \\ 
+Energy, kJ & 8,430 (7,179, 9,856) & 8,579 (7,413, 10,048) \\
+Weight, g & 3,144 (2,720, 3,621) & 3,162 (2,737, 3,659) \\
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{{\bfseries Food groups, g/day}} \\ 
+\multicolumn{3}{l}{{\bfseries Food groups, g/day}} \\
 \midrule\addlinespace[2.5pt]
-Legumes & 11 (0, 34) & 8 (0, 35) \\ 
-Red and processed meat & 53 (15, 86) & 60 (30, 95) \\ 
-Red meat & 30 (0, 60) & 45 (0, 73) \\ 
-Processed meat & 9 (0, 30) & 8 (0, 31) \\ 
-Other animal-based foods\textsuperscript{\textit{2}} & 475 (361, 603) & 448 (322, 604) \\ 
-Healthy plant-based foods\textsuperscript{\textit{3}} & 1,806 (1,454, 2,198) & 1,791 (1,365, 2,158) \\ 
-Unhealthy plant-based foods\textsuperscript{\textit{4}} & 472 (324, 662) & 491 (365, 698) \\ 
-Alcoholic beverages & 132 (0, 342) & 144 (0, 375) \\ 
+Legumes & 11 (0, 34) & 8 (0, 35) \\
+Red and processed meat & 53 (15, 86) & 60 (30, 95) \\
+Red meat & 30 (0, 60) & 45 (0, 73) \\
+Processed meat & 9 (0, 30) & 8 (0, 31) \\
+Other animal-based foods\textsuperscript{\textit{2}} & 475 (361, 603) & 448 (322, 604) \\
+Healthy plant-based foods\textsuperscript{\textit{3}} & 1,806 (1,454, 2,198) & 1,791 (1,365, 2,158) \\
+Unhealthy plant-based foods\textsuperscript{\textit{4}} & 472 (324, 662) & 491 (365, 698) \\
+Alcoholic beverages & 132 (0, 342) & 144 (0, 375) \\
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
@@ -558,30 +561,30 @@ No evidence of associations was found for substituting 15 g/day of
 legumes with 15 g/day of total red meat, unprocessed red meat, or
 processed red meat and risk of primary liver cancer in Model 1 (Table
 \ref{tab:main}: total red meat:
-HR: 0.98, 95\% CI: 0.93-1.04;
+HR: 0.99, 95\% CI: 0.93-1.05;
 unprocessed red meat:
 HR: 0.97, 95\% CI: 0.91-1.03;
 processed red meat:
-HR: 1.02, 95\% CI: 0.93-1.13).
+HR: 1.04, 95\% CI: 0.94-1.15).
 The estimated associations changed minimally with further adjustments.
 There was weak evidence of an association between replacement of
 processed red meat with legumes (
-HR: 1.09, 95\% CI: 0.98-1.20;
+HR: 1.09, 95\% CI: 0.99-1.21;
 Table \ref{tab:main}).
 
-\begin{table}[t]
+\begin{table}[b]
 \caption{
-\label{tab:main}\textbf{Replacing 15/day of total red meat, unprocessed red meat, and processed meat with legumes and hazard ratios and 95\% confidence intervals for primary liver cancer.}} 
+\label{tab:main}\textbf{Replacing 15/day of total red meat, unprocessed red meat, and processed meat with legumes and hazard ratios and 95\% confidence intervals for primary liver cancer.}}
 \fontsize{9.0pt}{10.8pt}\selectfont
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
 \toprule
- & {\bfseries \textbf{Model 1}}\textsuperscript{\textit{1}} & {\bfseries \textbf{Model 2}}\textsuperscript{\textit{2}} \\ 
+ & {\bfseries \textbf{Model 1}}\textsuperscript{\textit{1}} & {\bfseries \textbf{Model 2}}\textsuperscript{\textit{2}} \\
 \cmidrule(lr){2-2} \cmidrule(lr){3-3}
-\textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\ 
+\textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\
 \midrule\addlinespace[2.5pt]
-Total red meat & 0.98 (0.93-1.04) & 1.02 (0.96-1.08) \\ 
-Unprocessed red meat & 0.97 (0.91-1.03) & 1.00 (0.94-1.07) \\ 
-Processed red meat & 1.02 (0.93-1.13) & 1.09 (0.98-1.20) \\ 
+Total red meat & 0.99 (0.93-1.05) & 1.02 (0.96-1.08) \\
+Unprocessed red meat & 0.97 (0.91-1.03) & 1.00 (0.94-1.06) \\
+Processed red meat & 1.04 (0.94-1.15) & 1.09 (0.99-1.21) \\
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
@@ -596,23 +599,23 @@ evidence of a higher risk of HCC was observed (Table \ref{tab:cancer},
 total red meat:
 HR: 1.06, 95\% CI: 0.97-1.16;
 unprocessed red meat:
-HR: 1.05, 95\% CI: 0.96-1.15;
+HR: 1.04, 95\% CI: 0.95-1.15;
 processed red meat:
-HR: 1.09, 95\% CI: 0.95-1.26).
+HR: 1.10, 95\% CI: 0.96-1.27).
 This association was opposite and inverse for replacement of total red
 meat and unprocessed red meat and ICC (total red meat:
-HR: 0.97, 95\% CI: 0.90-1.05;
+HR: 0.97, 95\% CI: 0.89-1.05;
 unprocessed red meat:
-HR: 0.95, 95\% CI: 0.87-1.03)
+HR: 0.94, 95\% CI: 0.87-1.02)
 but not for processed red meat (
-HR: 1.07, 95\% CI: 0.93- 1.22,
+HR: 1.07, 95\% CI: 0.93- 1.23,
 Table \ref{tab:cancer}). The magnitude or direction of associations
 were not significantly different across strata of liver cancer types.
 
 In the adjusted non-substitution analysis, only the first quartile of
 legume intake (mean intake 6.3 grams/day) was associated with a lower
 risk of liver cancer, compared to no intake
-(HR: 0.59, 95\% CI: 0.35-0.98);
+(HR: 0.60, 95\% CI: 0.36-0.99);
 no associations were observed for quartiles 2, 3 or 4 compared to no
 intake (Table \ref{tab:legume}).
 
@@ -628,13 +631,13 @@ waist circumference from the fully adjusted analysis (Table
 \section{Discussion}\label{sec4}}
 
 Contrary to our hypothesis, this study showed little evidence of an
-association between replacing 15 g/day of red or processed meat with
-legumes on risk of primary liver cancer. The estimates were robust to
-sensitivity analyses. When investigating liver cancer types separately,
-replacing total red meat and unprocessed red meat with legumes showed
-some weak evidence of an inverse association with ICC. The results for
-legume intake without specified substitutions did not show a clear
-pattern of association.
+association between replacing 15 g/day of unprocessed or processed red
+meat with legumes on risk of primary liver cancer. The estimates were
+robust to sensitivity analyses. When investigating liver cancer types
+separately, replacing total red meat and unprocessed red meat with
+legumes showed some weak evidence of an inverse association with ICC.
+The results for legume intake without specified substitutions did not
+show a clear pattern of association.
 
 The prospective longitudinal design of this study established
 temporality between the diet exposure and liver cancer outcome, and the
@@ -648,46 +651,47 @@ decreased intake of other foods. In that sense, the food substitution
 model mimics some aspects of a randomized controlled design. A
 limitation of this research design was that the low intake of the
 substituted foods in this population restricted the size of the
-substitution, which may in turn have restricted findings of clinically
-significant effect sizes.
+substitution, which may in turn have restricted findings of clinical
+relevance.
 
 Information on dietary intake was collected using self-reported 24-hour
-diet recall questionnaires, which may have introduced measurement error
-partly due 24-hour recalls not reflecting past dietary intake. However,
-estimates were robust to exclusion of participants with fewer than three
-completed Oxford WebQs, indicating that at least two 24-hour diet recall
-measurements were sufficient to account for natural flucturations in
-dietary intake over time. A validation study of the Oxford WebQ found
-some person-specific biases within participants with a higher BMI having
-greater disparities for correlation with true intakes for some nutrients
-\citep{Greenwood2019}. We did not adjust for BMI; however, adjusting for
-waist circumference did not change our estimates significantly, lending
-some support to sufficient adjustment of person specific bias. Finally,
-by specifying that the dietary exposure was collected on at least two
-occasions, our study population suffered considerable attrition. This is
+diet recalls, which may have introduced measurement error partly due to
+24-hour recalls' limited ability to estimate habitual dietary intake.
+However, estimates were robust to exclusion of participants with fewer
+than three completed Oxford WebQs, indicating that at least two 24-hour
+diet recall measurements were sufficient to account for some of the
+natural fluctuations in dietary intake over time. A validation study of
+the Oxford WebQ found some person-specific biases within participants
+with a higher BMI having greater disparities for correlation with true
+intakes for some nutrients \citep{Greenwood2019}. Adjustment for BMI was not
+included in this current study. However, adjusting for waist
+circumference did not change the estimates significantly, lending some
+support to sufficient adjustment of person specific bias. Finally, by
+specifying that the dietary exposure was collected on at least two
+occasions, the study population suffered considerable attrition. This is
 unlikely to be completely at random, and most likely resulted in a study
-population with greater focus on their dietary habits. For example, the
-mean intake of processed meat was low in our study population. If a diet
-consisting of higher intakes of healthier plant-based foods is
-associated with lower liver cancer incidence, our study population may
-be at lower risk overall, thus reducing the power of our study to detect
-an association.
+population with greater focus on their dietary habits compared to the
+general population. For example, the mean intake of processed meat was
+low in our study population. If a diet consisting of higher intakes of
+healthier plant-based foods is associated with lower liver cancer
+incidence, our study population may be at lower risk overall, thus
+reducing the power of our study to detect an association.
 
-None of the registries used to determine a diagnosis of liver cancer
-were complete or up-to-date at the time of analysis \citep{RN112}. Data from
-external providers, such as the NHS England, NHS Central Register or
-National Records of Scotland, were estimated to be mostly complete by
-the UK Biobank at various dates, ranging from 31 December 2016 for
-cancer data from Wales to 31 October 2022 for hospital inpatient data
-from England \citep{RN114}. This could introduce misclassification of the
-outcome, as individuals with liver cancer may not be identified as
-cases. However, the estimates were robust in a sensitivity analysis that
-included death registries as an additional source of liver cancer
-diagnoses to accommodate missing outcome events. Incorrectly classifying
-non-cases as cases would lead to attenuation of our results, but this is
-unlikely due to register linkage. Though health registries may have been
-only partially up to date, using registries almost eliminates selection
-bias due to loss to follow-up.
+Registries used to determine a diagnosis of liver cancer were incomplete
+or not up-to-date at the time of analysis \citep{RN112}. Data from external
+providers, such as the NHS England, NHS Central Register or National
+Records of Scotland, were estimated to be mostly complete by the UK
+Biobank at various dates, ranging from 31 December 2016 for cancer data
+from Wales to 31 October 2022 for hospital inpatient data from England
+\citep{RN114}. This could introduce misclassification of the outcome, as
+individuals with liver cancer may not be identified as cases. However,
+the estimates were robust in a sensitivity analysis that included death
+registries as an additional source of liver cancer diagnoses to
+accommodate missing outcome events. Incorrectly classifying non-cases as
+cases would lead to attenuation of our results, but this is unlikely due
+to register linkage. Though health registries may have been only
+partially up to date, using registries almost eliminates selection bias
+due to loss to follow-up.
 
 The relatively low number of events limited the possibility to adjust
 for confounding factors. Excessive adjustment parameters per event can
@@ -749,7 +753,6 @@ with longer follow-up time is warranted.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% optional
-\supplementary{This research has been conducted using the UK Biobank Resource under Application Number 81520.}
 
 % Only for the journal Methods and Protocols:
 % If you wish to submit a video article, please do so with any other supplementary material.
@@ -761,6 +764,7 @@ with longer follow-up time is warranted.
 
 
 
+\dataavailability{This research has been conducted using the UK Biobank Resource under Application Number 81520. Data can be accessed via application to the Access Management System (AMS) at \url{https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access}. Showcase of the data are available at \url{https://biobank.ndph.ox.ac.uk/showcase/}.}
 
 
 \conflictsofinterest{The authors declare no conflict of interest.}
@@ -785,7 +789,122 @@ IQR & Interquartile range \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Optional
-\input{"appendix.tex"}
+\appendixtitles{no}
+\appendixstart
+\appendix
+\section[\appendixname]{}
+
+\begin{figure*}[h]
+
+{\centering \includegraphics[width=1\linewidth,]{appendix-test_files/figure-latex/fig2-1}
+
+}
+
+\caption{Simplified directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing red meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing red meat with legumes on liver cancer. Shadowed arrows represent biasing paths. DAG terminology demands visualisation of all hypothesized correlating relationships between variables, typically resulting in complex and hard-to-follow illustrations. To improve readability, inter-covariate arrows are hidden in the above DAG.}\label{fig:fig2}
+\end{figure*}
+
+\begin{table}[t]
+\caption{
+\label{tab:food-group}\textbf{Supplementary table 1. Summary of included foods for each food group.}}
+\fontsize{9.0pt}{10.8pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.2\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.8\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
+\toprule
+\textbf{Food group} & \textbf{Includes} \\
+\midrule\addlinespace[2.5pt]
+{\bfseries Legumes} & Soya-based desserts, Baked beans, pulses, Soya drinks (including calcium fortified),
+  Tofu-based products, Hummus, Peas \\
+{\bfseries Red meat} & Beef, Lamb, Other meat including offal, Pork \\
+{\bfseries Processed meat} & Sausages, bacon (with and without fat), ham, liver pate \\
+{\bfseries Animal-based foods} & Poultry, fish, dairy, eggs, mixed dishes, and sauces and condiments \\
+{\bfseries Healthy plant-based foods} & Whole grains, fruits, nuts, plant oils, beverages (water, tea and coffee), vegetables \\
+{\bfseries Unhealthy plant-based foods} & Refined cereals, potatoes, fruit juice, mixed dishes (vegetarian), sweets \& snacks, and sugar sweetened beverages \\
+{\bfseries Alcoholic beverages} & Beer and cider, spirits and other alcoholic drinks, fortified wine, red and rose wine, white wine \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\begin{table}[t]
+\caption{
+\label{tab:cancer}\textbf{Replacing 15/day of total meat, red meat and processed meat with legumes and hazard ratios and 95\% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.}}
+\fontsize{9.0pt}{10.8pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
+\toprule
+ & \textbf{Model 1}\textsuperscript{\textit{1}} & \textbf{Model 2}\textsuperscript{\textit{2}} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+\textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{l}{{\bfseries Hepatocellular carcinoma}} \\
+\midrule\addlinespace[2.5pt]
+Total red meat & 1.02 (0.94-1.11) & 1.06 (0.97-1.16) \\
+Unprocessed red meat & 1.02 (0.93-1.11) & 1.04 (0.95-1.15) \\
+Processed red meat & 1.04 (0.90-1.19) & 1.10 (0.96-1.27) \\
+\midrule\addlinespace[2.5pt]
+\multicolumn{3}{l}{{\bfseries Intrahepatic cholangiocarcinoma}} \\
+\midrule\addlinespace[2.5pt]
+Total red meat & 0.94 (0.87-1.02) & 0.97 (0.89-1.05) \\
+Unprocessed red meat & 0.92 (0.85-1.00) & 0.94 (0.87-1.02) \\
+Processed red meat & 1.03 (0.90-1.18) & 1.07 (0.93-1.23) \\
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake.\\
+\textsuperscript{\textit{2}}Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.\\
+\end{minipage}
+\end{table}
+
+\begin{table}[t]
+\caption{
+\label{tab:legume}\textbf{No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95\% confidence intervals for primary liver cancer.}}
+\fontsize{9.0pt}{10.8pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ &  & \textbf{Model 1}\textsuperscript{\textit{1}} & \textbf{Model 2}\textsuperscript{\textit{2}} \\
+\cmidrule(lr){3-3} \cmidrule(lr){4-4}
+\textbf{Characteristic} & \textbf{Mean daily legume intake} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\
+\midrule\addlinespace[2.5pt]
+Categories: &  &  &  \\
+    No intake & 0.00 & — & — \\
+    Q1 & 6.3 & 0.59 (0.35-0.98) & 0.60 (0.36-0.99) \\
+    Q2 & 16 & 0.88 (0.57-1.35) & 0.90 (0.58-1.38) \\
+    Q3 & 34 & 0.73 (0.46-1.17) & 0.74 (0.47-1.19) \\
+    Q4 & 109 & 0.98 (0.64-1.52) & 1.07 (0.69-1.66) \\
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake.\\
+\textsuperscript{\textit{2}}Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.\\
+\end{minipage}
+\end{table}
+
+\clearpage
+\startlandscape
+
+\begin{table}[t]
+\caption{
+\label{tab:sens}\textbf{Sensitivity analyses}}
+\fontsize{7.5pt}{9.0pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
+\toprule
+ & \multicolumn{5}{c}{\textbf{Exclusion of participants with:}} &  &  \\
+\cmidrule(lr){2-6}
+ & \textbf{High alcohol intake}\textsuperscript{\textit{1}} & \textbf{Implausible food intake}\textsuperscript{\textit{2}} & \textbf{Liver disease before baseline}\textsuperscript{\textit{3}} & \textbf{Any cancer before baseline}\textsuperscript{\textit{4}} & \textbf{Fewer than 3 Oxford WebQs} & \textbf{Death register as source of liver cancer events} & \textbf{Exclusion of waist circumference from analysis} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6} \cmidrule(lr){7-7} \cmidrule(lr){8-8}
+\textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\
+\midrule\addlinespace[2.5pt]
+Total red meat & 1.00 (0.94-1.06) & 1.01 (0.95-1.07) & 0.99 (0.93-1.06) & 1.03 (0.96-1.11) & 1.04 (0.96-1.12) & 1.02 (0.96-1.08) & 1.00 (0.94-1.06) \\
+Unprocessed red meat & 0.98 (0.92-1.05) & 0.99 (0.93-1.05) & 0.97 (0.90-1.04) & 1.00 (0.93-1.08) & 1.02 (0.94-1.11) & 1.00 (0.94-1.07) & 0.98 (0.92-1.05) \\
+Processed red meat & 1.06 (0.95-1.18) & 1.08 (0.98-1.20) & 1.08 (0.96-1.20) & 1.15 (1.01-1.30) & 1.11 (0.97-1.27) & 1.07 (0.98-1.18) & 1.06 (0.96-1.17) \\
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Exclusion of the upper decile of alcohol intake (g/day) by sex.\\
+\textsuperscript{\textit{2}}Exclusion of participants below the 2.5th percentile and above the 97.5th percentile of energy intake (kJ/day) by sex.\\
+\textsuperscript{\textit{3}}ICD10 codes: K70-79, B16-19, Z94.4, I85, I86.4, and E83.0-1. ICD9 codes: 5710-5745, 0700-0709, V427 and 2750-2751.\\
+\textsuperscript{\textit{4}}ICD10 codes: C00-C97 and D00-D48. ICD9 codes: 140-239.\\
+\end{minipage}
+\end{table}
+
+\finishlandscape
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{adjustwidth}{-\extralength}{0cm}
 
