@@ -439,46 +439,47 @@ decreased intake of other foods. In that sense, the food substitution
 model mimics some aspects of a randomized controlled design. A
 limitation of this research design was that the low intake of the
 substituted foods in this population restricted the size of the
-substitution, which may in turn have restricted findings of clinically
-significant effect sizes.
+substitution, which may in turn have restricted findings of clinical
+relevance.
 
 Information on dietary intake was collected using self-reported 24-hour
-diet recall questionnaires, which may have introduced measurement error
-partly due 24-hour recalls not reflecting past dietary intake. However,
-estimates were robust to exclusion of participants with fewer than three
-completed Oxford WebQs, indicating that at least two 24-hour diet recall
-measurements were sufficient to account for natural flucturations in
-dietary intake over time. A validation study of the Oxford WebQ found
-some person-specific biases within participants with a higher BMI having
-greater disparities for correlation with true intakes for some nutrients
-[@Greenwood2019]. We did not adjust for BMI; however, adjusting for
-waist circumference did not change our estimates significantly, lending
-some support to sufficient adjustment of person specific bias. Finally,
-by specifying that the dietary exposure was collected on at least two
-occasions, our study population suffered considerable attrition. This is
+diet recalls, which may have introduced measurement error partly due
+24-hour recalls limited ability in estimating habitual dietary intake.
+However, estimates were robust to exclusion of participants with fewer
+than three completed Oxford WebQs, indicating that at least two 24-hour
+diet recall measurements were sufficient to account for some of the
+natural fluctuations in dietary intake over time. A validation study of
+the Oxford WebQ found some person-specific biases within participants
+with a higher BMI having greater disparities for correlation with true
+intakes for some nutrients [@Greenwood2019]. Adjustment for BMI was not
+included in this current study. However, adjusting for waist
+circumference did not change the estimates significantly, lending some
+support to sufficient adjustment of person specific bias. Finally, by
+specifying that the dietary exposure was collected on at least two
+occasions, the study population suffered considerable attrition. This is
 unlikely to be completely at random, and most likely resulted in a study
-population with greater focus on their dietary habits. For example, the
-mean intake of processed meat was low in our study population. If a diet
-consisting of higher intakes of healthier plant-based foods is
-associated with lower liver cancer incidence, our study population may
-be at lower risk overall, thus reducing the power of our study to detect
-an association.
+population with greater focus on their dietary habits compared to the
+general population. For example, the mean intake of processed meat was
+low in our study population. If a diet consisting of higher intakes of
+healthier plant-based foods is associated with lower liver cancer
+incidence, our study population may be at lower risk overall, thus
+reducing the power of our study to detect an association.
 
-None of the registries used to determine a diagnosis of liver cancer
-were complete or up-to-date at the time of analysis [@RN112]. Data from
-external providers, such as the NHS England, NHS Central Register or
-National Records of Scotland, were estimated to be mostly complete by
-the UK Biobank at various dates, ranging from 31 December 2016 for
-cancer data from Wales to 31 October 2022 for hospital inpatient data
-from England [@RN114]. This could introduce misclassification of the
-outcome, as individuals with liver cancer may not be identified as
-cases. However, the estimates were robust in a sensitivity analysis that
-included death registries as an additional source of liver cancer
-diagnoses to accommodate missing outcome events. Incorrectly classifying
-non-cases as cases would lead to attenuation of our results, but this is
-unlikely due to register linkage. Though health registries may have been
-only partially up to date, using registries almost eliminates selection
-bias due to loss to follow-up.
+Registries used to determine a diagnosis of liver cancer were incomplete
+or not up-to-date at the time of analysis [@RN112]. Data from external
+providers, such as the NHS England, NHS Central Register or National
+Records of Scotland, were estimated to be mostly complete by the UK
+Biobank at various dates, ranging from 31 December 2016 for cancer data
+from Wales to 31 October 2022 for hospital inpatient data from England
+[@RN114]. This could introduce misclassification of the outcome, as
+individuals with liver cancer may not be identified as cases. However,
+the estimates were robust in a sensitivity analysis that included death
+registries as an additional source of liver cancer diagnoses to
+accommodate missing outcome events. Incorrectly classifying non-cases as
+cases would lead to attenuation of our results, but this is unlikely due
+to register linkage. Though health registries may have been only
+partially up to date, using registries almost eliminates selection bias
+due to loss to follow-up.
 
 The relatively low number of events limited the possibility to adjust
 for confounding factors. Excessive adjustment parameters per event can
