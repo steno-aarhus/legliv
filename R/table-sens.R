@@ -445,6 +445,10 @@ table_sens <-
   tab_caption(
     md("**Sensitivity analyses**")
   ) %>%
+  tab_footnote(
+    footnote = "All sensitivity analyses were modeled as the fully adjusted models in the main analyses",
+    locations = cells_title()
+  )
   tab_style(
     style = list(
       cell_text(color = "dimgrey", align = "left"),

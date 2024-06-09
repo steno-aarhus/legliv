@@ -136,11 +136,11 @@ table_main <-
     locations = cells_title()
   ) %>%
   tab_footnote(
-    footnote = "Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    footnote = "Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake, and additionally stratified on sex, age, and attended assessment centre.",
     locations = cells_column_spanners(spanners = "model1")
   ) %>%
   tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
+    footnote = "Further adjusted for educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
     locations = cells_column_spanners(spanners = "model2")
   ) %>%
   tab_style(
