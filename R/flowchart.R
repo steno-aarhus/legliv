@@ -12,7 +12,8 @@ ready_flowchart <-
     l2fu = two_ques %>% filter(is.na(p191) | p191 >= baseline_start_date),
     both = two_ques %>%
       filter(is.na(p191) | p191 >= baseline_start_date) %>%
-      filter(!is.na(baseline_start_date)),
+      filter(!is.na(baseline_start_date)) %>%
+      filter(is.na(liver_cancer_date) | liver_cancer_date >= baseline_start_date),
     miss = two_ques %>% filter(!is.na(baseline_start_date)),
     two = two_ques %>% filter(p20077 == 2),
     three = two_ques %>% filter(p20077 == 3),
