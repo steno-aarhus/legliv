@@ -58,7 +58,7 @@ table_one <- tbl_merge(
     rows = label == "Educational level",
     footnote = "High: College or University degree;
     Intermediate: A levels/AS levels, O levels/GCSEs, or equivalent;
-    Low: none of the previous mentioned."
+    Low: none of the previously mentioned."
   ) %>%
   modify_table_styling(
     columns = label,
