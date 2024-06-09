@@ -228,7 +228,7 @@ table_cancer_type <-
     id = "model2"
   ) %>%
   tab_caption(
-    md("**Replacing 15/day of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.**")
+    md("**Replacing 15 g/day of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.**")
   ) %>%
   tab_style(
     style = list(
