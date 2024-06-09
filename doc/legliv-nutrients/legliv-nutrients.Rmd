@@ -60,6 +60,10 @@ conflictsofinterest: |
   The authors declare no conflict of interest.
 dataavailability: |
   `r ukbAid::statements$paper` Data can be accessed via application to the Access Management System (AMS) at https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access. Showcase of the data are available at https://biobank.ndph.ox.ac.uk/showcase/.
+institutionalreview: |
+  The UK Biobank was approved by the National Information Governance Board for Health and Social Care and the National Health Service (NHS) North West Multicentre Research Ethics Committee (ref 21/NW/0157).
+informedconsent: |
+  All participants in the UK Biobank gave written, informed consent before the baseline visit.
 supplementary: |
 abbreviations:
   - short: NAFLD
@@ -538,4 +542,3 @@ with legumes and liver cancer was observed. These results should be
 interpreted with caution due to the low intake of the substituted foods
 and few liver cancer cases. Further research in larger study populations
 with longer follow-up time is warranted.
-
