@@ -79,7 +79,6 @@ abbreviations:
   - short: IQR
     long: Interquartile range
 bibliography: mybibfile.bib
-appendix: appendix-test.tex
 endnotes: false
 output:
   bookdown::pdf_book:
@@ -262,28 +261,34 @@ replacing of 15 g/day of all red meats (unprocessed and processed) with
 15 g/day of legumes, the following model was defined:
 
 ```{=tex}
+{\small
 \begin{align}
 \log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15 g/day)} \hspace{0.5em} + \nonumber \\
 &\quad \hspace{0.5em} \beta_2 \text{Total food intake (g/day)} + \beta_3 \text{Other food groups (g/day)} + \beta_4 \text{Covariates}
 \end{align}
+}
 ```
 \noindent When substituting only unprocessed red meat with legumes,
 processed red meat was added to the model:
 
 ```{=tex}
+{\small
 \begin{align}
 \log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15 g/day)} + \beta_2 \text{Processed red meat (15 g/day)} \hspace{0.5em} + \nonumber \\
 &\quad \hspace{0.5em} \beta_3 \text{Total food intake (g/day)} + \beta_4 \text{Other food groups (g/day)} + \beta_5 \text{Covariates}
 \end{align}
+}
 ```
 \noindent When substituting only processed red meat with legumes,
 unprocessed red meat was added to the model:
 
 ```{=tex}
+{\small
 \begin{align}
 \log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15 g/day)} + \beta_2 \text{Unprocessed red meat (15 g/day)} \hspace{0.5em} + \nonumber \\
 &\quad \hspace{0.5em} \beta_3 \text{Total food intake (g/day)}  + \beta_4 \text{Other food groups (g/day)} + \beta_5 \text{Covariates}
 \end{align}
+}
 ```
 \noindent The performance of the leave-one-out model when modeling equal
 mass substitutions has been validated against simulated data
