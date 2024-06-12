@@ -381,9 +381,63 @@ m2p_any_cancer <- model2p_any_cancer %>%
     label = legume_daily_15 ~ "Processed red meat",
   )
 
-row1 <- tbl_merge(list(m2t_alc,m2t_misreporter,m2t_liver_disease,m2t_any_cancer,m2t_3_ques_comp,m2t_death,m2t_nowc))
-row2 <- tbl_merge(list(m2r_alc,m2r_misreporter,m2r_liver_disease,m2r_any_cancer,m2r_3_ques_comp,m2r_death,m2r_nowc))
-row3 <- tbl_merge(list(m2p_alc,m2p_misreporter,m2p_liver_disease,m2p_any_cancer,m2p_3_ques_comp,m2p_death,m2p_nowc))
+model2t_nosoy <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center) +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_nosoy
+)
+
+model2r_nosoy <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + proc_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center) +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_nosoy
+)
+
+model2p_nosoy <- coxph(
+  Surv(time = status_age, event = status == "Liver cancer") ~
+    legume_daily_15 + red_meat_daily_15 +
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center) +
+    education + tdi + spouse +
+    exercise + smoking_pack + alcohol_daily +
+    wc,
+  data = data_nosoy
+)
+
+m2t_nosoy <- model2t_nosoy %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Total red meat",
+  )
+
+m2r_nosoy <- model2r_nosoy %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Unprocessed red meat",
+  )
+
+m2p_nosoy <- model2p_nosoy %>%
+  tbl_regression(
+    exponentiate = T,
+    include = legume_daily_15,
+    label = legume_daily_15 ~ "Processed red meat",
+  )
+
+row1 <- tbl_merge(list(m2t_alc,m2t_misreporter,m2t_liver_disease,m2t_any_cancer,m2t_3_ques_comp,m2t_death,m2t_nowc,m2t_nosoy))
+row2 <- tbl_merge(list(m2r_alc,m2r_misreporter,m2r_liver_disease,m2r_any_cancer,m2r_3_ques_comp,m2r_death,m2r_nowc,m2r_nosoy))
+row3 <- tbl_merge(list(m2p_alc,m2p_misreporter,m2p_liver_disease,m2p_any_cancer,m2p_3_ques_comp,m2p_death,m2p_nowc,m2p_nosoy))
 
 table_sens <-
   tbl_stack(list(row1, row2, row3)) %>%
@@ -446,13 +500,22 @@ table_sens <-
     locations = cells_column_spanners(spanners = "sens6")
   ) %>%
   tab_spanner(
-    label = md("**Exclusion of waist circumference from analysis**"),
+    label = md("**Waist circumference from analysis**"),
     columns = c(estimate_7),
     id = "sens7"
   ) %>%
   tab_footnote(
     footnote = "n = 173.",
     locations = cells_column_spanners(spanners = "sens7")
+  ) %>%
+  tab_spanner(
+    label = md("**Soy milk from food substitutions**"),
+    columns = c(estimate_8),
+    id = "sens8"
+  ) %>%
+  tab_footnote(
+    footnote = "Soy milk was removed from the legumes food group and moved to the food group healthy plant-based foods. n = 173.",
+    locations = cells_column_spanners(spanners = "sens8")
   ) %>%
   tab_caption(
     md("**Sensitivity analyses**")
@@ -474,8 +537,14 @@ table_sens <-
     level = 2,
     id = "123"
   ) %>%
+  tab_spanner(
+    label = md("**Exclusion of:**"),
+    columns = c(estimate_7,estimate_8),
+    level = 2,
+    id = "456"
+  ) %>%
   tab_options(table.width = pct(100),
               table.font.size = px(10.666)) %>%
-  cols_width(matches("estimate|label") ~ pct(12.5))
+  cols_width(matches("estimate|label") ~ pct(100/9))
 
 # table_sens %>% gtsave("doc/latex-tables/table-sens.tex")
