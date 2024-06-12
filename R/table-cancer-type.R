@@ -213,7 +213,7 @@ row6 <- tbl_merge(list(m1p_icc, m2p_icc))
 
 table_cancer_type <-
   tbl_stack(list(row1, row2, row3, row4, row5, row6),
-            group_header = c("Hepatocellular carcinoma", "Hepatocellular carcinoma", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma")) %>%
+            group_header = c("Hepatocellular carcinoma (n = 87)", "Hepatocellular carcinoma (n = 87)", "Hepatocellular carcinoma (n = 87)", "Intrahepatic cholangiocarcinoma (n = 100)", "Intrahepatic cholangiocarcinoma (n = 100)", "Intrahepatic cholangiocarcinoma (n = 100)")) %>%
   modify_header(label = "**15 g/day of legumes replacing:**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   as_gt() %>%
