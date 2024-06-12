@@ -205,6 +205,8 @@ calculate_food_intake <- function(data) {
       peas_corn = rowSums(pick(matches("p26115")), na.rm = TRUE) / 2,
       legume_daily = rowSums(pick(matches("p26086|p26101|p26136|p26137|hummus_guac|peas_corn")), na.rm = TRUE) / p20077,
       legume_daily_15 = legume_daily / 15,
+      legume_daily_nosoy = rowSums(pick(matches("p26086|p26101|p26137|hummus_guac|peas_corn")), na.rm = TRUE) / p20077,
+      legume_daily_nosoy_15 = legume_daily_nosoy / 15,
       red_meat_daily = rowSums(pick(matches("p26066|p26100|p26104|p26117")), na.rm = TRUE) / p20077,
       red_meat_daily_15 = red_meat_daily / 15,
       proc_meat_daily = rowSums(pick(matches("p26122")), na.rm = TRUE) / p20077,
@@ -214,6 +216,9 @@ calculate_food_intake <- function(data) {
       )), na.rm = TRUE) / p20077,
       hpdi = rowSums(pick(matches(
         "p26071|p26074|p26075|p26076|p26077|p26078|p26105|p26114|p26089|p26090|p26091|p26092|p26093|p26094|p26106|p26107|p26108|p26110|p26111|p26112|p26081|p26082|p26141|p26142|p26148|p26065|p26098|p26123|p26125|p26143|p26146|p26147|hummus_guac|peas_corn"
+      )), na.rm = TRUE) / p20077,
+      hpdi_yessoy = rowSums(pick(matches(
+        "p26071|p26074|p26075|p26076|p26077|p26078|p26105|p26114|p26089|p26090|p26091|p26092|p26093|p26094|p26106|p26107|p26108|p26110|p26111|p26112|p26081|p26082|p26141|p26142|p26148|p26065|p26098|p26123|p26125|p26143|p26146|p26147|p26136|hummus_guac|peas_corn"
       )), na.rm = TRUE) / p20077,
       updi = rowSums(pick(matches(
         "p26068|p26072|p26073|p26079|p26083|p26113|p26118|p26119|p26120|p26095|p26097|p26128|p26145|p26064|p26080|p26085|p26140|p26124|p26126|p26127"
@@ -657,4 +662,11 @@ high_alcohol <- function(data) {
     group_by(sex) %>%
     filter(alcohol_daily < quantile(alcohol_daily, 0.9)) %>%
     ungroup()
+}
+
+remove_soymilk <- function(data) {
+  data %>%
+    select(!legumes_daily_15 & !hpdi) |>
+    rename(legume_daily_15 = legume_daily_nosoy_15,
+           hpdi = hpdi_yessoy)
 }
