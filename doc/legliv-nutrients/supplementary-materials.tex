@@ -59,6 +59,8 @@
 \hreflink{https://doi.org/} % If needed use \linebreak
 %\doinum{}
 %\pdfoutput=1 % Uncommented for upload to arXiv.org
+%\CorrStatement{yes}  % For updates
+
 
 %=================================================================
 % Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, float, amsmath, amssymb, lineno, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, colortbl, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, array, tabularx, pbox, ragged2e, tocloft, marginnote, marginfix, enotez, amsthm, natbib, hyperref, cleveref, scrextend, url, geometry, newfloat, caption, draftwatermark, seqsplit
@@ -270,13 +272,13 @@ Cambridge, United Kingdom; \\
 \cmidrule(lr){2-2} \cmidrule(lr){3-3}
 \textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{{\bfseries Hepatocellular carcinoma}} \\ 
+\multicolumn{3}{l}{{\bfseries Hepatocellular carcinoma (n = 87)}} \\ 
 \midrule\addlinespace[2.5pt]
 Total red meat & 1.02 (0.94-1.11) & 1.06 (0.97-1.16) \\ 
 Unprocessed red meat & 1.02 (0.93-1.11) & 1.04 (0.95-1.15) \\ 
 Processed red meat & 1.04 (0.90-1.19) & 1.10 (0.96-1.27) \\ 
 \midrule\addlinespace[2.5pt]
-\multicolumn{3}{l}{{\bfseries Intrahepatic cholangiocarcinoma}} \\ 
+\multicolumn{3}{l}{{\bfseries Intrahepatic cholangiocarcinoma (n = 100)}} \\ 
 \midrule\addlinespace[2.5pt]
 Total red meat & 0.94 (0.87-1.02) & 0.97 (0.89-1.05) \\ 
 Unprocessed red meat & 0.92 (0.85-1.00) & 0.94 (0.87-1.02) \\ 
@@ -317,24 +319,28 @@ Categories: &  &  &  \\
 
 \begin{table}[t]
 \caption{\label{tab:sens}\textbf{Sensitivity analyses}} 
-\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.125\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
- & \multicolumn{5}{c}{\textbf{Exclusion of participants with:}} &  &  \\ 
-\cmidrule(lr){2-6}
- & \textbf{High alcohol intake}\textsuperscript{\textit{1}} & \textbf{Implausible food intake}\textsuperscript{\textit{2}} & \textbf{Liver disease before baseline}\textsuperscript{\textit{3}} & \textbf{Any cancer before baseline}\textsuperscript{\textit{4}} & \textbf{Fewer than 3 Oxford WebQs} & \textbf{Death register as source of liver cancer events} & \textbf{Exclusion of waist circumference from analysis} \\ 
-\cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6} \cmidrule(lr){7-7} \cmidrule(lr){8-8}
-\textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\ 
+ & \multicolumn{5}{c}{\textbf{Exclusion of participants with:}} &  & \multicolumn{2}{c}{\textbf{Exclusion of:}} \\ 
+\cmidrule(lr){2-6} \cmidrule(lr){8-9}
+ & \textbf{High alcohol intake}\textsuperscript{\textit{1}} & \textbf{Implausible food intake}\textsuperscript{\textit{2}} & \textbf{Liver disease before baseline}\textsuperscript{\textit{3}} & \textbf{Any cancer before baseline}\textsuperscript{\textit{4}} & \textbf{Fewer than 3 Oxford WebQs}\textsuperscript{\textit{5}} & \textbf{Death register as source of liver cancer events}\textsuperscript{\textit{6}} & \textbf{Waist circumference from analysis}\textsuperscript{\textit{7}} & \textbf{Soy milk from food substitutions}\textsuperscript{\textit{8}} \\ 
+\cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6} \cmidrule(lr){7-7} \cmidrule(lr){8-8} \cmidrule(lr){9-9}
+\textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\ 
 \midrule\addlinespace[2.5pt]
-Total red meat & 1.00 (0.94-1.06) & 1.01 (0.95-1.07) & 0.99 (0.93-1.06) & 1.03 (0.96-1.11) & 1.04 (0.96-1.12) & 1.02 (0.96-1.08) & 1.00 (0.94-1.06) \\ 
-Unprocessed red meat & 0.98 (0.92-1.05) & 0.99 (0.93-1.05) & 0.97 (0.90-1.04) & 1.00 (0.93-1.08) & 1.02 (0.94-1.11) & 1.00 (0.94-1.07) & 0.98 (0.92-1.05) \\ 
-Processed red meat & 1.06 (0.95-1.18) & 1.08 (0.98-1.20) & 1.08 (0.96-1.20) & 1.15 (1.01-1.30) & 1.11 (0.97-1.27) & 1.07 (0.98-1.18) & 1.06 (0.96-1.17) \\ 
+Total red meat & 1.00 (0.94-1.06) & 1.01 (0.95-1.07) & 0.99 (0.93-1.06) & 1.03 (0.96-1.11) & 1.04 (0.96-1.12) & 1.02 (0.96-1.08) & 1.00 (0.94-1.06) & 1.03 (0.94-1.12) \\ 
+Unprocessed red meat & 0.98 (0.92-1.05) & 0.99 (0.93-1.05) & 0.97 (0.90-1.04) & 1.00 (0.93-1.08) & 1.02 (0.94-1.11) & 1.00 (0.94-1.07) & 0.98 (0.92-1.05) & 1.01 (0.92-1.11) \\ 
+Processed red meat & 1.06 (0.95-1.18) & 1.08 (0.98-1.20) & 1.08 (0.96-1.20) & 1.15 (1.01-1.30) & 1.11 (0.97-1.27) & 1.07 (0.98-1.18) & 1.06 (0.96-1.17) & 1.11 (0.98-1.25) \\ 
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
-\textsuperscript{\textit{1}}Exclusion of the upper decile of alcohol intake (g/day) by sex.\\
-\textsuperscript{\textit{2}}Exclusion of participants below the 2.5th percentile and above the 97.5th percentile of energy intake (kJ/day) by sex.\\
-\textsuperscript{\textit{3}}ICD10 codes: K70-79, B16-19, Z94.4, I85, I86.4, and E83.0-1. ICD9 codes: 5710-5745, 0700-0709, V427 and 2750-2751.\\
-\textsuperscript{\textit{4}}ICD10 codes: C00-C97 and D00-D48. ICD9 codes: 1400-2399.\\
+\textsuperscript{\textit{1}}Exclusion of the upper decile of alcohol intake (g/day) by sex. n = 150.\\
+\textsuperscript{\textit{2}}Exclusion of participants below the 2.5th percentile and above the 97.5th percentile of energy intake (kJ/day) by sex. n = 164.\\
+\textsuperscript{\textit{3}}ICD10 codes: K70-79, B16-19, Z94.4, I85, I86.4, and E83.0-1. ICD9 codes: 5710-5745, 0700-0709, V427 and 2750-2751. n = 151.\\
+\textsuperscript{\textit{4}}ICD10 codes: C00-C97 and D00-D48. ICD9 codes: 1400-2399. n = 129.\\
+\textsuperscript{\textit{5}}n = 109.\\
+\textsuperscript{\textit{6}}n = 183.\\
+\textsuperscript{\textit{7}}n = 173.\\
+\textsuperscript{\textit{8}}Soy milk was removed from the legumes food group and moved to the food group healthy plant-based foods. n = 173.\\
 \end{minipage}
 \end{table}
 
