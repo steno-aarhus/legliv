@@ -666,7 +666,7 @@ high_alcohol <- function(data) {
 
 remove_soymilk <- function(data) {
   data %>%
-    select(!legumes_daily_15 & !hpdi) |>
+    select(!legume_daily_15 & !hpdi) %>%
     rename(legume_daily_15 = legume_daily_nosoy_15,
            hpdi = hpdi_yessoy)
 }
