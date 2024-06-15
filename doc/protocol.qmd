@@ -499,10 +499,6 @@ liver disease, and viral hepatitis. All sensitivity analyses will be
 modelled as in the main analysis. All analyses will be conducted in R
 with a significance level of 5%.
 
-# Other
-
-*add the references here*
-
 # References
 
 1.            Intergovernmental Panel on Climate Change, *Climate Change
