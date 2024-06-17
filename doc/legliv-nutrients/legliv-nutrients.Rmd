@@ -143,15 +143,20 @@ cases, respectively, found evidence of inverse associations between
 legume consumption and risk of HCC [@zhang2013; @Liu2021]. However,
 replacement foods were not specified in these studies, which fails to
 reflect that a higher intake of one food is at the expense of a
-concomitantly lower intake of another food. Studies on substituting
-animal-based proteins with plant-based proteins are important if we are
-to lower the climate impacts of our diets [@RN71]. While previous
-research has investigated and found protective effects when substituting
-animal-based proteins with plant-based proteins in relations to NAFLD
-[@Zhang2023], research on substituting meats with legumes in relation to
-risk of HCC and ICC is sparse. This leaves a substantial gap in the
-current knowledge on the beneficial effects on primary liver cancer from
-substituting red meat with legumes.
+concomitantly lower intake of another food. On the contrary, processed
+red meat intake, but not unprocessed red meat intake, was associated an
+increased risk of HCC in two large cohorts with approximately 50,000 and
+120,000 participants and 163 incident HCC cases, suggesting that the
+processing of red meat may augment the carcinogenic effects on the liver
+tissues [@Ma2019]. Studies on substituting animal-based proteins with
+plant-based proteins are important if we are to lower the climate
+impacts of our diets [@RN71]. While previous research has investigated
+and found protective effects when substituting animal-based proteins
+with plant-based proteins in relations to NAFLD [@Zhang2023], research
+on substituting meats with legumes in relation to risk of HCC and ICC is
+sparse. This leaves a substantial gap in the current knowledge on the
+beneficial effects on primary liver cancer from substituting red meat
+with legumes.
 
 The low incidence of liver cancer in populations not burdened by viral
 hepatitis complicates observational prospective research designs;
@@ -185,34 +190,37 @@ items and 32 beverage items commonly consumed in the UK. Intakes were
 reported in standard units of measurements, e.g., servings, cups,
 slices, etc. with intake categories ranging from 0 to 3+ units
 [@piernas2021]. The Oxford WebQ has been validated against
-interviewer-based 24-hour dietary recalls and biomarkers [@Liu2011;
-@Greenwood2019].
+interviewer-based 24-hour dietary recalls showing acceptable
+correlations for total energy intake and most nutrients, and biomarkers
+showing acceptable correlations between the average values of two or
+more Oxford WebQs and estimated true intakes of total energy, total
+sugar, potassium and protein [@Liu2011; @Greenwood2019].
 
 A total of 79 food categories and 14 beverage categories from the Oxford
 WebQ has previously been defined using the UK National Diet and
 Nutrition Survey categories [@piernas2021]. We used these food and
 beverage groups when defining the food groups used in the substitution
-analyses (Table \@ref(tab:food-group)). Legumes were defined as legumes
-and dietary pulses, baked beans, tofu-based products, peas, hummus, soy
-drinks, and soy-based desserts and yogurt. Unprocessed red meat intake
-was defined as intake of beef, pork, lamb, or other meat, including
-offal. Processed red meat intake was defined as sausages, bacon (with
-and without fat), ham, or liver paté. Total red meat was the combination
-of unprocessed and processed red meat. Other food groups included were
-animal-based foods, unhealthy plant-based foods, healthy plant-based
-foods, and alcoholic beverages (Table \@ref(tab:food-group)). Given that
-liver cancer is a rare outcome, broad and few food groups were defined
-to keep the number of adjustment levels relatively low to maintain
-statistical power. Animal-based and healthy and unhealthy plant-based
-food foods were grouped based on plant-based diet indices from previous
-studies [@Thompson2023; @Heianza2021; @Satija2017; @Satija2016].
+analyses (Table S1). Legumes were defined as legumes and dietary pulses,
+baked beans, tofu-based products, peas, hummus, soy drinks, and
+soy-based desserts and yogurt. Unprocessed red meat intake was defined
+as intake of beef, pork, lamb, or other meat, including offal. Processed
+red meat intake was defined as sausages, bacon (with and without fat),
+ham, or liver paté. Total red meat was the combination of unprocessed
+and processed red meat. Other food groups included were animal-based
+foods, unhealthy plant-based foods, healthy plant-based foods, and
+alcoholic beverages (Table S1). Given that liver cancer is a rare
+outcome, broad and few food groups were defined to keep the number of
+adjustment levels relatively low to maintain statistical power.
+Animal-based and healthy and unhealthy plant-based food foods were
+grouped based on plant-based diet indices from previous studies
+[@Thompson2023; @Heianza2021; @Satija2017; @Satija2016].
 
 As a single 24-hour dietary recall does not assess habitual dietary
 intake and variation in diet over time at an individual level
 [@thompson2013; @gurinovic2017], only participants who completed two or
-more Oxford WebQs were eligible for inclusion in this study. The
-baseline intake was defined as the average of the reported 24-hour diet
-recalls.
+more Oxford WebQs were eligible for inclusion in this study. Baseline
+food intakes were defined as average intakes from the reported 24-hour
+diet recalls.
 
 ## Liver cancer assessment {#subsec3}
 
@@ -228,10 +236,10 @@ central cancer registries or hospital inpatient episodes [@RN112;
 ## Assessment of confounders {#subsec4}
 
 Confounders were defined *a priori* from a review of the background
-literature and illustrated using directed acyclic graphs (Figure
-\ref{fig:fig2}). The following confounding variables were selected: age
-at baseline (years, continuous), sex (male, female), educational level
-(high: College or University degree, intermediate: A levels/AS levels, O
+literature and illustrated using directed acyclic graphs (Figure S1).
+The following confounding variables were selected: age at baseline
+(years, continuous), sex (male, female), educational level (high:
+College or University degree, intermediate: A levels/AS levels, O
 levels/GCSEs, or equivalent, low: none of the previous mentioned),
 Townsend Deprivation Index (continuous), living alone (yes, no), waist
 circumference (cm, continuous), physical activity (above/below the 2017
@@ -244,6 +252,10 @@ start of follow-up.
 
 ## Statistical analysis {#subsec6}
 
+Baseline characteristics and intake of food groups of all included
+participants and participants who developed liver cancer were described
+using standard summary statistics.
+
 Multivariable-adjusted Cox proportional hazards regression models were
 used to estimate hazard ratios (HR) with corresponding 95% confidence
 intervals (CI) with age as the underlying timescale. Participants were
@@ -252,7 +264,7 @@ occurrence of the event of interest or due to right censoring, whichever
 came first. Participants were right censored in the event of death, loss
 to follow-up, or administrative end of follow-up (October 31, 2022).
 
-The substitution analyses were conducted by modelling replacement of an
+The substitution analyses were conducted by modeling replacement of an
 equal mass of meat with legumes. The portion size of the substitution
 was set to 15 g/day of legumes for 15 g/day of red meat to ensure that
 substitutions were below the mean intake of any of the substituted food
@@ -267,7 +279,7 @@ replacing of 15 g/day of all red meats (unprocessed and processed) with
 {\small
 \begin{align}
 \log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15 g/day)} \hspace{0.5em} + \nonumber \\
-&\quad \hspace{0.5em} \beta_2 \text{Total food intake (g/day)} + \beta_3 \text{Other food groups (g/day)} + \beta_4 \text{´Covariates}
+&\quad \hspace{0.5em} \beta_2 \text{Total food intake (g/day)} + \beta_3 \text{´Other food groups (g/day)} + \beta_4 \text{´Covariates}
 \end{align}
 }
 ```
@@ -278,7 +290,7 @@ processed red meat was added to the model:
 {\small
 \begin{align}
 \log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15 g/day)} + \beta_2 \text{Processed red meat (15 g/day)} \hspace{0.5em} + \nonumber \\
-&\quad \hspace{0.5em} \beta_3 \text{Total food intake (g/day)} + \beta_4 \text{Other food groups (g/day)} + \beta_5 \text{´Covariates}
+&\quad \hspace{0.5em} \beta_3 \text{Total food intake (g/day)} + \beta_4 \text{´Other food groups (g/day)} + \beta_5 \text{´Covariates}
 \end{align}
 }
 ```
@@ -289,7 +301,7 @@ unprocessed red meat was added to the model:
 {\small
 \begin{align}
 \log(h(t;x)) &= \log(h_0(t)) + \beta_1 \text{Legumes (15 g/day)} + \beta_2 \text{Unprocessed red meat (15 g/day)} \hspace{0.5em} + \nonumber \\
-&\quad \hspace{0.5em} \beta_3 \text{Total food intake (g/day)}  + \beta_4 \text{Other food groups (g/day)} + \beta_5 \text{´Covariates}
+&\quad \hspace{0.5em} \beta_3 \text{Total food intake (g/day)}  + \beta_4 \text{´Other food groups (g/day)} + \beta_5 \text{´Covariates}
 \end{align}
 }
 ```
@@ -351,10 +363,11 @@ flowchart
 ```
 
 During a median follow-up time of 11.3 years, 173 participants developed
-liver cancer (HCC = , ICC = ). Those who developed liver cancer were
-older at baseline, were more likely to be male, have a higher waist
-circumference, be less physically active, and fewer had never smoked,
-compared to all included participants (Table \@ref(tab:baseline)).
+liver cancer of which 73 were HCC and 100 were ICC. Those who developed
+liver cancer were older at baseline, were more likely to be male, have a
+higher waist circumference, be less physically active, and fewer had
+never smoked, compared to all included participants (Table
+\@ref(tab:baseline)).
 
 ```{r baseline}
 table_one %>% 
@@ -395,8 +408,7 @@ table_main %>%
 
 In secondary analyses, when analyzing the associations between
 replacement of red meat with legumes and HCC or ICC separately, weak
-evidence of a higher risk of HCC was observed (Table \@ref(tab:cancer),
-total red meat:
+evidence of a higher risk of HCC was observed (Table S2, total red meat:
 `r inline_text(m2t_hcc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`;
 unprocessed red meat:
 `r inline_text(m2r_hcc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`;
@@ -407,25 +419,24 @@ meat and unprocessed red meat and ICC (total red meat:
 `r inline_text(m2t_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`;
 unprocessed red meat:
 `r inline_text(m2r_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`)
-but not for processed red meat (
-`r inline_text(m2p_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}- {conf.high}")`,
-Table \@ref(tab:cancer)). The magnitude or direction of associations
-were not significantly different across strata of liver cancer types.
+but not for processed red meat
+(`r inline_text(m2p_icc, variable = legume_daily_15, pattern = "HR: {estimate}, 95% CI: {conf.low}- {conf.high}")`,
+Table S2). The magnitude or direction of associations were not
+significantly different across strata of liver cancer types.
 
 In the adjusted non-substitution analysis, only the first quartile of
 legume intake (mean intake 6.3 grams/day) was associated with a lower
 risk of liver cancer, compared to no intake
 (`r inline_text(m2t_leg, variable = legume_category, level = "Q1", pattern = "HR: {estimate}, 95% CI: {conf.low}-{conf.high}")`);
 no associations were observed for quartiles 2, 3 or 4 compared to no
-intake (Table \@ref(tab:legume)).
+intake (Table S3).
 
 In sensitivity analyses, excluding participants based on high alcohol
 intake, implausible energy intake, any liver disease or cancer before
 baseline, or fewer than 3 completed Oxford WebQs did not alter the
 estimates appreciably. Similar results were also found when including
 death registries as a source of liver cancer cases and when excluding
-waist circumference from the fully adjusted analysis (Table
-\@ref(tab:sens)).
+waist circumference from the fully adjusted analysis (Table S4).
 
 # Discussion {#sec4}
 
@@ -534,12 +545,20 @@ meat, but not unprocessed red meat, with legumes in one cohort and a
 near significant increase in NAFLD risk when replacing total red and
 processed meat with legumes in another cohort [@Zhang2023].
 
-Replacing Red meat with legumes will, inevitabely, increase one's intake
+Red meat is the main source of exogenous heme iron which may induce
+formation of N-nitroso compunds (NOCs) [REFERENCE] and is a known
+catalyst of lipid peroxidation, leading to DNA-damage [REFERENCE].
+Heterocyclic amines (HCAs) are formed when red meat is cooked at high
+temperatures and and during a long time and are suspected human
+carcinogens. Further, additives such as nitrate, nitrite and other NOCs
+are often added in the processing of red meat.
+
+Replacing Red meat with legumes will, inevitably, increase one's intake
 of dietary fibres. Soy milk is low in fibres and did constitute a
 substantial amount of the legumes food group which would alleviate the
 difference in fiber intake from replacing red meat with legumes.
 However, removing soy milk from food substitutions did not alter the
-result appreciably.
+results appreciably.
 
 # Conclusion {#sec5}
 
@@ -548,4 +567,3 @@ with legumes and liver cancer was observed. These results should be
 interpreted with caution due to the low intake of the substituted foods
 and few liver cancer cases. Further research in larger study populations
 with longer follow-up time is warranted.
-
