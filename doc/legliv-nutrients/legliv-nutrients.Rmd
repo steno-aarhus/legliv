@@ -119,7 +119,7 @@ associated with NAFLD progression [@Guo2022]. The prevalence of
 NAFLD-related HCC cases is an increasing global problem [@Younossi2016].
 It is estimated that the prevalence of NAFLD-related HCC in the US will
 increase by 146%, while incident NAFLD-related HCC cases will increase
-by 137% by 2030 [@Estes2018].
+by 137% in 2030 [@Estes2018].
 
 The second most common primary liver cancer is the intrahepatic
 cholangiocarcinoma (ICC) [@Khan2019]. While HCC emerges from the liver
@@ -148,21 +148,22 @@ legume consumption and risk of HCC [@zhang2013; @Liu2021]. However,
 replacement foods were not specified in these studies, which fails to
 reflect that a higher intake of one food is at the expense of a
 concomitantly lower intake of another food. On the contrary, processed
-red meat intake, but not unprocessed red meat intake, was associated an
-increased risk of HCC in two large cohorts with approximately 50,000 and
-120,000 participants and 163 incident HCC cases, suggesting that the
-processing of red meat may augment the carcinogenic effects on the liver
-tissues [@Ma2019]. Processed red meat is classified as "carcinogenic to
-humans" and unprocessed red meat as a possible carcinogen by the
-International Agency for Research on Cancer [@Bouvard2015]. Studies on
-substituting animal-based proteins with plant-based proteins are
-important if we are to lower the climate impacts of our diets [@RN71].
-While previous research has investigated and found protective effects
-when substituting animal-based proteins with plant-based proteins in
-relations to NAFLD [@Zhang2023], research on substituting meats with
-legumes in relation to risk of HCC and ICC is sparse. This leaves a
-substantial gap in the current knowledge on the beneficial effects on
-primary liver cancer from substituting red meat with legumes.
+red meat intake, but not unprocessed red meat intake, was associated
+with an increased risk of HCC in two large cohorts with approximately
+50,000 and 120,000 participants and 163 incident HCC cases, suggesting
+that the processing of red meat may augment the carcinogenic effects on
+the liver tissues [@Ma2019]. Processed red meat is classified as
+"carcinogenic to humans" and unprocessed red meat as a possible
+carcinogen by the International Agency for Research on Cancer
+[@Bouvard2015]. Studies on substituting animal-based proteins with
+plant-based proteins are important if we are to lower the climate
+impacts of our diets [@RN71]. While previous research has investigated
+and found protective effects when substituting animal-based proteins
+with plant-based proteins in relations to NAFLD [@Zhang2023], research
+on substituting meats with legumes in relation to risk of HCC and ICC is
+sparse. This leaves a substantial gap in the current knowledge on the
+beneficial effects on primary liver cancer from substituting red meat
+with legumes.
 
 The low incidence of liver cancer in populations not burdened by viral
 hepatitis complicates observational prospective research designs;
@@ -587,3 +588,4 @@ with legumes and liver cancer was observed. These results should be
 interpreted with caution due to the low intake of the substituted foods
 and few liver cancer cases. Further research in larger study populations
 with longer follow-up time is warranted.
+
