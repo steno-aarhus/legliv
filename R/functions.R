@@ -567,23 +567,6 @@ make_status_age <- function(data) {
 
 # Prepare sensitivity analyses --------------------------------------------
 
-remove_high_alcohol <- function(data) {
-  data <- data %>%
-    filter(
-      (sex == "Male" & alcohol_daily < 32) | (sex == "Female" & alcohol_daily < 24)
-    )
-  return(data)
-}
-
-remove_misreporter <- function(data) {
-  data <- data %>%
-    filter(
-      (sex == "Male" & total_energy_food_daily > 3200 & total_energy_food_daily < 16800) |
-        (sex == "Female" & total_energy_food_daily > 2000 & total_energy_food_daily < 14000)
-    )
-  return(data)
-}
-
 filter_ques_comp <- function(data) {
   data <- data %>%
     filter(p20077 >= 3)
@@ -643,11 +626,6 @@ remove_any_cancer_before <- function(data) {
 reduce_dataset <- function(data) {
   data %>%
     select(-matches("^p[0-9]"), all_of("p20077"))
-}
-
-remove_high_alat <- function(data) { # Have to redefine cutoff
-  data <- data %>%
-    filter((sex == "Male" & alat < 30) | (sex == "Female" & alat < 20) | is.na(alat))
 }
 
 energy_outlier <- function(data) {
