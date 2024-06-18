@@ -8,7 +8,8 @@ gtsummary::set_gtsummary_theme(my_theme)
 model1t_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data_hcc
 )
 
@@ -16,7 +17,7 @@ model2t_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -26,7 +27,8 @@ model2t_hcc <- coxph(
 model1r_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data_hcc
 )
 
@@ -34,7 +36,7 @@ model2r_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -44,7 +46,8 @@ model2r_hcc <- coxph(
 model1p_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data_hcc
 )
 
@@ -52,7 +55,7 @@ model2p_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -104,7 +107,8 @@ m2p_hcc  <- model2p_hcc %>%
 model1t_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data_icc
 )
 
@@ -112,7 +116,7 @@ model2t_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -122,7 +126,8 @@ model2t_icc <- coxph(
 model1r_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data_icc
 )
 
@@ -130,7 +135,7 @@ model2r_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -140,7 +145,8 @@ model2r_icc <- coxph(
 model1p_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data_icc
 )
 
@@ -148,7 +154,7 @@ model2p_icc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -207,7 +213,7 @@ row6 <- tbl_merge(list(m1p_icc, m2p_icc))
 
 table_cancer_type <-
   tbl_stack(list(row1, row2, row3, row4, row5, row6),
-            group_header = c("Hepatocellular carcinoma", "Hepatocellular carcinoma", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma", "Intrahepatic cholangiocarcinoma")) %>%
+            group_header = c("Hepatocellular carcinoma (n = 87)", "Hepatocellular carcinoma (n = 87)", "Hepatocellular carcinoma (n = 87)", "Intrahepatic cholangiocarcinoma (n = 100)", "Intrahepatic cholangiocarcinoma (n = 100)", "Intrahepatic cholangiocarcinoma (n = 100)")) %>%
   modify_header(label = "**15 g/day of legumes replacing:**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
   as_gt() %>%
@@ -221,8 +227,8 @@ table_cancer_type <-
     columns = c(estimate_2),
     id = "model2"
   ) %>%
-  tab_header(
-    title = md("**Supplementary table 2. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.**")
+  tab_caption(
+    md("**Replacing 15 g/day of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.**")
   ) %>%
   tab_style(
     style = list(
@@ -232,11 +238,11 @@ table_cancer_type <-
     locations = cells_title()
   ) %>%
   tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    footnote = "Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake, and additionally stratified on sex, age, and attended assessment centre.",
     locations = cells_column_spanners(spanners = "model1")
   ) %>%
   tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
+    footnote = "Further adjusted for educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
     locations = cells_column_spanners(spanners = "model2")
   ) %>%
   tab_style(

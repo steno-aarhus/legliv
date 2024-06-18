@@ -75,24 +75,24 @@ diet_liver_table_median <- diet_liver_median %>%
 row1 <- tbl_merge(list(diet_all_table_mean, diet_liver_table_mean))
 row2 <- tbl_merge(list(diet_all_table_median, diet_liver_table_median))
 
-diet_table <-
+table_diet <-
   tbl_stack(list(row1, row2),
             group_header = c("Total food intake", "Food groups, g/day")) %>%
   modify_header(label ~ "**Daily food intake**") %>%
   modify_table_styling(
     columns = label,
     rows = label == "Other animal-based foods",
-    footnote = "Other animal-based foods include: poultry, fish, dairy, eggs, and mixed dishes with animal products."
+    footnote = "Other animal-based foods include poultry, fish, dairy, eggs, and mixed dishes with animal products."
   ) %>%
   modify_table_styling(
     columns = label,
     rows = label == "Healthy plant-based foods",
-    footnote = "Healthy plant-based foods include: whole grains, vegetables, fruits, nuts, plant oils, and beverages (coffee, tea, water)."
+    footnote = "Healthy plant-based foods include whole grains, vegetables, fruits, nuts, plant oils, and beverages (coffee, tea, water)."
   ) %>%
   modify_table_styling(
     columns = label,
     rows = label == "Unhealthy plant-based foods",
-    footnote = "Unhealthy plant-based foods includes: refined grains, potatoes, mixed vegetarian dishes, sweets and snacks, fruit juice, and sugar sweetened beverages."
+    footnote = "Unhealthy plant-based foods include refined grains, potatoes, mixed vegetarian dishes, sweets and snacks, fruit juice, and sugar sweetened beverages."
   ) %>%
   modify_spanning_header(everything() ~ NA_character_) %>%
   as_gt() %>%
@@ -106,8 +106,8 @@ diet_table <-
     columns = c(stat_0_2),
     id = "livercancer"
   ) %>%
-  tab_header(
-    title = md("**Table 2. Daily dietary intake of food groups, total food and total energy intake in UK Biobank participants who completed >= 2 Oxford WebQ 24-hour diet recall.**")
+  tab_caption(
+    md("**Daily dietary intake of food groups, total food, and total energy intake in UK Biobank participants who completed $\\geq$ 2 Oxford WebQ dietary recalls.**")
   ) %>%
   tab_style(
     style = list(
@@ -119,5 +119,4 @@ diet_table <-
   tab_style(
     style = cell_text(weight = "bold"),
     locations = cells_row_groups(groups = everything())
-  ) %>%
-  tab_options(table.width = pct(100))
+  )

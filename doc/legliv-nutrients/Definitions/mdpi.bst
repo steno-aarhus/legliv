@@ -59,7 +59,7 @@ FUNCTION {output.nonnull}
 	    'write$
 	    { output.state after.item =
 	    {"; " * write$}
-	    {add.period$ " " * write$} 
+	    {add.period$ " " * write$}
 	    if$}
 	  if$
 	}
@@ -543,7 +543,7 @@ FUNCTION {format.vol.num.pages}
 { volume emphasize field.or.null
   number empty$
     'skip$
-    { 
+    {
       volume empty$
 	{ "there's a number but no volume in " cite$ * warning$ }
 	'skip$
@@ -581,7 +581,7 @@ FUNCTION {format.in.ed.booktitle}
     { "" }
     { editor empty$
 	{ edition empty$
-            {"In " booktitle emphasize *} 
+            {"In " booktitle emphasize *}
             {"In " booktitle emphasize * ", " * edition * " ed." *}
           if$
          }
@@ -600,7 +600,7 @@ FUNCTION {format.in.ed.booktitle.proc}
     { "" }
     { editor empty$
 	{ edition empty$
-            {"In Proceedings of the " booktitle  *} 
+            {"In Proceedings of the " booktitle  *}
             {"In Proceedings of the " booktitle  * ", " * edition * " ed." *}
           if$
          }
@@ -726,25 +726,24 @@ FUNCTION {format.incoll.inproc.crossref}
 FUNCTION {format.website}
 { url empty$
     { "" }
-    { "" url website *
+    { "Available online: " url website *
      urldate empty$
     {"there is url but no urldate in " cite$ * warning$}
-    { ", accessed on " * urldate *}
+    { " (accessed on " * urldate * ")" *}
     if$
     }
   if$
 }
-
 
 %% the following function is modified from kp.bst at http://arxiv.org/hypertex/bibstyles/
 FUNCTION {format.eprint}
 {eprint empty$
 	{ ""}
 	{primaryClass empty$
-		{" \href{http://xxx.lanl.gov/abs/" eprint * "}" *  "{{\normalfont " * "[" * eprint * "]" * "}}" *}
+		{" \href{http://arxiv.org/abs/" eprint * "}" *  "{{\normalfont " * "[" * eprint * "]" * "}}" *}
 		{archivePrefix empty$
-              		  {" \href{http://xxx.lanl.gov/abs/" eprint * "}" * "{{\normalfont " * "[" * "arXiv:" * primaryClass * "/" * eprint * "]" * "}}" *}
-			  {" \href{http://xxx.lanl.gov/abs/" eprint * "}" * "{{\normalfont " * "[" * archivePrefix * ":" * primaryClass * "/" * eprint * "]" * "}}" *}
+              		  {" \href{http://arxiv.org/abs/" eprint * "}" * "{{\normalfont " * "[" * "arXiv:" * primaryClass * "/" * eprint * "]" * "}}" *}
+			  {" \href{http://arxiv.org/abs/" eprint * "}" * "{{\normalfont " * "[" * archivePrefix * ":" * primaryClass * "/" * eprint * "]" * "}}" *}
 		if$
 		}
 	if$
@@ -860,7 +859,7 @@ FUNCTION {inbook}
       after.item 'output.state :=
       format.bvolume output
       format.chapter.pages "chapter and pages" output.check
-      
+
     }
     { format.chapter.pages "chapter and pages" output.check
       new.block

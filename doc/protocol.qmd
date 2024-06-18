@@ -1,11 +1,64 @@
 ---
-title: "Protocol: LEGUME CONSUMPTION AND RISK OF PRIMARY LIVER CANCER"
+title: "Protocol: Legume consumption and risk of primary liver cancer"
 author: 
-  - name: NIELS BOCK
-    affiliation: 
-      - name: DEPARTMENT OF PUBLIC OF PUBLIC HEALTH, AARHUS UNIVERSITY
-date: 04/10/23
-format: html
+  - name: Niels Bock
+    roles:
+      - "writing – original draft"
+      - "formal analysis"
+      - "investigation"
+      - "conceptualization"
+    affiliations:
+      - name: Aarhus University
+  - name: Fie Langmann
+    orcid: "0000-0003-3474-9346"
+    roles:
+      - "writing – original draft"
+      - "formal analysis"
+      - "investigation"
+      - "conceptualization"
+    affiliations:
+      - name: Aarhus University
+  - name: Daniel Borch Ibsen
+    orcid: "0000-0002-7038-4770"
+    roles:
+      - "supervision"
+      - "project administration"
+      - "writing – review & editing"
+      - "conceptualization"
+    affiliations:
+      - name: Aarhus University
+      - name: Steno Diabetes Center Aarhus
+  - name: Luke W. Johnston
+    orcid: "0000-0003-4169-2616"
+    roles:
+      - "software"
+      - "project administration"
+      - "writing – review & editing"
+      - "data curation"
+      - "resources"
+    affiliations:
+      - name: Aarhus University
+      - name: Steno Diabetes Center Aarhus
+  - name: Christina Catherine Dahm
+    orcid: "0000-0003-0481-2893"
+    roles:
+      - "supervision"
+      - "project administration"
+      - "writing – review & editing"
+      - "conceptualization"
+    affiliations:
+      - name: Aarhus University 
+date: 2023-10-04
+format: 
+  pdf: 
+    classoption: twocolumn
+    fontsize: 11pt
+    geometry:
+      - top=2cm
+      - bottom=2cm
+      - left=2cm
+      - right=2cm
+    papersize: a4
 # bibliography: "file/path"
 execute: 
   echo: true
@@ -17,6 +70,22 @@ editor:
 ```{r setup}
 #| include: false
 # Include packages here if needed.
+```
+
+```{r upload-protocol}
+#| eval: false
+#| echo: false
+# This is only for uploading to Zenodo.
+library(ukbAid)
+path <- here::here("doc/protocol.qmd")
+pdf_path <- zen_create_protocol_pdf(path)
+client <- zen_create_file_record(
+  path = pdf_path,
+  metadata = zen_create_protocol_metadata(path),
+  token = zen_get_token(),
+  # Test it in the sandbox first
+  sandbox = FALSE
+)
 ```
 
 ::: content-hidden
@@ -445,10 +514,6 @@ predisposed to liver cancer, e.g. primary biliary cirrhosis, alcoholic
 liver disease, and viral hepatitis. All sensitivity analyses will be
 modelled as in the main analysis. All analyses will be conducted in R
 with a significance level of 5%.
-
-# Other
-
-*add the references here*
 
 # References
 

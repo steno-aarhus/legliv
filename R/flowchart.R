@@ -12,7 +12,8 @@ ready_flowchart <-
     l2fu = two_ques %>% filter(is.na(p191) | p191 >= baseline_start_date),
     both = two_ques %>%
       filter(is.na(p191) | p191 >= baseline_start_date) %>%
-      filter(!is.na(baseline_start_date)),
+      filter(!is.na(baseline_start_date)) %>%
+      filter(is.na(liver_cancer_date) | liver_cancer_date >= baseline_start_date),
     miss = two_ques %>% filter(!is.na(baseline_start_date)),
     two = two_ques %>% filter(p20077 == 2),
     three = two_ques %>% filter(p20077 == 3),
@@ -34,7 +35,7 @@ ready_flowchart <-
     l2fu_excluded = "Lost to follow-up before baseline",
     both = "Included in study",
     miss_excluded = "Missing diet data",
-    both_excluded = "Lost to follow-up before baseline<br>or missing diet data",
+    both_excluded = "Loss to follow-up before baseline<br>or missing diet data",
     two = "2 Oxford WebQs",
     three = "3 Oxford WebQs",
     four = "4 Oxford WebQs",
@@ -76,6 +77,7 @@ flowchart_make <- ready_flowchart %>%
     y = 42.5,
     label = glue::glue(
       '
+      Exclusion of participants with:<br><br>
       {cohort_count_adorn(ready_flowchart, one_ques_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
       {cohort_count_adorn(ready_flowchart, two_ques_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
       '
@@ -87,6 +89,7 @@ flowchart_make <- ready_flowchart %>%
     y = 18,
     label = glue::glue(
       '
+      Exclusions due to:<br><br>
       {cohort_count_adorn(ready_flowchart, liver_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
       {cohort_count_adorn(ready_flowchart, both_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
       '

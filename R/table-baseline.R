@@ -5,17 +5,16 @@ source(here::here("R","gtsummary-theme.R"))
 gtsummary::set_gtsummary_theme(my_theme)
 
 table_1_all <- data %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
+  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
 
 table_1_cancer <- data %>%
   filter(status == "Liver cancer") %>%
-  select(typical_diet, age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
+  select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)
 
 table_all <- table_1_all %>%
   tbl_summary(
     missing_text = "Missing",
     label = list(
-      typical_diet ~ "Typical diet yesterday",
       age_at_baseline ~ "Age, years",
       sex ~ "Sex",
       education ~ "Educational level",
@@ -33,7 +32,6 @@ table_cancer <- table_1_cancer %>%
   tbl_summary(
     missing_text = "Missing",
     label = list(
-      typical_diet ~ "Typical diet yesterday",
       age_at_baseline ~ "Age, years",
       sex ~ "Sex",
       education ~ "Educational level",
@@ -53,19 +51,14 @@ table_one <- tbl_merge(
   bold_labels() %>%
   modify_header(label ~ "**Variable**") %>%
   modify_footnote(
-    all_stat_cols() ~ "Median (IQR) for continous variables; n (%) for categorical variables"
-  ) %>%
-  modify_table_styling(
-    columns = label,
-    rows = label == "Typical diet yesterday",
-    footnote = "Participants who reported eating a typical diet yesterday for all completed diet questionnaires."
+    all_stat_cols() ~ "Median (IQR) for continuous variables; n (%) for categorical variables"
   ) %>%
   modify_table_styling(
     columns = label,
     rows = label == "Educational level",
     footnote = "High: College or University degree;
     Intermediate: A levels/AS levels, O levels/GCSEs, or equivalent;
-    Low: none of the previous mentioned."
+    Low: none of the previously mentioned."
   ) %>%
   modify_table_styling(
     columns = label,
@@ -84,8 +77,8 @@ table_one <- tbl_merge(
     columns = c(stat_0_2),
     id = "livercancer"
   ) %>%
-  tab_header(
-    title = md("**Table 1. Baseline characteristics of UK Biobank participants who completed ≥ 2 Oxford WebQ 24-hour diet recall.**")
+  tab_caption(
+    md("**Baseline characteristics of UK Biobank participants who completed $\\geq$ 2 Oxford WebQ dietary recalls.**")
   )
 
 # table_one %>% gtsave("doc/latex-tables/table-baseline.tex")

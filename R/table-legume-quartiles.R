@@ -34,7 +34,8 @@ tbl_legume_mean <-
 model1t_leg <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
-    animal_foods + hpdi + updi + total_weight_food_daily,
+    animal_foods + hpdi + updi + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data
 )
 
@@ -49,7 +50,7 @@ model2t_leg <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_category + red_meat_daily + proc_meat_daily +
     animal_foods + hpdi + updi + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -79,8 +80,8 @@ table_legume <- tbl_merge(
     columns = c(estimate_3),
     id = "model2"
   ) %>%
-  tab_header(
-    title = md("**Supplementary table 3. No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95% confidence intervals for primary liver cancer.**")
+  tab_caption(
+    md("**No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95% confidence intervals for primary liver cancer.**")
   ) %>%
   tab_style(
     style = list(
@@ -90,10 +91,10 @@ table_legume <- tbl_merge(
     locations = cells_title()
   ) %>%
   tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    footnote = "Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake, and additionally stratified on sex, age, and attended assessment centre.",
     locations = cells_column_spanners(spanners = "model1")
   ) %>%
   tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
+    footnote = "Further adjusted for educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
     locations = cells_column_spanners(spanners = "model2")
   )

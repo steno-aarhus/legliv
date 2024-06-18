@@ -8,7 +8,8 @@ gtsummary::set_gtsummary_theme(my_theme)
 model1t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data
 )
 
@@ -16,7 +17,7 @@ model2t <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -26,7 +27,8 @@ model2t <- coxph(
 model1r <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data
 )
 
@@ -34,7 +36,7 @@ model2r <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + proc_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -44,7 +46,8 @@ model2r <- coxph(
 model1p <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily,
+    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+    strata(sex, age_strat, ass_center),
   data = data
 )
 
@@ -52,7 +55,7 @@ model2p <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
     legume_daily_15 + red_meat_daily_15 +
     updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    sex +
+    strata(sex, age_strat, ass_center) +
     education + tdi + spouse +
     exercise + smoking_pack + alcohol_daily +
     wc,
@@ -122,8 +125,8 @@ table_main <-
     columns = c(estimate_2),
     id = "model2"
   ) %>%
-  tab_header(
-    title = md("**Table 3. Substitution of total meat, red meat and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**")
+  tab_caption(
+    md("**Replacing 15 g/day of total red meat, unprocessed red meat, and processed meat with legumes and hazard ratios and 95% confidence intervals for primary liver cancer.**")
   ) %>%
   tab_style(
     style = list(
@@ -133,15 +136,14 @@ table_main <-
     locations = cells_title()
   ) %>%
   tab_footnote(
-    footnote = "Adjusted for age (as underlying timescale), other food groups, and total food intake.",
+    footnote = "Multivariate Cox proportional hazards regression model adjusted for age (as underlying timescale), other food groups, and total food intake, and additionally stratified on sex, age, and attended assessment centre.",
     locations = cells_column_spanners(spanners = "model1")
   ) %>%
   tab_footnote(
-    footnote = "Further adjusted for sex, educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
+    footnote = "Further adjusted for educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
     locations = cells_column_spanners(spanners = "model2")
   ) %>%
   tab_style(
     style = cell_text(weight = "bold"),
     locations = cells_column_spanners()
-  ) %>%
-  tab_options(table.width = pct(100))
+  )

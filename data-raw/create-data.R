@@ -1,10 +1,11 @@
+
 # Keep only the necessary variables for RAP -------------------------------
 
 library(magrittr)
 
 # Update if necessary.
-ukbAid::rap_variables %>%
-  readr::write_csv(here::here("data-raw/rap-variables.csv"))
+# ukbAid::rap_variables %>%
+#   readr::write_csv(here::here("data-raw/rap-variables.csv"))
 
 # Create the project dataset and save inside RAP --------------------------
 
@@ -15,4 +16,4 @@ ukbAid::rap_variables %>%
 
 readr::read_csv(here::here("data-raw/rap-variables.csv")) %>%
   dplyr::pull(id) %>%
-  ukbAid::create_csv_from_database(username = "nielsbock")
+  ukbAid::create_csv_from_database(project_id = "legliv", username = "nielsbock")

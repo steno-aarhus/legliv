@@ -87,7 +87,7 @@ my_theme <-
     "as_gt-lst:addl_cmds" = list(
       tab_spanner = rlang::expr(
         gt::tab_options(
-          table.font.size = gt::px(13.33),
+          table.font.size = gt::px(12),
           data_row.padding = gt::px(1),
           summary_row.padding = gt::px(1),
           grand_summary_row.padding = gt::px(1),

@@ -5,24 +5,26 @@ library(dagitty)
 legliv <- dagitty( # Har først lavet grafen i dagitty og så kopieret koden ind her. Her er det relativt let at justere koordinaterne så det står helt skarpt.
   'dag {
 bb="-8,-5,6,5"
+"Geographical region" [pos="3.500,-3.000"]
 "Intake of other foods (g)" [pos="3.500,-1.000"]
-"Legume intake (g)" [pos="-1.000,3.000"]
-"Liver cancer" [outcome,pos="0.000,-3.000"]
+"Legume intake (g)" [pos="-1.000,2.000"]
+"Liver cancer" [outcome,pos="0.000,-4.000"]
 "Living alone" [pos="-3.500,0.000"]
 "Physical activity" [pos="-3.500,-1.000"]
-"Red meat intake (g)" [pos="1.000,3.000"]
+"Red meat intake (g)" [pos="1.000,2.000"]
 "Replacing meat with legumes (g)" [exposure,pos="0.000,1.000"]
 "Socioeconomic status" [pos="-6.000,1.000"]
-"Total food intake (g)" [pos="3.500,-2.000"]
 "Waist circumference" [pos="-3.500,-4.000"]
 Adiposity [pos="-6.000,-4.000"]
 Age [pos="3.500,0.000"]
 Alcohol [pos="-3.500,-2.000"]
 Education [pos="-3.500,2.000"]
 Lifestyle [pos="-6.000,-2.000"]
-Sex [pos="-3.500,3.000"]
+Sex [pos="3.500,-2.000"]
 Smoking [pos="-3.500,-3.000"]
 TDI [pos="-3.500,1.000"]
+"Geographical region" -> "Liver cancer"
+"Geographical region" -> "Replacing meat with legumes (g)"
 "Intake of other foods (g)" -> "Liver cancer"
 "Intake of other foods (g)" -> "Replacing meat with legumes (g)"
 "Legume intake (g)" -> "Replacing meat with legumes (g)"
@@ -35,8 +37,6 @@ TDI [pos="-3.500,1.000"]
 "Socioeconomic status" -> "Living alone"
 "Socioeconomic status" -> Education
 "Socioeconomic status" -> TDI
-"Total food intake (g)" -> "Liver cancer"
-"Total food intake (g)" -> "Replacing meat with legumes (g)"
 "Waist circumference" -> "Liver cancer"
 "Waist circumference" -> "Replacing meat with legumes (g)"
 Adiposity -> "Waist circumference"
@@ -66,7 +66,7 @@ legliv_tidy <- tidy_dagitty(legliv) %>%
     x == "1" | x == "-1" ~ "exposure",
     x == "0" & y == "1" ~ "exposure",
     x == "3.5" | x == "-3.5" | x == "-6" ~ "confounders",
-    x == "0" & y == "-3" ~ "liver cancer",
+    x == "0" & y == "-4" ~ "liver cancer",
   ))
 
 # legliv_tidy %>% print() # Tjek kolonner
@@ -90,4 +90,3 @@ dag <- legliv_tidy |>
   theme(legend.position = "none") + # f.eks "right" hvis du vil se legend (kan give et overblik ift. farvningen af nodes).
   geom_dag_label(color="black", size = 2) +
   scale_adjusted() # tror ikke det gør nogen forskel om den er her eller ej, i hvert fald ikke for min DAG.
-dag
