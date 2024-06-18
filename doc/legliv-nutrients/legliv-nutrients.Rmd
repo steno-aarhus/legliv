@@ -174,8 +174,8 @@ on primary liver cancer in a large free-living population.
 
 # Materials and Methods {#sec2}
 
-The protocol for this study was written prior to conducting the
-analysis. It is available on the archive Zenodo [@protocol].
+\noindent The protocol for this study was written prior to conducting
+the analysis. It is available on the archive Zenodo [@protocol].
 
 ## Study population {#subsec1}
 
@@ -332,9 +332,8 @@ proportion of lifespan exposed to smoking, continuous), alcohol intake
 included covariates in model 2 were grouped to ensure adequate power in
 the analyses to discover any associations between the exposure and
 outcome of interest and were guided by our *a priori* assumptions (see
-study protcol at **LINK TO PROTOCOL HERE**). Assumptions of proportional
-hazards were checked using Schoenfeld residuals and showed no
-violations.
+study protcol at [@protocol]). Assumptions of proportional hazards were
+checked using Schoenfeld residuals and showed no violations.
 
 In secondary analyses, each cancer type was analysed separately to
 evaluate if the pooling of HCC and ICC as one outcome in the main
