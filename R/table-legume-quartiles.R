@@ -3,7 +3,7 @@ library(gtsummary)
 library(tidyverse)
 library(survival)
 source(here::here("R","gtsummary-theme.R"))
-gtsummary::set_gtsummary_theme(my_theme)
+gtsummary::set_gtsummary_theme(my_theme())
 
 fn_add_mean <- function(data, variable, ...) {
   data %>%

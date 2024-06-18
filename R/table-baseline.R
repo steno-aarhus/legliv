@@ -2,7 +2,7 @@ library(gt)
 library(gtsummary)
 library(tidyverse)
 source(here::here("R","gtsummary-theme.R"))
-gtsummary::set_gtsummary_theme(my_theme)
+gtsummary::set_gtsummary_theme(my_theme())
 
 table_1_all <- data %>%
   select(age_at_baseline, sex, education, tdi, spouse, exercise, smoking, alcohol_daily, wc)

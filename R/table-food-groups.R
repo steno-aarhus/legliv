@@ -1,7 +1,7 @@
 library(tidyverse)
 library(gt)
 source(here::here("R","gtsummary-theme.R"))
-gtsummary::set_gtsummary_theme(my_theme)
+gtsummary::set_gtsummary_theme(my_theme())
 id <- data.frame(id = 1:25)
 
 food_group <- c(

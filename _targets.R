@@ -25,6 +25,7 @@ tar_option_set(
 # tar_source()
 # Or just some files:
 source(here::here("R/functions.R"))
+source(here::here("R/gtsummary-theme.R"))
 
 # Things to run in order to work.
 list(

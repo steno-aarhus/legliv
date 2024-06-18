@@ -3,7 +3,7 @@ library(survival)
 library(gt)
 library(gtsummary)
 source(here::here("R","gtsummary-theme.R"))
-gtsummary::set_gtsummary_theme(my_theme)
+gtsummary::set_gtsummary_theme(my_theme())
 
 model1t_hcc <- coxph(
   Surv(time = status_age, event = status == "Liver cancer") ~
