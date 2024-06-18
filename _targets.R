@@ -164,6 +164,11 @@ list(
       left_join(reduce_baseline_data(data_with_liver_cancer), by = "id")
   ),
   tar_target(
+    name = flowchart,
+    command = data_flowchart |>
+      create_flowchart()
+  ),
+  tar_target(
     name = data_without_liver_disease,
     command = data_main |>
       left_join(icd_liver_disease(icd_subset), by = "id") |>
