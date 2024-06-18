@@ -3,20 +3,13 @@
 
 library(magrittr)
 
-# After the variables have been properly selected in the `data-raw/project-variables.csv`
-# file, run this function so that only the selected variables are kept in the
-# `data-raw/rap-variables.csv` file. This file has the exact variable names used
-# by RAP that we need in order to create the project-specific dataset. After
-# running this function, review the changes in Git and add and commit the changed
-# files into the history.
-
-# Uncomment if you messed up and need to start over.
+# Update if necessary.
 # ukbAid::rap_variables %>%
-#     readr::write_csv(here::here("data-raw/rap-variables.csv"))
+#   readr::write_csv(here::here("data-raw/rap-variables.csv"))
 
 # Create the project dataset and save inside RAP --------------------------
 
-# Uncomment and run the below lines **ONLY AFTER** running the above function.
+# Uncomment and run the below lines **ONLY AFTER** selecting the variables you want.
 # After running this code and creating the csv file in the main RAP project
 # folder, comment it out again so you don't accidentally run it anymore (unless
 # you need to re-create the dataset).
