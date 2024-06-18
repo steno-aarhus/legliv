@@ -126,7 +126,7 @@ library(tidyverse)
 library(survival)
 targets::tar_config_set(store = here::here("_targets"))
 data <- targets::tar_read(data_main)
-data_flowchart <- targets::tar_read(data_flowchart)
+flowchart <- targets::tar_read(flowchart)
 data_hcc <- targets::tar_read(data_with_hcc)
 data_icc <- targets::tar_read(data_with_icc)
 source(here("R","table-baseline.R"))
@@ -134,7 +134,6 @@ source(here("R","table-diet.R"))
 source(here("R","table-main.R"))
 source(here("R","table-legume-quartiles.R"))
 source(here("R","table-cancer-type.R"))
-source(here("R", "flowchart.R"))
 ```
 
 # Introduction {#sec1}
@@ -621,4 +620,3 @@ with legumes and liver cancer was observed. These results should be
 interpreted with caution due to the low intake of the substituted foods
 and few liver cancer cases. Further research in larger study populations
 with longer follow-up time is warranted.
-
