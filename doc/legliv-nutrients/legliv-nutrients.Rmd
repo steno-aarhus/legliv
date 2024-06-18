@@ -214,7 +214,7 @@ the analysis. It is available on the archive Zenodo [@protocol].
 ## Study population {#subsec1}
 
 The UK Biobank is a population-based prospective cohort initiated in
-2006. [@sudlow2015] During 2006-2010, more than 500,000 participants,
+2006 [@sudlow2015]. During 2006-2010, more than 500,000 participants,
 aged 40-69, were recruited and visited designated assessment centres
 across the UK. Participants provided information about age, sex,
 sociodemographic factors and lifestyle factors via touch screen
