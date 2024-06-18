@@ -174,6 +174,9 @@ on primary liver cancer in a large free-living population.
 
 # Materials and Methods {#sec2}
 
+The protocol for this study was written prior to conducting the
+analysis. It is available on the archive Zenodo [@protocol].
+
 ## Study population {#subsec1}
 
 The UK Biobank is a population-based prospective cohort initiated in
