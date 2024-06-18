@@ -129,7 +129,7 @@ data <- targets::tar_read(data_main)
 data_flowchart <- targets::tar_read(data_flowchart)
 data_hcc <- targets::tar_read(data_with_hcc)
 data_icc <- targets::tar_read(data_with_icc)
-source(here("R","table-baseline.R"))
+table_one <- targets::tar_read(table_one)
 source(here("R","table-diet.R"))
 source(here("R","table-main.R"))
 source(here("R","table-legume-quartiles.R"))
@@ -620,4 +620,3 @@ with legumes and liver cancer was observed. These results should be
 interpreted with caution due to the low intake of the substituted foods
 and few liver cancer cases. Further research in larger study populations
 with longer follow-up time is warranted.
-

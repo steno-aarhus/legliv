@@ -26,6 +26,7 @@ tar_option_set(
 # Or just some files:
 source(here::here("R/functions.R"))
 source(here::here("R/gtsummary-theme.R"))
+source(here::here("R/table-baseline.R"))
 
 # Things to run in order to work.
 list(
@@ -180,5 +181,14 @@ list(
     name = data_nosoy,
     command = data_main |>
       remove_soymilk()
+  ),
+  tar_target(
+    name = gt_theme,
+    command = my_theme()
+  ),
+  tar_target(
+    name = table_one,
+    command = data_main |>
+      create_table_one(gt_theme)
   )
 )
