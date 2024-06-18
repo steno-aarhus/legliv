@@ -1,6 +1,7 @@
 # TODO: Write your project abbreviated title and full title here.
 
-TODO: Give a brief description of what your project is about
+-   [![Protocol
+    DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11670569.svg)](https://doi.org/10.5281/zenodo.11670569)
 
 With this project, We will statistically model replacement of red meat consumption with legumes in relation to
 incident primary liver cancer and assess whether the association is mediated through non-alcoholic fatty liver disease (NAFLD).
