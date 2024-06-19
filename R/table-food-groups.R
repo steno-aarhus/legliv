@@ -16,7 +16,7 @@ food_group <- c(
 food_group_df <- data.frame(food_group)
 
 includes <- c(
-  "Soya-based desserts, baked beans, pulses, soya drinks (including calcium fortified),
+  "Soy-based desserts, baked beans, pulses, soy drinks (including calcium fortified),
   tofu-based products, hummus, peas",
 
   "Beef, lamb, other meat including offal, pork",

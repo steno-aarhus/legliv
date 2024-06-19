@@ -451,7 +451,7 @@ table_sens <-
     id = "sens1"
   ) %>%
   tab_footnote(
-    footnote = "Exclusion of the upper decile of alcohol intake (g/day) by sex. n = 150.",
+    footnote = "Exclusion of the upper decile of alcohol intake (g/day) by sex. n cases = 150.",
     locations = cells_column_spanners(spanners = "sens1")
   ) %>%
   tab_spanner(
@@ -460,7 +460,7 @@ table_sens <-
     id = "sens2"
   ) %>%
   tab_footnote(
-    footnote = "Exclusion of participants below the 2.5th percentile and above the 97.5th percentile of energy intake (kJ/day) by sex. n = 164.",
+    footnote = "Exclusion of participants below the 2.5th percentile and above the 97.5th percentile of energy intake (kJ/day) by sex. n cases = 164.",
     locations = cells_column_spanners(spanners = "sens2")
   ) %>%
   tab_spanner(
@@ -469,7 +469,7 @@ table_sens <-
     id = "sens3"
   ) %>%
   tab_footnote(
-    footnote = "ICD10 codes: K70-79, B16-19, Z94.4, I85, I86.4, and E83.0-1. ICD9 codes: 5710-5745, 0700-0709, V427 and 2750-2751. n = 151.",
+    footnote = "ICD10 codes: K70-79, B16-19, Z94.4, I85, I86.4, and E83.0-1. ICD9 codes: 5710-5745, 0700-0709, V427 and 2750-2751. n cases = 151.",
     locations = cells_column_spanners(spanners = "sens3")
   ) %>%
   tab_spanner(
@@ -478,7 +478,7 @@ table_sens <-
     id = "sens4"
   ) %>%
   tab_footnote(
-    footnote = "ICD10 codes: C00-C97 and D00-D48. ICD9 codes: 1400-2399. n = 129.",
+    footnote = "ICD10 codes: C00-C97 and D00-D48. ICD9 codes: 1400-2399. n cases = 129.",
     locations = cells_column_spanners(spanners = "sens4")
   ) %>%
   tab_spanner(
@@ -487,7 +487,7 @@ table_sens <-
     id = "sens5"
   ) %>%
   tab_footnote(
-    footnote = "n = 109.",
+    footnote = "n cases = 109.",
     locations = cells_column_spanners(spanners = "sens5")
   ) %>%
   tab_spanner(
@@ -496,7 +496,7 @@ table_sens <-
     id = "sens6"
   ) %>%
   tab_footnote(
-    footnote = "n = 183.",
+    footnote = "n cases = 183.",
     locations = cells_column_spanners(spanners = "sens6")
   ) %>%
   tab_spanner(
@@ -505,7 +505,7 @@ table_sens <-
     id = "sens7"
   ) %>%
   tab_footnote(
-    footnote = "n = 173.",
+    footnote = "n cases = 173.",
     locations = cells_column_spanners(spanners = "sens7")
   ) %>%
   tab_spanner(
@@ -514,7 +514,7 @@ table_sens <-
     id = "sens8"
   ) %>%
   tab_footnote(
-    footnote = "Soy milk was removed from the legumes food group and moved to the food group healthy plant-based foods. n = 173.",
+    footnote = "Soy milk was removed from the legumes food group and moved to the food group healthy plant-based foods. n cases = 173.",
     locations = cells_column_spanners(spanners = "sens8")
   ) %>%
   tab_caption(
