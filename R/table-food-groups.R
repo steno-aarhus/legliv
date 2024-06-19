@@ -16,10 +16,10 @@ food_group <- c(
 food_group_df <- data.frame(food_group)
 
 includes <- c(
-  "Soya-based desserts, Baked beans, pulses, Soya drinks (including calcium fortified),
-  Tofu-based products, Hummus, Peas",
+  "Soya-based desserts, baked beans, pulses, soya drinks (including calcium fortified),
+  tofu-based products, hummus, peas",
 
-  "Beef, Lamb, Other meat including offal, Pork",
+  "Beef, lamb, other meat including offal, pork",
 
   "Sausages, bacon (with and without fat), ham, liver pate",
 
