@@ -205,7 +205,9 @@ on primary liver cancer in a large free-living population.
 # Materials and Methods {#sec2}
 
 \noindent The protocol for this study was written prior to conducting
-the analysis. It is available on the archive Zenodo [@protocol].
+the analysis. It is available on the archive Zenodo [@protocol]. Some
+changes were made to the final analysis plan due to lack of power to
+conduct subgroup and mediation analyses.
 
 ## Study population {#subsec1}
 
@@ -617,3 +619,4 @@ with legumes and liver cancer was observed. These results should be
 interpreted with caution due to the low intake of the substituted foods
 and few liver cancer cases. Further research in larger study populations
 with longer follow-up time is warranted.
+
