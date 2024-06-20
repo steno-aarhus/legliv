@@ -4,7 +4,6 @@ data/data.*
 .DS_Store
 .Rproj.user
 _targets.yaml
-*_files
 *.bst
 *.log
 *.bbl
