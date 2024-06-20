@@ -15,6 +15,7 @@ Imports:
     gtsummary,
     here,
     Hmisc,
+    katex,
     knitr,
     lubridate,
     magrittr,
