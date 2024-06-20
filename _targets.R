@@ -27,6 +27,9 @@ tar_option_set(
 source(here::here("R/functions.R"))
 source(here::here("R/gtsummary-theme.R"))
 source(here::here("R/table-baseline.R"))
+source(here::here("R/table-diet.R"))
+source(here::here("R/table-main.R"))
+source(here::here("R/table-legume-quartiles.R"))
 
 # Things to run in order to work.
 list(
@@ -195,5 +198,20 @@ list(
     name = table_one,
     command = data_main |>
       create_table_one(gt_theme)
+  ),
+  tar_target(
+    name = table_diet,
+    command = data_main |>
+      create_table_diet(gt_theme)
+  ),
+  tar_target(
+    name = table_main_list,
+    command = data_main |>
+      create_table_main(gt_theme)
+  ),
+  tar_target(
+    name = table_legume_quartiles,
+    command = data_main |>
+      create_table_legume_quartiles(gt_theme)
   )
 )
