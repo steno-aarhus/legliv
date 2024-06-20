@@ -1,6 +1,6 @@
-my_theme <-
+my_theme <- function() {
   list(
-    "pkgwide-str:theme_name" = "my_theme",
+    "pkgwide-str:theme_name" = "my_theme()",
     "pkgwide-fn:pvalue_fun" = function(x) style_pvalue(x, digits = 2),
     "pkgwide-fn:prependpvalue_fun" = function(x) style_pvalue(x, digits = 2, prepend_p = TRUE),
     "pkgwide-str:ci.sep" = " to ",
@@ -99,3 +99,4 @@ my_theme <-
       )
     )
   )
+}
