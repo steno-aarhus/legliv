@@ -1,10 +1,29 @@
 ---
-title: "Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: a prospective cohort study"
-author: "Supplementary materials"
+title: 'Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study'
+author:
+  - name: Niels Bock \orcidlink{0009-0005-7373-1589}
+    affil-id: 1
+  - name: Fie Langmann \orcidlink{0000-0003-3474-9346}
+    affil-id: 1
+  - name: Luke W. Johnston \orcidlink{0000-0003-4169-2616}
+    affil-id: 1,2
+  - name: Daniel B. Ibsen \orcidlink{0000-0002-7038-4770}
+    affil-id: 1,2
+  - name: Christina C. Dahm \orcidlink{0000-0003-0481-2893}
+    affil-id: 1
+affiliations: 
+  - id: 1
+    name: Department of Public Health, Aarhus University, Aarhus, Denmark
+  - id: 2
+    name: Steno Diabetes Center Aarhus, Aarhus University Hospital, Aarhus N, Denmark
+date: June 20, 2024
 output:
   bookdown::pdf_book:
-    keep_tex: TRUE
-    toc: FALSE
+    toc: false
+    number_sections: false
+    citation_package: biblatex
+    template: default.tex
+    keep_tex: true
 header-includes:
   - \usepackage{rotating}
   - \usepackage{caption}
@@ -41,10 +60,12 @@ source(here("R", "table-legume-quartiles.R"))
 source(here("R", "table-sens.R"))
 ```
 
+# Supplementary materials {#sec1}
+
 ```{r food-group}
 food_group_table %>% 
   tab_options(latex.use.longtable = FALSE,
-              latex.tbl.pos = "t")
+              latex.tbl.pos = "h")
 ```
 
 \clearpage
@@ -52,7 +73,7 @@ food_group_table %>%
 ```{r cancer}
 table_cancer_type %>% 
   tab_options(latex.use.longtable = FALSE,
-              latex.tbl.pos = "t")
+              latex.tbl.pos = "h")
 ```
 
 \clearpage
@@ -60,7 +81,7 @@ table_cancer_type %>%
 ```{r legume}
 table_legume %>% 
   tab_options(latex.use.longtable = FALSE,
-              latex.tbl.pos = "t")
+              latex.tbl.pos = "h")
 ```
 
 \clearpage
@@ -68,12 +89,12 @@ table_legume %>%
 ```{r sens}
 table_sens %>% 
   tab_options(latex.use.longtable = FALSE,
-              latex.tbl.pos = "t",
+              latex.tbl.pos = "h",
               latex.use.sidewaystable = TRUE)
 ```
 
 \clearpage
 
-```{r fig2, out.width = "100%", fig.env = "figure*", fig.align = 'center', fig.pos="t", fig.cap = "Simplified directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing red meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing red meat with legumes on liver cancer. Shadowed arrows represent biasing paths. DAG terminology demands visualisation of all hypothesized correlating relationships between variables, typically resulting in complex and hard-to-follow illustrations. To improve readability, inter-covariate arrows are hidden in this DAG."}
+```{r fig2, out.width = "100%", fig.env = "figure*", fig.align = 'center', fig.pos="h", fig.cap = "Simplified directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing red meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing red meat with legumes on liver cancer. Shadowed arrows represent biasing paths. DAG terminology demands visualisation of all hypothesized correlating relationships between variables, typically resulting in complex and hard-to-follow illustrations. To improve readability, inter-covariate arrows are hidden in this DAG."}
 dag
 ```

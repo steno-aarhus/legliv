@@ -5,16 +5,19 @@
 \documentclass[
 ]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -33,15 +36,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: a prospective cohort study},
-  pdfauthor={Supplementary materials},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
-\usepackage[margin=1in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -52,23 +46,10 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{rotating}
 \usepackage{caption}
 \captionsetup{font=small,justification=raggedright,singlelinecheck=false}
@@ -83,18 +64,40 @@
 \usepackage{colortbl}
 \usepackage{array}
 \usepackage{anyfontsize}
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage[]{biblatex}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
-\title{Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: a prospective cohort study}
-\author{Supplementary materials}
-\date{}
+\title{Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study}
+\usepackage{authblk}
+\usepackage{orcidlink}
+\renewcommand\Affilfont{\small}
+
+\author[1]{Niels Bock \orcidlink{0009-0005-7373-1589}}
+\author[1]{Fie Langmann \orcidlink{0000-0003-3474-9346}}
+\author[1,2]{Luke W. Johnston \orcidlink{0000-0003-4169-2616}}
+\author[1,2]{Daniel B. Ibsen \orcidlink{0000-0002-7038-4770}}
+\author[1]{Christina C. Dahm \orcidlink{0000-0003-0481-2893}}
+
+\affil[1]{Department of Public Health, Aarhus University, Aarhus, Denmark}
+\affil[2]{Steno Diabetes Center Aarhus, Aarhus University Hospital, Aarhus N, Denmark}
+\date{June 20, 2024}
 
 \begin{document}
 \maketitle
 
-\begin{table}[t]
+\hypertarget{sec1}{%
+\section{Supplementary materials}\label{sec1}}
+
+\begin{table}[h]
 \caption{\label{tab:food-group}\textbf{Supplementary table 1. Summary of included foods for each food group.}} 
 \fontsize{9.0pt}{10.8pt}\selectfont
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.2\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.8\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
@@ -115,7 +118,7 @@
 
 \clearpage
 
-\begin{table}[t]
+\begin{table}[h]
 \caption{\label{tab:cancer}\textbf{Replacing 15 g/day of total meat, red meat and processed meat with legumes and hazard ratios and 95\% confidence intervals for hepatocellular carcinoma and intrahepatic cholangiocarcinoma.}} 
 \fontsize{9.0pt}{10.8pt}\selectfont
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lcc}
@@ -145,7 +148,7 @@ Processed red meat & 1.03 (0.90-1.18) & 1.07 (0.93-1.23) \\
 
 \clearpage
 
-\begin{table}[t]
+\begin{table}[h]
 \caption{\label{tab:legume}\textbf{No intake of legumes vs. quartiles of daily legume intake and hazard ratios and 95\% confidence intervals for primary liver cancer.}} 
 \fontsize{9.0pt}{10.8pt}\selectfont
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}lccc}
@@ -170,7 +173,7 @@ Categories: &  &  &  \\
 
 \clearpage
 
-\begin{sidewaystable}[t]
+\begin{sidewaystable}[h]
 \caption{\label{tab:sens}\textbf{Sensitivity analyses}} 
 \fontsize{9.0pt}{10.8pt}\selectfont
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\centering\arraybackslash}p{\dimexpr 0.111111111111111\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
@@ -200,7 +203,7 @@ Processed red meat & 1.06 (0.95-1.18) & 1.08 (0.98-1.20) & 1.08 (0.96-1.20) & 1.
 
 \clearpage
 
-\begin{figure*}[t]
+\begin{figure*}[h]
 
 {\centering \includegraphics[width=1\linewidth,]{supplementary-materials_files/figure-latex/fig2-1} 
 
@@ -208,5 +211,7 @@ Processed red meat & 1.06 (0.95-1.18) & 1.08 (0.98-1.20) & 1.08 (0.96-1.20) & 1.
 
 \caption{Simplified directed acyclic graph (DAG) visualizing the hypothesised causal relationship between replacing red meat with legumes and liver cancer based on assumptions of biasing paths. Red nodes represent confounders. Square nodes represent the minimal sufficient adjustment set for estimating the effect of replacing red meat with legumes on liver cancer. Shadowed arrows represent biasing paths. DAG terminology demands visualisation of all hypothesized correlating relationships between variables, typically resulting in complex and hard-to-follow illustrations. To improve readability, inter-covariate arrows are hidden in this DAG.}\label{fig:fig2}
 \end{figure*}
+
+\printbibliography
 
 \end{document}
