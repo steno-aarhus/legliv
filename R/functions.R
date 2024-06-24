@@ -783,3 +783,11 @@ create_flowchart <- function(data) {
     theme_void() +
     theme(plot.margin = margin(0.5, 13, 1, 7.5, unit = "lines"))
 }
+
+reduce_data <- function(data) {
+  data %>%
+    dplyr::select(status_age, status, legume_daily_15, red_meat_daily_15, proc_meat_daily_15,
+           updi, hdpi, animal_foods, alc_beverage_daily, total_food_weight_daily,
+           sex, age_strat, ass_center, education, tdi, spouse, exercse, smoking_pack, alcohol_daily,
+           wc)
+}
