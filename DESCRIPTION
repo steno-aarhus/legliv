@@ -31,6 +31,7 @@ Imports:
     scales,
     stringr,
     survival,
+    tarchetypes,
     targets,
     tidyverse,
     tinytex,
@@ -41,7 +42,7 @@ Encoding: UTF-8
 Remotes: 
     steno-aarhus/ukbAid,
     tgerke/ggconsort,
-    nielsbock/gt@floating-table,
+    nielsbock/gt_floating_table@floating-table,
     rstudio/rmarkdown,
     ddsjoberg/gtsummary,
     nielsbock/rticles
