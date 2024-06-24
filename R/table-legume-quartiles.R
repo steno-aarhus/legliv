@@ -94,5 +94,7 @@ create_table_legume_quartiles <- function(data, gt_theme) {
       footnote = "Further adjusted for educational level, Townsend deprivation index, living alone, physical activity, smoking, alcohol intake, and waist circumference.",
       locations = cells_column_spanners(spanners = "model2")
     )
-  return(table_legume)
+
+  return(list(m2t_leg = m2t_leg,
+              table_legume = table_legume))
 }

@@ -144,5 +144,11 @@ create_table_main <- function(data, gt_theme) {
       locations = cells_column_spanners()
     )
 
-  return(list(m1t,m1r,m1p,m2t,m2r,m2p,table_main))
+  return(list(m1t = m1t,
+              m1r = m1r,
+              m1p = m1p,
+              m2t = m2t,
+              m2r = m2r,
+              m2p = m2p,
+              table_main = table_main))
 }

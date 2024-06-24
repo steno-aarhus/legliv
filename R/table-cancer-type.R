@@ -1,216 +1,226 @@
-library(tidyverse)
-library(survival)
-library(gt)
-library(gtsummary)
-source(here::here("R","gtsummary-theme.R"))
-gtsummary::set_gtsummary_theme(my_theme())
+prepare_table_hcc <- function(data, gt_theme) {
 
-model1t_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center),
-  data = data_hcc
-)
+  gtsummary::set_gtsummary_theme(gt_theme)
 
-model2t_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center) +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_hcc
-)
-
-model1r_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center),
-  data = data_hcc
-)
-
-model2r_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center) +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_hcc
-)
-
-model1p_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center),
-  data = data_hcc
-)
-
-model2p_hcc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center) +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_hcc
-)
-
-m1t_hcc  <- model1t_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Total red meat",
+  model1t_hcc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center),
+    data = data
   )
 
-m1r_hcc  <- model1r_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Unprocessed red meat",
+  model2t_hcc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center) +
+      education + tdi + spouse +
+      exercise + smoking_pack + alcohol_daily +
+      wc,
+    data = data
   )
 
-m1p_hcc  <- model1p_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Processed red meat",
+  model1r_hcc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 + proc_meat_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center),
+    data = data
   )
 
-m2t_hcc  <- model2t_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Total red meat",
+  model2r_hcc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 + proc_meat_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center) +
+      education + tdi + spouse +
+      exercise + smoking_pack + alcohol_daily +
+      wc,
+    data = data
   )
 
-m2r_hcc  <- model2r_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Unprocessed red meat",
+  model1p_hcc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 + red_meat_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center),
+    data = data
   )
 
-m2p_hcc  <- model2p_hcc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Processed red meat",
+  model2p_hcc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 + red_meat_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center) +
+      education + tdi + spouse +
+      exercise + smoking_pack + alcohol_daily +
+      wc,
+    data = data
   )
 
-model1t_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center),
-  data = data_icc
-)
+  m1t_hcc  <- model1t_hcc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Total red meat",
+    )
 
-model2t_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center) +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_icc
-)
+  m1r_hcc  <- model1r_hcc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Unprocessed red meat",
+    )
 
-model1r_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center),
-  data = data_icc
-)
+  m1p_hcc  <- model1p_hcc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Processed red meat",
+    )
 
-model2r_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + proc_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center) +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_icc
-)
+  m2t_hcc  <- model2t_hcc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Total red meat",
+    )
 
-model1p_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center),
-  data = data_icc
-)
+  m2r_hcc  <- model2r_hcc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Unprocessed red meat",
+    )
 
-model2p_icc <- coxph(
-  Surv(time = status_age, event = status == "Liver cancer") ~
-    legume_daily_15 + red_meat_daily_15 +
-    updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
-    strata(sex, age_strat, ass_center) +
-    education + tdi + spouse +
-    exercise + smoking_pack + alcohol_daily +
-    wc,
-  data = data_icc
-)
+  m2p_hcc  <- model2p_hcc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Processed red meat",
+    )
 
-m1t_icc  <- model1t_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Total red meat",
+  row1 <- tbl_merge(list(m1t_hcc, m2t_hcc)) %>%
+    modify_spanning_header(everything() ~ NA_character_)
+  row2 <- tbl_merge(list(m1r_hcc, m2r_hcc))
+  row3 <- tbl_merge(list(m1p_hcc, m2p_hcc))
+
+  return(list(m2t_hcc=m2t_hcc,m2r_hcc=m2r_hcc,m2p_hcc=m2p_hcc,row1=row1,row2=row2,row3=row3))
+}
+
+prepare_table_icc <- function(data, gt_theme) {
+
+  gtsummary::set_gtsummary_theme(gt_theme)
+
+  model1t_icc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center),
+    data = data
   )
 
-m1r_icc  <- model1r_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Unprocessed red meat",
+  model2t_icc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center) +
+      education + tdi + spouse +
+      exercise + smoking_pack + alcohol_daily +
+      wc,
+    data = data
   )
 
-m1p_icc  <- model1p_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Processed red meat",
+  model1r_icc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 + proc_meat_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center),
+    data = data
   )
 
-m2t_icc  <- model2t_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Total red meat",
+  model2r_icc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 + proc_meat_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center) +
+      education + tdi + spouse +
+      exercise + smoking_pack + alcohol_daily +
+      wc,
+    data = data
   )
 
-m2r_icc  <- model2r_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Unprocessed red meat",
+  model1p_icc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 + red_meat_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center),
+    data = data
   )
 
-m2p_icc  <- model2p_icc %>%
-  tbl_regression(
-    exponentiate = T,
-    include = legume_daily_15,
-    label = legume_daily_15 ~ "Processed red meat",
+  model2p_icc <- coxph(
+    Surv(time = status_age, event = status == "Liver cancer") ~
+      legume_daily_15 + red_meat_daily_15 +
+      updi + hpdi + animal_foods + alc_beverage_daily + total_weight_food_daily +
+      strata(sex, age_strat, ass_center) +
+      education + tdi + spouse +
+      exercise + smoking_pack + alcohol_daily +
+      wc,
+    data = data
   )
 
-row1 <- tbl_merge(list(m1t_hcc, m2t_hcc)) %>%
-  modify_spanning_header(everything() ~ NA_character_)
-row2 <- tbl_merge(list(m1r_hcc, m2r_hcc))
-row3 <- tbl_merge(list(m1p_hcc, m2p_hcc))
-row4 <- tbl_merge(list(m1t_icc, m2t_icc))
-row5 <- tbl_merge(list(m1r_icc, m2r_icc))
-row6 <- tbl_merge(list(m1p_icc, m2p_icc))
+  m1t_icc  <- model1t_icc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Total red meat",
+    )
 
+  m1r_icc  <- model1r_icc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Unprocessed red meat",
+    )
+
+  m1p_icc  <- model1p_icc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Processed red meat",
+    )
+
+  m2t_icc  <- model2t_icc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Total red meat",
+    )
+
+  m2r_icc  <- model2r_icc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Unprocessed red meat",
+    )
+
+  m2p_icc  <- model2p_icc %>%
+    tbl_regression(
+      exponentiate = T,
+      include = legume_daily_15,
+      label = legume_daily_15 ~ "Processed red meat",
+    )
+
+  row4 <- tbl_merge(list(m1t_icc, m2t_icc))
+  row5 <- tbl_merge(list(m1r_icc, m2r_icc))
+  row6 <- tbl_merge(list(m1p_icc, m2p_icc))
+
+  return(list(m2t_icc=m2t_icc,m2r_icc=m2r_icc,m2p_icc=m2p_icc,row4=row4,row5=row5,row6=row6))
+}
+
+create_table_cancer <- function(row1, row2, row3, row4, row5, row6, gt_theme) {
+  gtsummary::set_gtsummary_theme(gt_theme)
 table_cancer_type <-
   tbl_stack(list(row1, row2, row3, row4, row5, row6),
             group_header = c("Hepatocellular carcinoma (n = 87)", "Hepatocellular carcinoma (n = 87)", "Hepatocellular carcinoma (n = 87)", "Intrahepatic cholangiocarcinoma (n = 100)", "Intrahepatic cholangiocarcinoma (n = 100)", "Intrahepatic cholangiocarcinoma (n = 100)")) %>%
@@ -249,3 +259,5 @@ table_cancer_type <-
     style = cell_text(weight = "bold"),
     locations = cells_row_groups(groups = everything())
   )
+return(table_cancer_type)
+}

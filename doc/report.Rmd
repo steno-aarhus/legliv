@@ -71,9 +71,29 @@ library(tidyverse)
 library(survival)
 targets::tar_config_set(store = here::here("_targets"))
 data <- targets::tar_read(data_main)
+table_one <- targets::tar_read(table_one)
+table_diet <- targets::tar_read(table_diet)
+table_main_list <- targets::tar_read(table_main_list)
+m1t <- table_main_list$m1t
+m1r <- table_main_list$m1r
+m1p <- table_main_list$m1p
+m2t <- table_main_list$m2t
+m2r <- table_main_list$m2r
+m2p <- table_main_list$m2p
+table_main <- table_main_list$table_main
+table_legume_quartiles_list <- targets::tar_read(table_legume_quartiles_list)
+m2t_leg <- table_legume_quartiles_list$m2t_leg
+table_legume <- table_legume_quartiles_list$table_legume
+table_cancer_type <- targets::tar_read(table_cancer_type)
+table_hcc <- targets::tar_read(table_hcc)
+table_icc <- targets::tar_read(table_icc)
+m2t_hcc <- table_hcc$m2t_hcc
+m2r_hcc <- table_hcc$m2r_hcc
+m2p_hcc <- table_hcc$m2p_hcc
+m2t_icc <- table_icc$m2t_icc
+m2r_icc <- table_icc$m2r_icc
+m2p_icc <- table_icc$m2p_icc
 flowchart <- targets::tar_read(flowchart)
-data_hcc <- targets::tar_read(data_with_hcc)
-data_icc <- targets::tar_read(data_with_icc)
 data_alc <- targets::tar_read(data_with_alc)
 data_misreporter <- targets::tar_read(data_with_misreporter)
 data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
@@ -81,11 +101,6 @@ data_liver_disease <- targets::tar_read(data_without_liver_disease)
 data_any_cancer <- targets::tar_read(data_without_cancer)
 data_death <- targets::tar_read(data_with_death)
 data_nosoy <- targets::tar_read(data_nosoy)
-source(here("R","table-baseline.R"))
-source(here("R","table-diet.R"))
-source(here("R","table-main.R"))
-source(here("R","table-legume-quartiles.R"))
-source(here("R","table-cancer-type.R"))
 source(here("R", "dag-code.R"))
 source(here("R", "table-food-groups.R"))
 source(here("R", "table-sens.R"))

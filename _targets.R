@@ -30,6 +30,7 @@ source(here::here("R/table-baseline.R"))
 source(here::here("R/table-diet.R"))
 source(here::here("R/table-main.R"))
 source(here::here("R/table-legume-quartiles.R"))
+source(here::here("R/table-cancer-type.R"))
 
 # Things to run in order to work.
 list(
@@ -210,8 +211,23 @@ list(
       create_table_main(gt_theme)
   ),
   tar_target(
-    name = table_legume_quartiles,
+    name = table_legume_quartiles_list,
     command = data_main |>
       create_table_legume_quartiles(gt_theme)
+  ),
+  tar_target(
+    name = table_hcc,
+    command = data_with_hcc |>
+      prepare_table_hcc(gt_theme)
+  ),
+  tar_target(
+    name = table_icc,
+    command = data_with_icc |>
+      prepare_table_icc(gt_theme)
+  ),
+  tar_target(
+    name = table_cancer_type,
+    command = create_table_cancer(table_hcc$row1,table_hcc$row2,table_hcc$row3,
+                                  table_icc$row4,table_icc$row5,table_icc$row6, gt_theme)
   )
 )
