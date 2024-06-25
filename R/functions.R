@@ -785,9 +785,10 @@ create_flowchart <- function(data) {
 }
 
 reduce_data <- function(data) {
-  data %>%
+  data <- data %>%
     dplyr::select(status_age, status, legume_daily_15, red_meat_daily_15, proc_meat_daily_15,
-           updi, hdpi, animal_foods, alc_beverage_daily, total_food_weight_daily,
-           sex, age_strat, ass_center, education, tdi, spouse, exercse, smoking_pack, alcohol_daily,
-           wc)
+           updi, hpdi, animal_foods, alc_beverage_daily, total_weight_food_daily,
+           sex, age_strat, ass_center, education, tdi, spouse, exercise, smoking_pack, alcohol_daily,
+           wc, legume_category)
+  return(data)
 }
