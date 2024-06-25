@@ -25,7 +25,8 @@ create_table_legume_quartiles <- function(data, gt_theme) {
     ) %>%
     modify_header(legume_daily ~ "**Mean daily legume intake**") %>%
     modify_table_styling(columns = stat_0,
-                         hide = TRUE)
+                         hide = TRUE) %>%
+    tbl_butcher()
 
   model1t_leg <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
@@ -40,7 +41,8 @@ create_table_legume_quartiles <- function(data, gt_theme) {
       exponentiate = T,
       include = legume_category,
       label = legume_category ~ "Categories:",
-    ) %>% bold_p(t = 0.05)
+    ) %>% bold_p(t = 0.05) %>%
+    tbl_butcher()
 
   model2t_leg <- coxph(
     Surv(time = status_age, event = status == "Liver cancer") ~
@@ -58,13 +60,15 @@ create_table_legume_quartiles <- function(data, gt_theme) {
       exponentiate = T,
       include = legume_category,
       label = legume_category ~ "Categories:",
-    ) %>% bold_p(t = 0.05)
+    ) %>% bold_p(t = 0.05) %>%
+    tbl_butcher(include = "inputs")
 
   table_legume <- tbl_merge(
     tbls = list(tbl_legume_mean,m1t_leg, m2t_leg)
   ) %>%
     modify_spanning_header(everything() ~ NA_character_) %>%
     modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+    tbl_butcher %>%
     as_gt() %>%
     tab_spanner(
       label = md("**Model 1**"),

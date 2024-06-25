@@ -64,47 +64,47 @@ prepare_table_hcc <- function(data, gt_theme) {
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Total red meat",
-    )
+    ) %>% tbl_butcher()
 
   m1r_hcc  <- model1r_hcc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Unprocessed red meat",
-    )
+    ) %>% tbl_butcher()
 
   m1p_hcc  <- model1p_hcc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Processed red meat",
-    )
+    ) %>% tbl_butcher()
 
   m2t_hcc  <- model2t_hcc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Total red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m2r_hcc  <- model2r_hcc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Unprocessed red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m2p_hcc  <- model2p_hcc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Processed red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   row1 <- tbl_merge(list(m1t_hcc, m2t_hcc)) %>%
-    modify_spanning_header(everything() ~ NA_character_)
-  row2 <- tbl_merge(list(m1r_hcc, m2r_hcc))
-  row3 <- tbl_merge(list(m1p_hcc, m2p_hcc))
+    modify_spanning_header(everything() ~ NA_character_) %>% tbl_butcher()
+  row2 <- tbl_merge(list(m1r_hcc, m2r_hcc)) %>% tbl_butcher()
+  row3 <- tbl_merge(list(m1p_hcc, m2p_hcc)) %>% tbl_butcher()
 
   return(list(m2t_hcc=m2t_hcc,m2r_hcc=m2r_hcc,m2p_hcc=m2p_hcc,row1=row1,row2=row2,row3=row3))
 }
@@ -175,46 +175,46 @@ prepare_table_icc <- function(data, gt_theme) {
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Total red meat",
-    )
+    ) %>% tbl_butcher()
 
   m1r_icc  <- model1r_icc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Unprocessed red meat",
-    )
+    ) %>% tbl_butcher()
 
   m1p_icc  <- model1p_icc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Processed red meat",
-    )
+    ) %>% tbl_butcher()
 
   m2t_icc  <- model2t_icc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Total red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m2r_icc  <- model2r_icc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Unprocessed red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m2p_icc  <- model2p_icc %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Processed red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
-  row4 <- tbl_merge(list(m1t_icc, m2t_icc))
-  row5 <- tbl_merge(list(m1r_icc, m2r_icc))
-  row6 <- tbl_merge(list(m1p_icc, m2p_icc))
+  row4 <- tbl_merge(list(m1t_icc, m2t_icc)) %>% tbl_butcher()
+  row5 <- tbl_merge(list(m1r_icc, m2r_icc)) %>% tbl_butcher()
+  row6 <- tbl_merge(list(m1p_icc, m2p_icc)) %>% tbl_butcher()
 
   return(list(m2t_icc=m2t_icc,m2r_icc=m2r_icc,m2p_icc=m2p_icc,row4=row4,row5=row5,row6=row6))
 }
@@ -226,6 +226,7 @@ table_cancer_type <-
             group_header = c("Hepatocellular carcinoma (n = 87)", "Hepatocellular carcinoma (n = 87)", "Hepatocellular carcinoma (n = 87)", "Intrahepatic cholangiocarcinoma (n = 100)", "Intrahepatic cholangiocarcinoma (n = 100)", "Intrahepatic cholangiocarcinoma (n = 100)")) %>%
   modify_header(label = "**15 g/day of legumes replacing:**") %>%
   modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+  tbl_butcher() %>%
   as_gt() %>%
   tab_spanner(
     label = md("**Model 1**"),

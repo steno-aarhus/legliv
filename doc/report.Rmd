@@ -70,7 +70,6 @@ library(gtsummary)
 library(tidyverse)
 library(survival)
 targets::tar_config_set(store = here::here("_targets"))
-data <- targets::tar_read(data_main)
 table_one <- targets::tar_read(table_one)
 table_diet <- targets::tar_read(table_diet)
 table_main_list <- targets::tar_read(table_main_list)
@@ -94,16 +93,9 @@ m2t_icc <- table_icc$m2t_icc
 m2r_icc <- table_icc$m2r_icc
 m2p_icc <- table_icc$m2p_icc
 flowchart <- targets::tar_read(flowchart)
-data_alc <- targets::tar_read(data_with_alc)
-data_misreporter <- targets::tar_read(data_with_misreporter)
-data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
-data_liver_disease <- targets::tar_read(data_without_liver_disease)
-data_any_cancer <- targets::tar_read(data_without_cancer)
-data_death <- targets::tar_read(data_with_death)
-data_nosoy <- targets::tar_read(data_nosoy)
+table_sens <- targets::tar_read(table_sens)
 source(here("R", "dag-code.R"))
 source(here("R", "table-food-groups.R"))
-source(here("R", "table-sens.R"))
 ```
 
 ```{r upload-protocol, eval = FALSE, echo = FALSE}

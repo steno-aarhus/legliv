@@ -64,52 +64,53 @@ create_table_main <- function(data, gt_theme) {
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Total red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m1r <- model1r %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Unprocessed red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m1p <- model1p %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Processed red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m2t <- model2t %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Total red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m2r <- model2r %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Unprocessed red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   m2p <- model2p %>%
     tbl_regression(
       exponentiate = T,
       include = legume_daily_15,
       label = legume_daily_15 ~ "Processed red meat",
-    )
+    ) %>% tbl_butcher(include = "inputs")
 
   row1 <- tbl_merge(list(m1t, m2t)) %>%
-    modify_spanning_header(everything() ~ NA_character_)
-  row2 <- tbl_merge(list(m1r, m2r))
-  row3 <- tbl_merge(list(m1p, m2p))
+    modify_spanning_header(everything() ~ NA_character_) %>% tbl_butcher()
+  row2 <- tbl_merge(list(m1r, m2r)) %>% tbl_butcher()
+  row3 <- tbl_merge(list(m1p, m2p)) %>% tbl_butcher()
 
   table_main <-
     tbl_stack(list(row1, row2, row3)) %>%
     modify_header(label = "**15 g/day of legumes replacing:**") %>%
     modify_footnote(update = everything() ~ NA, abbreviation = T) %>%
+    tbl_butcher() %>%
     as_gt() %>%
     tab_spanner(
       label = md("**Model 1**"),
