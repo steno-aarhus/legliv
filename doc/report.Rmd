@@ -18,23 +18,25 @@ affiliations:
     name: Steno Diabetes Center Aarhus, Aarhus University Hospital, Aarhus N, Denmark
 date: June 20, 2024
 abstract: |
-  \noindent Primary liver cancer is globally on the rise, partially due to poor diets and
+  \noindent Introduction: Primary liver cancer is globally on the rise, partially due to poor diets and
   sedentary lifestyles. Shifting to more plant-based diets may lower the risk.
   We aimed to estimate the effect of replacing total red meat, unprocessed red
   meat and processed red meat with legumes on primary liver cancer in a
-  free-living population. We analyzed data from 126,744 UK Biobank participants
+  free-living population. \newline \newline
+  Methods: We analyzed data from 126,744 UK Biobank participants
   who completed $\geq$ 2 24-hour diet recalls. Baseline characteristics were
   collected from the initial assessment visit. Information on liver cancer
   diagnoses was collected via external linkage to inpatient hospital episodes or
   central cancer registries. Cox proportional hazards regression models were
   used to estimate substitution of 15 g/day of legumes with 15 g/day of total
   red meat, unprocessed red meat or processed red meat on liver cancer risk,
-  using the leave-one-out food substitution model. During a median follow-up
-  time of 11.1 years, 173 participants developed liver cancer. In the fully
+  using the leave-one-out food substitution model. \newline \newline
+  Results: During a median follow-up time of 11.1 years, 173 participants developed liver cancer. In the fully
   adjusted models, no association was observed when substituting 15 g/day of
   legumes with total red meat (HR: 1.02 (95% CI 0.96-1.08)), unprocessed red
   meat (HR: 1.00 (95% CI 0.94-1.06)) or processed red meat (HR: 1.09 (95% CI
-  0.99-1.21)). Overall, little evidence of an association between replacing red
+  0.99-1.21)). \newline \newline
+  Conclusion: Overall, little evidence of an association between replacing red
   meat with legumes and liver cancer was observed. Further research in other
   study populations with longer follow-up time is warranted.
 geometry:
@@ -64,11 +66,9 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,
                       out.extra = "")
-library(here)
 library(gt)
 library(gtsummary)
 library(tidyverse)
-library(survival)
 targets::tar_config_set(store = here::here("_targets"))
 table_one <- targets::tar_read(table_one)
 table_diet <- targets::tar_read(table_diet)
