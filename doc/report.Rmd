@@ -76,8 +76,6 @@ table_main_list <- targets::tar_read(table_main_list)
 m1t <- table_main_list$m1t
 m1r <- table_main_list$m1r
 m1p <- table_main_list$m1p
-m2t <- table_main_list$m2t
-m2r <- table_main_list$m2r
 m2p <- table_main_list$m2p
 table_main <- table_main_list$table_main
 table_legume_quartiles_list <- targets::tar_read(table_legume_quartiles_list)
@@ -94,8 +92,8 @@ m2r_icc <- table_icc$m2r_icc
 m2p_icc <- table_icc$m2p_icc
 flowchart <- targets::tar_read(flowchart)
 table_sens <- targets::tar_read(table_sens)
-source(here("R", "dag-code.R"))
-source(here("R", "table-food-groups.R"))
+table_food_groups <- targets::tar_read(table_food_groups)
+dag <- targets::tar_read(dag)
 ```
 
 ```{r upload-protocol, eval = FALSE, echo = FALSE}
@@ -627,7 +625,7 @@ flowchart
 # Supplementary materials {#sec9}
 
 ```{r food-group}
-food_group_table %>% 
+table_food_groups %>% 
   tab_options(latex.use.longtable = FALSE,
               latex.tbl.pos = "h")
 ```

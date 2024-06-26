@@ -32,6 +32,9 @@ source(here::here("R/table-main.R"))
 source(here::here("R/table-legume-quartiles.R"))
 source(here::here("R/table-cancer-type.R"))
 source(here::here("R/table-sens.R"))
+source(here::here("R/table-food-groups.R"))
+source(here::here("R/flowchart.R"))
+source(here::here("R/dag-code.R"))
 
 # Things to run in order to work.
 list(
@@ -295,5 +298,18 @@ list(
                                 table_sens_rows$row2,
                                 table_sens_rows$row3,
                                 gt_theme)
+  ),
+  tar_target(
+    name = table_food_groups_df,
+    command = create_table_food_groups_df(gt_theme)
+  ),
+  tar_target(
+    name = table_food_groups,
+    command = table_food_groups_df |>
+      create_table_food_groups(gt_theme)
+  ),
+  tar_target(
+    name = dag,
+    command = create_dag()
   )
 )
