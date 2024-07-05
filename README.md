@@ -19,6 +19,12 @@ running this command in the console:
 pak::pak()
 ```
 
+To build the reports and papers to PDF, you'll need to install TinyTeX:
+
+``` r
+tinytex::install_tinytex()
+```
+
 ## Steps to download the data and reproduce the analysis
 
 The `data-raw/` folder contains the scripts to select, process, and
