@@ -72,22 +72,6 @@ editor:
 # Include packages here if needed.
 ```
 
-```{r upload-protocol}
-#| eval: false
-#| echo: false
-# This is only for uploading to Zenodo.
-library(ukbAid)
-path <- here::here("doc/protocol.qmd")
-pdf_path <- zen_create_protocol_pdf(path)
-client <- zen_create_file_record(
-  path = pdf_path,
-  metadata = zen_create_protocol_metadata(path),
-  token = zen_get_token(),
-  # Test it in the sandbox first
-  sandbox = FALSE
-)
-```
-
 ::: content-hidden
 This is a template for writing your protocol in a format that based on
 features used in the [Open Science Framework registry](https://osf.io/)

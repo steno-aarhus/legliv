@@ -96,20 +96,6 @@ table_food_groups <- targets::tar_read(table_food_groups)
 dag <- targets::tar_read(dag)
 ```
 
-```{r upload-protocol, eval = FALSE, echo = FALSE}
-# This is only for uploading to Zenodo.
-# library(ukbAid)
-# path <- here::here("doc/report.Rmd")
-# pdf_path <- zen_create_protocol_pdf(path)
-# client <- zen_create_file_record(
-#   path = pdf_path,
-#   metadata = zen_create_protocol_metadata(path),
-#   token = zen_get_token(),
-#   # Test it in the sandbox first
-#   sandbox = FALSE
-# )
-```
-
 \twocolumn
 
 # Introduction {#sec1}
