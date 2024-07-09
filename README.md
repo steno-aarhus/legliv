@@ -4,6 +4,8 @@
     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11670569.svg)](https://doi.org/10.5281/zenodo.11670569)
 -   Preprint:
     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12666778.svg)](https://doi.org/10.5281/zenodo.12666778)
+-   Code:
+    [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12702170.svg)](https://doi.org/10.5281/zenodo.12702170)
 
 With this project, we will statistically model replacement of red meat
 consumption with legumes in relation to incident primary liver cancer
@@ -60,3 +62,4 @@ The following folders contain:
 
 -   `R/`: Contains the R scripts and functions to create the figures,
     tables, and results for the project.
+
