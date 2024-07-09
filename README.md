@@ -1,14 +1,17 @@
-# TODO: Write your project abbreviated title and full title here.
+# legliv: *Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study*
 
 -   Protocol:
     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11670569.svg)](https://doi.org/10.5281/zenodo.11670569)
 -   Preprint:
     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12666778.svg)](https://doi.org/10.5281/zenodo.12666778)
 
-With this project, We will statistically model replacement of red meat
+With this project, we will statistically model replacement of red meat
 consumption with legumes in relation to incident primary liver cancer
 and assess whether the association is mediated through non-alcoholic
 fatty liver disease (NAFLD).
+
+This research project uses the UK Biobank Resource under Application
+Number 81520.
 
 # Installing and setting up the project
 
@@ -57,4 +60,3 @@ The following folders contain:
 
 -   `R/`: Contains the R scripts and functions to create the figures,
     tables, and results for the project.
-
