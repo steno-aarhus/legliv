@@ -47,3 +47,4 @@ Remotes:
 Title: UK Biobank Project
 URL: https://github.com/steno-aarhus/legliv
 BugReports: https://github.com/steno-aarhus/legliv/issues
+License: MIT + file LICENSE
