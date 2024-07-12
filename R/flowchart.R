@@ -14,6 +14,9 @@ create_flowchart <- function(data) {
                                    p191 >= baseline_start_date),
       both = two_ques %>%
         filter(is.na(p191) | p191 >= baseline_start_date) %>%
+        filter(!is.na(baseline_start_date)),
+      all = two_ques %>%
+        filter(is.na(p191) | p191 >= baseline_start_date) %>%
         filter(!is.na(baseline_start_date)) %>%
         filter(
           is.na(liver_cancer_date) |
@@ -38,7 +41,7 @@ create_flowchart <- function(data) {
       two_ques_excluded = "One Oxford WebQ",
       liver_excluded = "Liver cancer before baseline",
       l2fu_excluded = "Lost to follow-up before baseline",
-      both = "Included in study",
+      all = "Included in study",
       miss_excluded = "Missing diet data",
       both_excluded = "Loss to follow-up before baseline<br>or missing diet data",
       two = "2 Oxford WebQs",
@@ -81,7 +84,7 @@ create_flowchart <- function(data) {
       y = 10,
       label = cohort_count_adorn(
         ready_flowchart,
-        both,
+        all,
         .label_fn = function(cohort, label, count) {
           glue::glue("{label} (n = {comma(count)})")
         }
