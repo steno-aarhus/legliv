@@ -17,6 +17,11 @@ affiliations:
   - id: 2
     name: Steno Diabetes Center Aarhus, Aarhus University Hospital, Aarhus N, Denmark
 date: June 20, 2024
+geometry:
+  - top=2cm
+  - bottom=2cm
+  - left=2cm
+  - right=2cm
 output:
   bookdown::pdf_book:
     toc: false
@@ -37,33 +42,22 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,
                       out.extra = "")
-library(here)
 library(gt)
 library(gtsummary)
 library(tidyverse)
-library(survival)
 targets::tar_config_set(store = here::here("_targets"))
-data <- targets::tar_read(data_main)
-data_hcc <- targets::tar_read(data_with_hcc)
-data_icc <- targets::tar_read(data_with_icc)
-data_alc <- targets::tar_read(data_with_alc)
-data_misreporter <- targets::tar_read(data_with_misreporter)
-data_3_ques_comp <- targets::tar_read(data_with_3_ques_comp)
-data_liver_disease <- targets::tar_read(data_without_liver_disease)
-data_any_cancer <- targets::tar_read(data_without_cancer)
-data_death <- targets::tar_read(data_with_death)
-data_nosoy <- targets::tar_read(data_nosoy)
-source(here("R", "table-cancer-type.R"))
-source(here("R", "dag-code.R"))
-source(here("R", "table-food-groups.R"))
-source(here("R", "table-legume-quartiles.R"))
-source(here("R", "table-sens.R"))
+table_legume_quartiles_list <- targets::tar_read(table_legume_quartiles_list)
+table_legume <- table_legume_quartiles_list$table_legume
+table_cancer_type <- targets::tar_read(table_cancer_type)
+table_sens <- targets::tar_read(table_sens)
+table_food_groups <- targets::tar_read(table_food_groups)
+dag <- targets::tar_read(dag)
 ```
 
 # Supplementary materials {#sec1}
 
 ```{r food-group}
-food_group_table %>% 
+table_food_groups %>% 
   tab_options(latex.use.longtable = FALSE,
               latex.tbl.pos = "h")
 ```

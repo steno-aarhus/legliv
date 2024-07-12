@@ -36,6 +36,7 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -64,6 +65,7 @@
 \usepackage{colortbl}
 \usepackage{array}
 \usepackage{anyfontsize}
+\usepackage{multirow}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -98,14 +100,14 @@
 \section{Supplementary materials}\label{sec1}}
 
 \begin{table}[h]
-\caption{\label{tab:food-group}\textbf{Supplementary table 1. Summary of included foods for each food group.}} 
+\caption{\label{tab:food-group}\textbf{Summary of included foods for each food group.}} 
 \fontsize{9.0pt}{10.8pt}\selectfont
 \begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.2\linewidth-2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.8\linewidth-2\tabcolsep-1.5\arrayrulewidth}}
 \toprule
 \textbf{Food group} & \textbf{Includes} \\ 
 \midrule\addlinespace[2.5pt]
 {\bfseries Legumes} & Soy-based desserts, baked beans, pulses, soy drinks (including calcium fortified),
-  tofu-based products, hummus, peas \\ 
+      tofu-based products, hummus, peas \\ 
 {\bfseries Red meat} & Beef, lamb, other meat including offal, pork \\ 
 {\bfseries Processed meat} & Sausages, bacon (with and without fat), ham, liver pate \\ 
 {\bfseries Animal-based foods} & Poultry, fish, dairy, eggs, mixed dishes, and sauces and condiments \\ 
@@ -184,9 +186,9 @@ Categories: &  &  &  \\
 \cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6} \cmidrule(lr){7-7} \cmidrule(lr){8-8} \cmidrule(lr){9-9}
 \textbf{15 g/day of legumes replacing:} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} & \textbf{HR} \textbf{(95\% CI)} \\ 
 \midrule\addlinespace[2.5pt]
-Total red meat & 1.00 (0.94-1.06) & 1.01 (0.95-1.07) & 0.99 (0.93-1.06) & 1.03 (0.96-1.11) & 1.04 (0.96-1.12) & 1.02 (0.96-1.08) & 1.00 (0.94-1.06) & 1.03 (0.94-1.12) \\ 
-Unprocessed red meat & 0.98 (0.92-1.05) & 0.99 (0.93-1.05) & 0.97 (0.90-1.04) & 1.00 (0.93-1.08) & 1.02 (0.94-1.11) & 1.00 (0.94-1.07) & 0.98 (0.92-1.05) & 1.01 (0.92-1.11) \\ 
-Processed red meat & 1.06 (0.95-1.18) & 1.08 (0.98-1.20) & 1.08 (0.96-1.20) & 1.15 (1.01-1.30) & 1.11 (0.97-1.27) & 1.07 (0.98-1.18) & 1.06 (0.96-1.17) & 1.11 (0.98-1.25) \\ 
+Total red meat & 1.00 (0.94-1.06) & 1.01 (0.95-1.07) & 1.04 (0.96-1.12) & 0.99 (0.93-1.06) & 1.02 (0.96-1.08) & 1.00 (0.94-1.06) & 1.03 (0.96-1.11) & 1.03 (0.94-1.12) \\ 
+Unprocessed red meat & 0.98 (0.92-1.05) & 0.99 (0.93-1.05) & 1.02 (0.94-1.11) & 0.97 (0.90-1.04) & 1.00 (0.94-1.07) & 0.98 (0.92-1.05) & 1.00 (0.93-1.08) & 1.01 (0.92-1.11) \\ 
+Processed red meat & 1.06 (0.95-1.18) & 1.08 (0.98-1.20) & 1.11 (0.97-1.27) & 1.08 (0.96-1.20) & 1.07 (0.98-1.18) & 1.06 (0.96-1.17) & 1.15 (1.01-1.30) & 1.11 (0.98-1.25) \\ 
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}

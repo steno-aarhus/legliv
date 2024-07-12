@@ -1,5 +1,5 @@
 ---
-title: "Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study"
+title: "Association between substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study"
 author:
   - name: Niels Bock
     affil: 1
@@ -43,7 +43,7 @@ abstract: |
   We aimed to estimate the effect of replacing total red meat, unprocessed red
   meat and processed red meat with legumes on primary liver cancer in a
   free-living population. We analyzed data from 126,744 UK Biobank participants
-  who completed $\geq$ 2 24-hour diet recalls. Baseline characteristics were
+  who completed $\geq$ two 24-hour diet recalls. Baseline characteristics were
   collected from the initial assessment visit. Information on liver cancer
   diagnoses was collected via external linkage to inpatient hospital episodes or
   central cancer registries. Cox proportional hazards regression models were
@@ -119,21 +119,34 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,
                       out.extra = "")
-library(here)
 library(gt)
 library(gtsummary)
 library(tidyverse)
-library(survival)
 targets::tar_config_set(store = here::here("_targets"))
-data <- targets::tar_read(data_main)
-flowchart <- targets::tar_read(flowchart)
-data_hcc <- targets::tar_read(data_with_hcc)
-data_icc <- targets::tar_read(data_with_icc)
 table_one <- targets::tar_read(table_one)
-source(here("R","table-diet.R"))
-source(here("R","table-main.R"))
-source(here("R","table-legume-quartiles.R"))
-source(here("R","table-cancer-type.R"))
+table_diet <- targets::tar_read(table_diet)
+table_main_list <- targets::tar_read(table_main_list)
+m1t <- table_main_list$m1t
+m1r <- table_main_list$m1r
+m1p <- table_main_list$m1p
+m2p <- table_main_list$m2p
+table_main <- table_main_list$table_main
+table_legume_quartiles_list <- targets::tar_read(table_legume_quartiles_list)
+m2t_leg <- table_legume_quartiles_list$m2t_leg
+table_legume <- table_legume_quartiles_list$table_legume
+table_cancer_type <- targets::tar_read(table_cancer_type)
+table_hcc <- targets::tar_read(table_hcc)
+table_icc <- targets::tar_read(table_icc)
+m2t_hcc <- table_hcc$m2t_hcc
+m2r_hcc <- table_hcc$m2r_hcc
+m2p_hcc <- table_hcc$m2p_hcc
+m2t_icc <- table_icc$m2t_icc
+m2r_icc <- table_icc$m2r_icc
+m2p_icc <- table_icc$m2p_icc
+flowchart <- targets::tar_read(flowchart)
+table_sens <- targets::tar_read(table_sens)
+table_food_groups <- targets::tar_read(table_food_groups)
+dag <- targets::tar_read(dag)
 ```
 
 # Introduction {#sec1}
@@ -513,25 +526,27 @@ restricted findings of clinical relevance.
 Information on dietary intake was collected using self-reported 24-hour
 diet recalls, which may have introduced measurement error partly due to
 the limited ability of 24-hour recalls to estimate habitual dietary
-intake. However, estimates were robust to exclusion of participants with
-fewer than three completed Oxford WebQs, indicating that increasing
-number of dietary measurements to account for some of the natural
-fluctuations in dietary intake over time made little difference to our
-results. A validation study of the Oxford WebQ found person-specific
-biases for correlation with true intakes for some nutrients,
-particularly for participants with a higher BMI [@Greenwood2019].
-Adjustment for BMI was not included in this current study. However,
-adjusting for waist circumference did not change the estimates
-appreciably, indicating that such errors do not explain our results.
-Finally, by specifying that the dietary exposure was collected on at
-least two occasions, the study population suffered considerable
-attrition. This is unlikely to be completely at random, and most likely
-resulted in a study population with greater focus on their dietary
-habits compared to the general population. For example, the mean intake
-of processed meat was low in our study population. If a diet consisting
-of higher intakes of healthier plant-based foods is associated with
-lower liver cancer incidence, our study population may be at lower risk
-overall, thus reducing the power of our study to detect an association.
+intake. The lack of subsequently administered Oxford WebQs made it
+impossible to adjust for dietary changes during the study time. However,
+estimates were robust to exclusion of participants with fewer than three
+completed Oxford WebQs, indicating that increasing number of dietary
+measurements to account for some of the natural fluctuations in dietary
+intake over time made little difference to our results. A validation
+study of the Oxford WebQ found person-specific biases for correlation
+with true intakes for some nutrients, particularly for participants with
+a higher BMI [@Greenwood2019]. Adjustment for BMI was not included in
+this current study. However, adjusting for waist circumference did not
+change the estimates appreciably, indicating that such errors do not
+explain our results. Finally, by specifying that the dietary exposure
+was collected on at least two occasions, the study population suffered
+considerable attrition. This is unlikely to be completely at random, and
+most likely resulted in a study population with greater focus on their
+dietary habits compared to the general population. For example, the mean
+intake of processed meat was low in our study population. If a diet
+consisting of higher intakes of healthier plant-based foods is
+associated with lower liver cancer incidence, our study population may
+be at lower risk overall, thus reducing the power of our study to detect
+an association.
 
 Registries used to determine a diagnosis of liver cancer were incomplete
 or not up-to-date at the time of analysis [@RN112]. Data from external
@@ -619,3 +634,4 @@ with legumes and liver cancer was observed. These results should be
 interpreted with caution due to the low intake of the substituted foods
 and few liver cancer cases. Further research in larger study populations
 with longer follow-up time is warranted.
+
