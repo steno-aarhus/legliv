@@ -3,6 +3,7 @@ Type: Project
 Version: 1.0
 Imports:
     bookdown,
+    broom.helpers,
     confintr,
     desc,
     dplyr,
