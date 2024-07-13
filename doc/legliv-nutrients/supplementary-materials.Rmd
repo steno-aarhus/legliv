@@ -1,5 +1,5 @@
 ---
-title: 'Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study'
+title: "Association between substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study"
 author:
   - name: Niels Bock \orcidlink{0009-0005-7373-1589}
     affil-id: 1
@@ -30,11 +30,9 @@ output:
     template: default.tex
     keep_tex: true
 header-includes:
-  - \usepackage{rotating}
   - \usepackage{caption}
-  - \captionsetup{font=small,justification=raggedright,singlelinecheck=false}
-  - \captionsetup[table]{labelformat=default, labelsep=period}
-  - \captionsetup[figure]{labelformat=default, labelsep=period}
+  - \captionsetup[table]{position=top, labelfont={bf, small, stretch=1.17}, labelsep=period, textfont={small, stretch=1.17}, aboveskip=6pt, singlelinecheck=off, justification=justified}
+  - \captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=period, textfont={small, stretch=1.17}, aboveskip=6pt, belowskip=-6pt, singlelinecheck=off, justification=justified}
   - \renewcommand{\thetable}{S\arabic{table}}
   - \renewcommand{\thefigure}{S\arabic{figure}}
 ---
