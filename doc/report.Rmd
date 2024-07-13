@@ -1,5 +1,5 @@
 ---
-title: "Association between substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study"
+title: "The Association between Substitution of Red Meat with Legumes and Risk of Primary Liver Cancer in UK Biobank: A Cohort Study"
 author:
   - name: Niels Bock \orcidlink{0009-0005-7373-1589}
     affil-id: 1
@@ -132,7 +132,7 @@ and whole grains may lower HCC risk [@zhang2013; @yang2014; @Liu2021;
 @Bhurwal2020]. The protective properties of these foods are proposed to
 be their content of dietary fibers and polyphenols, which are also
 defining components of legumes [@rebello2014]. Polyphenols such as
-phenolic acid and flavonoids inhibit free radical and may thus protect
+phenolic acid and flavonoids inhibit free radicals and may thus protect
 human tissues against oxidative stress [@scalbert2002; @bouchenak2013].
 Phytic acid and saponins may have anti-carcinogenic properties via
 regulation of the cell cycle and enzymes involved in the apotosis
