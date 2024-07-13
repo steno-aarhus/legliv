@@ -1,4 +1,4 @@
-# legliv: *Substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study*
+# legliv: *Association between substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study*
 
 -   Protocol:
     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11670569.svg)](https://doi.org/10.5281/zenodo.11670569)
