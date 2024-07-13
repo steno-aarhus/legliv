@@ -12,7 +12,7 @@ create_flowchart <- function(data) {
       ),
       l2fu = two_ques %>% filter(is.na(p191) |
                                    p191 >= baseline_start_date),
-      both = two_ques %>%
+      l2fu_and_miss = two_ques %>%
         filter(is.na(p191) | p191 >= baseline_start_date) %>%
         filter(!is.na(baseline_start_date)),
       all = two_ques %>%
@@ -22,7 +22,6 @@ create_flowchart <- function(data) {
           is.na(liver_cancer_date) |
             liver_cancer_date >= baseline_start_date
         ),
-      miss = two_ques %>% filter(!is.na(baseline_start_date)),
       two = two_ques %>% filter(p20077 == 2),
       three = two_ques %>% filter(p20077 == 3),
       four = two_ques %>% filter(p20077 == 4),
@@ -31,8 +30,7 @@ create_flowchart <- function(data) {
       two_ques_excluded = anti_join(one_ques, two_ques, by = "id"),
       liver_excluded = anti_join(two_ques, liver, by = "id"),
       l2fu_excluded = anti_join(two_ques, l2fu, by = "id"),
-      miss_excluded = anti_join(two_ques, miss, by = "id"),
-      both_excluded = anti_join(two_ques, both, by = "id")
+      l2fu_and_miss_excluded = anti_join(two_ques, l2fu_and_miss, by = "id")
     ) %>%
     cohort_label(
       one_ques = "One or more 24-hour recall",
@@ -42,8 +40,7 @@ create_flowchart <- function(data) {
       liver_excluded = "Liver cancer before baseline",
       l2fu_excluded = "Lost to follow-up before baseline",
       all = "Included in study",
-      miss_excluded = "Missing diet data",
-      both_excluded = "Loss to follow-up before baseline<br>or missing diet data",
+      l2fu_and_miss_excluded = "Loss to follow-up before baseline<br>or missing diet data",
       two = "2 Oxford WebQs",
       three = "3 Oxford WebQs",
       four = "4 Oxford WebQs",
@@ -110,7 +107,7 @@ create_flowchart <- function(data) {
         '
       Exclusions due to:<br><br>
       {cohort_count_adorn(ready_flowchart, liver_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
-      {cohort_count_adorn(ready_flowchart, both_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
+      {cohort_count_adorn(ready_flowchart, l2fu_and_miss_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
       '
       )
     ) %>%
