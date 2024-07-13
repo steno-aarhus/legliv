@@ -133,8 +133,6 @@ m2p <- table_main_list$m2p
 table_main <- table_main_list$table_main
 table_legume_quartiles_list <- targets::tar_read(table_legume_quartiles_list)
 m2t_leg <- table_legume_quartiles_list$m2t_leg
-table_legume <- table_legume_quartiles_list$table_legume
-table_cancer_type <- targets::tar_read(table_cancer_type)
 table_hcc <- targets::tar_read(table_hcc)
 table_icc <- targets::tar_read(table_icc)
 m2t_hcc <- table_hcc$m2t_hcc
@@ -144,9 +142,6 @@ m2t_icc <- table_icc$m2t_icc
 m2r_icc <- table_icc$m2r_icc
 m2p_icc <- table_icc$m2p_icc
 flowchart <- targets::tar_read(flowchart)
-table_sens <- targets::tar_read(table_sens)
-table_food_groups <- targets::tar_read(table_food_groups)
-dag <- targets::tar_read(dag)
 ```
 
 # Introduction {#sec1}
