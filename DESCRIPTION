@@ -41,7 +41,7 @@ Encoding: UTF-8
 Remotes: 
     steno-aarhus/ukbAid,
     tgerke/ggconsort,
-    nielsbock/gt@floating-table,
+    nielsbock/gt@ukb,
     rstudio/rmarkdown,
     ddsjoberg/gtsummary,
     nielsbock/rticles

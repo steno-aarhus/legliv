@@ -1,5 +1,5 @@
 ---
-title: "Association between substitution of red meat with legumes and risk of primary liver cancer in UK Biobank participants: A prospective cohort study"
+title: "The Association between the Substitution of Red Meat with Legumes and the Risk of Primary Liver Cancer in the UK Biobank: A Cohort Study"
 author:
   - name: Niels Bock \orcidlink{0009-0005-7373-1589}
     affil-id: 1
@@ -56,7 +56,7 @@ dag <- targets::tar_read(dag)
 
 ```{r food-group}
 table_food_groups %>% 
-  tab_options(latex.use.longtable = FALSE,
+  tab_options(latex.use_longtable = FALSE,
               latex.tbl.pos = "h")
 ```
 
@@ -64,7 +64,7 @@ table_food_groups %>%
 
 ```{r cancer}
 table_cancer_type %>% 
-  tab_options(latex.use.longtable = FALSE,
+  tab_options(latex.use_longtable = FALSE,
               latex.tbl.pos = "h")
 ```
 
@@ -72,7 +72,7 @@ table_cancer_type %>%
 
 ```{r legume}
 table_legume %>% 
-  tab_options(latex.use.longtable = FALSE,
+  tab_options(latex.use_longtable = FALSE,
               latex.tbl.pos = "h")
 ```
 
@@ -80,9 +80,9 @@ table_legume %>%
 
 ```{r sens}
 table_sens %>% 
-  tab_options(latex.use.longtable = FALSE,
+  tab_options(latex.use_longtable = FALSE,
               latex.tbl.pos = "h",
-              latex.use.sidewaystable = TRUE)
+              latex.use_sidewaystable = TRUE)
 ```
 
 \clearpage

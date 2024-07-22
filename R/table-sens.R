@@ -658,6 +658,6 @@ create_table_sens <- function(row1, row2, row3, gt_theme) {
       level = 2,
       id = "456"
     ) %>%
-    cols_width(matches("estimate|label") ~ pct(100/9))
+    cols_width(everything() ~ pct(100/9))
   return(table_sens)
 }

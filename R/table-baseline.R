@@ -46,10 +46,10 @@ create_table_one <- function(data, gt_theme) {
     tbls = list(table_all, table_cancer)
   ) %>%
     bold_labels() %>%
-    modify_header(label ~ "**Variable**") %>%
     modify_footnote(
-      all_stat_cols() ~ "Median (IQR) for continuous variables; n (%) for categorical variables"
+      all_stat_cols() ~ NA
     ) %>%
+    modify_footnote(label ~ "Median (Q1, Q3) for continuous variables; n (%) for categorical variables. Variables are in bold.") %>%
     modify_table_styling(
       columns = label,
       rows = label == "Educational level",

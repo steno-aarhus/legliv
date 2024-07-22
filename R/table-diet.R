@@ -76,6 +76,8 @@ create_table_diet <- function(data, gt_theme) {
     tbl_stack(list(row1, row2),
               group_header = c("Total food intake", "Food groups, g/day")) %>%
     modify_header(label ~ "**Daily food intake**") %>%
+    modify_footnote(all_stat_cols() ~ NA,
+                    label ~ "Median (Q1, Q3).") %>%
     modify_table_styling(
       columns = label,
       rows = label == "Other animal-based foods",
