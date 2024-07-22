@@ -93,7 +93,7 @@ create_flowchart <- function(data) {
       y = 42.5,
       label = glue::glue(
         '
-      Exclusion of participants with:<br><br>
+      Exclusion of participants with the following:<br><br>
       {cohort_count_adorn(ready_flowchart, one_ques_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
       {cohort_count_adorn(ready_flowchart, two_ques_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
       '
@@ -105,7 +105,7 @@ create_flowchart <- function(data) {
       y = 18,
       label = glue::glue(
         '
-      Exclusions due to:<br><br>
+      Exclusions due to the following:<br><br>
       {cohort_count_adorn(ready_flowchart, liver_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}<br>
       {cohort_count_adorn(ready_flowchart, l2fu_and_miss_excluded, .label_fn = function(cohort, label, count) {glue::glue("{label} (n = {comma(count)})")})}
       '
