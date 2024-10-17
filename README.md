@@ -6,6 +6,8 @@
     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12666778.svg)](https://doi.org/10.5281/zenodo.12666778)
 -   Code:
     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12702170.svg)](https://doi.org/10.5281/zenodo.12702170)
+-   Paper:
+    [![DOI](https://img.shields.io/badge/DOI-10.3390%2Fnu16152383-blue?style=flat)](https://doi.org/10.3390/nu16152383)
 
 With this project, we will statistically model replacement of red meat
 consumption with legumes in relation to incident primary liver cancer
