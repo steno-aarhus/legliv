@@ -38,5 +38,3 @@ client <- zen_create_file_record(
   # Test it in the sandbox first
   sandbox = FALSE
 )
-
-# Repository --------------------------------------------------------------
